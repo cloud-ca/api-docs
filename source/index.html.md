@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs:
-  - json : JSON
+  - javascript : Examples
   - shell : cURL
 
 toc_footers:
