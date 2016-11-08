@@ -13,5 +13,9 @@ includes:
   - service_api
   - compute/compute_api
 
+subsections:
+  compute_api:
+    - instances
+
 search: true
 ---

@@ -4,4 +4,6 @@
 
 sklfjlaksdjflsdk
 
-<%= partial "includes/compute/instances" %>
+<% current_page.data.subsections.compute_api.each do |api| %>
+  <%= partial "includes/compute/#{api}" %>
+<% end %>
