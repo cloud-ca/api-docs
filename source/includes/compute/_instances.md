@@ -2,10 +2,7 @@
 
 ### List instances
 
-```shell
-curl -X GET "https://api.cloud.ca/v1/services/:service_code/:env_name/instances" -H "MC-Api-Key: [your-api-key]"
-```
-> The above command returns JSON structured like this:
+> The list instances response example:
 
 ```json
 {
@@ -40,6 +37,11 @@ curl -X GET "https://api.cloud.ca/v1/services/:service_code/:env_name/instances"
   }
 }
 ```
+
+```shell
+curl -X GET "https://api.cloud.ca/v1/services/:service_code/:env_name/instances" -H "MC-Api-Key: [your-api-key]"
+```
+
 This endpoint retrieves all instances in a given environment.
 
 `GET https://api.cloud.ca/v1/services/:service_code/:env_name/instances`
@@ -71,7 +73,7 @@ Fields | Description
 `isPasswordEnabled`<br>*boolean* | Indicate whether a password can be used for remote connections
 `macAddress`<br>*string* | The instance's MAC address
 
-### Add new instance (async)
+### Add new instance
 
 > Here is the absolute minimum information required to create a new instance:
 

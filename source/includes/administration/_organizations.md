@@ -1,13 +1,7 @@
-# Administration API
-
-The following sections describe the various endpoints exposed by cloud.ca to manage customer's configuration and interact with various core functionality of the system. Using these, you can automate various workflows without having to log into the portal, or simply integrate differents aspects of cloud.ca with your own toolchain.
-
-## Environments
-
-## Users
-
 ## Organization
+
 ### Create organization
+
 `POST /organization`
 
 > Organization example
@@ -26,16 +20,17 @@ The following sections describe the various endpoints exposed by cloud.ca to man
    }
 }
 ```
+
 Bacon ipsum dolor amet doner shoulder pig pancetta ribeye short loin tail spare ribs venison salami ground round jowl t-bone pastrami.Tri-tip pork biltong hamburger, short loin shankle kevin sausage picanha. Yada yada need body. The id of the organization to update
+
 #### Required
 Name | Type | Description
 ---- | ---- | -----------
 entryPoint | string | The entry point is {entryPoint}.cloud.ca
 name | string | The name of the organization. (Add info about restrictions)
+
 #### Optional
 Name | Type | Description
 ---- | ---- | -----------
 serviceConnections | Array[[ServiceConnection](#serviceConnection)] | A list of service connection with id field.
 parent | [Organization](#organization) | the UUID of the parent organization
-
-## Usage

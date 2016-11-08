@@ -2,6 +2,7 @@
 title: API Reference
 
 language_tabs:
+  - json : JSON
   - shell : cURL
 
 toc_footers:
@@ -11,9 +12,14 @@ includes:
   - getting_started
   - administration_api
   - service_api
-  - compute/compute_api
+  - compute_api
 
 subsections:
+  administration_api:
+    - environments
+    - users
+    - usage
+    - organizations
   compute_api:
     - instances
 
