@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -88,10 +86,12 @@
   color: #90a959;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -101,9 +101,7 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="shell">cURL</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -112,235 +110,722 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
             <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        
+          <h1 id="getting-started">Getting Started</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to cloud.ca&rsquo;s API documentation.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>The cloud.ca API allows you to manage your configuration as well as provision and manage your resources in a simple programmatic way using standard HTTP requests.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>This API is following the <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> approach. All requests should be made over SSL. Request and Response bodies, including errors, are encoded in JSON.</p>
 
-<h1 id="authentication">Authentication</h1>
+<h2 id="authentication">Authentication</h2>
 
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>To authenticate, use this code:</p>
 </blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"api_endpoint_here"</span>
+  -H <span class="s2">"MC-Api-Key: [your-api-key]"</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">[your-api-key]</code> with your API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>Authentication is done via the API Key which you can find in the API Keys section in the cloud.ca portal under the user profile menu. If you don&rsquo;t see cloud.ca API section, it means your user account doesn&rsquo;t have the required <strong>API keys for cloud.ca</strong> permission.</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>cloud.ca expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">MC-Api-Key: [your-api-key]</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>"[your-api-key]</code> with your personal cloud.ca API key.
 </aside>
 
-<h1 id="kittens">Kittens</h1>
+<h2 id="authorization">Authorization</h2>
 
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>All cloud.ca API calls go through the same RBAC (Role-based Access Control) logic that is enforced when performing the equivalent operation from the cloud.ca portal. Your user account associated with the provided API key need to be assigned the required permission(s) via your system and/or environment roles in order to be authorized to execute the various API calls. If you lack the required permission, the API call will fail and return an error message indicating what went wrong.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<h2 id="requests">Requests</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all kittens.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
+<p>The cloud.ca API can be used by any tool that is fluent in HTTP. The appropriate HTTP method should be used depending on the desired action.</p>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>GET</td>
+<td>Used to retrieve information about a resource.</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>Used to create (or provision) a new resource.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>Used to update a resource or perform an operation on it.</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>Used to remove/delete a resource.</td>
+</tr>
+</tbody></table>
+
+<p>POST and PUT requests must have a JSON encoded body and the <code class="prettyprint">Content-Type: application/json</code> header.</p>
+
+<aside class="notice">
+Remember to url-encode all querystring parameters!
+</aside>
+
+<h3 id="pagination-amp-sorting">Pagination &amp; Sorting</h3>
+<pre class="highlight shell"><code>curl -X GET <span class="s2">"https://api.cloud.ca:443/v1/users;orderby=tenant,userName"</span> <span class="se">\</span>
+  -H <span class="s2">"MC-Api-Key: [your-api-key]"</span>
+</code></pre>
+<pre class="highlight shell"><code>curl -X GET <span class="s2">"https://api.cloud.ca:443/v1/users;orderby=lastLogin%20DESC"</span> <span class="se">\</span>
+  -H <span class="s2">"MC-Current-Page: 1"</span> <span class="se">\</span>
+  -H <span class="s2">"MC-Page-Size: 10"</span> <span class="se">\</span>
+  -H <span class="s2">"MC-Api-Key: [your-api-key]"</span><span class="se">\</span>
+
+</code></pre>
+
+<h4 id="configuration-apis">Configuration APIs</h4>
+
+<p>All <code class="prettyprint">GET</code> endpoints returning a list of objects support pagination. The desired &ldquo;window&rdquo; of result is specified by providing the following HTTP request headers:</p>
+
+<table><thead>
+<tr>
+<th>HTTP request header</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>MC-Current-Page</td>
+<td>The page of data to retrieve</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>MC-Page-Size</td>
+<td>The number of items to display per page</td>
 </tr>
 </tbody></table>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<p>To control <strong>sorting</strong> when retrieve a list of configuration items, you can also add the <code class="prettyprint">orderby</code> <strong>path</strong> parameter to specified the field(s) to be used for sorting, along with the desired sorting order (<code class="prettyprint">ASC</code> or <code class="prettyprint">DESC</code>).</p>
+
+<h2 id="responses">Responses</h2>
+
+<blockquote>
+<p>A successful request to return a single ressource will look like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"_comment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">" JSON representation of resource goes here"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>A successful request to return a collection of resource will look like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"_comment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"JSON representation of first resource goes here"</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w"> </span><span class="nt">"_comment"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"JSON representation of second resource goes here"</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"pageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pageCurrent"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"recordCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sortField"</span><span class="p">:</span><span class="w"> </span><span class="s2">"templateName"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sortOrder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASC"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>An unsuccessful request will look like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"taskId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d59b760c-dfa9-449f-be81-0f9efcf2946c"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"taskStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FAILED"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">2012</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cannot stop an instance that isn't in the running state"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4534cc36-bc46-48bc-ac5c-3ee4e42f0a44"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"currentState"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stopped"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"expectedStates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Running"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"instances"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>When an API request is issued, the response body will be formatted in the same standard JSON structure (see detailed <a href="http://json-schema.org/">JSON Schema</a> of the response in the sidebar), although some of the object and attributes may or may not be included depending on the context.</p>
+
+<p>The returned HTTP Status will be one of the following codes:</p>
+
+<table><thead>
+<tr>
+<th>Status code</th>
+<th>Reason</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>The request was successful.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad request &ndash; Occurs when invalid parameters are provided or when quota limit is exceeded.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Forbidden &ndash; You are not authorized to perform this request.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; Cannot locate the specified resource.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>An unexpected error occured.</td>
+</tr>
+</tbody></table>
+
+<h2 id="asynchronous-operations">Asynchronous operations</h2>
+
+<p>Some operations take longer to execute, and to avoid blocking on the response until it is fully completed, these are treated in an asynchronous fashion. This means the API will return immediately, and provide you a <code class="prettyprint">taskId</code> that is your reference to the ongoing background task. Using the <a href="#tasks">Tasks</a> API, you can query the task&rsquo;s status to find if it has completed and obtain the result of the operation.</p>
+
+<p>The operations that are affected by this are identified as such with a <strong><em>(async)</em></strong> suffix in this documentation.</p>
+
+<aside class="warning">
+It is a good practice to limit the polling rate on the task API to no more than once per second.
 </aside>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+          <h1 id="core-resources">Core Resources</h1>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>The following sections describe the various endpoints exposed by cloud.ca to manage customer&rsquo;s configuration and interact with various core functionality of the system. Using these, you can automate various workflows without having to log into the portal, or simply integrate differents aspects of cloud.ca with your own toolchain.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<h1 id="environments">Environments</h1>
+
+<h1 id="users">Users</h1>
+
+<h1 id="tasks">Tasks</h1>
+
+<h2 id="get-task-status">Get task status</h2>
+
+<blockquote>
+<p>A response for an asynchronous operation will look like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"taskId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"668abbfd-d5f2-45d4-95a3-28aef4b671f5"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"taskStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>To verify if the operation is completed:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.cloud.ca:443/v1/tasks/668abbfd-d5f2-45d4-95a3-28aef4b671f5"</span> <span class="se">\</span>
+  -H <span class="s2">"MC-Api-Key: [your-api-key]"</span>
 </code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+
+<blockquote>
+<p>The response when the task is completed (if creating a new resource, a representation of the resource would also be included):</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"668abbfd-d5f2-45d4-95a3-28aef4b671f5"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-11T16:25:15.227-04:00"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves information about an asynchronous task</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.cloud.ca:443/v1/tasks/{id}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>true</td>
+<td>Id for the task to find.</td>
+</tr>
+</tbody></table>
+
+<h1 id="usage">Usage</h1>
+
+          <h1 id="compute-service">Compute Service</h1>
+
+<p>Although CloudStack provides its own  native API, you may find it more convenient to use cloud.ca&rsquo;s wrapper for it, as it arguably simpler to use and provide a consistent way of calling all its supported services. Furthermore, it enforces the same environment role-based access control that is defined in the cloud.ca portal.</p>
+
+<p>All compute service API calls must include path parameters <code class="prettyprint">service_code</code> and <code class="prettyprint">env_name</code>, which are used to specify which environment is targeted by your request. This information can be retrieved from the <strong>Environment</strong> picker in the <strong>Services</strong> tab, as seen below.</p>
+
+<p><img alt="Retrieve service_code and env_name" src="images/service_environment.png" /></p>
+
+          <h1 id="instances">Instances</h1>
+
+<h2 id="instance-resource">Instance resource</h2>
+
+<blockquote>
+<p>Example of an instance resource:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04afdbd1-e32d-4999-86d0-96703736dded"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"templateId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8f52a74e-e637-40e8-a8dc-f56fd0b71ab9"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"templateName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CentOS 7 HVM base (64bit)"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"computeOfferingId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3caab5ed-b5a2-4d8a-82e4-51c46168ee6c"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"zoneName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QC-1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"computeOfferingName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1vCPU.512MB"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"networkId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d5a68379-a9ee-404f-9492-a1964b374d6f"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"networkName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Web-Testing"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"vpcId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9eb1592c-f92f-4ddd-9799-b58caf896328"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"vpcName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing-VPC"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"ipAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.164.212.68"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"projectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a295c6de-1737-4df2-aa49-9bd749fa2489"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"isPasswordEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"macAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02:00:2b:67:00:30"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cpuCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"memoryInMB"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"hostname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backup-test"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cca-user"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"affinityGroupIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9db8ff2f-b49b-466d-a2f3-c1e6def408f4"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backup-test"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Running"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Generic instance information</p>
+
+<table><thead>
+<tr>
+<th>Fields</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code><br><em>UUID</em></td>
+<td>Instance ID</td>
+</tr>
+<tr>
+<td><code class="prettyprint">name</code><br><em>string</em>, <strong>required</strong></td>
+<td>Instance&rsquo;s display name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">state&gt;</code><br><em>string</em></td>
+<td>The current state of the instance.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">templateId</code><br><em>UUID</em>, <strong>required</strong></td>
+<td>Instance&rsquo;s template ID</td>
+</tr>
+<tr>
+<td><code class="prettyprint">templateName</code><br><em>string</em></td>
+<td>Name of associated template</td>
+</tr>
+<tr>
+<td><code class="prettyprint">computeOfferingId</code><br><em>UUID</em>, <strong>required</strong></td>
+<td>Instance&rsquo;s Compute Offering ID</td>
+</tr>
+<tr>
+<td><code class="prettyprint">computeOfferingName</code><br><em>string</em></td>
+<td>Name of associated Compute Offering</td>
+</tr>
+<tr>
+<td><code class="prettyprint">cpuCount</code><br><em>integer</em></td>
+<td>Number of vCPUs associated with the instance&rsquo;s Compute Offering.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">memoryInMB</code><br><em>integer</em></td>
+<td>Number of megabytes associated with the instance&rsquo;s Compute Offering.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">networkId</code><br><em>UUID</em>, <strong>required</strong></td>
+<td>ID of Network where instance is deployed</td>
+</tr>
+<tr>
+<td><code class="prettyprint">networkName</code><br><em>string</em></td>
+<td>Name of associated Network</td>
+</tr>
+<tr>
+<td><code class="prettyprint">hostName</code><br><em>string</em></td>
+<td>Instance&rsquo;s host name</td>
+</tr>
+<tr>
+<td><code class="prettyprint">userName</code><br><em>string</em></td>
+<td>The username that can be used to connect to the instance</td>
+</tr>
+<tr>
+<td><code class="prettyprint">affinityGroupIds</code><br><em>array</em></td>
+<td>ID(s) of the Affinity Groups to which the instance is associated.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">zoneId</code><br><em>UUID</em></td>
+<td>ID of zone where instance is deployed</td>
+</tr>
+<tr>
+<td><code class="prettyprint">zoneName</code><br><em>string</em></td>
+<td>Name of associated Zone</td>
+</tr>
+<tr>
+<td><code class="prettyprint">vpcId</code><br><em>UUID</em></td>
+<td>Instance&rsquo;s VPC ID</td>
+</tr>
+<tr>
+<td><code class="prettyprint">vpcName</code><br><em>string</em></td>
+<td>Name of associated VPC</td>
+</tr>
+<tr>
+<td><code class="prettyprint">ipAddress</code><br><em>string</em></td>
+<td>The instance&rsquo;s private IPv4 address</td>
+</tr>
+<tr>
+<td><code class="prettyprint">projectId</code><br><em>UUID</em></td>
+<td>Instance&rsquo;s CloudStack project ID</td>
+</tr>
+<tr>
+<td><code class="prettyprint">isPasswordEnabled</code><br><em>boolean</em></td>
+<td>Indicate whether a password can be used for remote connections</td>
+</tr>
+<tr>
+<td><code class="prettyprint">macAddress</code><br><em>string</em></td>
+<td>The instance&rsquo;s MAC address</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-list-of-instances">Get list of instances</h2>
+<pre class="highlight shell"><code>curl -X GET <span class="s2">"https://api.cloud.ca:443/v1/services/compute-east/demo-env/instances"</span>
+  -H <span class="s2">"MC-Api-Key: [your-api-key]"</span>
 </code></pre>
 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04afdbd1-e32d-4999-86d0-96703736dded"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"templateId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8f52a74e-e637-40e8-a8dc-f56fd0b71ab9"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"templateName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CentOS 7 HVM base (64bit)"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"computeOfferingId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3caab5ed-b5a2-4d8a-82e4-51c46168ee6c"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zoneName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QC-1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"computeOfferingName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1vCPU.512MB"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"networkId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d5a68379-a9ee-404f-9492-a1964b374d6f"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"networkName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Web-Testing"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"vpcId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9eb1592c-f92f-4ddd-9799-b58caf896328"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"vpcName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing-VPC"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"ipAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.164.212.68"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"projectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a295c6de-1737-4df2-aa49-9bd749fa2489"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"isPasswordEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"macAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02:00:2b:67:00:30"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"cpuCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"memoryInMB"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"hostname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backup-test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cca-user"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"affinityGroupIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9db8ff2f-b49b-466d-a2f3-c1e6def408f4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"backup-test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Running"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04afdbd1-e32d-4999-86d0-96703736dded"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"templateId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b6b0506a-4454-4f93-951c-8c9d220a466c"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"templateName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CentOS 6.6 base (64bit)"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"computeOfferingId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3caab5ed-b5a2-4d8a-82e4-51c46168ee6c"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"zoneName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QC-1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"computeOfferingName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1vCPU.512MB"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"networkId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d5a68379-a9ee-404f-9492-a1964b374d6f"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"networkName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Web-Testing"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"vpcId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9eb1592c-f92f-4ddd-9799-b58caf896328"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"vpcName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing-VPC"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"ipAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.164.212.56"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"projectId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a295c6de-1737-4df2-aa49-9bd749fa2489"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"isPasswordEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"macAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02:00:6b:c5:00:2e"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"cpuCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"memoryInMB"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"hostname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"i-john-664"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cca-user"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"affinityGroupIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06f969bf-5893-4548-860e-14416e70c16d"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"i-john-664"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stopped"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"recordCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<p>This endpoint retrieves all instances in a given environment.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">GET https://api.cloud.ca:443/v1/services/{service_code}/{env_name}/instances</code></p>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h3 id="parameters">Parameters</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>service_code</td>
+<td>path</td>
+<td>true</td>
+<td>Service code of an environment.</td>
+</tr>
+<tr>
+<td>env_name</td>
+<td>path</td>
+<td>true</td>
+<td>Environment name.</td>
+</tr>
+<tr>
+<td>org_id</td>
+<td>query</td>
+<td>false</td>
+<td>Organization id (not required if environment is in your own organization).</td>
+</tr>
+<tr>
+<td>sort_by</td>
+<td>query</td>
+<td>false</td>
+<td>Name of field to sort on.</td>
+</tr>
+<tr>
+<td>sort_order</td>
+<td>query</td>
+<td>false</td>
+<td>Sort order <code class="prettyprint">ASC</code> or <code class="prettyprint">DESC</code></td>
+</tr>
+<tr>
+<td>page_number</td>
+<td>query</td>
+<td>false</td>
+<td>The page number to retrieve</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td>query</td>
+<td>false</td>
+<td>Number of items per page</td>
 </tr>
 </tbody></table>
 
-          <h1 id="errors">Errors</h1>
+<h2 id="add-new-instance-async">Add new instance (async)</h2>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+<blockquote>
+<p>Here is the absolute minimum information required to create a new instance:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"MC-Api-Key: [your-api-key]"</span> -d <span class="s2">"{
+  </span><span class="se">\"</span><span class="s2">name</span><span class="se">\"</span><span class="s2"> : </span><span class="se">\"</span><span class="s2">myInstance2</span><span class="se">\"</span><span class="s2">,
+  </span><span class="se">\"</span><span class="s2">templateId</span><span class="se">\"</span><span class="s2"> : </span><span class="se">\"</span><span class="s2">15601ee5-3db8-4021-9872-e5248a7f885a</span><span class="se">\"</span><span class="s2">,
+  </span><span class="se">\"</span><span class="s2">computeOfferingId</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">e213fb17-ab2e-45ff-9679-e30f905f35a2</span><span class="se">\"</span><span class="s2">,
+  </span><span class="se">\"</span><span class="s2">networkId</span><span class="se">\"</span><span class="s2"> : </span><span class="se">\"</span><span class="s2">d5a68379-a9ee-404f-9492-a1964b374d6f</span><span class="se">\"</span><span class="s2">
+}"</span> <span class="s2">"https://api.cloud.ca:443/v1/services/compute-east/testing/instances"</span>
+</code></pre>
 
-<p>The Kittn API uses the following error codes:</p>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"taskId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b2f82e2a-123e-4f86-a4c7-dc9b850dd11e"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"taskStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>After querying the <a href="#tasks">Tasks</a> endpoint with above <code class="prettyprint">taskID</code>, a successful execution will return a result like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"data"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"b2f82e2a-123e-4f86-a4c7-dc9b850dd11e"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created"</span><span class="p">:</span><span class="s2">"2016-07-12T09:37:34.955-04:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"result"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"cpuCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"memoryInMB"</span><span class="p">:</span><span class="mi">1024</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"affinityGroupIds"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"networkId"</span><span class="p">:</span><span class="s2">"d5a68379-a9ee-404f-9492-a1964b374d6f"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"state"</span><span class="p">:</span><span class="s2">"Running"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"hostname"</span><span class="p">:</span><span class="s2">"myInstance"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"isPasswordEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"projectId"</span><span class="p">:</span><span class="s2">"a295c6de-1737-4df2-aa49-9bd749fa2489"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"macAddress"</span><span class="p">:</span><span class="s2">"02:00:01:16:00:33"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"CloudStack"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"fJub6i"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"zoneName"</span><span class="p">:</span><span class="s2">"QC-1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="s2">"04afdbd1-e32d-4999-86d0-96703736dded"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"5bf7352c-eed2-43dc-83f1-89917fb893ca"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"templateId"</span><span class="p">:</span><span class="s2">"15601ee5-3db8-4021-9872-e5248a7f885a"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"computeOfferingId"</span><span class="p">:</span><span class="s2">"e213fb17-ab2e-45ff-9679-e30f905f35a2"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"computeOfferingName"</span><span class="p">:</span><span class="s2">"1vCPU.1GB"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"myInstance"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"networkName"</span><span class="p">:</span><span class="s2">"Web-Testing"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"templateName"</span><span class="p">:</span><span class="s2">"CentOS 7.2 HVM base (64bit)"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"ipAddress"</span><span class="p">:</span><span class="s2">"10.164.212.242"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint create a new instances in a given environment.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://api.cloud.ca:443/v1/services/{service_code}/{env_name}/instances</code></p>
+
+<h3 id="parameters">Parameters</h3>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>service_code</td>
+<td>path</td>
+<td>true</td>
+<td>Service code of an environment.</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>env_name</td>
+<td>path</td>
+<td>true</td>
+<td>Environment name.</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>org_id</td>
+<td>query</td>
+<td>false</td>
+<td>Organization id (not required if environment is in your own organization).</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>instance</td>
+<td>body</td>
+<td>true</td>
+<td>The JSON-formatted <a href="#instance-resource">instance resource</a> to be created</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-an-instance-async">Delete an instance (async)</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s2">"https://api.cloud.ca:443/v1/services/compute-east/demo-env/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca"</span> <span class="se">\</span>
+  -H <span class="s2">"MC-Api-Key: [your-api-key]"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"taskId"</span><span class="p">:</span><span class="s2">"07be5466-dd81-4965-929e-e72cfa35046f"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"taskStatus"</span><span class="p">:</span><span class="s2">"PENDING"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Schema for <code class="prettyprint">cleanup_options</code> parameter:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"purgeImmediately"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"publicIpIdsToRelease"</span><span class="p">:[</span><span class="w">
+      </span><span class="s2">"string"</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"volumeIdsToDelete"</span><span class="p">:[</span><span class="w">
+      </span><span class="s2">"string"</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"deleteSnapshots"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint deletes an instance. The instance needs to be in running, stopped or error state for the operation to work.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://api.cloud.ca:443/v1/services/{service_code}/{env_name}/instances/{id}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>service_code</td>
+<td>path</td>
+<td>true</td>
+<td>Service code of an environment.</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>env_name</td>
+<td>path</td>
+<td>true</td>
+<td>Environment name.</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+<td>id</td>
+<td>path</td>
+<td>true</td>
+<td>Id of instance.</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>org_id</td>
+<td>query</td>
+<td>false</td>
+<td>Organization id (not required if environment is in your own organization).</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>cleanup_options</td>
+<td>body</td>
+<td>false</td>
+<td>JSON-formatted cleanup options</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="shell">cURL</a>
           </div>
       </div>
     </div>
