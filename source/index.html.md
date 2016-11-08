@@ -11,7 +11,7 @@ includes:
   - getting_started
   - administration_api
   - service_api
-  - compute_service_api
+  - compute/compute_api
 
 search: true
 ---

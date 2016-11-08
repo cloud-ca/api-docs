@@ -1,4 +1,3 @@
-# Compute service API
 ## Instances
 
 ### List instances
