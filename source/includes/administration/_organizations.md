@@ -26,11 +26,11 @@ Bacon ipsum dolor amet doner shoulder pig pancetta ribeye short loin tail spare 
 #### Required
 Name | Type | Description
 ---- | ---- | -----------
-entryPoint | string | The entry point is {entryPoint}.cloud.ca
-name | string | The name of the organization. (Add info about restrictions)
+`entryPoint` | string | The entry point is {entryPoint}.cloud.ca
+`name` | string | The name of the organization. (Add info about restrictions)
 
 #### Optional
 Name | Type | Description
 ---- | ---- | -----------
-serviceConnections | Array[[ServiceConnection](#service-connection)] | A list of service connection with id field.
-parent | [Organization](#organization) | the UUID of the parent organization
+`serviceConnections` | Array[[ServiceConnection](#service-connection)] | A list of service connection with id field.
+`parent` | [Organization](#organization) | the UUID of the parent organization
