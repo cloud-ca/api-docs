@@ -1,6 +1,6 @@
-# Instances
+## Instances
 
-## Instance resource
+### Instance resource
 
 > Example of an instance resource:
 
@@ -59,10 +59,7 @@ Fields | Type | Description
 `macAddress` | *string* | The instance's MAC address
 
 
-
-
-
-## Get list of instances
+### Get list of instances
 
 ```shell
 curl -X GET "https://api.cloud.ca/v1/services/compute-east/demo-env/instances"
@@ -106,7 +103,7 @@ curl -X GET "https://api.cloud.ca/v1/services/compute-east/demo-env/instances"
 `GET https://api.cloud.ca/v1/services/{service_code}/{env_name}/instances`
 This endpoint retrieves all instances in a given environment.
 
-## Add new instance
+### Add new instance
 
 > Here is the absolute minimum information required to create a new instance:
 
@@ -165,27 +162,28 @@ Fields | Type | Description
 ------ | ---- | -----------
 `name` | *string* | Name of the newly created instance
 `templateId` | *UUID* | The template to use for this instance
-`computeOfferingId` | *UUID* | The [#computeOfferings](compute offering) will determine the number of CPU and RAM of your instance
-`networkId` | *UUID* | foo
+`computeOfferingId` | *UUID* | The [compute offering](#compute-offerings) will determine the number of CPU and RAM of your instance
+`networkId` | *UUID* | The [tier](#tiers) in which the instance will be created. If you don't have a tier, it can be created through the [create tier](#create-tier) api.
+
 
 #### Optional
 Fields | Type | Description
 ------ | ---- | -----------
-`diskOfferingId` | *UUID* | Id of the disk offering to be used for a new volume to attach to this instance on creation
+`diskOfferingId` | *UUID* | The [disk offering](#disk-offerings) to be used for a new volume to attach to this instance
+`additionalDiskSizeInGb` | *UUID* | The number of GB the additional disk should have. You must choose a disk offering with custom disk size enabled.
+`additionalDiskIops` | *UUID* | The number of IOPS the additional disk should have. You must choose a disk offering with custom IOPS enabled.
+`sshKeyName` | *string* | The name of the [SSH key](#ssh-keys) to use for this instance. If you don't have an SSH key registered, you can do so through this [api](#create-ssh-key).
+`publicKey` | *string* | The public key to use for this instance.
+`volumeIdToAttach` | *UUID* | The [volume](#volumes) to attach to this instance.
+`affinityGroupId` | *UUID* | The [affinity group](#affinity-groups) where to create the instance.
+`portsToForward` | *array[string]* | The ports...
+`userData` | *string* | User data...
 
-## Delete an instance (async)
+### Delete an instance
 
 ```shell
 curl -X DELETE "https://api.cloud.ca:443/v1/services/compute-east/demo-env/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" \
   -H "MC-Api-Key: [your-api-key]"
-```
-> The above command returns JSON structured like this:
-
-```json
-{  
-   "taskId":"07be5466-dd81-4965-929e-e72cfa35046f",
-   "taskStatus":"PENDING"
-}
 ```
 
 > Schema for `cleanup_options` parameter:
@@ -202,19 +200,6 @@ curl -X DELETE "https://api.cloud.ca:443/v1/services/compute-east/demo-env/insta
    "deleteSnapshots":true
 }
 ```
-
-This endpoint deletes an instance. The instance needs to be in running, stopped or error state for the operation to work.
-
-### HTTP Request
-
 `DELETE https://api.cloud.ca:443/v1/services/{service_code}/{env_name}/instances/{id}`
 
-### Parameters
-
-Parameter | Type | Required | Description
---------- | ---- | ------- | -----------
-service_code | path | true | Service code of an environment.
-env_name | path | true | Environment name.
-id | path | true | Id of instance.
-org_id | query | false | Organization id (not required if environment is in your own organization).
-cleanup_options | body | false | JSON-formatted cleanup options
+This endpoint deletes an instance. The instance needs to be in running, stopped or error state for the operation to work.
