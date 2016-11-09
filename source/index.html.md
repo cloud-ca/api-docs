@@ -11,7 +11,6 @@ toc_footers:
 includes:
   - getting_started
   - administration_api
-  - service_api
   - compute_api
 
 subsections:
