@@ -4,9 +4,13 @@
 
 The cloud.ca API allows you to manage your configuration as well as provision and manage your resources in a simple programmatic way using standard HTTP requests.
 
-The API is  [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer). All requests should be made over SSL. Request and Response bodies, including errors, are encoded in JSON.
+The API is  [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer). All requests should be made over SSL.
 
-## Authentication
+TODO:
+   - Add link here to api.cloud.ca/v1
+   - All responses JSON
+
+## Security
 <!--
 ```shell
 ## To authenticate, add a header
@@ -29,55 +33,34 @@ cloud.ca expects for the API key to be included in all API requests to the serve
 `MC-Api-Key: [your-api-key]`
 
 <aside class="notice">
-You must replace <code>"[your-api-key]</code> with your personal cloud.ca API key.
+You must replace <code>[your-api-key]</code> with your personal cloud.ca API key.
 </aside>
 
-## HTTP verbs
+TODO : Add screenshot to get API key
+
+## API standards
+
+TODO: blurb about API standardization. lkjfdalskjfl;kasdjf;lkasdjfkljasdf
+
+### HTTP verbs
 The cloud.ca API can be used by any tool that is fluent in HTTP. The appropriate HTTP method should be used depending on the desired action.
 
 Method | Purpose
 ------ | -------
-GET | Used to retrieve information about a resource.
-POST | Used to create (or provision) a new resource or perform an operation on it.
-PUT | Used to update a resource.
-DELETE | Used to remove/delete a resource.
+`GET` | Used to retrieve information about a resource.
+`POST` | Used to create (or provision) a new resource or perform an operation on it.
+`PUT` | Used to update a resource.
+`DELETE` | Used to remove/delete a resource.
 
 POST and PUT requests must have a JSON encoded body and the `Content-Type: application/json` header.
 
-<aside class="notice">
-Remember to url-encode all querystring parameters
-</aside>
-
-## Paging & sorting
-All `GET` endpoints returning a list of objects support pagination. The desired page of result is specified by providing the following HTTP query parameters:
-
-Name | Description
-------------------- | -----------
-page_number | The page of data to retrieve
-page_size | The number of items to display per page
-sort_by | The field name to sort by
-sort_order | The sort order (ASC or DESC)
-
-## Response structures
-
-### Success
-> A successful request to return a single resource will look like this:
-
-```json
-{
-  "data": {
-    "_comment" : " JSON representation of resource goes here"
-  }
-}
-```
-
-> A successful request to return a collection of resource will look like this:
+### Success response
 
 ```json
 {
   "data": [
-    { "_comment" : "JSON representation of first resource goes here" },
-    { "_comment" : "JSON representation of second resource goes here" }
+    { "_comment" : "JSON representation of first object goes here" },
+    { "_comment" : "JSON representation of second object goes here" }
   ],
   "metadata": {
     "pageSize": 2,
@@ -89,10 +72,14 @@ sort_order | The sort order (ASC or DESC)
 }
 ```
 
-When an API request is issued, the response body will be formatted in the same standard JSON structure, although some of the object and attributes may or may not be included depending on the context.
+When an API request is successful, the response body will be formatted in a standard JSON structure:
 
-### Error
-> An unsuccessful request will look like this:
+Field | Description
+--- | ---
+`data` | The data field contains the object requested by the API caller
+`metadata` | The metadata is an optionally returned field containing paging and sorting information
+
+### Error response
 
 ```json
 {
@@ -112,19 +99,43 @@ When an API request is issued, the response body will be formatted in the same s
   ]
 }
 ```
+When an API request is unsuccessful, the response body will be formatted in a standard JSON structure:
+
+Field | Description
+--- | ---
+`errors` | A list of errors objects that contain information about each error
+
+Each error has additional fields to describe the error :
+
+Field | Description
+--- | ---
+`code` | The error code (TODO link to error codes)
+`message` | A human readable explanation of the error code
+`context` | Additional information
+
 The returned HTTP Status will be one of the following codes:
 
 Status code | Reason
 ----------- | -------
-200 | The request was successful.
-400 | Bad request -- Occurs when invalid parameters are provided or when quota limit is exceeded.
-403 | Forbidden -- Not authorized to perform this request.
-404 | Not Found -- Cannot locate the specified endpoint.
-405 | Method not allowed -- Cannot use that HTTP verb on the specified endpoint.
-500 | An unexpected error occurred.
+`200` | The request was successful.
+`400` | Bad request -- Occurs when invalid parameters are provided or `when` quota limit is exceeded.
+`403` | Forbidden -- Not authorized to perform this request.
+`404` | Not Found -- Cannot locate the specified endpoint.
+`405` | Method not allowed -- Cannot use that HTTP verb on the specified endpoint.
+`500` | An unexpected error occurred.
 
-## Service API endpoints
-### Standard endpoint
+### Paging & sorting
+All `GET` endpoints returning a list of objects support pagination. The desired page of result is specified by providing the following HTTP query parameters:
+
+Name | Description
+------------------- | -----------
+`page_number` | The page of data to retrieve
+`page_size` | The number of items to display per page
+`sort_by` | The field name to sort by
+`sort_order` | The sort order (ASC or DESC)
+
+## Service API
+
 Cloud.ca provides its own native API for the services that it provides. It enforces the same environment role-based access control that is defined in the cloud.ca portal.
 
 The service API has the same starting point for every service:
@@ -138,8 +149,7 @@ compute-qc | Service code for the Quebec region | QC-1, QC-2
 
 All compute service API calls must include path parameters `service_code` and `env_name`, which are used to specify which environment is targeted by your request. This information can be retrieved from the **Environment** picker in the **Services** tab.
 
-
-### Service Operations
+### Service operations
 
 Some operations take longer to execute, and to avoid blocking on the response until it is fully completed, these are treated in an asynchronous fashion. This means the API will return immediately, and provide you a `taskId` that is your reference to the ongoing background task. Using the [Tasks](#tasks) API, you can query the task's status to find if it has completed and obtain the result of the operation.
 

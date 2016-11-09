@@ -32,5 +32,5 @@ name | string | The name of the organization. (Add info about restrictions)
 #### Optional
 Name | Type | Description
 ---- | ---- | -----------
-serviceConnections | Array[[ServiceConnection](#serviceConnection)] | A list of service connection with id field.
+serviceConnections | Array[[ServiceConnection](#service-connection)] | A list of service connection with id field.
 parent | [Organization](#organization) | the UUID of the parent organization
