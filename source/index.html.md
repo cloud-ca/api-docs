@@ -10,16 +10,16 @@ toc_footers:
 
 includes:
   - getting_started
-  - administration_api
-  - compute_api
+  - administration
+  - compute
 
 subsections:
-  administration_api:
+  administration:
     - environments
     - users
     - usage
     - organizations
-  compute_api:
+  compute:
     - instances
 
 search: true
