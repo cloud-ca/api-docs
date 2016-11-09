@@ -443,6 +443,10 @@ html, body {
       padding: 10px;
     }
 
+    td:first-child>code {
+      white-space:nowrap;
+    }
+
     tr:last-child {
       border-bottom: 1px solid #ccc;
     }
