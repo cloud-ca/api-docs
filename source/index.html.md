@@ -13,9 +13,9 @@ includes:
   - error_codes
 subsections:
   administration:
-    - environments
-    - users
     - organizations
+    - users
+    - environments
   compute:
     - instances
 

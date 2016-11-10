@@ -2,14 +2,11 @@
 
 <!-------------------- LIST USERS -------------------->
 
-ADD TEXT
-
-
 ### List users
 
 `GET /users`
 
-> Response user example
+> User list example
 
 ```json
 {
@@ -44,7 +41,8 @@ ADD TEXT
 Retrieve information about a users you have accessed to. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned a [role](#Roles) with the `View existing users` permission. Without this permission, you will only be see your own user in the list.
 
 Attributes | &nbsp;
----- | -----------
+---------- | -----------
+`id`<br/>*UUID* | ---
 `userName`<br/>*string* | The username of the user
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
@@ -61,7 +59,7 @@ Attributes | &nbsp;
 
 `GET /users/:id`
 
-> Response user example
+> User example
 
 ```json
 {
@@ -100,7 +98,8 @@ Attributes | &nbsp;
 Retrieve information about a specific user. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned a [role](#Roles) with the `View existing users` permission.
 
 Attributes | &nbsp;
----- | -----------
+---------- | -----------
+`id`<br/>*UUID* | ---
 `userName`<br/>*string* | The username of the user
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
@@ -119,7 +118,7 @@ Attributes | &nbsp;
 
 `POST /users`
 
-> User example
+> Request example
 
 ```json
 {
@@ -142,19 +141,16 @@ Create a user in a specific organization. There's two different types of [role](
 
 <!-- On successful creation of the user, he will receive an email to -->
 
-#### Required
-Name | Description
-----: | -----------
+Required | &nbsp;
+-------- | -----------
 `userName`<br/>*string* | Username of the new user. Should be unique across the organization.
 `firstName`<br/>*string* | First name of the user
 `lastName`<br/>*string* | Last name of the user
 `email`<br/>*string* | Email of the user. Should be unique across the organization.
 
-
-#### Optional
-Name  | Description
-----: | -----------
-`organization`</br>*[Organization](#organization)* | Organization in which the user will be created. If absent, then your current organization will be selected<br/>*required:* `id`
+Optional | &nbsp;
+-------- | -----------
+`organization`</br>*[Organization](#organization)* | Organization in which the user will be created. *Defaults to your organization*<br/>*required:* `id`
 `roles`<br/>*Array[[Role](#roles)]* | The system and environment roles to give to the user<br/>*required*: `id`
 
 
@@ -165,7 +161,7 @@ Name  | Description
 
 `PUT /users/:id`
 
-> User update request body example
+> Request example
 
 ```json
 {
@@ -181,20 +177,14 @@ Name  | Description
 }
 ```
 
-Update a specific user. It is important to note that updating the list of roles will override the previous one. You will need a [role](#roles) with the `Create a new user` permission to execute this operation.
+Update a specific user. It is important to note that updating the list of roles will override the previous one. You will need a [role](#roles) with the `Users update` permission to execute this operation.
 
-#### Required
-Name | Description
-----: | -----------
+Optional | &nbsp;
+-------- | -----------
 `userName`<br/>*string* | The new username of the user. Should be unique across the organization.
 `firstName`<br/>*string* | The new first name of the user
 `lastName`<br/>*string* | The new last name of the user
 `email`<br/>*string* | The new email of the user. Should be unique across the organization.
-
-
-#### Optional
-Name  | Description
-----: | -----------
 `roles`<br/>*Array[[Role](#roles)]* | The new list of system or environment roles to give to the user. This will override the previous list of roles.<br/>*required*: `id`
 
 
