@@ -443,20 +443,14 @@ html, body {
       padding: 10px;
     }
 
-    td:first-child>code {
+    td:first-child {
       white-space:nowrap;
+      text-align: right;
+      width:30%;
     }
 
-    tr:last-child {
+    tr>td {
       border-bottom: 1px solid #ccc;
-    }
-
-    tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
-    }
-
-    tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
     }
   }
 
@@ -639,6 +633,11 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
+
+  td:first-child {
+    width:25%;
+  }
+
 }
 
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {

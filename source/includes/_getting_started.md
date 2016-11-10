@@ -6,7 +6,7 @@ The API is  [RESTful](https://en.wikipedia.org/wiki/Representational_state_trans
 
 Current API version : `api.cloud.ca/v1`
 
-## Security
+## Authentication
 
 ```shell
 ## To authenticate, add a header
@@ -28,7 +28,7 @@ The API key is found from the API keys section under the user profile menu. If y
 The cloud.ca API can be used by any tool that is fluent in HTTP. The appropriate HTTP method should be used depending on the desired action.
 
 Verbs | Purpose
------- | -------
+:------ | -------
 `GET` | Used to retrieve information about a resource.
 `POST` | Used to create (or provision) a new resource or perform an operation on it.
 `PUT` | Used to update a resource.
@@ -36,7 +36,7 @@ Verbs | Purpose
 
 ## Responses
 ### Success response
-
+<!--
 ```json
 {
   "data": [
@@ -52,13 +52,24 @@ Verbs | Purpose
   }
 }
 ```
+-->
+```json
+{
+  "data": [
+    { "_comment" : "JSON representation of first object goes here" },
+    { "_comment" : "JSON representation of second object goes here" }
+  ]
+}
+```
 
 When an API request is successful, the response body will contain the `data` field:
 
 Field | Description
 --- | ---
 `data` | The data field contains the object requested by the API caller
+<!--
 `metadata` | The metadata is an optionally returned field containing paging and sorting information
+-->
 
 <aside class="notice">
 If the response does <strong>not</strong> contain the "data" field, the request was <strong>not</strong> successful
@@ -103,14 +114,14 @@ Field | Description
 The HTTP status codes of error responses :
 
 Status code | Reason
------------ | -------
+:----------- | -------
 `200` | The request was successful.
 `400` | Bad request -- Occurs when invalid parameters are provided or `when` quota limit is exceeded.
 `403` | Forbidden -- Not authorized to perform this request.
 `404` | Not Found -- Cannot locate the specified endpoint.
 `405` | Method not allowed -- Cannot use that HTTP verb on the specified endpoint.
 `500` | An unexpected error occurred.
-
+<!--
 ## Paging & sorting
 All `GET` endpoints returning a list of objects support pagination. The desired page of result is specified by providing the following HTTP query parameters:
 
@@ -120,3 +131,4 @@ Name | Description
 `page_size` | The number of items to display per page
 `sort_by` | The field name to sort by
 `sort_order` | The sort order (ASC or DESC)
+-->
