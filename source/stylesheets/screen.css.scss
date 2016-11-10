@@ -633,11 +633,6 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
-
-  td:first-child {
-    width:25%;
-  }
-
 }
 
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {

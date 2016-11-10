@@ -97,7 +97,7 @@ Attributes | &nbsp;
 Bacon ipsum dolor amet doner shoulder pig pancetta ribeye short loin tail spare ribs venison salami ground round jowl t-bone pastrami.Tri-tip pork biltong hamburger, short loin shankle kevin sausage picanha. Yada yada need body. The id of the organization to update
 
 Attributes | &nbsp;
-----: | -----------
+---- | -----------
 `userName`<br/>*string* | The username of the user
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
