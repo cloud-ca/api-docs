@@ -2,6 +2,9 @@
 
 <!-------------------- LIST USERS -------------------->
 
+ADD TEXT
+
+
 ### List users
 
 `GET /users`
@@ -38,7 +41,7 @@
   }]
 }
 ```
-Bacon ipsum dolor amet doner shoulder pig pancetta ribeye short loin tail spare ribs venison salami ground round jowl t-bone pastrami.Tri-tip pork biltong hamburger, short loin shankle kevin sausage picanha. Yada yada need body. The id of the organization to update
+Retrieve information about a users you have accessed to. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned a [role](#Roles) with the `View existing users` permission. Without this permission, you will only be see your own user in the list.
 
 Attributes | &nbsp;
 ---- | -----------
@@ -46,7 +49,7 @@ Attributes | &nbsp;
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
 `email`<br/>*string* | The email of the user
-`createdDate`<br/>*long* |
+`createdDate`<br/>*long* | The date in [unix time](#https://en.wikipedia.org/wiki/Unix_time) that the user was created
 `status`<br/>*string* | The current status of the user.
 `organization`<br/>*[Organization](#organization)* | The organization to which the user belongs
 `roles`<br/>*Array[[Role](#roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
@@ -94,7 +97,7 @@ Attributes | &nbsp;
   }
 }
 ```
-Bacon ipsum dolor amet doner shoulder pig pancetta ribeye short loin tail spare ribs venison salami ground round jowl t-bone pastrami.Tri-tip pork biltong hamburger, short loin shankle kevin sausage picanha. Yada yada need body. The id of the organization to update
+Retrieve information about a specific user. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned a [role](#Roles) with the `View existing users` permission.
 
 Attributes | &nbsp;
 ---- | -----------
@@ -102,10 +105,10 @@ Attributes | &nbsp;
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
 `email`<br/>*string* | The email of the user
-`createdDate`<br/>*long* |
+`createdDate`<br/>*long* | The date in [unix time](#https://en.wikipedia.org/wiki/Unix_time) that the user was created
 `status`<br/>*string* | The current status of the user.
 `organization`<br/>*[Organization](#organization)* | The organization to which the user belongs
-`environments`<br/>*Array[[Environemnt](#environments)]* | The environments the user is member of<br/>*includes*: `id`, `name`
+`environments`<br/>*Array[[Environment](#environments)]* | The environments the user is member of<br/>*includes*: `id`, `name`
 `roles`<br/>*Array[[Role](#roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
 
 
@@ -135,7 +138,7 @@ Attributes | &nbsp;
 }
 ```
 
-Create a user in a specific organization. There's two different types of roles you can assign to the user. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine what he can see and do in that environment.
+Create a user in a specific organization. There's two different types of [role](#roles) you can assign to the user. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine what he can see and do in that environment. You will need a [role](#roles) with the `Create a new user` permission to execute this operation.
 
 <!-- On successful creation of the user, he will receive an email to -->
 
@@ -162,7 +165,7 @@ Name  | Description
 
 `PUT /users/:id`
 
-> Body example
+> User update request body example
 
 ```json
 {
@@ -178,7 +181,7 @@ Name  | Description
 }
 ```
 
-Bacon ipsum dolor amet doner shoulder pig pancetta ribeye short loin tail spare ribs venison salami ground round jowl t-bone pastrami.Tri-tip pork biltong hamburger, short loin shankle kevin sausage picanha. Yada yada need body. The id of the organization to update
+Update a specific user. It is important to note that updating the list of roles will override the previous one. You will need a [role](#roles) with the `Create a new user` permission to execute this operation.
 
 #### Required
 Name | Description
@@ -203,7 +206,7 @@ Name  | Description
 
 `DELETE /users/:id`
 
-Bacon ipsum dolor amet doner shoulder pig pancetta ribeye short loin tail spare ribs venison salami ground round jowl t-bone pastrami.Tri-tip pork biltong hamburger, short loin shankle kevin sausage picanha. Yada yada need body. The id of the organization to update
+Delete a specific user. You will need a [role](#roles) with the `Delete an existing user` permission to execute this operation.
 
 
 <!-------------------- UNLOCK USER -------------------->
