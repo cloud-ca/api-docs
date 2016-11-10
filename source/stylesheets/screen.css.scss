@@ -446,7 +446,6 @@ html, body {
     td:first-child {
       white-space:nowrap;
       text-align: right;
-      width:30%;
     }
 
     tr>td {
@@ -641,4 +640,16 @@ html, body {
 
 .highlight, .highlight .w {
   background-color: $code-bg;
+}
+
+@media (min-width: $tablet-width) {
+  table{
+    display: table !important;
+    width: 95% - $examples-width;
+    margin-left: 2.5%;
+  }
+
+   th:first-child {
+     width:25%;
+   }
 }

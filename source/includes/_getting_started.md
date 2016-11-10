@@ -28,7 +28,7 @@ The API key is found from the API keys section under the user profile menu. If y
 The cloud.ca API can be used by any tool that is fluent in HTTP. The appropriate HTTP method should be used depending on the desired action.
 
 Verbs | Purpose
-:------: | -------
+------ | -------
 `GET` | Used to retrieve information about a resource.
 `POST` | Used to create (or provision) a new resource or perform an operation on it.
 `PUT` | Used to update a resource.
@@ -64,7 +64,7 @@ Verbs | Purpose
 
 When an API request is successful, the response body will contain the `data` field:
 
-Field | Description
+Attributes | &nbsp;
 --- | ---
 `data` | The data field contains the object requested by the API caller
 <!--
@@ -114,7 +114,7 @@ Attributes | &nbsp;
 The HTTP status codes of error responses :
 
 Status code | Reason
-:-----------: | -------
+----------- | -------
 `200` | The request was successful.
 `400` | Bad request -- Occurs when invalid parameters are provided or `when` quota limit is exceeded.
 `403` | Forbidden -- Not authorized to perform this request.
