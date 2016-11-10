@@ -1,59 +1,40 @@
-# Getting Started
+# Getting started
 
-## Welcome to cloud.ca's API documentation.
+The cloud.ca API allows you to manage your environments and provision resources in a simple programmatic way using standard HTTP requests.
 
-The cloud.ca API allows you to manage your configuration as well as provision and manage your resources in a simple programmatic way using standard HTTP requests.
+The API is  [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer). Responses, successful or not, are returned in [JSON](http://www.json.org/). Request bodies must be [JSON](http://www.json.org/), and should be made over SSL.
 
-The API is  [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer). All requests should be made over SSL.
-
-TODO:
-   - Add link here to api.cloud.ca/v1
-   - All responses JSON
+Current API version : `api.cloud.ca/v1`
 
 ## Security
-<!--
+
 ```shell
 ## To authenticate, add a header
 ## Make sure to replace `[your-api-key]` with your API key.
-curl "https://api.cloud.ca/v1" -H "MC-Api-Key: [your-api-key]"
+curl "https://api.cloud.ca/v1/organization" \
+   -H "MC-Api-Key: [your-api-key]"
 ```
-
-```javascript
-//GET https://api.cloud.ca/v1 with header MC-Api-Key:[your-api-key]
-// Response :
-{
-   status : "ACTIVE"
-}
-```
--->
-Authentication is done via the API Key which you can find in the API Keys section in the cloud.ca portal under the user profile menu. If you don't see cloud.ca API section, it means your user account doesn't have the required **API keys for cloud.ca** permission.
-
-cloud.ca expects for the API key to be included in all API requests to the server in a header that looks like the following:
+API endpoints are secured by the same role-based access control (RBAC) as the cloud.ca portal. To identify who is making the requests, it is required to add a header to your HTTP requests:
 
 `MC-Api-Key: [your-api-key]`
 
 <aside class="notice">
-You must replace <code>[your-api-key]</code> with your personal cloud.ca API key.
+You must replace <code>[your-api-key]</code> with your personal API key.
 </aside>
 
-TODO : Add screenshot to get API key
+The API key is found from the API keys section under the user profile menu. If you don't see cloud.ca API keys section, contact your system administrator as you may not have the permission to see that section. **Your API key carries the same privileges as your cloud.ca account, so be sure to keep it secret**. If you think your API has been compromised, regenerate your API key from the API keys section.
 
-## API standards
-
-TODO: blurb about API standardization. lkjfdalskjfl;kasdjf;lkasdjfkljasdf
-
-### HTTP verbs
+## HTTP verbs
 The cloud.ca API can be used by any tool that is fluent in HTTP. The appropriate HTTP method should be used depending on the desired action.
 
-Method | Purpose
+Verbs | Purpose
 ------ | -------
 `GET` | Used to retrieve information about a resource.
 `POST` | Used to create (or provision) a new resource or perform an operation on it.
 `PUT` | Used to update a resource.
 `DELETE` | Used to remove/delete a resource.
 
-POST and PUT requests must have a JSON encoded body and the `Content-Type: application/json` header.
-
+## Responses
 ### Success response
 
 ```json
@@ -72,15 +53,20 @@ POST and PUT requests must have a JSON encoded body and the `Content-Type: appli
 }
 ```
 
-When an API request is successful, the response body will be formatted in a standard JSON structure:
+When an API request is successful, the response body will contain the `data` field:
 
 Field | Description
 --- | ---
 `data` | The data field contains the object requested by the API caller
 `metadata` | The metadata is an optionally returned field containing paging and sorting information
 
+<aside class="notice">
+If the response does <strong>not</strong> contain the "data" field, the request was <strong>not</strong> successful
+</aside>
+
 ### Error response
 
+>Error response example:
 ```json
 {
   "errors": [
@@ -99,13 +85,13 @@ Field | Description
   ]
 }
 ```
-When an API request is unsuccessful, the response body will be formatted in a standard JSON structure:
+When an API request is unsuccessful, the response body will contain the `errors` field :
 
 Field | Description
 --- | ---
 `errors` | A list of errors objects that contain information about each error
 
-Each error has additional fields to describe the error :
+Each error has additional fields to describe it :
 
 Field | Description
 --- | ---
@@ -113,7 +99,7 @@ Field | Description
 `message` | A human readable explanation of the error code
 `context` | Additional information
 
-The returned HTTP Status will be one of the following codes:
+The HTTP status codes of error responses :
 
 Status code | Reason
 ----------- | -------
@@ -124,7 +110,7 @@ Status code | Reason
 `405` | Method not allowed -- Cannot use that HTTP verb on the specified endpoint.
 `500` | An unexpected error occurred.
 
-### Paging & sorting
+## Paging & sorting
 All `GET` endpoints returning a list of objects support pagination. The desired page of result is specified by providing the following HTTP query parameters:
 
 Name | Description
@@ -133,35 +119,3 @@ Name | Description
 `page_size` | The number of items to display per page
 `sort_by` | The field name to sort by
 `sort_order` | The sort order (ASC or DESC)
-
-## Service API
-
-Cloud.ca provides its own native API for the services that it provides. It enforces the same environment role-based access control that is defined in the cloud.ca portal.
-
-The service API has the same starting point for every service:
-
-`https://api.cloud.ca/v1/services/:service_code/:env_name/:entity_type`
-
-Service code | Description | Zones
---- | --- | ---
-compute-on | Service code for the Ontario region | ON-1
-compute-qc | Service code for the Quebec region | QC-1, QC-2
-
-All compute service API calls must include path parameters `service_code` and `env_name`, which are used to specify which environment is targeted by your request. This information can be retrieved from the **Environment** picker in the **Services** tab.
-
-### Service operations
-
-Some operations take longer to execute, and to avoid blocking on the response until it is fully completed, these are treated in an asynchronous fashion. This means the API will return immediately, and provide you a `taskId` that is your reference to the ongoing background task. Using the [Tasks](#tasks) API, you can query the task's status to find if it has completed and obtain the result of the operation.
-
-<aside class="notice">
-It is a good practice to limit the polling rate on the task API to no more than once per second.
-</aside>
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "taskId": "b2f82e2a-123e-4f86-a4c7-dc9b850dd11e",
-  "taskStatus": "PENDING"
-}
-```
