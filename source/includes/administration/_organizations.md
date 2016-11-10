@@ -1,10 +1,42 @@
 ## Organization
+<!-------------------- LIST ORGANIZATIONS -------------------->
+### List organizations
+
+`GET /organizations`
+
+> Response example
+
+```json
+{
+
+}
+```
+Bacon ipsum dolor amet doner shoulder pig pancetta ribeye short loin tail spare ribs venison salami ground round jowl t-bone pastrami.Tri-tip pork biltong hamburger, short loin shankle kevin sausage picanha. Yada yada need body. The id of the organization to update
+
+
+<!-------------------- FIND ORGANIZATION -------------------->
+
+### Get organization
+
+`GET /organizations/:id`
+
+> Response example
+
+```json
+{
+
+}
+```
+Bacon ipsum dolor amet doner shoulder pig pancetta ribeye short loin tail spare ribs venison salami ground round jowl t-bone pastrami.Tri-tip pork biltong hamburger, short loin shankle kevin sausage picanha. Yada yada need body. The id of the organization to update
+
+
+<!-------------------- CREATE ORGANIZATION -------------------->
 
 ### Create organization
 
-`POST /organization`
+`POST /organizations`
 
-> Organization example
+> Request example
 
 ```json
 {

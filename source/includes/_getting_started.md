@@ -11,7 +11,7 @@ Current API version : `api.cloud.ca/v1`
 ```shell
 ## To authenticate, add a header
 ## Make sure to replace `[your-api-key]` with your API key.
-curl "https://api.cloud.ca/v1/organization" \
+curl "https://api.cloud.ca/v1/organizations" \
    -H "MC-Api-Key: [your-api-key]"
 ```
 API endpoints are secured by the same role-based access control (RBAC) as the cloud.ca portal. To identify who is making the requests, it is required to add a header to your HTTP requests:
