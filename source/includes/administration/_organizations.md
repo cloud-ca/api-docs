@@ -7,6 +7,8 @@ Organizations are the largest logical grouping of users, environments and resour
 
 `GET /organizations`
 
+Retrieves a list of organizations visible to the caller. In most cases, only the caller's organization will be returned. However if the caller's organization has sub-organizations, and the caller has the `Access other levels` permission, the sub-organizations will be returned as well.
+
 ```shell
 # Retrieve visible organizations
 curl "https://api.cloud.ca/v1/organizations" \
@@ -52,8 +54,6 @@ curl "https://api.cloud.ca/v1/organizations" \
 }
 ```
 
-Retrieves a list of organizations visible to the caller. In most cases, only the caller's organization will be returned. However if the caller's organization has sub-organizations, and the caller has the `Access other levels` permission, the sub-organizations will be returned as well.
-
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | ---
@@ -69,6 +69,8 @@ Attributes | &nbsp;
 ### Retrieve an organization
 
 `GET /organizations/:id`
+
+Retrieve an organization's details
 
 ```shell
 # Retrieve an organization
@@ -112,7 +114,6 @@ curl "https://api.cloud.ca/v1/organizations/[id]" \
   }
 }
 ```
-Retrieve an organization's details
 
 Attributes | &nbsp;
 ---- | -----------
@@ -129,6 +130,8 @@ Attributes | &nbsp;
 ### Create organization
 
 `POST /organizations`
+
+Creates a new organization as a sub-organization of the caller's organization, or a sub-organization of the specified `parent`. The caller requires the `Organizations create` permission.
 
 ```shell
 # Create an organization
@@ -153,8 +156,6 @@ curl -X POST "https://api.cloud.ca/v1/organizations" \
 }
 ```
 
-Creates a new organization as a sub-organization of the caller's organization, or a sub-organization of the specified `parent`. The caller requires the `Organizations create` permission.
-
 Required | &nbsp;
 ---- | ----
 `name`<br/>*string*  | The name of the organization. (Add info about restrictions)
@@ -174,7 +175,7 @@ The responses' `data` field contains the created [organization](#organizations) 
 ### Update organization
 `PUT /organizations/:id`
 
-**TODO**
+Update an organization. It's parent organization cannot be changed. It can be assigned service connections
 
 ```shell
 # Update an organization
@@ -196,7 +197,6 @@ curl -X PUT "https://api.cloud.ca/v1/organizations/[id]" \
 }
 ```
 
-
 Required | &nbsp;
 ---- | ----
 `name`<br/>*string*  | The name of the organization. (Add info about restrictions)
@@ -216,4 +216,12 @@ The responses' `data` field contains the updated [organization](#organizations).
 
 Delete an organization. The caller may not delete his own organization. Also, an organization may not be deleted if it has sub-organizations.
 
-**TODO response**
+```shell
+# Delete an organization
+curl -X DELETE "https://api.cloud.ca/v1/organizations/[id]" \
+   -H "MC-Api-Key: [your-api-key]"
+```
+
+#### Returns
+
+Returns an HTTP status code 204, with an empty response body.

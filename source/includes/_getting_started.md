@@ -114,6 +114,7 @@ The HTTP status codes of error responses :
 Status code | Reason
 ----------- | -------
 `200` | The request was successful.
+`204` | The request was successful and the response body is empty
 `400` | Bad request -- Occurs when invalid parameters are provided or `when` quota limit is exceeded.
 `403` | Forbidden -- Not authorized to perform this request.
 `404` | Not Found -- Cannot locate the specified endpoint.
