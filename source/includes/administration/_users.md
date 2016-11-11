@@ -45,6 +45,11 @@ curl "https://api.cloud.ca/v1/users" \
   }]
 }
 ```
+```go
+ccaClient := cca.NewCcaClient("[your-api-key]")
+users, err := ccaClient.Users.List()
+```
+
 Retrieve information about a users you have accessed to. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned a [role](#Roles) with the `View existing users` permission. Without this permission, you will only be see your own user in the list.
 
 Attributes | &nbsp;
@@ -107,6 +112,11 @@ curl "https://api.cloud.ca/v1/users/[user-id]" \
   }
 }
 ```
+```go
+ccaClient := cca.NewCcaClient("[your-api-key]")
+user, err := ccaClient.Users.Get("[user-id]")
+```
+
 Retrieve information about a specific user. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned a [role](#Roles) with the `View existing users` permission.
 
 Attributes | &nbsp;
@@ -170,6 +180,10 @@ Optional | &nbsp;
 `organization`</br>*[Organization](#organization)* | Organization in which the user will be created. *Defaults to your organization*<br/>*required:* `id`
 `roles`<br/>*Array[[Role](#roles)]* | The system and environment roles to give to the user<br/>*required*: `id`
 
+#### Returns
+
+The responses' `data` field contains the created [user](#users) with it's `id`.
+
 
 <!-------------------- UPDATE USER -------------------->
 
@@ -209,6 +223,9 @@ Optional | &nbsp;
 `email`<br/>*string* | The new email of the user. Should be unique across the organization.
 `roles`<br/>*Array[[Role](#roles)]* | The new list of system or environment roles to give to the user. This will override the previous list of roles.<br/>*required*: `id`
 
+#### Returns
+
+The responses' `data` field contains the updated [user](#users).
 
 
 <!-------------------- DELETE USER -------------------->

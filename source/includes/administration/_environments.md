@@ -45,6 +45,13 @@ curl "https://api.cloud.ca/v1/environments" \
   }]
 }
 ```
+```go
+ccaClient := cca.NewCcaClient("[your-api-key]")
+environments, err := ccaClient.Environments.List()
+```
+
+List environments that you have access to. It will only return environments that you're member of if you're not assigned a [role](#roles) with the `Environments read` permission.
+
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -57,8 +64,6 @@ Attributes | &nbsp;
 `serviceConnection`<br/>*[ServiceConnection](#serviceConnections)* | The service connection of the environment<br/>*includes*: `id`, `name`
 `roles`<br/>*Array[[Role](#roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
 
-
-You will need a [role](#roles) with the `Environments read` permission to execute this operation.
 
 
 <!-------------------- GET ENVIRONMENT -------------------->
@@ -107,22 +112,24 @@ curl "https://api.cloud.ca/v1/environment/[environment-id]" \
   }
 }
 ```
+```go
+ccaClient := cca.NewCcaClient("[your-api-key]")
+environment, err := ccaClient.Environments.Get("[environment-id]")
+```
+
+Retrieve an environment you have access to. You can always retrieve environments that you're member of but to access other environments you will need a [role](#roles) with the `Environments read` permission.
 
 Attributes | &nbsp;
 ---------- | -----------
 `id`<br/>*UUID* | ---
 `name`<br/>*string* | The name of the environment
 `description`<br/>*string* | The description of the environment
-`membership`<br/>*string* | ---
+`membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles.
 `creationDate`<br/>*long* | The date in [unix time](#https://en.wikipedia.org/wiki/Unix_time) that the environment was created
 `organization`<br/>*[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `serviceConnection`<br/>*[ServiceConnection](#serviceConnections)* | The service connection of the environment<br/>*includes*: `id`, `name`
 `users`<br/>*Array[[User](#users)]* | The users that are members of the environment<br/>*includes*: `id`, `username`
 `roles`<br/>*Array[[Role](#roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
-
-
-You will need a [role](#roles) with the `Environments read` permission to execute this operation.
-
 
 <!-------------------- CREATE ENVIRONMENT -------------------->
 
@@ -158,7 +165,27 @@ curl "https://api.cloud.ca/v1/environments" \
   }]
 }
 ```
+```go
+ccaClient := cca.NewCcaClient("[your-api-key]")
+environment, err := ccaClient.Environments.Create(configuration.Environment{
+  Name: "[environment-name]",
+  Description: "[environment-description]",
+  ServiceConnection: configuration.ServiceConnection {
+    Id: "[service-connection-id]",
+  },
+  Organization: configuration.Organization {
+    Id: "[organization-id]",
+  },
+  Roles: [configuration.Role{
+    Id: "[role-id]",
+    Users: [configuration.User{
+      Id: "[user-id]",
+    }],
+  }],
+})
+```
 
+Create a new environment in a specific service and organization. You will need a [role](#roles) with the `Environments create` permission to execute this operation.
 
 Required | &nbsp;
 -------- | -----------
@@ -169,11 +196,13 @@ Required | &nbsp;
 Optional | &nbsp;
 -------- | -----------
 `organization`<br/>*[Organization](#organizations)* | The organization that the environment should be created in. *Defaults to your organization*<br/>*required*: `id`
-`membership`<br/>*string* | ---
+`membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
 `roles`<br/>*Array[[Role](#roles)]* | The roles of the environment and the users assigned to them. Also, defines the default role of the environment.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
 
 
-You will need a [role](#roles) with the `Environments create` permission to execute this operation.
+#### Returns
+
+The responses' `data` field contains the updated [user](#users).
 
 
 <!-------------------- UPDATE ENVIRONMENT -------------------->
@@ -202,13 +231,26 @@ curl "https://api.cloud.ca/v1/environments/[environment-id]" \
   }]
 }
 ```
+```go
+ccaClient := cca.NewCcaClient("[your-api-key]")
+environment, err := ccaClient.Environments.Update(configuration.Environment{
+  Name: "[environment-name]",
+  Description: "[environment-description]",
+  Roles: [configuration.Role{
+    Id: "[role-id]",
+    Users: [configuration.User{
+      Id: "[user-id]",
+    }],
+  }],
+})
+```
 
 
 Optional | &nbsp;
 -------- | -----------
 `name`<br/>*string* | The updated name of the environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
 `description`<br/>*string* | The updated description of the environment
-`membership`<br/>*string* | ---
+`membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
 `roles`<br/>*Array[[Role](#roles)]* | Update the users roles in the environment. Also, can also update the default role.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
 
 
@@ -227,5 +269,10 @@ curl "https://api.cloud.ca/v1/environments/[environment-id]" \
    -X DELETE -H "MC-Api-Key: [your-api-key]"
 
 ```
+```go
+ccaClient := cca.NewCcaClient("[your-api-key]")
+deleted, err := ccaClient.Environments.Delete("[environment-id]")
+```
+
 
 Delete a specific environment. **Be careful: This will destroy all the resources in your environment.** You will need a [role](#roles) with the `Delete an existing environment	` permission to execute this operation.
