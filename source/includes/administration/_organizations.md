@@ -1,11 +1,19 @@
 ## Organizations
+Organizations are the largest logical grouping of users, environments and resources available in cloud.ca. Each organization is isolated from other organizations. It has its own subdomain (`[entryPoint].cloud.ca`) and is protected by its own customizable system [roles](#roles). An administrator that must manage it's sub-organizations environments or provisioned resources can do so by having the `Access other levels` permission. Additionally, provisioned resource usage is metered at the organization level facilitating cost tracking.
+
+
 <!-------------------- LIST ORGANIZATIONS -------------------->
 ### List organizations
 
 `GET /organizations`
 
-> Response body example
+```shell
+# Retrieve visible organizations
+curl "https://api.cloud.ca/v1/organizations" \
+   -H "MC-Api-Key: [your-api-key]"
 
+# Response body example
+```
 ```json
 {
    "data": [
@@ -44,6 +52,8 @@
 }
 ```
 
+Retrieves a list of organizations visible to the caller. In most cases, only the caller's organization will be returned. However if the caller's organization has sub-organizations, and the caller has the `Access other levels` permission, the sub-organizations will be returned as well.
+
 Attributes | &nbsp;
 ---- | -----------
 `id`<br/>*UUID* | ---
@@ -55,25 +65,28 @@ Attributes | &nbsp;
 `serviceConnections`<br/>*Array[[ServiceConnection](#service-connections)]* | The services for which the organization is allowed to provision resources<br/>*includes*: `id`,`serviceCode`
 `users`<br/>*Array[[User](#users)]* | The users of the organization<br/>*includes*: `id`
 
-
-
 <!-------------------- FIND ORGANIZATION -------------------->
-
-### Get organization
+### Retrieve an organization
 
 `GET /organizations/:id`
 
-> Response body example
+```shell
+# Retrieve visible organizations
+curl "https://api.cloud.ca/v1/organizations/[organization_id]" \
+   -H "MC-Api-Key: [your-api-key]"
+
+# Response body example
+```
 
 ```json
 {
    "data": {
       "id": "03bc22bd-adc4-46b8-988d-afddc24c0cb5",
-      "name": "Umbrella Corporation",
-      "entryPoint": "umbrella",
+      "name": "Militaires Sans Frontières",
+      "entryPoint": "msf",
       "parent": {
          "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
-         "name": "Capcom"
+         "name": "Big Boss"
       },
       "environments": [
          {
@@ -94,12 +107,14 @@ Attributes | &nbsp;
       "users": [
          {
             "id":"0c3ffcce-a98d-4159-b6fc-04edd34e89b7",
-            "userName":"wbirkin"
+            "userName":"bboss"
          }
       ]
   }
 }
 ```
+
+Retrieve an organization's details
 
 Attributes | &nbsp;
 ---- | -----------
@@ -134,6 +149,8 @@ Attributes | &nbsp;
 }
 ```
 
+**TODO**
+
 Required | &nbsp;
 ---- | ----
 `name`<br/>*string*  | The name of the organization. (Add info about restrictions)
@@ -142,8 +159,8 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ---- | ----
-`serviceConnections`<br/>Array[[ServiceConnection](#service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required:*`id`
-`parent`<br/>[Organization](#organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required:*`id`
+`serviceConnections`<br/>Array[[ServiceConnection](#service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required :*`id`
+`parent`<br/>[Organization](#organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
 
 <!-------------------- UPDATE ORGANIZATION -------------------->
 ### Update organization
@@ -162,6 +179,7 @@ Optional | &nbsp;
    ]
 }
 ```
+**TODO**
 
 Required | &nbsp;
 ---- | ----
@@ -170,11 +188,12 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ---- | ----
-`serviceConnections`<br/>Array[[ServiceConnection](#service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided.<br/>*required:*`id`
-<br/>**NB:** Service connection access may be added but not revoked at this time.
+`serviceConnections`<br/>Array[[ServiceConnection](#service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided. **NB :** Service connection access may be added but not revoked at this time.<br/>*required :* `id`
 
 <!-------------------- DELETE ORGANIZATION -------------------->
 ### Delete organization
 `DELETE /organizations/:id`
 
 Delete an organization. The caller may not delete his own organization. Also, an organization may not be deleted if it has sub-organizations.
+
+**TODO response**

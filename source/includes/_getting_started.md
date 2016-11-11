@@ -107,7 +107,7 @@ Each error has additional fields to describe it :
 
 Attributes | &nbsp;
 --- | ---
-`code` | The error code (TODO link to error codes)
+`code` | The error code (**TODO** link to error codes)
 `message` | A human readable explanation of the error code
 `context` | Additional information
 
