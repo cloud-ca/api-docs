@@ -1,11 +1,21 @@
 ## Environments
 
+Environments allow you to manage resources of a specific service and to manage your users access to them. With [environment roles](#roles), you have tight control of what a user is allowed to do in your environment. A general use case of environments is to split your resources into different [deployment environments](#https://en.wikipedia.org/wiki/Deployment_environment) (e.g. dev, staging and production). The advantage is that resources of different deployments are isolated from each other and you can restrict user access to your most critical resources.
+
+
 <!-------------------- LIST ENVIRONMENTS -------------------->
 
 ### List environments
 
 `GET /environments`
 
+```shell
+# Retrieve visible environments
+curl "https://api.cloud.ca/v1/environments" \
+   -H "MC-Api-Key: [your-api-key]"
+
+# Response body example
+```
 ```json
 {
   "data": [{
@@ -53,10 +63,17 @@ You will need a [role](#roles) with the `Environments read` permission to execut
 
 <!-------------------- GET ENVIRONMENT -------------------->
 
-### Get environment
+### Retrieve an environment
 
 `GET /environments/:id`
 
+```shell
+# Retrieve visible environment
+curl "https://api.cloud.ca/v1/environment/[environment-id]" \
+   -H "MC-Api-Key: [your-api-key]"
+
+# Response body example
+```
 ```json
 {
   "data": {
@@ -112,8 +129,15 @@ You will need a [role](#roles) with the `Environments read` permission to execut
 
 ### Create environment
 
-`POST /environments`]
+`POST /environments`
 
+```shell
+# Create an environment
+curl "https://api.cloud.ca/v1/environments" \
+   -X POST -H "MC-Api-Key: [your-api-key]"
+
+# Request body example
+```
 ```json
 {
   "name": "glados",
@@ -159,6 +183,13 @@ You will need a [role](#roles) with the `Environments create` permission to exec
 
 `PUT /environments/:id`
 
+```shell
+# Retrieve visible users
+curl "https://api.cloud.ca/v1/environments/[environment-id]" \
+   -X PUT -H "MC-Api-Key: [your-api-key]" -d "[request-body]"
+
+# Request body example
+```
 ```json
 {
   "name": "skynet-beta",
@@ -189,5 +220,12 @@ You will need a [role](#roles) with the `Environments update` permission to exec
 ### Delete environment
 
 `DELETE /environments/:id`
+
+```shell
+# Retrieve visible users
+curl "https://api.cloud.ca/v1/environments/[environment-id]" \
+   -X DELETE -H "MC-Api-Key: [your-api-key]"
+
+```
 
 Delete a specific environment. **Be careful: This will destroy all the resources in your environment.** You will need a [role](#roles) with the `Delete an existing environment	` permission to execute this operation.

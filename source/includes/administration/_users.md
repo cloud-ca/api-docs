@@ -1,11 +1,20 @@
 ## Users
 
+
+
 <!-------------------- LIST USERS -------------------->
 
 ### List users
 
 `GET /users`
 
+```shell
+# Retrieve visible users
+curl "https://api.cloud.ca/v1/users" \
+   -H "MC-Api-Key: [your-api-key]"
+
+# Response body example
+```
 ```json
 {
   "data":[{
@@ -53,10 +62,17 @@ Attributes | &nbsp;
 
 <!-------------------- GET USER -------------------->
 
-### Get user
+### Retrieve a user
 
 `GET /users/:id`
 
+```shell
+# Retrieve visible user
+curl "https://api.cloud.ca/v1/users/[user-id]" \
+   -H "MC-Api-Key: [your-api-key]"
+
+# Response body example
+```
 ```json
 {
   "data":{
@@ -114,8 +130,13 @@ Attributes | &nbsp;
 
 `POST /users`
 
-> Request example
+```shell
+# Create a user
+curl "https://api.cloud.ca/v1/users" \
+   -X POST -H "MC-Api-Key: [your-api-key]" -d "[request-body]"
 
+# Request body example
+```
 ```json
 {
   "userName": "vader42",
@@ -157,6 +178,13 @@ Optional | &nbsp;
 
 `PUT /users/:id`
 
+```shell
+# Create a user
+curl "https://api.cloud.ca/v1/users/[user-id]" \
+   -X PUT -H "MC-Api-Key: [your-api-key]" -d "[request-body]"
+
+# Request body example
+```
 ```json
 {
   "userName": "spidey1",
@@ -190,6 +218,13 @@ Optional | &nbsp;
 
 `DELETE /users/:id`
 
+```shell
+# Create a user
+curl "https://api.cloud.ca/v1/users/[user-id]" \
+   -X DELETE -H "MC-Api-Key: [your-api-key]"
+
+```
+
 Delete a specific user. You will need a [role](#roles) with the `Delete an existing user` permission to execute this operation.
 
 
@@ -199,5 +234,13 @@ Delete a specific user. You will need a [role](#roles) with the `Delete an exist
 ### Unlock user
 
 `POST /users/:id/unlock`
+
+
+```shell
+# Create a user
+curl "https://api.cloud.ca/v1/users/[user-id]/unlock" \
+   -X DELETE -H "MC-Api-Key: [your-api-key]"
+
+```
 
 A user with 10 consecutive unsuccessful logins will be automatically locked by our system. This API can be used to unlock a user in this situation.
