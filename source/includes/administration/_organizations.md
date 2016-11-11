@@ -9,6 +9,12 @@ Organizations are the largest logical grouping of users, environments and resour
 
 Retrieves a list of organizations visible to the caller. In most cases, only the caller's organization will be returned. However if the caller's organization has sub-organizations, and the caller has the `Access other levels` permission, the sub-organizations will be returned as well.
 
+```go
+// List organizations
+ccaClient := cca.NewCcaClient("[your-api-key]")
+organizations, err := ccaClient.Organizations.List()
+```
+
 ```shell
 # Retrieve visible organizations
 curl "https://api.cloud.ca/v1/organizations" \

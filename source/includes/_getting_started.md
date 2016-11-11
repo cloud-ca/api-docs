@@ -6,7 +6,13 @@ The API is  [RESTful](https://en.wikipedia.org/wiki/Representational_state_trans
 
 Current API version : `api.cloud.ca/v1`
 
+If you are using the `go` language, check out our [library](https://github.com/cloud-ca/go-cloudca).
+
 ## Authentication
+```go
+import "github.com/cloud-ca/go-cloudca"
+ccaClient := cca.NewCcaClient("[your-api-key]")
+```
 
 ```shell
 ## To authenticate, add a header
