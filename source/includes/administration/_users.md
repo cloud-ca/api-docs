@@ -6,8 +6,6 @@
 
 `GET /users`
 
-> User list example
-
 ```json
 {
   "data":[{
@@ -58,8 +56,6 @@ Attributes | &nbsp;
 ### Get user
 
 `GET /users/:id`
-
-> User example
 
 ```json
 {
@@ -160,8 +156,6 @@ Optional | &nbsp;
 ### Update user
 
 `PUT /users/:id`
-
-> Request example
 
 ```json
 {

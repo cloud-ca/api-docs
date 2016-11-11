@@ -2,7 +2,9 @@
 title: API Reference
 
 language_tabs:
-  - curl : curl
+  - json : JSON
+  - shell : curl
+  - go
 
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>

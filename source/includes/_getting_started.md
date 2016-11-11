@@ -77,8 +77,6 @@ If the response does <strong>not</strong> contain the "data" field, the request 
 
 ### Error response
 
->Error response example:
-
 ```json
 {
   "errors": [

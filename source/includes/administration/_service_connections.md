@@ -5,8 +5,6 @@
 
 `GET /services/connections`
 
-> Service connection example
-
 ```json
 {
 
@@ -18,8 +16,6 @@
 ### Get service connection
 
 `GET /services/connections/:id`
-
-> Service connection example
 
 ```json
 {

@@ -6,8 +6,6 @@
 
 `GET /environments`
 
-> Environment list example
-
 ```json
 {
   "data": [{
@@ -58,8 +56,6 @@ You will need a [role](#roles) with the `Environments read` permission to execut
 ### Get environment
 
 `GET /environments/:id`
-
-> Environment example
 
 ```json
 {
@@ -116,9 +112,7 @@ You will need a [role](#roles) with the `Environments read` permission to execut
 
 ### Create environment
 
-`POST /environments`
-
-> Request example
+`POST /environments`]
 
 ```json
 {
@@ -164,8 +158,6 @@ You will need a [role](#roles) with the `Environments create` permission to exec
 ### Update environment
 
 `PUT /environments/:id`
-
-> Request example
 
 ```json
 {

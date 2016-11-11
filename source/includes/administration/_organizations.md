@@ -11,8 +11,6 @@ Organizations are the largest logical grouping of users, environments and resour
 # Retrieve visible organizations
 curl "https://api.cloud.ca/v1/organizations" \
    -H "MC-Api-Key: [your-api-key]"
-
-# Response body example
 ```
 ```json
 {
@@ -74,8 +72,6 @@ Attributes | &nbsp;
 # Retrieve visible organizations
 curl "https://api.cloud.ca/v1/organizations/[organization_id]" \
    -H "MC-Api-Key: [your-api-key]"
-
-# Response body example
 ```
 
 ```json
@@ -132,8 +128,6 @@ Attributes | &nbsp;
 
 `POST /organizations`
 
-> Request body example
-
 ```json
 {
    "entryPoint":"umbrella",
@@ -165,8 +159,6 @@ Optional | &nbsp;
 <!-------------------- UPDATE ORGANIZATION -------------------->
 ### Update organization
 `PUT /organizations/:id`
-
-> Request body example
 
 ```json
 {
