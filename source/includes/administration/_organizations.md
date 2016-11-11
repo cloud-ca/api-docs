@@ -11,6 +11,8 @@ Organizations are the largest logical grouping of users, environments and resour
 # Retrieve visible organizations
 curl "https://api.cloud.ca/v1/organizations" \
    -H "MC-Api-Key: [your-api-key]"
+
+# Response body example
 ```
 ```json
 {
@@ -69,20 +71,21 @@ Attributes | &nbsp;
 `GET /organizations/:id`
 
 ```shell
-# Retrieve visible organizations
-curl "https://api.cloud.ca/v1/organizations/[organization_id]" \
+# Retrieve an organization
+curl "https://api.cloud.ca/v1/organizations/[id]" \
    -H "MC-Api-Key: [your-api-key]"
-```
 
+# Response body example
+```
 ```json
 {
    "data": {
       "id": "03bc22bd-adc4-46b8-988d-afddc24c0cb5",
-      "name": "Militaires Sans Frontières",
-      "entryPoint": "msf",
+      "name": "Nintendo US",
+      "entryPoint": "nintendo-us",
       "parent": {
          "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
-         "name": "Big Boss"
+         "name": "Nintendo"
       },
       "environments": [
          {
@@ -103,13 +106,12 @@ curl "https://api.cloud.ca/v1/organizations/[organization_id]" \
       "users": [
          {
             "id":"0c3ffcce-a98d-4159-b6fc-04edd34e89b7",
-            "userName":"bboss"
+            "userName":"reggie"
          }
       ]
   }
 }
 ```
-
 Retrieve an organization's details
 
 Attributes | &nbsp;
@@ -128,6 +130,14 @@ Attributes | &nbsp;
 
 `POST /organizations`
 
+```shell
+# Create an organization
+curl -X POST "https://api.cloud.ca/v1/organizations" \
+   -H "MC-Api-Key: [your-api-key]" \
+   -d "[request_body]"
+
+# Request body example
+```
 ```json
 {
    "entryPoint":"umbrella",
@@ -143,7 +153,7 @@ Attributes | &nbsp;
 }
 ```
 
-**TODO**
+Creates a new organization as a sub-organization of the caller's organization, or a sub-organization of the specified `parent`. The caller requires the `Organizations create` permission.
 
 Required | &nbsp;
 ---- | ----
@@ -156,10 +166,24 @@ Optional | &nbsp;
 `serviceConnections`<br/>Array[[ServiceConnection](#service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required :*`id`
 `parent`<br/>[Organization](#organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
 
+#### Returns
+
+The responses' `data` field contains the created [organization](#organizations) with it's `id`.
+
 <!-------------------- UPDATE ORGANIZATION -------------------->
 ### Update organization
 `PUT /organizations/:id`
 
+**TODO**
+
+```shell
+# Update an organization
+curl -X PUT "https://api.cloud.ca/v1/organizations/[id]" \
+   -H "MC-Api-Key: [your-api-key]" \
+   -d "[request_body]"
+
+# Request body example
+```
 ```json
 {
    "entryPoint":"umbrella",
@@ -171,7 +195,7 @@ Optional | &nbsp;
    ]
 }
 ```
-**TODO**
+
 
 Required | &nbsp;
 ---- | ----
@@ -181,6 +205,10 @@ Required | &nbsp;
 Optional | &nbsp;
 ---- | ----
 `serviceConnections`<br/>Array[[ServiceConnection](#service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided. **NB :** Service connection access may be added but not revoked at this time.<br/>*required :* `id`
+
+#### Returns
+
+The responses' `data` field contains the updated [organization](#organizations).
 
 <!-------------------- DELETE ORGANIZATION -------------------->
 ### Delete organization
