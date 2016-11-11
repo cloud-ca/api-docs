@@ -10,6 +10,7 @@
 
 ```shell
 # Retrieve visible users
+
 curl "https://api.cloud.ca/v1/users" \
    -H "MC-Api-Key: [your-api-key]"
 
@@ -54,7 +55,7 @@ Retrieve information about a users you have accessed to. If you want access to o
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | ---
+`id`<br/>*UUID* | The id of the user
 `userName`<br/>*string* | The username of the user
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
@@ -73,6 +74,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve visible user
+
 curl "https://api.cloud.ca/v1/users/[user-id]" \
    -H "MC-Api-Key: [your-api-key]"
 
@@ -121,7 +123,7 @@ Retrieve information about a specific user. If you want access to other users in
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | ---
+`id`<br/>*UUID* | The id of the user
 `userName`<br/>*string* | The username of the user
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
@@ -142,6 +144,7 @@ Attributes | &nbsp;
 
 ```shell
 # Create a user
+
 curl "https://api.cloud.ca/v1/users" \
    -X POST -H "MC-Api-Key: [your-api-key]" -d "[request-body]"
 
@@ -165,8 +168,6 @@ curl "https://api.cloud.ca/v1/users" \
 ```
 
 Create a user in a specific organization. There's two different types of [role](#roles) you can assign to the user. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine what he can see and do in that environment. You will need a [role](#roles) with the `Create a new user` permission to execute this operation.
-
-<!-- On successful creation of the user, he will receive an email to -->
 
 Required | &nbsp;
 -------- | -----------
@@ -194,6 +195,7 @@ The responses' `data` field contains the created [user](#users) with it's `id`.
 
 ```shell
 # Create a user
+
 curl "https://api.cloud.ca/v1/users/[user-id]" \
    -X PUT -H "MC-Api-Key: [your-api-key]" -d "[request-body]"
 
@@ -236,7 +238,8 @@ The responses' `data` field contains the updated [user](#users).
 `DELETE /users/:id`
 
 ```shell
-# Create a user
+# Delete a user
+
 curl "https://api.cloud.ca/v1/users/[user-id]" \
    -X DELETE -H "MC-Api-Key: [your-api-key]"
 
@@ -254,10 +257,11 @@ Delete a specific user. You will need a [role](#roles) with the `Delete an exist
 
 
 ```shell
-# Create a user
+# Unlock a user that was locked from the system
+
 curl "https://api.cloud.ca/v1/users/[user-id]/unlock" \
-   -X DELETE -H "MC-Api-Key: [your-api-key]"
+   -X POST -H "MC-Api-Key: [your-api-key]"
 
 ```
 
-A user with 10 consecutive unsuccessful logins will be automatically locked by our system. This API can be used to unlock a user in this situation.
+A user with 10 consecutive unsuccessful logins will be automatically locked by our system. This API can be used to unlock a user in this situation. You will need a [role](#roles) with the `Unlock user` permission to execute this operation.

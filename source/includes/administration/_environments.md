@@ -55,10 +55,10 @@ List environments that you have access to. It will only return environments that
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | ---
+`id`<br/>*UUID* | The id of the environment
 `name`<br/>*string* | The name of the environment
 `description`<br/>*string* | The description of the environment
-`membership`<br/>*string* | ---
+`membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
 `creationDate`<br/>*long* | The date in [unix time](#https://en.wikipedia.org/wiki/Unix_time) that the environment was created
 `organization`<br/>*[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `serviceConnection`<br/>*[ServiceConnection](#serviceConnections)* | The service connection of the environment<br/>*includes*: `id`, `name`
@@ -74,6 +74,7 @@ Attributes | &nbsp;
 
 ```shell
 # Retrieve visible environment
+
 curl "https://api.cloud.ca/v1/environment/[environment-id]" \
    -H "MC-Api-Key: [your-api-key]"
 
@@ -121,10 +122,10 @@ Retrieve an environment you have access to. You can always retrieve environments
 
 Attributes | &nbsp;
 ---------- | -----------
-`id`<br/>*UUID* | ---
+`id`<br/>*UUID* | The id of the environment
 `name`<br/>*string* | The name of the environment
 `description`<br/>*string* | The description of the environment
-`membership`<br/>*string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles.
+`membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
 `creationDate`<br/>*long* | The date in [unix time](#https://en.wikipedia.org/wiki/Unix_time) that the environment was created
 `organization`<br/>*[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `serviceConnection`<br/>*[ServiceConnection](#serviceConnections)* | The service connection of the environment<br/>*includes*: `id`, `name`
@@ -140,6 +141,7 @@ Attributes | &nbsp;
 
 ```shell
 # Create an environment
+
 curl "https://api.cloud.ca/v1/environments" \
    -X POST -H "MC-Api-Key: [your-api-key]"
 
@@ -213,7 +215,8 @@ The responses' `data` field contains the updated [user](#users).
 `PUT /environments/:id`
 
 ```shell
-# Retrieve visible users
+# Update an environment
+
 curl "https://api.cloud.ca/v1/environments/[environment-id]" \
    -X PUT -H "MC-Api-Key: [your-api-key]" -d "[request-body]"
 
@@ -264,7 +267,8 @@ You will need a [role](#roles) with the `Environments update` permission to exec
 `DELETE /environments/:id`
 
 ```shell
-# Retrieve visible users
+# Delete an environment
+
 curl "https://api.cloud.ca/v1/environments/[environment-id]" \
    -X DELETE -H "MC-Api-Key: [your-api-key]"
 
