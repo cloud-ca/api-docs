@@ -13,6 +13,7 @@ includes:
   - error_codes
 subsections:
   administration:
+    - service_connections
     - organizations
     - users
     - environments

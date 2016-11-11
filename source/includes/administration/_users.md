@@ -53,7 +53,7 @@ Attributes | &nbsp;
 `roles`<br/>*Array[[Role](#roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
 
 
-<!-------------------- FIND USER -------------------->
+<!-------------------- GET USER -------------------->
 
 ### Get user
 

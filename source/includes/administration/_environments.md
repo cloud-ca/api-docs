@@ -53,7 +53,7 @@ Attributes | &nbsp;
 You will need a [role](#roles) with the `Environments read` permission to execute this operation.
 
 
-<!-------------------- FIND ENVIRONMENT -------------------->
+<!-------------------- GET ENVIRONMENT -------------------->
 
 ### Get environment
 
@@ -185,6 +185,8 @@ Optional | &nbsp;
 -------- | -----------
 `name`<br/>*string* | The updated name of the environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
 `description`<br/>*string* | The updated description of the environment
+`membership`<br/>*string* | ---
+`roles`<br/>*Array[[Role](#roles)]* | Update the users roles in the environment. Also, can also update the default role.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
 
 
 You will need a [role](#roles) with the `Environments update` permission to execute this operation.
