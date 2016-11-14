@@ -1,6 +1,6 @@
 ## Users
 
-
+A user account allows users to authenticate to an [organization](#organizations) and to have access to the resources in it. You can restrict user access to the system and environments by assigning them specific [roles](#roles). Additionally, every user is given an API key which is needed to use our APIs. All operations done by users are persisted and can be accessed through the activity log.
 
 <!-------------------- LIST USERS -------------------->
 
