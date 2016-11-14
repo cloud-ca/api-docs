@@ -25,6 +25,10 @@ Service connections are the services that you can create resources for (e.g. com
   }]
 }
 ```
+```go
+ccaClient := cca.NewCcaClient("[your-api-key]")
+serviceConnection, err := ccaClient.ServiceConnections.List()
+```
 
 Attributes | &nbsp;
 ---- | -----------
@@ -57,7 +61,10 @@ Attributes | &nbsp;
   }]
 }
 ```
-
+```go
+ccaClient := cca.NewCcaClient("[your-api-key]")
+serviceConnections, err := ccaClient.ServiceConnections.Get("[service-connection-id]")
+```
 
 Attributes | &nbsp;
 ---- | -----------
