@@ -42,7 +42,7 @@ Attributes | &nbsp;
 
 <!-------------------- GET ORGANIZATION -------------------->
 
-### Get service connection
+### Retrieve a service connection
 
 `GET /services/connections/:id`
 
