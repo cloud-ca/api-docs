@@ -372,9 +372,9 @@ If you are not familiar with the cloud.ca API response structures, it would be v
 <p><code class="prettyprint">GET /services/connections</code></p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:[{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32ce9f9a-4c62-4a07-832d-57d8856c8f5d"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"serviceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"compute"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adfbdb51-493b-45b1-8802-3f6327afb9e6"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"serviceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"compute-qc"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute - Québec"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CloudCA"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IAAS"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  
@@ -427,9 +427,9 @@ If you are not familiar with the cloud.ca API response structures, it would be v
 <p><code class="prettyprint">GET /services/connections/:id</code></p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"data"</span><span class="p">:[{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32ce9f9a-4c62-4a07-832d-57d8856c8f5d"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"serviceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"compute"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adfbdb51-493b-45b1-8802-3f6327afb9e6"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"serviceCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"compute-qc"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute - Québec"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CloudCA"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IAAS"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  
@@ -1181,9 +1181,9 @@ curl <span class="s2">"https://api.cloud.ca/v1/environments"</span> <span class=
       </span><span class="nt">"entryPoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sg1"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"serviceConnection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7f0fa906-490a-467b-bc44-e2382d43015e"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"compute"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adfbdb51-493b-45b1-8802-3f6327afb9e6"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute - Québec"</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="p">,</span><span class="w">
     </span><span class="nt">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"951b768b-e91c-4d20-8b52-d4a2ab5a538a"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Environment Admin"</span><span class="p">,</span><span class="w">
@@ -1267,9 +1267,9 @@ curl <span class="s2">"https://api.cloud.ca/v1/environment/[environment-id]"</sp
       </span><span class="nt">"entryPoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kobol"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"serviceConnection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7f0fa906-490a-467b-bc44-e2382d43015e"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"compute"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adfbdb51-493b-45b1-8802-3f6327afb9e6"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute - Québec"</span><span class="p">,</span><span class="w">
+    </span><span class="err">}</span><span class="p">,</span><span class="w">
     </span><span class="nt">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e84ab70-4c62-4db1-bbd8-343636a34647"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"starbuck"</span><span class="p">,</span><span class="w">
@@ -1386,8 +1386,8 @@ curl <span class="s2">"https://api.cloud.ca/v1/environments"</span> <span class=
 </span><span class="p">})</span><span class="x">
 </span></code></pre>
 <pre class="highlight dart"><code><span class="n">resource</span> <span class="s">"cloudca_environment"</span> <span class="s">"my_environment"</span> <span class="o">{</span>
-    <span class="n">service_code</span> <span class="o">=</span> <span class="s">"compute-east"</span>
-    <span class="n">organization_code</span> <span class="o">=</span> <span class="s">"karmataj"</span>
+    <span class="n">service_code</span> <span class="o">=</span> <span class="s">"compute-qc"</span>
+    <span class="n">organization_code</span> <span class="o">=</span> <span class="s">"kamar-taj"</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s">"production"</span>
     <span class="n">description</span> <span class="o">=</span> <span class="s">"Environment for production workloads"</span>
     <span class="n">admin_role</span> <span class="o">=</span> <span class="o">[</span><span class="s">"pat"</span><span class="o">]</span>
