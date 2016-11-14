@@ -30,8 +30,8 @@ curl "https://api.cloud.ca/v1/environments" \
       "entryPoint": "sg1"
     },
     "serviceConnection": {
-      "id": "7f0fa906-490a-467b-bc44-e2382d43015e",
-      "name": "compute"
+      "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
+      "name": "Compute - Québec",
     },
     "roles": [{
       "id": "951b768b-e91c-4d20-8b52-d4a2ab5a538a",
@@ -94,8 +94,8 @@ curl "https://api.cloud.ca/v1/environment/[environment-id]" \
       "entryPoint": "kobol"
     },
     "serviceConnection": {
-      "id": "7f0fa906-490a-467b-bc44-e2382d43015e",
-      "name": "compute"
+      "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
+      "name": "Compute - Québec",
     },
     "users": [{
       "id": "6e84ab70-4c62-4db1-bbd8-343636a34647",
@@ -188,8 +188,8 @@ environment, err := ccaClient.Environments.Create(configuration.Environment{
 ```
 ```dart
 resource "cloudca_environment" "my_environment" {
-    service_code = "compute-east"
-    organization_code = "karmataj"
+    service_code = "compute-qc"
+    organization_code = "kamar-taj"
     name = "production"
     description = "Environment for production workloads"
     admin_role = ["pat"]
