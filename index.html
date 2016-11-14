@@ -422,7 +422,7 @@ If you are not familiar with the cloud.ca API response structures, it would be v
 
 <!-------------------- GET ORGANIZATION -------------------->
 
-<h3 id="get-service-connection">Get service connection</h3>
+<h3 id="retrieve-a-service-connection">Retrieve a service connection</h3>
 
 <p><code class="prettyprint">GET /services/connections/:id</code></p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1182,8 +1182,8 @@ curl <span class="s2">"https://api.cloud.ca/v1/environments"</span> <span class=
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"serviceConnection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adfbdb51-493b-45b1-8802-3f6327afb9e6"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute - Québec"</span><span class="p">,</span><span class="w">
-    </span><span class="err">}</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute - Québec"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nt">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"951b768b-e91c-4d20-8b52-d4a2ab5a538a"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Environment Admin"</span><span class="p">,</span><span class="w">
@@ -1233,7 +1233,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/environments"</span> <span class=
 <td>The organization of the environment<br/><em>includes</em>: <code class="prettyprint">id</code>, <code class="prettyprint">name</code>, <code class="prettyprint">entryPoint</code></td>
 </tr>
 <tr>
-<td><code class="prettyprint">serviceConnection</code><br/><em><a href="#serviceConnections">ServiceConnection</a></em></td>
+<td><code class="prettyprint">serviceConnection</code><br/><em><a href="#service-connections">ServiceConnection</a></em></td>
 <td>The service connection of the environment<br/><em>includes</em>: <code class="prettyprint">id</code>, <code class="prettyprint">name</code></td>
 </tr>
 <tr>
@@ -1268,12 +1268,12 @@ curl <span class="s2">"https://api.cloud.ca/v1/environment/[environment-id]"</sp
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"serviceConnection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adfbdb51-493b-45b1-8802-3f6327afb9e6"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute - Québec"</span><span class="p">,</span><span class="w">
-    </span><span class="err">}</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Compute - Québec"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nt">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e84ab70-4c62-4db1-bbd8-343636a34647"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"starbuck"</span><span class="p">,</span><span class="w">
-    </span><span class="err">}</span><span class="p">],</span><span class="w">
+      </span><span class="nt">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"starbuck"</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
     </span><span class="nt">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b04b8a7c-6e89-4dba-9734-74d9f1b7be04"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Environment Admin"</span><span class="p">,</span><span class="w">
@@ -1323,7 +1323,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/environment/[environment-id]"</sp
 <td>The organization of the environment<br/><em>includes</em>: <code class="prettyprint">id</code>, <code class="prettyprint">name</code>, <code class="prettyprint">entryPoint</code></td>
 </tr>
 <tr>
-<td><code class="prettyprint">serviceConnection</code><br/><em><a href="#serviceConnections">ServiceConnection</a></em></td>
+<td><code class="prettyprint">serviceConnection</code><br/><em><a href="#service-connections">ServiceConnection</a></em></td>
 <td>The service connection of the environment<br/><em>includes</em>: <code class="prettyprint">id</code>, <code class="prettyprint">name</code></td>
 </tr>
 <tr>
@@ -1412,7 +1412,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/environments"</span> <span class=
 <td>The description of the new environment.</td>
 </tr>
 <tr>
-<td><code class="prettyprint">serviceConnection</code><br/><em><a href="#serviceConnections">ServiceConnection</a></em></td>
+<td><code class="prettyprint">serviceConnection</code><br/><em><a href="#service-connections">ServiceConnection</a></em></td>
 <td>The service connection that the environment should be created in<br/><em>required</em>: <code class="prettyprint">id</code></td>
 </tr>
 </tbody></table>
