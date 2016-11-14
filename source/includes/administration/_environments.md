@@ -186,7 +186,16 @@ environment, err := ccaClient.Environments.Create(configuration.Environment{
   }],
 })
 ```
-
+```dart
+resource "cloudca_environment" "my_environment" {
+    service_code = "compute-east"
+    organization_code = "karmataj"
+    name = "production"
+    description = "Environment for production workloads"
+    admin_role = ["pat"]
+    read_only_role = ["dr_strange","ancient_one"]
+}
+```
 Create a new environment in a specific service and organization. You will need a [role](#roles) with the `Environments create` permission to execute this operation.
 
 Required | &nbsp;
