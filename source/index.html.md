@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: cloud.ca API Documentation
 
 language_tabs:
   - shell : curl
