@@ -1,6 +1,6 @@
 ## Environments
 
-Environments allow you to manage resources of a specific service and to manage your [users](#users) access to them. With [environment roles](#roles), you have tight control of what a user is allowed to do in your environment. A general use case of environments is to split your resources into different [deployment environments](#https://en.wikipedia.org/wiki/Deployment_environment) (e.g. dev, staging and production). The advantage is that resources of different deployments are isolated from each other and you can restrict user access to your most critical resources.
+Environments allow you to manage resources of a specific service and to manage your [users'](#users) access to them. With [environment roles](#roles), you have tight control of what a user is allowed to do in your environment. A general use case of environments is to split your resources into different [deployment environments](https://en.wikipedia.org/wiki/Deployment_environment) (e.g. dev, staging and production). The advantage is that resources of different deployments are isolated from each other and you can restrict user access to your most critical resources.
 
 
 <!-------------------- LIST ENVIRONMENTS -------------------->
@@ -59,7 +59,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the environment
 `description`<br/>*string* | The description of the environment
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
-`creationDate`<br/>*long* | The date in [unix time](#https://en.wikipedia.org/wiki/Unix_time) that the environment was created
+`creationDate`<br/>*long* | The date in [unix time](https://en.wikipedia.org/wiki/Unix_time) that the environment was created
 `organization`<br/>*[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `serviceConnection`<br/>*[ServiceConnection](#serviceConnections)* | The service connection of the environment<br/>*includes*: `id`, `name`
 `roles`<br/>*Array[[Role](#roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
@@ -126,7 +126,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the environment
 `description`<br/>*string* | The description of the environment
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
-`creationDate`<br/>*long* | The date in [unix time](#https://en.wikipedia.org/wiki/Unix_time) that the environment was created
+`creationDate`<br/>*long* | The date in [unix time](https://en.wikipedia.org/wiki/Unix_time) that the environment was created
 `organization`<br/>*[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `serviceConnection`<br/>*[ServiceConnection](#serviceConnections)* | The service connection of the environment<br/>*includes*: `id`, `name`
 `users`<br/>*Array[[User](#users)]* | The users that are members of the environment<br/>*includes*: `id`, `username`
@@ -204,7 +204,7 @@ Optional | &nbsp;
 
 #### Returns
 
-The responses' `data` field contains the updated [user](#users).
+The responses' `data` field contains the updated [environment](#environments).
 
 
 <!-------------------- UPDATE ENVIRONMENT -------------------->
