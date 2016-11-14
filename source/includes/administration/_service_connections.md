@@ -13,9 +13,9 @@ Service connections are the services that you can create resources for (e.g. com
 ```json
 {
   "data":[{
-    "id": "32ce9f9a-4c62-4a07-832d-57d8856c8f5d",
-    "serviceCode": "compute",
-    "name": "Compute",
+    "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
+    "serviceCode": "compute-qc",
+    "name": "Compute - Québec",
     "type": "CloudCA",
     "category": "IAAS",
     "status": {  
@@ -49,9 +49,9 @@ Attributes | &nbsp;
 ```json
 {
   "data":[{
-    "id": "32ce9f9a-4c62-4a07-832d-57d8856c8f5d",
-    "serviceCode": "compute",
-    "name": "Compute",
+    "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
+    "serviceCode": "compute-qc",
+    "name": "Compute - Québec",
     "type": "CloudCA",
     "category": "IAAS",
     "status": {  
