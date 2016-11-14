@@ -26,15 +26,29 @@ under the License.
   function activateLanguage(language) {
     if (!language) return;
     if (language === "") return;
+    var tabLang = language
+    language = (language == "hcl" ? "dart" : language)
+    languages = languages.map(function(l){
+      return l == "hcl" ? "dart": l
+    });
+
 
     $(".lang-selector a").removeClass('active');
-    $(".lang-selector a[data-language-name='" + language + "']").addClass('active');
+    $(".lang-selector a[data-language-name='" + tabLang + "']").addClass('active');
+    //Gr8 h4xx
+    $(".highlight.json").hide();
+    $(".lang-specific.json").hide();
     for (var i=0; i < languages.length; i++) {
       $(".highlight." + languages[i]).hide();
       $(".lang-specific." + languages[i]).hide();
     }
     $(".highlight." + language).show();
     $(".lang-specific." + language).show();
+
+    if(language === "shell"){
+      $(".highlight.json").show();
+      $(".lang-specific.json").show();
+   }
 
     global.toc.calculateHeights();
 

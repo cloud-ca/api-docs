@@ -1,18 +1,26 @@
 ---
-title: API Reference
+title: cloud.ca API Documentation
 
 language_tabs:
-  - shell : cURL
-  
+  - shell : curl
+  - go : go (alpha)
+  - hcl: terraform
+
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - introduction
-  - core
-  - compute
-  - instances
+  - getting_started
+  - administration
+
+subsections:
+  administration:
+    - service_connections
+    - organizations
+    - users
+    - environments
+  compute:
+    - instances
 
 search: true
 ---
-
