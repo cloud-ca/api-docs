@@ -6,7 +6,7 @@ The API is  [RESTful](https://en.wikipedia.org/wiki/Representational_state_trans
 
 Current API version : `api.cloud.ca/v1`
 
-If you are using the `go` language, check out our [library](https://github.com/cloud-ca/go-cloudca).
+We have also developed tools to help consume our APIs. If you use `go`, check out our [library](https://github.com/cloud-ca/go-cloudca). If you use Terraform, check out our [provider](https://github.com/cloud-ca/terraform-cloudca). NB: both are being actively developed, so there is still some functionality missing.
 
 ## Authentication
 ```go
@@ -20,6 +20,13 @@ ccaClient := cca.NewCcaClient("[your-api-key]")
 curl "https://api.cloud.ca/v1/organizations" \
    -H "MC-Api-Key: [your-api-key]"
 ```
+
+```dart
+provider "cloudca" {
+    api_key = "${var.my_api_key}"
+}
+```
+
 API endpoints are secured by the same role-based access control (RBAC) as the cloud.ca portal. To identify who is making the requests, it is required to add a header to your HTTP requests:
 
 `MC-Api-Key: [your-api-key]`
