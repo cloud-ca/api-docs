@@ -3,7 +3,7 @@ title: cloud.ca API Documentation
 
 language_tabs:
   - shell : curl
-  - go : go (alpha)
+  - go : go
   - hcl: terraform
 
 toc_footers:
