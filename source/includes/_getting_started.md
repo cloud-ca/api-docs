@@ -101,6 +101,23 @@ If the response does <strong>not</strong> contain the "data" field, the request 
   ]
 }
 ```
+```go
+_, err := ccaResources.Volumes.Get("[some-volume-id]")
+if err != nil {
+   if errorResponse, ok := err.(api.CcaErrorResponse); ok {
+      if errorResponse.StatusCode == api.NOT_FOUND {
+         fmt.Println("Volume was not found")
+      } else {
+         //Can get more details from the CcaErrors
+         fmt.Println(errorResponse.Errors)
+      }
+   } else {
+      //handle unexpected error
+      panic("Unexpected error")
+   }
+}
+```
+
 When an API request is unsuccessful, the response body will contain the `errors` field :
 
 Attributes | &nbsp;
@@ -111,7 +128,7 @@ Each error has additional fields to describe it :
 
 Attributes | &nbsp;
 --- | ---
-`code` | The error code (**TODO** link to error codes)
+`code` | The cloud.ca error code
 `message` | A human readable explanation of the error code
 `context` | Additional information
 
@@ -121,7 +138,7 @@ Status code | Reason
 ----------- | -------
 `200` | The request was successful.
 `204` | The request was successful and the response body is empty
-`400` | Bad request -- Occurs when invalid parameters are provided or `when` quota limit is exceeded.
+`400` | Bad request -- Occurs when invalid parameters are provided or when quota limit is exceeded.
 `403` | Forbidden -- Not authorized to perform this request.
 `404` | Not Found -- Cannot locate the specified endpoint.
 `405` | Method not allowed -- Cannot use that HTTP verb on the specified endpoint.

@@ -11,7 +11,6 @@ toc_footers:
 includes:
   - getting_started
   - administration
-  - error_codes
 subsections:
   administration:
     - service_connections
