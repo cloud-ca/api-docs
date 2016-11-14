@@ -31,7 +31,7 @@ curl "https://api.cloud.ca/v1/environments" \
     },
     "serviceConnection": {
       "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
-      "name": "Compute - Québec",
+      "name": "Compute - Québec"
     },
     "roles": [{
       "id": "951b768b-e91c-4d20-8b52-d4a2ab5a538a",
@@ -61,7 +61,7 @@ Attributes | &nbsp;
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
 `creationDate`<br/>*long* | The date in [unix time](https://en.wikipedia.org/wiki/Unix_time) that the environment was created
 `organization`<br/>*[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
-`serviceConnection`<br/>*[ServiceConnection](#serviceConnections)* | The service connection of the environment<br/>*includes*: `id`, `name`
+`serviceConnection`<br/>*[ServiceConnection](#service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
 `roles`<br/>*Array[[Role](#roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
 
 
@@ -95,11 +95,11 @@ curl "https://api.cloud.ca/v1/environment/[environment-id]" \
     },
     "serviceConnection": {
       "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
-      "name": "Compute - Québec",
+      "name": "Compute - Québec"
     },
     "users": [{
       "id": "6e84ab70-4c62-4db1-bbd8-343636a34647",
-      "userName": "starbuck",
+      "userName": "starbuck"
     }],
     "roles": [{
       "id": "b04b8a7c-6e89-4dba-9734-74d9f1b7be04",
@@ -128,7 +128,7 @@ Attributes | &nbsp;
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
 `creationDate`<br/>*long* | The date in [unix time](https://en.wikipedia.org/wiki/Unix_time) that the environment was created
 `organization`<br/>*[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
-`serviceConnection`<br/>*[ServiceConnection](#serviceConnections)* | The service connection of the environment<br/>*includes*: `id`, `name`
+`serviceConnection`<br/>*[ServiceConnection](#service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
 `users`<br/>*Array[[User](#users)]* | The users that are members of the environment<br/>*includes*: `id`, `username`
 `roles`<br/>*Array[[Role](#roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
 
@@ -202,7 +202,7 @@ Required | &nbsp;
 -------- | -----------
 `name`<br/>*string* | The name of the new environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
 `description`<br/>*string* | The description of the new environment.
-`serviceConnection`<br/>*[ServiceConnection](#serviceConnections)* | The service connection that the environment should be created in<br/>*required*: `id`
+`serviceConnection`<br/>*[ServiceConnection](#service-connections)* | The service connection that the environment should be created in<br/>*required*: `id`
 
 Optional | &nbsp;
 -------- | -----------
