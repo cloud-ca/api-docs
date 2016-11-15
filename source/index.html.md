@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - getting_started
   - administration
+  - compute
 
 subsections:
   administration:
