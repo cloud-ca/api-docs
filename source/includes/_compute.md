@@ -4,7 +4,7 @@ Cloud.ca provides its own native API for the services that it provides. It enfor
 
 The service API has the same starting point for every service:
 
-`https://api.cloud.ca/v1/services/:service_code/:env_name/:entity_type`
+<code>https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/:entity_type</code>
 
 Service code | Description | Zones
 --- | --- | ---
@@ -21,8 +21,9 @@ Some operations take longer to execute, and to avoid blocking on the response un
 It is a good practice to limit the polling rate on the task API to no more than once per second.
 </aside>
 
-> The above command returns JSON structured like this:
-
+```shell
+# The above command returns JSON structured like this:
+```
 ```json
 {
   "taskId": "b2f82e2a-123e-4f86-a4c7-dc9b850dd11e",
