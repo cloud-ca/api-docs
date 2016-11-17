@@ -1,64 +1,5 @@
 ### Instances
 
-<!-------------------- GENERAL INSTANCE INFORMATION -------------------->
-
-#### Instance resource
-```shell
-# Example of instance response
-```
-```json
-{
-  "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
-  "templateId": "8f52a74e-e637-40e8-a8dc-f56fd0b71ab9",
-  "templateName": "CentOS 7 HVM base (64bit)",
-  "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
-  "zoneName": "QC-1",
-  "computeOfferingName": "1vCPU.512MB",
-  "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
-  "networkName": "Web-Testing",
-  "vpcId": "9eb1592c-f92f-4ddd-9799-b58caf896328",
-  "vpcName": "Testing-VPC",
-  "ipAddress": "10.164.212.68",
-  "projectId": "a295c6de-1737-4df2-aa49-9bd749fa2489",
-  "isPasswordEnabled": true,
-  "macAddress": "02:00:2b:67:00:30",
-  "cpuCount": 1,
-  "memoryInMB": 512,
-  "hostname": "backup-test",
-  "username": "cca-user",
-  "affinityGroupIds": [],
-  "id": "9db8ff2f-b49b-466d-a2f3-c1e6def408f4",
-  "name": "backup-test",
-  "state": "Running"
-}
-```
-
-Generic instance information
-
-Attributes | &nbsp;
------- | ---- | -----------
-`id`<br/>*UUID* | Instance ID
-`name`<br/>*string* | Instance's display name
-`state`<br/>*string* | The current state of the instance.
-`templateId`<br/>*UUID* | Instance's template ID
-`templateName`<br/>*string* | Name of associated template
-`computeOfferingId`<br/>*UUID* | Instance's Compute Offering ID
-`computeOfferingName`<br/>*string* | Name of associated Compute Offering
-`cpuCount`<br/>*integer* | Number of vCPUs associated with the instance's Compute Offering.
-`memoryInMB`<br/>*integer* | Number of megabytes associated with the instance's Compute Offering.
-`networkId`<br/>*UUID* | ID of Network where instance is deployed
-`networkName`<br/>*string* | Name of associated Network
-`hostName`<br/>*string* | Instance's host name
-`userName`<br/>*string* | The username that can be used to connect to the instance
-`affinityGroupIds`<br/>*Array[UUID]* | ID(s) of the Affinity Groups to which the instance is associated.
-`zoneId`<br/>*UUID* | ID of zone where instance is deployed
-`zoneName`<br/>*string* | Name of associated Zone
-`vpcId`<br/>*UUID* | Instance's VPC ID
-`vpcName`<br/>*string* | Name of associated VPC
-`ipAddress`<br/>*string* | The instance's private IPv4 address
-`projectId`<br/>*UUID* | Instance's CloudStack project ID
-`isPasswordEnabled`<br/>*boolean* | Indicate whether a password can be used for remote connections
-`macAddress`<br/>*string* | The instance's MAC address
 
 <!-------------------- LIST INSTANCES -------------------->
 
@@ -69,34 +10,32 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca/v1/services/compute-qc/demo-env/instances"
 
 # The above command returns JSON structured like this:
-
 ```
 ```json
 {
   "data": [
     {
+      "id": "9db8ff2f-b49b-466d-a2f3-c1e6def408f4",
+      "name": "instance-test",
+      "state": "Running",
       "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
       "templateId": "8f52a74e-e637-40e8-a8dc-f56fd0b71ab9",
       "templateName": "CentOS 7 HVM base (64bit)",
-      "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
       "zoneName": "QC-1",
+      "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
       "computeOfferingName": "1vCPU.512MB",
       "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
       "networkName": "Web-Testing",
       "vpcId": "9eb1592c-f92f-4ddd-9799-b58caf896328",
       "vpcName": "Testing-VPC",
       "ipAddress": "10.164.212.68",
-      "projectId": "a295c6de-1737-4df2-aa49-9bd749fa2489",
       "isPasswordEnabled": true,
       "macAddress": "02:00:2b:67:00:30",
       "cpuCount": 1,
       "memoryInMB": 512,
-      "hostname": "backup-test",
+      "hostname": "instance-test",
       "username": "cca-user",
-      "affinityGroupIds": [],
-      "id": "9db8ff2f-b49b-466d-a2f3-c1e6def408f4",
-      "name": "backup-test",
-      "state": "Running"
+      "affinityGroupIds": []
     }
   ],
   "metadata": {
@@ -104,10 +43,38 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
   }
 }
 ```
-
+```go
+resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+ccaResources := resources.(cloudca.Resources)
+instances, err := ccaResources.Instances.List()
+```
 <code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
 
-Retrieve a list of all instances in a given environment. The information about every field can be found [here](#instance-resource).
+Retrieve a list of all instances in a given environment.
+
+Attributes | &nbsp;
+------- | -----------
+`id`<br/>*UUID* | The id of the instance
+`name`<br/>*string* | The display name of the instance
+`state`<br/>*string* | The current state of the instance
+`templateId`<br/>*UUID* | The [template](#templates) id of the instance
+`templateName`<br/>*string* | The [template](#templates) name of the instance
+`computeOfferingId`<br/>*UUID* | The [compute offering](#compute-offerings) id of the instance
+`computeOfferingName`<br/>*string* | The [compute offering](#compute-offerings) name of the instance
+`cpuCount`<br/>*integer* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
+`memoryInMB`<br/>*integer* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
+`networkId`<br/>*UUID* | The id of the [network](#tiers) where instance is deployed
+`networkName`<br/>*string* | Name of associated Network
+`hostname`<br/>*string* | The host name of the instance
+`username`<br/>*string* | The username that can be used to connect to the instance
+`affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#affinity-groups) to which the instance is associated.
+`zoneId`<br/>*UUID* | The id of the [zone](#zones) where instance is deployed
+`zoneName`<br/>*string* | The name of associated [zone](#zones)
+`vpcId`<br/>*UUID* | The id of the associated [VPC](#vpcs)
+`vpcName`<br/>*string* | The name of associated [VPC](#vpcs)
+`ipAddress`<br/>*string* | The instance's private IPv4 address
+`isPasswordEnabled`<br/>*boolean* | Indicate whether a password can be used for remote connections
+`macAddress`<br/>*string* | The instance's MAC address
 
 <!-------------------- RETRIEVE AN INSTANCE -------------------->
 
@@ -119,7 +86,6 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 
 
 # The above command returns JSON structured like this:
-
 ```
 ```json
 {
@@ -149,10 +115,38 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
   }
 }
 ```
-
+```go
+resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+ccaResources := resources.(cloudca.Resources)
+instance, err := ccaResources.Instances.Get("[instance-id]")
+```
 <code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
-This endpoint retrieves a specific instance.
+Retrieve information about a specific instance.
+
+Attributes | &nbsp;
+------- | -----------
+`id`<br/>*UUID* | The id of the instance
+`name`<br/>*string* | The display name of the instance
+`state`<br/>*string* | The current state of the instance
+`templateId`<br/>*UUID* | The [template](#templates) id of the instance
+`templateName`<br/>*string* | The [template](#templates) name of the instance
+`computeOfferingId`<br/>*UUID* | The [compute offering](#compute-offerings) id of the instance
+`computeOfferingName`<br/>*string* | The [compute offering](#compute-offerings) name of the instance
+`cpuCount`<br/>*integer* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
+`memoryInMB`<br/>*integer* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
+`networkId`<br/>*UUID* | The id of the [network](#tiers) where instance is deployed
+`networkName`<br/>*string* | Name of associated Network
+`hostname`<br/>*string* | The host name of the instance
+`username`<br/>*string* | The username that can be used to connect to the instance
+`affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#affinity-groups) to which the instance is associated.
+`zoneId`<br/>*UUID* | The id of the [zone](#zones) where instance is deployed
+`zoneName`<br/>*string* | The name of associated [zone](#zones)
+`vpcId`<br/>*UUID* | The id of the associated [VPC](#vpcs)
+`vpcName`<br/>*string* | The name of associated [VPC](#vpcs)
+`ipAddress`<br/>*string* | The instance's private IPv4 address
+`isPasswordEnabled`<br/>*boolean* | Indicate whether a password can be used for remote connections
+`macAddress`<br/>*string* | The instance's MAC address
 
 
 <!-------------------- CREATE AN INSTANCE -------------------->
@@ -171,7 +165,6 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 }" "https://api.cloud.ca/v1/services/compute-qc/testing/instances"
 
 # Request should look like this
-
 ```
 ```json
 {
@@ -187,6 +180,27 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
    "affinityGroupId": "1c0bfd2b-d609-4892-a43e-273654532d26",
    "portsToForward": ["80", "9999"],
    "userData": "#!/bin/bash\necho 'hello world'"
+}
+```
+```go
+resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+ccaResources := resources.(cloudca.Resources)
+createdInstance, err := ccaResources.Instances.Create(cloudca.Instance{
+        Name: "[new-instance-name]",
+        TemplateId: "[some-template-id]",
+        ComputeOfferingId:"[some-compute-offering-id]",
+        NetworkId:"[some-network-id]",
+    })
+```
+```dart
+resource "cloudca_instance" "my_instance" {
+    service_code = "compute-qc"
+    environment_name = "dev"
+    name = "test-instance"
+    network_id = "672016ef-05ee-4e88-b68f-ac9cc462300b"
+    template = "CentOS 6.7 base (64bit)"
+    compute_offering = "1vCPU.512MB"
+    ssh_key_name = "my_ssh_key"
 }
 ```
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
@@ -236,6 +250,7 @@ curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" 
    "hostname": "hal_9000"
 }
 ```
+
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
 Update the name and hostname of an existing instance. **WARNING:** Changing the hostname will force a reboot of your instance.
@@ -254,9 +269,7 @@ Optional | &nbsp;
 curl -X DELETE -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca:443/v1/services/compute-east/demo-env/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" \
 
-
 # Request example:
-
 ```
 ```json
 {
@@ -266,11 +279,16 @@ curl -X DELETE -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key
       "fe446d61-a22c-403a-87bf-5351e65dc54d"
    ],
    "volumeIdsToDelete":[
-      "e3d4045d-3ef7-464d-92a3-fc18269f36e2
-"
-   ],
+      "e3d4045d-3ef7-464d-92a3-fc18269f36e2"
+   ]
 }
 ```
+```go
+resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+ccaResources := resources.(cloudca.Resources)
+success, err := ccaResources.Instances.Destroy("[instance-id]", true) // purge flag
+```
+
 <code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
 Destroys an existing instance. The instance needs to be in *Running*, *Stopped* or *Error* state for the operation to work. This endpoint allows you to do additional cleanup of resources attached to this instance such as public IP addresses, volumes and snapshots. If the purgeImmediately flag is not true, then it will not completely remove the instance from the environment (i.e. the instance could still be recovered).
@@ -297,6 +315,11 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=start"
 
 ```
+```go
+resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+ccaResources := resources.(cloudca.Resources)
+success, err := ccaResources.Instances.Start("[instance-id]")
+```
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=start</code>
 
@@ -315,7 +338,11 @@ Start an existing instance. The instance must be in the *Stopped* state for this
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=stop"
-
+```
+```go
+resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+ccaResources := resources.(cloudca.Resources)
+success, err := ccaResources.Instances.Stop("[instance-id]")
 ```
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=stop</code>
@@ -334,7 +361,11 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=reboot"
-
+```
+```go
+resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+ccaResources := resources.(cloudca.Resources)
+success, err := ccaResources.Instances.Reboot("[instance-id]")
 ```
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=reboot</code>
@@ -353,9 +384,12 @@ Reboot an existing instance. The instance must be in the *Running* or *Stopped* 
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=purge"
-
 ```
-
+```go
+resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+ccaResources := resources.(cloudca.Resources)
+success, err := ccaResources.Instances.Purge("[instance-id]")
+```
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=purge</code>
 
 Purges an existing instance (i.e. completely remove it from the environment). The instance must be in a *Destroyed* state.
@@ -372,9 +406,12 @@ Purges an existing instance (i.e. completely remove it from the environment). Th
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=recover"
-
 ```
-
+```go
+resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+ccaResources := resources.(cloudca.Resources)
+success, err := ccaResources.Instances.Recover("[instance-id]")
+```
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=purge</code>
 
 Recover an existing instance that was previously destroyed. The instance must be in a *Destroyed* state.
@@ -391,7 +428,11 @@ Recover an existing instance that was previously destroyed. The instance must be
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=changeComputeOffering"
-
+```
+```go
+resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+ccaResources := resources.(cloudca.Resources)
+success, err := ccaResources.Instances.ChangeComputeOffering("[instance-id]", "[new-compute-offering-id]")
 ```
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeComputeOffering</code>
@@ -410,7 +451,11 @@ Change the compute offering of an existing instance. **WARNING:** This will forc
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=resetPassword"
-
+```
+```go
+resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+ccaResources := resources.(cloudca.Resources)
+password, err := ccaResources.Instances.ResetPassword("[instance-id]")
 ```
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=resetPassword</code>
@@ -430,7 +475,11 @@ Reset the password of the default user of an existing instance. The new password
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=associateSSHKey"
-
+```
+```go
+resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+ccaResources := resources.(cloudca.Resources)
+success, err := ccaResources.Instances.AssociateSSHKey("[instance-id]", "[ssh-key-name]")
 ```
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=associateSSHKey</code>
