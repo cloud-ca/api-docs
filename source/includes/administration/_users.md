@@ -51,7 +51,7 @@ ccaClient := cca.NewCcaClient("[your-api-key]")
 users, err := ccaClient.Users.List()
 ```
 
-Retrieve information about a users you have accessed to. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned a [role](#Roles) with the `View existing users` permission. Without this permission, you will only be see your own user in the list.
+Retrieve information about users you have access to. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned the `Users read` permission. Without this permission, you will only see your own user in the list.
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -119,7 +119,7 @@ ccaClient := cca.NewCcaClient("[your-api-key]")
 user, err := ccaClient.Users.Get("[user-id]")
 ```
 
-Retrieve information about a specific user. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned a [role](#Roles) with the `View existing users` permission.
+Retrieve information about a specific user. If you want access to other users in your [organization or sub-organizations](#organizations), you will need to be assigned the `Users Read` permission.
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -167,7 +167,7 @@ curl "https://api.cloud.ca/v1/users" \
 }
 ```
 
-Create a user in a specific organization. There's two different types of [role](#roles) you can assign to the user. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine what he can see and do in that environment. You will need a [role](#roles) with the `Create a new user` permission to execute this operation.
+Create a user in a specific organization. There's two different types of [role](#roles) you can assign to the user. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine what he can see and do in that environment. You will need the `Create a new user` permission to execute this operation.
 
 Required | &nbsp;
 -------- | -----------
@@ -181,7 +181,7 @@ Optional | &nbsp;
 `organization`</br>*[Organization](#organization)* | Organization in which the user will be created. *Defaults to your organization*<br/>*required:* `id`
 `roles`<br/>*Array[[Role](#roles)]* | The system and environment roles to give to the user<br/>*required*: `id`
 
-#### Returns
+##### Returns
 
 The responses' `data` field contains the created [user](#users) with it's `id`.
 
@@ -215,7 +215,7 @@ curl "https://api.cloud.ca/v1/users/[user-id]" \
 }
 ```
 
-Update a specific user. It is important to note that updating the list of roles will override the previous one. You will need a [role](#roles) with the `Users update` permission to execute this operation.
+Update a specific user. It is important to note that updating the list of roles will override the previous one. You will the `Users update` permission to execute this operation.
 
 Optional | &nbsp;
 -------- | -----------
@@ -225,7 +225,7 @@ Optional | &nbsp;
 `email`<br/>*string* | The new email of the user. Should be unique across the organization.
 `roles`<br/>*Array[[Role](#roles)]* | The new list of system or environment roles to give to the user. This will override the previous list of roles.<br/>*required*: `id`
 
-#### Returns
+##### Returns
 
 The responses' `data` field contains the updated [user](#users).
 
@@ -245,7 +245,7 @@ curl "https://api.cloud.ca/v1/users/[user-id]" \
 
 ```
 
-Delete a specific user. You will need a [role](#roles) with the `Delete an existing user` permission to execute this operation.
+Delete a specific user. You will need the `Delete an existing user` permission to execute this operation.
 
 
 <!-------------------- UNLOCK USER -------------------->
@@ -264,4 +264,4 @@ curl "https://api.cloud.ca/v1/users/[user-id]/unlock" \
 
 ```
 
-A user with 10 consecutive unsuccessful logins will be automatically locked by our system. This API can be used to unlock a user in this situation. You will need a [role](#roles) with the `Unlock user` permission to execute this operation.
+A user with 10 consecutive unsuccessful logins will be automatically locked by our system. This API can be used to unlock a user in this situation. You will need the `Unlock user` permission to execute this operation.
