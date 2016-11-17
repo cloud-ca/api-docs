@@ -504,6 +504,11 @@ html, body {
       text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
     }
 
+    &.caution {
+      background-color: $aside-caution-bg;
+      text-shadow: 0 1px 0 lighten($aside-caution-bg, 15%);
+    }
+
     &.success {
       background-color: $aside-success-bg;
       text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
@@ -521,6 +526,10 @@ html, body {
   }
 
   aside.warning:before {
+    @extend %icon-exclamation-sign;
+  }
+
+  aside.caution:before {
     @extend %icon-exclamation-sign;
   }
 
