@@ -291,5 +291,5 @@ deleted, err := ccaClient.Environments.Delete("[environment-id]")
 Delete a specific environment. You will need a [role](#roles) with the `Delete an existing environment	` permission to execute this operation.
 
 <aside class="warning">
-  Be careful: This will destroy all the resources in your environment.
+  <strong>Be careful:</strong> This will destroy all the resources in your environment.
 </aside>
