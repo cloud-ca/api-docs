@@ -107,7 +107,7 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 
 <code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
 
-This endpoint retrieves all instances in a given environment.
+Retrieve a list of all instances in a given environment. The information about every field can be found [here](#instance-resource).
 
 <!-------------------- RETRIEVE AN INSTANCE -------------------->
 
@@ -176,22 +176,22 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 ```json
 {
    "name": "jarvis",
-   "templateId": "",
-   "computeOfferingId": "",
-   "networkId": "",
-   "diskOfferingId": "",
+   "templateId": "11ea4b86-4ed2-4b69-b605-7a17e12d57de",
+   "computeOfferingId": "16872cbd-6430-465d-8b51-84fde1b6b1c4",
+   "networkId": "55ccea7f-8286-479e-a648-dd4a45866daf",
+   "diskOfferingId": "f16f7f1b-462d-47b9-97bb-25a19e47a648",
    "additionalDiskSizeInGb": 20,
    "additionalDiskIops": 1000,
    "sshKeyName": "mysshkey",
-   "volumeIdToAttach": "",
-   "affinityGroupId": "",
+   "volumeIdToAttach": "2478012b-3cf3-4eef-a8d6-85eb8599df6d",
+   "affinityGroupId": "1c0bfd2b-d609-4892-a43e-273654532d26",
    "portsToForward": ["80", "9999"],
    "userData": "#!/bin/bash\necho 'hello world'"
 }
 ```
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
 
-This endpoint create a new instances in a given environment.
+Create an instance in an environment of the compute service. This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the instance instead of doing multiple API calls.
 
 Required | &nbsp;
 ------ | ---- | -----------
@@ -238,7 +238,7 @@ curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" 
 ```
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
-This endpoint updates an existing instance.
+Update the name and hostname of an existing instance. **WARNING:** Changing the hostname will force a reboot of your instance.
 
 Optional | &nbsp;
 ------ | ---- | -----------
@@ -248,7 +248,7 @@ Optional | &nbsp;
 
 <!-------------------- DELETE AN INSTANCE -------------------->
 
-#### Delete an instance
+#### Destroy an instance
 
 ```shell
 curl -X DELETE -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
@@ -273,7 +273,7 @@ curl -X DELETE -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key
 ```
 <code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
-This endpoint deletes an instance. The instance needs to be in running, stopped or error state for the operation to work.
+Destroys an existing instance. The instance needs to be in *Running*, *Stopped* or *Error* state for the operation to work. This endpoint allows you to do additional cleanup of resources attached to this instance such as public IP addresses, volumes and snapshots. If the purgeImmediately flag is not true, then it will not completely remove the instance from the environment (i.e. the instance could still be recovered).
 
 
 Optional | &nbsp;
@@ -300,7 +300,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=start</code>
 
-This endpoint starts an existing instance.
+Start an existing instance. The instance must be in the *Stopped* state for this operation to work.
 
 
 <!-------------------- STOP AN INSTANCE -------------------->
@@ -320,7 +320,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=stop</code>
 
-This endpoint stops an existing instance.
+ Stop an existing instance. The instance must be in the *Running* state for this operation to work.
 
 <!-------------------- REBOOT AN INSTANCE -------------------->
 
@@ -339,8 +339,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=reboot</code>
 
-This endpoint reboots an existing instance.
-
+Reboot an existing instance. The instance must be in the *Running* or *Stopped* state for this operation to work.
 
 <!-------------------- PURGE AN INSTANCE -------------------->
 
@@ -359,8 +358,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=purge</code>
 
-This endpoint purges an existing instance.
-
+Purges an existing instance (i.e. completely remove it from the environment). The instance must be in a *Destroyed* state.
 
 <!-------------------- RECOVER AN INSTANCE -------------------->
 
@@ -379,8 +377,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=purge</code>
 
-This endpoint purges an existing instance.
-
+Recover an existing instance that was previously destroyed. The instance must be in a *Destroyed* state.
 
 <!-------------------- CHANGE COMPUTE OFFERING OF AN INSTANCE -------------------->
 
@@ -399,8 +396,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeComputeOffering</code>
 
-This endpoint changes the compute offering an existing instance.
-
+Change the compute offering of an existing instance. **WARNING:** This will force a reboot of your instance.
 
 <!-------------------- CHANGE COMPUTE OFFERING OF AN INSTANCE -------------------->
 
@@ -419,7 +415,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=resetPassword</code>
 
-This endpoint resets the password of an existing instance.
+Reset the password of the default user of an existing instance. The new password of the instance will be in the task result.
 
 
 <!-------------------- ASSOCIATE AN SSH KEY TO AN INSTANCE -------------------->
@@ -439,4 +435,4 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=associateSSHKey</code>
 
-This endpoint associates an SSH key to an existing instance.
+Associate a new [SSH key](#ssh-keys) to the default user of an existing instance instance. This will override any other SSH key associated to the instance for the default user. You can register a new SSH key with the [register SSH key](#register-an-ssh-key) endpoint.
