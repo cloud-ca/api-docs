@@ -1,1 +1,1 @@
-## Affinity groups
+### Affinity groups

@@ -21,28 +21,31 @@ subsections:
     - users
     - environments
   compute:
-    - vpcs
-    - zones
-    - tiers
-    - vpc_offerings
-    - compute_offerings
-    - network_offerings
+
+    - compute # Compute section
+    - instances
     - templates
     - ssh_keys
-    - instances
-    - disk_offerings
-    - volumes
-    - public_ips
-    - port_forwarding_rules
+    - affinity_groups
+    - networking # Networking section
+    - vpcs
+    - tiers
     - network_acls
     - network_acl_rules
+    - public_ips
+    - port_forwarding_rules
     - nics
     - secondary_ips
-    - snapshots
-    - recovery_points
-    - affinity_groups
     - remote_access_vpns
     - vpn_users
-
+    - storage # Storage section
+    - volumes
+    - snapshots
+    - offerings # Offerings section
+    - vpc_offerings
+    - network_offerings
+    - compute_offerings
+    - disk_offerings
+    - zones # Zones section
 search: true
 ---
