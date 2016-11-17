@@ -721,7 +721,7 @@ curl -X POST <span class="s2">"https://api.cloud.ca/v1/organizations"</span> <sp
 </tr>
 </tbody></table>
 
-<h4 id="returns">Returns</h4>
+<h5 id="returns">Returns</h5>
 
 <p>The responses&rsquo; <code class="prettyprint">data</code> field contains the created <a href="#organizations">organization</a> with it&rsquo;s <code class="prettyprint">id</code>.</p>
 
@@ -847,7 +847,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/users"</span> <span class="se">\<
 </span><span class="n">users</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">Users</span><span class="o">.</span><span class="n">List</span><span class="p">()</span><span class="x">
 </span></code></pre>
 
-<p>Retrieve information about a users you have accessed to. If you want access to other users in your <a href="#organizations">organization or sub-organizations</a>, you will need to be assigned a <a href="#Roles">role</a> with the <code class="prettyprint">View existing users</code> permission. Without this permission, you will only be see your own user in the list.</p>
+<p>Retrieve information about users you have access to. If you want access to other users in your <a href="#organizations">organization or sub-organizations</a>, you will need to be assigned the <code class="prettyprint">Users read</code> permission. Without this permission, you will only see your own user in the list.</p>
 
 <table><thead>
 <tr>
@@ -942,7 +942,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/users/[user-id]"</span> <span cla
 </span><span class="n">user</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">Users</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="s">"[user-id]"</span><span class="p">)</span><span class="x">
 </span></code></pre>
 
-<p>Retrieve information about a specific user. If you want access to other users in your <a href="#organizations">organization or sub-organizations</a>, you will need to be assigned a <a href="#Roles">role</a> with the <code class="prettyprint">View existing users</code> permission.</p>
+<p>Retrieve information about a specific user. If you want access to other users in your <a href="#organizations">organization or sub-organizations</a>, you will need to be assigned the <code class="prettyprint">Users Read</code> permission.</p>
 
 <table><thead>
 <tr>
@@ -1020,7 +1020,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/users"</span> <span class="se">\<
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Create a user in a specific organization. There&rsquo;s two different types of <a href="#roles">role</a> you can assign to the user. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine what he can see and do in that environment. You will need a <a href="#roles">role</a> with the <code class="prettyprint">Create a new user</code> permission to execute this operation.</p>
+<p>Create a user in a specific organization. There&rsquo;s two different types of <a href="#roles">role</a> you can assign to the user. A system role will determine the set of system permissions the user will have. An environment role will give the user access to an environment and will determine what he can see and do in that environment. You will need the <code class="prettyprint">Create a new user</code> permission to execute this operation.</p>
 
 <table><thead>
 <tr>
@@ -1062,7 +1062,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/users"</span> <span class="se">\<
 </tr>
 </tbody></table>
 
-<h4 id="returns">Returns</h4>
+<h5 id="returns">Returns</h5>
 
 <p>The responses&rsquo; <code class="prettyprint">data</code> field contains the created <a href="#users">user</a> with it&rsquo;s <code class="prettyprint">id</code>.</p>
 
@@ -1091,7 +1091,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/users/[user-id]"</span> <span cla
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Update a specific user. It is important to note that updating the list of roles will override the previous one. You will need a <a href="#roles">role</a> with the <code class="prettyprint">Users update</code> permission to execute this operation.</p>
+<p>Update a specific user. It is important to note that updating the list of roles will override the previous one. You will the <code class="prettyprint">Users update</code> permission to execute this operation.</p>
 
 <table><thead>
 <tr>
@@ -1121,7 +1121,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/users/[user-id]"</span> <span cla
 </tr>
 </tbody></table>
 
-<h4 id="returns">Returns</h4>
+<h5 id="returns">Returns</h5>
 
 <p>The responses&rsquo; <code class="prettyprint">data</code> field contains the updated <a href="#users">user</a>.</p>
 
@@ -1137,7 +1137,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/users/[user-id]"</span> <span cla
 
 </code></pre>
 
-<p>Delete a specific user. You will need a <a href="#roles">role</a> with the <code class="prettyprint">Delete an existing user</code> permission to execute this operation.</p>
+<p>Delete a specific user. You will need the <code class="prettyprint">Delete an existing user</code> permission to execute this operation.</p>
 
 <!-------------------- UNLOCK USER -------------------->
 
@@ -1151,7 +1151,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/users/[user-id]/unlock"</span> <s
 
 </code></pre>
 
-<p>A user with 10 consecutive unsuccessful logins will be automatically locked by our system. This API can be used to unlock a user in this situation. You will need a <a href="#roles">role</a> with the <code class="prettyprint">Unlock user</code> permission to execute this operation.</p>
+<p>A user with 10 consecutive unsuccessful logins will be automatically locked by our system. This API can be used to unlock a user in this situation. You will need the <code class="prettyprint">Unlock user</code> permission to execute this operation.</p>
 
               <h2 id="environments">Environments</h2>
 
@@ -1200,7 +1200,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/environments"</span> <span class=
 </span><span class="n">environments</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">Environments</span><span class="o">.</span><span class="n">List</span><span class="p">()</span><span class="x">
 </span></code></pre>
 
-<p>List environments that you have access to. It will only return environments that you&rsquo;re member of if you&rsquo;re not assigned a <a href="#roles">role</a> with the <code class="prettyprint">Environments read</code> permission.</p>
+<p>List environments that you have access to. It will only return environments that you&rsquo;re member of if you&rsquo;re not assigned the <code class="prettyprint">Environments read</code> permission.</p>
 
 <table><thead>
 <tr>
@@ -1290,7 +1290,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/environment/[environment-id]"</sp
 </span><span class="n">environment</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">Environments</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="s">"[environment-id]"</span><span class="p">)</span><span class="x">
 </span></code></pre>
 
-<p>Retrieve an environment you have access to. You can always retrieve environments that you&rsquo;re member of but to access other environments you will need a <a href="#roles">role</a> with the <code class="prettyprint">Environments read</code> permission.</p>
+<p>Retrieve an environment you have access to. You can always retrieve environments that you&rsquo;re member of but to access other environments you will need the <code class="prettyprint">Environments read</code> permission.</p>
 
 <table><thead>
 <tr>
@@ -1395,7 +1395,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/environments"</span> <span class=
 <span class="o">}</span>
 </code></pre>
 
-<p>Create a new environment in a specific service and organization. You will need a <a href="#roles">role</a> with the <code class="prettyprint">Environments create</code> permission to execute this operation.</p>
+<p>Create a new environment in a specific service and organization. You will need the <code class="prettyprint">Environments create</code> permission to execute this operation.</p>
 
 <table><thead>
 <tr>
@@ -1437,7 +1437,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/environments"</span> <span class=
 </tr>
 </tbody></table>
 
-<h4 id="returns">Returns</h4>
+<h5 id="returns">Returns</h5>
 
 <p>The responses&rsquo; <code class="prettyprint">data</code> field contains the updated <a href="#environments">environment</a>.</p>
 
@@ -1501,7 +1501,7 @@ curl <span class="s2">"https://api.cloud.ca/v1/environments/[environment-id]"</s
 </tr>
 </tbody></table>
 
-<p>You will need a <a href="#roles">role</a> with the <code class="prettyprint">Environments update</code> permission to execute this operation.</p>
+<p>You will need the <code class="prettyprint">Environments update</code> permission to execute this operation.</p>
 
 <!-------------------- DELETE ENVIRONMENT -------------------->
 
@@ -1518,7 +1518,11 @@ curl <span class="s2">"https://api.cloud.ca/v1/environments/[environment-id]"</s
 </span><span class="n">deleted</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">Environments</span><span class="o">.</span><span class="n">Delete</span><span class="p">(</span><span class="s">"[environment-id]"</span><span class="p">)</span><span class="x">
 </span></code></pre>
 
-<p>Delete a specific environment. <strong>Be careful: This will destroy all the resources in your environment.</strong> You will need a <a href="#roles">role</a> with the <code class="prettyprint">Delete an existing environment</code> permission to execute this operation.</p>
+<p>Delete a specific environment. You will need a <a href="#roles">role</a> with the <code class="prettyprint">Delete an existing environment</code> permission to execute this operation.</p>
+
+<aside class="warning">
+  Be careful: This will destroy all the resources in your environment.
+</aside>
 
       </div>
       <div class="dark-box">
