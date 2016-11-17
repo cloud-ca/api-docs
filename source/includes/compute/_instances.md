@@ -1,5 +1,5 @@
 ### Instances
-
+Deploy and manage your instances.
 
 <!-------------------- LIST INSTANCES -------------------->
 

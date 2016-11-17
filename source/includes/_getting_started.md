@@ -71,15 +71,19 @@ Verbs | Purpose
   "data": [
     { "_comment" : "JSON representation of first object goes here" },
     { "_comment" : "JSON representation of second object goes here" }
-  ]
+  ],
+  "taskId": "",
+  "taskStatus": "PENDING"
 }
 ```
 
-When an API request is successful, the response body will contain the `data` field:
+When an API request is successful, the response body will contain the `data` field with the result of the API call. If you're using the [compute API](#compute-api), the `data` field might be empty since most of the operations are asynchronous. The response will contain the `taskId` and `taskStatus` fields so that you can retrieve the result of the operation you executed through the [task API](#task-api)
 
 Attributes | &nbsp;
 --- | ---
 `data` | The data field contains the object requested by the API caller
+`taskId` | The [task id](#tasks) of an operation executed through the [compute API](#compute-api)
+`taskStatus` | The status of a [task](#task) of an operation executed through the [compute API](#compute-api)
 <!--
 `metadata` | The metadata is an optionally returned field containing paging and sorting information
 -->

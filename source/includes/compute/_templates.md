@@ -1,4 +1,5 @@
 ### Templates
+A template is a virtual disk image that can be used on the creation of an instance. It contains the operating system which can contain some predefined configuration, files and software. Cloud.ca provides many default templates but you can also upload your own custom templates.
 
 #### List templates
 
@@ -20,10 +21,7 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
     "isDynamicallyScalable": true,
     "sshKeyEnabled": true,
     "created":"2016-10-24 2:40:29 PM EDT",
-    "osType": "Other (64-bit)",
-    "osTypeId": "1 b3ee00c-e7e7-11e3-9187-06669c0000ad",
-    "hypevisor": "XenServer",
-    "format": "VHD"
+    "osType": "Other (64-bit)"
   }],
   "metadata": {
     "recordCount": 1
@@ -37,14 +35,13 @@ id<br/>*UUID* | The id of the template
 name<br/>*string* | The name of the template
 description<br/>*string* | The description of the template
 size<br/>*long* | The size of the template in bytes
-isPublic<br/>*boolean* | ...
-isReady<br/>*boolean* | ...
+isPublic<br/>*boolean* | true if public to everyone. Your custom templates will always be private
+isReady<br/>*boolean* | true if the template is ready to be used for a new instance
 isDynamicallyScalable<br/>*boolean* | ...
 created<br/>*string* | The creation date of the template
-osType<br/>*string* | ...
-osTypeId<br/>*string* | ...
-hypervisor<br/>*string* | ...
-format<br/>*string* | ...
+osType<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
+
+Retrieve a list of all templates of an environment. It will include all the public templates of the system.
 
 #### Retrieve a template
 
@@ -66,10 +63,9 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
     "isDynamicallyScalable": true,
     "sshKeyEnabled": true,
     "created":"2016-10-24 2:40:29 PM EDT",
-    "osType": "Other (64-bit)",
-    "osTypeId": "1 b3ee00c-e7e7-11e3-9187-06669c0000ad",
-    "hypevisor": "XenServer",
-    "format": "VHD"
+    "osType": "Other (64-bit)"
   }
 }
 ```
+
+Retrieve information about a public or private template of an environment.
