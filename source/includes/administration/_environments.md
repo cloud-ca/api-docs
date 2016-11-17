@@ -50,7 +50,7 @@ ccaClient := cca.NewCcaClient("[your-api-key]")
 environments, err := ccaClient.Environments.List()
 ```
 
-List environments that you have access to. It will only return environments that you're member of if you're not assigned a [role](#roles) with the `Environments read` permission.
+List environments that you have access to. It will only return environments that you're member of if you're not assigned the `Environments read` permission.
 
 
 Attributes | &nbsp;
@@ -118,7 +118,7 @@ ccaClient := cca.NewCcaClient("[your-api-key]")
 environment, err := ccaClient.Environments.Get("[environment-id]")
 ```
 
-Retrieve an environment you have access to. You can always retrieve environments that you're member of but to access other environments you will need a [role](#roles) with the `Environments read` permission.
+Retrieve an environment you have access to. You can always retrieve environments that you're member of but to access other environments you will need the `Environments read` permission.
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -196,7 +196,7 @@ resource "cloudca_environment" "my_environment" {
     read_only_role = ["dr_strange","ancient_one"]
 }
 ```
-Create a new environment in a specific service and organization. You will need a [role](#roles) with the `Environments create` permission to execute this operation.
+Create a new environment in a specific service and organization. You will need the `Environments create` permission to execute this operation.
 
 Required | &nbsp;
 -------- | -----------
@@ -211,7 +211,7 @@ Optional | &nbsp;
 `roles`<br/>*Array[[Role](#roles)]* | The roles of the environment and the users assigned to them. Also, defines the default role of the environment.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
 
 
-#### Returns
+##### Returns
 
 The responses' `data` field contains the updated [environment](#environments).
 
@@ -266,7 +266,7 @@ Optional | &nbsp;
 `roles`<br/>*Array[[Role](#roles)]* | Update the users roles in the environment. Also, can also update the default role.<br/>*required*: `name`, `users.id`<br/>*optional*: `isDefault`
 
 
-You will need a [role](#roles) with the `Environments update` permission to execute this operation.
+You will need the `Environments update` permission to execute this operation.
 
 <!-------------------- DELETE ENVIRONMENT -------------------->
 
@@ -288,4 +288,8 @@ deleted, err := ccaClient.Environments.Delete("[environment-id]")
 ```
 
 
-Delete a specific environment. **Be careful: This will destroy all the resources in your environment.** You will need a [role](#roles) with the `Delete an existing environment	` permission to execute this operation.
+Delete a specific environment. You will need a [role](#roles) with the `Delete an existing environment	` permission to execute this operation.
+
+<aside class="warning">
+  Be careful: This will destroy all the resources in your environment.
+</aside>
