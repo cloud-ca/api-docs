@@ -3,6 +3,9 @@
 #### List templates
 
 ```shell
+curl -X GET -H "MC-Api-Key: [your-api-key]"
+"https://api.cloud.ca/v1/services/compute-qc/demo-env/templates"
+
 # Example:
 ```
 ```json
@@ -28,9 +31,27 @@
 }
 ```
 
+Attributes | &nbsp;
+---------- | -----
+id<br/>*UUID* | The id of the template
+name<br/>*string* | The name of the template
+description<br/>*string* | The description of the template
+size<br/>*long* | The size of the template in bytes
+isPublic<br/>*boolean* | ...
+isReady<br/>*boolean* | ...
+isDynamicallyScalable<br/>*boolean* | ...
+created<br/>*string* | The creation date of the template
+osType<br/>*string* | ...
+osTypeId<br/>*string* | ...
+hypervisor<br/>*string* | ...
+format<br/>*string* | ...
+
 #### Retrieve a template
 
 ```shell
+curl -X GET -H "MC-Api-Key: [your-api-key]"
+"https://api.cloud.ca/v1/services/compute-qc/demo-env/templates/162cdfcb-45e5-4aa6-81c4-124c94621bdb"
+
 # Example:
 ```
 ```json
