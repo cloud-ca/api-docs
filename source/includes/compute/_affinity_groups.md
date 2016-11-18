@@ -39,6 +39,9 @@ name<br/>*string* | The name of the affinity group
 type<br/>*string* | The type of affinity group. We only support anti-affinity
 instanceIds<br/>*Array[UUID]* | The ids of the instances in the affinity group
 
+
+<!-------------------- RETRIEVE AN AFFINITY GROUP -------------------->
+
 #### Retrieve an affinity group
 
 ```shell
@@ -69,4 +72,79 @@ Attributes | &nbsp;
 id<br/>*UUID* | The id of the affinity group
 name<br/>*string* | The name of the affinity group
 type<br/>*string* | The type of affinity group. We only support anti-affinity
+instanceIds<br/>*Array[UUID]* | The ids of the instances in the affinity group
+
+
+
+<!-------------------- CREATE AN AFFINITY GROUP -------------------->
+
+#### Create an affinity group
+
+```shell
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+  \"name\": \"gnr\",
+  \"description\": \"My affinity group\",
+  \"type\": \"host anti-affinity\",
+  \"instanceIds\": [\"92b4df86-fee3-4610-8167-78332b86362f\"]
+}" "https://api.cloud.ca/v1/services/compute-qc/testing/affinitygroups"
+
+# Request should look like this
+```
+```json
+{
+  "data": {
+    "name": "gnr",
+    "description": "My affinity group",
+    "type": "host anti-affinity",
+    "instanceIds": [
+      "92b4df86-fee3-4610-8167-78332b86362f"
+    ]
+  }
+}
+```
+
+<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
+
+Create an affinity group and add instances to it.
+
+Required | &nbsp;
+---------- | -----
+name<br/>*string* | The name of the new affinity group
+description<br/>*string* | A description of the affinity group
+type<br/>*string* | The type of new affinity group. We only support anti-affinity
+instanceIds<br/>*Array[UUID]* | The ids of the instances in the affinity group
+
+
+
+<!-------------------- CREATE AN AFFINITY GROUP -------------------->
+
+#### Update an affinity group
+
+```shell
+curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+  \"instanceIds\": [\"92b4df86-fee3-4610-8167-78332b86362f\", \"105f8b5e-5482-4bf5-88ca-7d7b7f431e3e\"]
+}" "https://api.cloud.ca/v1/services/compute-qc/testing/affinitygroups"
+
+# Request should look like this
+```
+```json
+{
+  "data": {
+    "instanceIds": [
+      "92b4df86-fee3-4610-8167-78332b86362f",
+      "105f8b5e-5482-4bf5-88ca-7d7b7f431e3e"
+    ]
+  }
+}
+```
+
+<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
+
+Update the list of instances in the affinity group.
+
+Required | &nbsp;
+---------- | -----
+name<br/>*string* | The name of the new affinity group
+description<br/>*string* | A description of the affinity group
+type<br/>*string* | The type of new affinity group. We only support anti-affinity
 instanceIds<br/>*Array[UUID]* | The ids of the instances in the affinity group

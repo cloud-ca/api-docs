@@ -19,9 +19,9 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
       "name": "instance-test",
       "state": "Running",
       "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
-      "templateId": "8f52a74e-e637-40e8-a8dc-f56fd0b71ab9",
-      "templateName": "CentOS 7 HVM base (64bit)",
       "zoneName": "QC-1",
+      "templateId": "9617564c-12ed-49b6-9d87-fae049b968e5",
+      "templateName": "CentOS 6.8 PV",
       "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
       "computeOfferingName": "1vCPU.512MB",
       "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
@@ -90,11 +90,14 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 ```json
 {
   "data": {
+    "id": "9db8ff2f-b49b-466d-a2f3-c1e6def408f4",
+    "name": "backup-test",
+    "state": "Running",
     "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
-    "templateId": "8f52a74e-e637-40e8-a8dc-f56fd0b71ab9",
-    "templateName": "CentOS 7 HVM base (64bit)",
-    "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
     "zoneName": "QC-1",
+    "templateId": "9617564c-12ed-49b6-9d87-fae049b968e5",
+    "templateName": "CentOS 6.8 PV",
+    "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
     "computeOfferingName": "1vCPU.512MB",
     "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
     "networkName": "Web-Testing",
@@ -109,9 +112,20 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
     "hostname": "backup-test",
     "username": "cca-user",
     "affinityGroupIds": [],
-    "id": "9db8ff2f-b49b-466d-a2f3-c1e6def408f4",
-    "name": "backup-test",
-    "state": "Running"
+    "userData": "",
+    "publicIps": [{
+      "id": "7a204b7f-1039-4867-8971-c1e4f778ef33",
+      "ipAddress": "199.215.226.46",
+      "purposes": [
+        "PORT_FORWARDING"
+      ],
+      "ports": [
+        "22"
+      ]
+    }],
+    "nics": [{
+
+    }]
   }
 }
 ```
@@ -147,7 +161,9 @@ Attributes | &nbsp;
 `ipAddress`<br/>*string* | The instance's private IPv4 address
 `isPasswordEnabled`<br/>*boolean* | Indicate whether a password can be used for remote connections
 `macAddress`<br/>*string* | The instance's MAC address
-
+`userData`<br/>*string* | The user data of the instance
+`publicIps`<br/>*Array[[PublicIp](#public-ips)]* | The public IP addresses associated to the instance<br/>*includes:* `id`, `purposes`, `ipAddress`, `ports`
+`nics`<br/>*Array[[NIC](#nics)]* | The nics of the instance<br/>*includes:* `id`, `isDefault`, `networkId`
 
 <!-------------------- CREATE AN INSTANCE -------------------->
 
