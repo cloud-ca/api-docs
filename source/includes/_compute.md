@@ -1,17 +1,22 @@
 # Compute API
 
-Cloud.ca provides its own native API for the services that it provides. It enforces the same environment role-based access control that is defined in the cloud.ca portal.
-
-The service API has the same starting point for every service:
+The compute API provides endpoints for carrying out operations on cloud.ca compute and networking entities. While each operation has its own validation and required fields, all operations need to specify the service code and environment in which they should be carried out. The following example URL describes how to specify this information for all entities.
 
 <code>https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/:entity_type</code>
 
-Service code | Description | Zones
---- | --- | ---
-compute-on | Service code for the Ontario region | ON-1
-compute-qc | Service code for the Quebec region | QC-1, QC-2
+The two compute service codes currently available in cloud.ca correspond to compute regions: `compute-qc` for Québec, and `compute-on` for Ontario.
 
-All compute service API calls must include path parameters `service_code` and `env_name`, which are used to specify which environment is targeted by your request. This information can be retrieved from the [environments API](#environments).
+<aside class="notice">
+An easy way to remember the structure of API endpoints is that going from left to right, the scope gets progressively more specific. First service, then environment of that service, then entity type, then operation on that entity type, etc.
+</aside>
+
+## Working with sub-organizations
+
+*If you don't know what a sub-organization is, you can safely skip this section.*
+
+When carrying out an operation in an organization other than your own, make sure to specify the `org_id` query parameter in your request, like so
+
+<code>https://api.cloud.ca/v1/services/:service_code/:environment_name/:entity_type/:operation?<strong>org_id=:org_id</strong></code>
 
 ## Tasks
 
