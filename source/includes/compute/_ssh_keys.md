@@ -1,11 +1,13 @@
 ### SSH keys
 SSH keys can be assigned to default users of instances by using the [associate SSH key](#associate-an-ssh-key-to-an-instance) operation.
 
+<!-------------------- LIST SSH KEYS -------------------->
+
 #### List SSH keys
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/ssh_keys"
+"https://api.cloud.ca/v1/services/compute-qc/demo-env/sshkeys"
 
 # Example:
 ```
@@ -30,13 +32,15 @@ Attributes | &nbsp;
 name<br/>*string* | The name of the SSH key
 fingerprint<br/>*string* | A short sequence of bytes used to identify the SSH key.
 
-#### Retrieve a template
 
-#### List SSH keys
+<!-------------------- RETRIEVE AN SSH KEY -------------------->
+
+
+#### Retrieve an SSH key
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/ssh_keys/mellon"
+"https://api.cloud.ca/v1/services/compute-qc/demo-env/sshkeys/mellon"
 
 # Example:
 ```
@@ -56,4 +60,4 @@ Retrieve information about an SSH key of an environment.
 Attributes | &nbsp;
 ---------- | -----
 name<br/>*string* | The name of the SSH key
-fingerprint<br/>*string* | ....
+fingerprint<br/>*string* | A short sequence of bytes used to identify the SSH key.
