@@ -491,4 +491,4 @@ success, err := ccaResources.Instances.AssociateSSHKey("[instance-id]", "[ssh-ke
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=associateSSHKey</code>
 
-Associate a new [SSH key](#ssh-keys) to the default user of an existing instance instance. This will override any other SSH key associated to the instance for the default user. You can register a new SSH key with the [register SSH key](#register-an-ssh-key) endpoint.
+Associate a new [SSH key](#ssh-keys) to the default user of an existing instance. This will override any other SSH key associated to the instance for the default user. You can register a new SSH key with the [register SSH key](#register-an-ssh-key) endpoint.

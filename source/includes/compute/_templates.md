@@ -29,6 +29,10 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 
+<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/templates</code>
+
+Retrieve a list of all templates of an environment. It will include all the public templates of the system.
+
 Attributes | &nbsp;
 ---------- | -----
 id<br/>*UUID* | The id of the template
@@ -40,8 +44,6 @@ isReady<br/>*boolean* | true if the template is ready to be used for a new insta
 isDynamicallyScalable<br/>*boolean* | ...
 created<br/>*string* | The creation date of the template
 osType<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
-
-Retrieve a list of all templates of an environment. It will include all the public templates of the system.
 
 #### Retrieve a template
 
@@ -68,4 +70,18 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 
+<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/templates/:id</code>
+
 Retrieve information about a public or private template of an environment.
+
+Attributes | &nbsp;
+---------- | -----
+id<br/>*UUID* | The id of the template
+name<br/>*string* | The name of the template
+description<br/>*string* | The description of the template
+size<br/>*long* | The size of the template in bytes
+isPublic<br/>*boolean* | true if public to everyone. Your custom templates will always be private
+isReady<br/>*boolean* | true if the template is ready to be used for a new instance
+isDynamicallyScalable<br/>*boolean* | ...
+created<br/>*string* | The creation date of the template
+osType<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
