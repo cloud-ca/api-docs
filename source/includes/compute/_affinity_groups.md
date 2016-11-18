@@ -1,5 +1,7 @@
 ### Affinity groups
 
+Affinity groups are a way of influencing on which host an instance will be deployed. An anti-affinity group (the only type of affinity group we support) allows you to put instances on different hosts to increase fault-tolerance. In the unlikely event of a host failure, your services would still be up on another host (assuming you distribute your services on multiple instances).
+
 <!-------------------- LIST AFFINITY GROUPS -------------------->
 
 #### List affinity groups
