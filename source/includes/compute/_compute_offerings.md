@@ -1,1 +1,84 @@
 ### Compute offerings
+
+Compute offerings determine the number of vCPUs and the size of the memory allocated to new instances.
+
+#### List compute offerings
+
+```shell
+curl -X GET -H "MC-Api-Key: [your-api-key]"
+"https://api.cloud.ca/v1/services/compute-on/test_area/computeofferings"
+
+# The above command returns JSON structured like this:
+```
+```json
+{
+    "data": [
+        {
+            "cpuNumber": 1,
+            "id": "40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f",
+            "memory": 512,
+            "name": "1vCPU.512MB"
+        },
+        {
+            "cpuNumber": 1,
+            "id": "1fb0caba-8ffb-4e77-8dcb-401170e15e0a",
+            "memory": 1024,
+            "name": "1vCPU.1GB"
+        }
+    ],
+    "metadata": {
+        "recordCount": 2
+    }
+}
+```
+```go
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
+ccaResources := resources.(cloudca.Resources)
+computeOfferings, _ := ccaResources.ComputeOfferings.List()
+```
+
+<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/computeofferings</code>
+
+Retrieve a list of available compute offerings.
+
+Attributes | &nbsp;
+---------- | -----
+id<br/>*UUID* | ---
+name<br/>*string* | ---
+memory<br/>*integer* | The amount of provisioned memory in MB
+cpuNumber<br/>*integer* | The number of vCPUs available to the created instance
+
+#### Retrieve a compute offering
+
+```shell
+curl -X GET -H "MC-Api-Key: [your-api-key]"
+"https://api.cloud.ca/v1/services/compute-on/test_area/computeofferings/40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f"
+
+# The above command returns JSON structured like this:
+```
+```json
+{
+    "data": {
+        "cpuNumber": 1,
+        "id": "40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f",
+        "memory": 512,
+        "name": "1vCPU.512MB"
+    }
+}
+```
+```go
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
+ccaResources := resources.(cloudca.Resources)
+computeOfferings, _ := ccaResources.ComputeOfferings.Get("40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f")
+```
+
+<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/computeofferings/:id</code>
+
+Retrieve a compute offering.
+
+Attributes | &nbsp;
+---------- | -----
+id<br/>*UUID* | ---
+name<br/>*string* | ---
+memory<br/>*integer* | The amount of provisioned memory in MB
+cpuNumber<br/>*integer* | The number of vCPUs available to the created instance
