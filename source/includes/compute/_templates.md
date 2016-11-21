@@ -5,7 +5,7 @@ A template is a virtual disk image that can be used on the creation of an instan
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/templates"
+"https://api.cloud.ca/v1/services/compute-qc/prod/templates"
 
 # Example:
 ```
@@ -49,7 +49,7 @@ osType<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/templates/162cdfcb-45e5-4aa6-81c4-124c94621bdb"
+"https://api.cloud.ca/v1/services/compute-qc/prod/templates/162cdfcb-45e5-4aa6-81c4-124c94621bdb"
 
 # Example:
 ```

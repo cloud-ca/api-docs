@@ -8,7 +8,7 @@ Affinity groups are a way of influencing on which host an instance will be deplo
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/affinitygroups"
+"https://api.cloud.ca/v1/services/compute-qc/prod/affinitygroups"
 
 # Example:
 ```
@@ -46,7 +46,7 @@ instanceIds<br/>*Array[UUID]* | The ids of the instances in the affinity group
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
+"https://api.cloud.ca/v1/services/compute-qc/prod/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
 
 # Example:
 ```
@@ -86,7 +86,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
   \"description\": \"My affinity group\",
   \"type\": \"host anti-affinity\",
   \"instanceIds\": [\"92b4df86-fee3-4610-8167-78332b86362f\"]
-}" "https://api.cloud.ca/v1/services/compute-qc/testing/affinitygroups"
+}" "https://api.cloud.ca/v1/services/compute-qc/prod/affinitygroups"
 
 # Request should look like this
 ```
@@ -123,7 +123,7 @@ instanceIds<br/>*Array[UUID]* | The ids of the instances in the affinity group
 ```shell
 curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
   \"instanceIds\": [\"92b4df86-fee3-4610-8167-78332b86362f\", \"105f8b5e-5482-4bf5-88ca-7d7b7f431e3e\"]
-}" "https://api.cloud.ca/v1/services/compute-qc/testing/affinitygroups"
+}" "https://api.cloud.ca/v1/services/compute-qc/prod/affinitygroups"
 
 # Request should look like this
 ```

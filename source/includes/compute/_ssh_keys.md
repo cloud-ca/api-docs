@@ -7,7 +7,7 @@ SSH keys can be assigned to default users of instances by using the [associate S
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/sshkeys"
+"https://api.cloud.ca/v1/services/compute-qc/prod/sshkeys"
 
 # Example:
 ```
@@ -40,7 +40,7 @@ fingerprint<br/>*string* | A short sequence of bytes used to identify the SSH ke
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/sshkeys/mellon"
+"https://api.cloud.ca/v1/services/compute-qc/prod/sshkeys/mellon"
 
 # Example:
 ```

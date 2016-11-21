@@ -7,7 +7,7 @@ Deploy and manage your instances.
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/instances"
+"https://api.cloud.ca/v1/services/compute-qc/prod/instances"
 
 # The above command returns JSON structured like this:
 ```
@@ -16,24 +16,24 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
   "data": [
     {
       "id": "9db8ff2f-b49b-466d-a2f3-c1e6def408f4",
-      "name": "instance-test",
+      "name": "my_instance",
       "state": "Running",
       "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
       "zoneName": "QC-1",
-      "templateId": "9617564c-12ed-49b6-9d87-fae049b968e5",
+      "templateId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
       "templateName": "CentOS 6.8 PV",
       "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
       "computeOfferingName": "1vCPU.512MB",
       "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
-      "networkName": "Web-Testing",
+      "networkName": "Web-prod",
       "vpcId": "9eb1592c-f92f-4ddd-9799-b58caf896328",
-      "vpcName": "Testing-VPC",
+      "vpcName": "prod-VPC",
       "ipAddress": "10.164.212.68",
       "isPasswordEnabled": true,
       "macAddress": "02:00:2b:67:00:30",
       "cpuCount": 1,
       "memoryInMB": 512,
-      "hostname": "instance-test",
+      "hostname": "my_instance",
       "username": "cca-user",
       "affinityGroupIds": []
     }
@@ -44,7 +44,7 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
 instances, err := ccaResources.Instances.List()
 ```
@@ -82,7 +82,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
+"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
 
 
 # The above command returns JSON structured like this:
@@ -91,25 +91,24 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 {
   "data": {
     "id": "9db8ff2f-b49b-466d-a2f3-c1e6def408f4",
-    "name": "backup-test",
+    "name": "backup_instance",
     "state": "Running",
     "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
     "zoneName": "QC-1",
-    "templateId": "9617564c-12ed-49b6-9d87-fae049b968e5",
+    "templateId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
     "templateName": "CentOS 6.8 PV",
     "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
     "computeOfferingName": "1vCPU.512MB",
     "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
-    "networkName": "Web-Testing",
+    "networkName": "Web-prod",
     "vpcId": "9eb1592c-f92f-4ddd-9799-b58caf896328",
-    "vpcName": "Testing-VPC",
+    "vpcName": "prod-VPC",
     "ipAddress": "10.164.212.68",
-    "projectId": "a295c6de-1737-4df2-aa49-9bd749fa2489",
     "isPasswordEnabled": true,
     "macAddress": "02:00:2b:67:00:30",
     "cpuCount": 1,
     "memoryInMB": 512,
-    "hostname": "backup-test",
+    "hostname": "backup_instance",
     "username": "cca-user",
     "affinityGroupIds": [],
     "userData": "",
@@ -130,9 +129,9 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
-instance, err := ccaResources.Instances.Get("[instance-id]")
+instance, err := ccaResources.Instances.Get("9db8ff2f-b49b-466d-a2f3-c1e6def408f4")
 ```
 <code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
@@ -178,15 +177,15 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
   \"templateId\" : \"15601ee5-3db8-4021-9872-e5248a7f885a\",
   \"computeOfferingId\": \"e213fb17-ab2e-45ff-9679-e30f905f35a2\",
   \"networkId\" : \"d5a68379-a9ee-404f-9492-a1964b374d6f\"
-}" "https://api.cloud.ca/v1/services/compute-qc/testing/instances"
+}" "https://api.cloud.ca/v1/services/compute-qc/prod/instances"
 
 # Request should look like this
 ```
 ```json
 {
    "name": "jarvis",
-   "templateId": "11ea4b86-4ed2-4b69-b605-7a17e12d57de",
-   "computeOfferingId": "16872cbd-6430-465d-8b51-84fde1b6b1c4",
+   "templateId": "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
+   "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
    "networkId": "55ccea7f-8286-479e-a648-dd4a45866daf",
    "diskOfferingId": "f16f7f1b-462d-47b9-97bb-25a19e47a648",
    "additionalDiskSizeInGb": 20,
@@ -199,22 +198,22 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
 createdInstance, err := ccaResources.Instances.Create(cloudca.Instance{
-        Name: "[new-instance-name]",
-        TemplateId: "[some-template-id]",
-        ComputeOfferingId:"[some-compute-offering-id]",
-        NetworkId:"[some-network-id]",
+        Name: "jarvis",
+        TemplateId: "5f968ad6-56d0-4d0d-ad7e-f8f4a5b5d986",
+        ComputeOfferingId:"3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
+        NetworkId:"55ccea7f-8286-479e-a648-dd4a45866daf",
     })
 ```
 ```dart
 resource "cloudca_instance" "my_instance" {
     service_code = "compute-qc"
-    environment_name = "dev"
-    name = "test-instance"
-    network_id = "672016ef-05ee-4e88-b68f-ac9cc462300b"
-    template = "CentOS 6.7 base (64bit)"
+    environment_name = "prod"
+    name = "jarvis"
+    network_id = "55ccea7f-8286-479e-a648-dd4a45866daf"
+    template = "CentOS 6.8 PV"
     compute_offering = "1vCPU.512MB"
     ssh_key_name = "my_ssh_key"
 }
@@ -256,7 +255,7 @@ Optional | &nbsp;
 curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
   \"name\" : \"e_c137\",
   \"hostname\" : \"e_c137\",
-}" "https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
+}" "https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
 
 # Request example:
 ```
@@ -286,7 +285,7 @@ Optional | &nbsp;
 
 ```shell
 curl -X DELETE -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca:443/v1/services/compute-east/demo-env/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" \
+"https://api.cloud.ca:443/v1/services/compute-east/prod/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" \
 
 # Request example:
 ```
@@ -303,9 +302,9 @@ curl -X DELETE -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.Destroy("[instance-id]", true) // purge flag
+success, err := ccaResources.Instances.Destroy("5951c2b8-e901-4c01-8ae0-cb8d7c508d29", true) // purge flag
 ```
 
 <code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
@@ -331,13 +330,13 @@ Optional | &nbsp;
 # Example:
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=start"
+"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=start"
 
 ```
 ```go
-resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.Start("[instance-id]")
+success, err := ccaResources.Instances.Start("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=start</code>
@@ -356,12 +355,12 @@ Start an existing instance. The instance must be in the *Stopped* state for this
 # Example:
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=stop"
+"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=stop"
 ```
 ```go
-resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.Stop("[instance-id]")
+success, err := ccaResources.Instances.Stop("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=stop</code>
@@ -379,12 +378,12 @@ success, err := ccaResources.Instances.Stop("[instance-id]")
 # Example:
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=reboot"
+"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=reboot"
 ```
 ```go
-resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.Reboot("[instance-id]")
+success, err := ccaResources.Instances.Reboot("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=reboot</code>
@@ -402,10 +401,10 @@ Reboot an existing instance. The instance must be in the *Running* or *Stopped* 
 # Example:
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=purge"
+"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=purge"
 ```
 ```go
-resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Purge("[instance-id]")
 ```
@@ -424,10 +423,10 @@ Purges an existing instance (i.e. completely remove it from the environment). Th
 # Example:
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=recover"
+"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=recover"
 ```
 ```go
-resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Recover("[instance-id]")
 ```
@@ -446,7 +445,7 @@ Recover an existing instance that was previously destroyed. The instance must be
 # Example:
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=changeComputeOffering"
+"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=changeComputeOffering"
 ```
 ```go
 resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
@@ -473,12 +472,12 @@ Change the compute offering of an existing instance.
 # Example:
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=resetPassword"
+"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=resetPassword"
 ```
 ```go
-resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
-password, err := ccaResources.Instances.ResetPassword("[instance-id]")
+password, err := ccaResources.Instances.ResetPassword("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=resetPassword</code>
@@ -497,14 +496,25 @@ Reset the password of the default user of an existing instance. The new password
 # Example:
 
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/testing/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=associateSSHKey"
+"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=associateSSHKey"
+
+# Request example:
+```
+```json
+{
+   "sshKeyName": "my_ssh_key"
+}
 ```
 ```go
-resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.AssociateSSHKey("[instance-id]", "[ssh-key-name]")
+success, err := ccaResources.Instances.AssociateSSHKey("5951c2b8-e901-4c01-8ae0-cb8d7c508d29", "my_ssh_key")
 ```
 
  <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=associateSSHKey</code>
 
 Associate a new [SSH key](#ssh-keys) to the default user of an existing instance. This will override any other SSH key associated to the instance for the default user. You can register a new SSH key with the [register SSH key](#register-an-ssh-key) endpoint.
+
+Required | &nbsp;
+------ | ---- | -----------
+`sshKeyName`<br/>*string* | The name of the SSH key to associate to the instance

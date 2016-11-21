@@ -1,4 +1,5 @@
 ### Volumes
+A volume is a virtual disk that provide storage for your instances. An OS volumes is created for every instance and it holds the OS of the instance. The size of this volume is usually pretty. A data volume is a volume that can be created and attached to an instance. It can also be detached and reattached to another instance.
 
 
 <!-------------------- LIST VOLUMES -------------------->
@@ -7,7 +8,7 @@
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/volumes"
+"https://api.cloud.ca/v1/services/compute-qc/prod/volumes"
 
 # Example:
 ```
@@ -21,8 +22,8 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
       "creationDate": "2016-10-19T14:25:41-0400",
       "instanceId": "b6145e8b-abd3-456c-832c-f3db86a6acfe",
       "instanceName": "i-douglas-ADM",
-      "zoneId": "2c62ab1e-eef9-4aa3-8626-faf37d65c5ea",
-      "zoneName": "dev1_zone1",
+      "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
+      "zoneName": "QC-1",
       "state": "Ready",
       "sizeInGb": 40
     }
@@ -58,7 +59,7 @@ sizeInGb<br/>*int* | The size in gigabytes of the volume
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/volumes/1bd672f4-b274-4371-a792-b0a6c6778cc7"
+"https://api.cloud.ca/v1/services/compute-qc/prod/volumes/1bd672f4-b274-4371-a792-b0a6c6778cc7"
 
 # Example:
 ```
@@ -71,10 +72,10 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
     "creationDate": "2016-10-19T14:25:41-0400",
     "instanceId": "b6145e8b-abd3-456c-832c-f3db86a6acfe",
     "instanceName": "i-douglas-ADM",
-    "zoneId": "2c62ab1e-eef9-4aa3-8626-faf37d65c5ea",
-    "zoneName": "dev1_zone1",
-    "diskOfferingId": "fb446518-5777-4221-8845-8cb9eeb9dc80",
-    "diskOfferingName": "40 GB - Intermediate",
+    "zoneId": "04afdbd1-e32d-4999-86d0-96703736dded",
+    "zoneName": "QC-1",
+    "diskOfferingId": "21ba9c9b-a31e-496e-983f-e3041525bf95",
+    "diskOfferingName": "50GB - 50 IOPS Min.",
     "state": "Ready",
     "sizeInGb": 40
   }
@@ -117,10 +118,20 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 ```
 ```json
 {
-   "name": "",
+   "name": "my_volume",
    "diskOfferingId": "166f85eb-b4a2-4000-8e0c-24104d551f60",
    "zoneId": "37c0d1f2-523a-4c43-a522-26932992b193",
    "instanceId": "c043e651-8b3f-4941-b47f-5ecb77f3423b"
+}
+```
+```dart
+resource "cloudca_volume" "data_volume" {
+    service_code = "compute-qc"
+    environment_name = "prod"
+    
+    name = "my_volume"
+    disk_offering = "50GB - 50 IOPS Min.",
+    instance_id = "c043e651-8b3f-4941-b47f-5ecb77f3423b"
 }
 ```
 
