@@ -99,3 +99,41 @@ state<br/>*string* | The state of the volume
 sizeInGb<br/>*int* | The size in gigabytes of the volume
 
 <!-- iops<br/>*int* | The number of IOPS of the volume -->
+
+
+<!-------------------- CREATE VOLUMES -------------------->
+
+#### Create a volume
+
+```shell
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+  \"name\": \"\",
+  \"diskOfferingId\": \"166f85eb-b4a2-4000-8e0c-24104d551f60\",
+  \"zoneId\": \"37c0d1f2-523a-4c43-a522-26932992b193\",
+  \"instanceId\": \"c043e651-8b3f-4941-b47f-5ecb77f3423b\",
+}" "https://api.cloud.ca/v1/services/compute-qc/testing/volumes"
+
+# Request should look like this
+```
+```json
+{
+   "name": "",
+   "diskOfferingId": "166f85eb-b4a2-4000-8e0c-24104d551f60",
+   "zoneId": "37c0d1f2-523a-4c43-a522-26932992b193",
+   "instanceId": "c043e651-8b3f-4941-b47f-5ecb77f3423b"
+}
+```
+
+<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code>
+
+Create a volume in an environment. Also, by specifying an instance, it will attach the new volume to it.
+
+Required | &nbsp;
+---------- | -----
+name<br/>*string* | The name of the new volume
+diskOfferingId<br/>*UUID* | The disk offering to use for the volume
+zoneId<br/>*UUID* | The id of the zone where the volume will be created
+
+Optional | &nbsp;
+---------- | -----
+instanceId<br/>*UUID* | The id of the instance to which the created volume should be attached

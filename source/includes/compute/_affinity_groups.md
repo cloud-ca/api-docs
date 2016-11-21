@@ -116,7 +116,7 @@ instanceIds<br/>*Array[UUID]* | The ids of the instances in the affinity group
 
 
 
-<!-------------------- CREATE AN AFFINITY GROUP -------------------->
+<!-------------------- UPDATE AN AFFINITY GROUP -------------------->
 
 #### Update an affinity group
 
@@ -138,7 +138,7 @@ curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" 
 }
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
+<code>PUT https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
 
 Update the list of instances in the affinity group.
 
