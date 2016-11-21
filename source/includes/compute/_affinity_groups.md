@@ -103,6 +103,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 }
 ```
 
+
 <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
 
 Create an affinity group and add instances to it.
@@ -123,7 +124,7 @@ Required | &nbsp;
 ```shell
 curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
   \"instanceIds\": [\"92b4df86-fee3-4610-8167-78332b86362f\", \"105f8b5e-5482-4bf5-88ca-7d7b7f431e3e\"]
-}" "https://api.cloud.ca/v1/services/compute-qc/prod/affinitygroups"
+}" "https://api.cloud.ca/v1/services/compute-qc/prod/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
 
 # Request should look like this
 ```
@@ -138,7 +139,7 @@ curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" 
 }
 ```
 
-<code>PUT https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
+<code>PUT https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups/:id</code>
 
 Update the list of instances in the affinity group.
 
@@ -148,3 +149,17 @@ Required | &nbsp;
 `description`<br/>*string* | A description of the affinity group
 `type`<br/>*string* | The type of new affinity group. We only support anti-affinity
 `instanceIds`<br/>*Array[UUID]* | The ids of the instances in the affinity group
+
+
+<!-------------------- DELETE AN AFFINITY GROUP -------------------->
+
+#### Delete an affinity group
+
+```shell
+curl -X DELETE -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
+"https://api.cloud.ca/v1/services/compute-qc/prod/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
+```
+
+<code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups/:id</code>
+
+Delete an existing affinity group.

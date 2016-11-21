@@ -102,16 +102,16 @@ sizeInGb<br/>*int* | The size in gigabytes of the volume
 <!-- iops<br/>*int* | The number of IOPS of the volume -->
 
 
-<!-------------------- CREATE VOLUMES -------------------->
+<!-------------------- CREATE A VOLUME -------------------->
 
 #### Create a volume
 
 ```shell
 curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
-  \"name\": \"\",
+  \"name\": \"my_volume\",
   \"diskOfferingId\": \"166f85eb-b4a2-4000-8e0c-24104d551f60\",
   \"zoneId\": \"37c0d1f2-523a-4c43-a522-26932992b193\",
-  \"instanceId\": \"c043e651-8b3f-4941-b47f-5ecb77f3423b\",
+  \"instanceId\": \"c043e651-8b3f-4941-b47f-5ecb77f3423b\"
 }" "https://api.cloud.ca/v1/services/compute-qc/testing/volumes"
 
 # Request should look like this
@@ -123,6 +123,16 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
    "zoneId": "37c0d1f2-523a-4c43-a522-26932992b193",
    "instanceId": "c043e651-8b3f-4941-b47f-5ecb77f3423b"
 }
+```
+```go
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
+ccaResources := resources.(cloudca.Resources)
+createdVolume, err := ccaResources.Volumes.Create(cloudca.Volume{
+        Name: "my_volume",
+        DiskOfferingId: "166f85eb-b4a2-4000-8e0c-24104d551f60",
+        ZoneId: "37c0d1f2-523a-4c43-a522-26932992b193",
+        InstanceId: "c043e651-8b3f-4941-b47f-5ecb77f3423b"
+    })
 ```
 ```dart
 resource "cloudca_volume" "data_volume" {
@@ -148,3 +158,82 @@ zoneId<br/>*UUID* | The id of the zone where the volume will be created
 Optional | &nbsp;
 ---------- | -----
 instanceId<br/>*UUID* | The id of the instance to which the created volume should be attached
+
+
+<!-------------------- DELETE A VOLUME -------------------->
+
+
+#### Delete a volume
+
+```shell
+
+# Example:
+
+curl -X DELETE -H "MC-Api-Key: [your-api-key]"
+"https://api.cloud.ca/v1/services/compute-qc/prod/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
+```
+```go
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
+ccaResources := resources.(cloudca.Resources)
+err := ccaResources.Volumes.Delete("e922e5fc-8fee-4688-ad93-c9ef5d7eb685")
+```
+
+<code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
+
+Destroy an existing data volume. A volume can only be deleted if it's not attached to an instance.
+
+
+<!-------------------- ATTACH A VOLUME -------------------->
+
+
+#### Attach a volume to an instance
+
+```shell
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+  \"instanceId\": \"c043e651-8b3f-4941-b47f-5ecb77f3423b\"
+}" "https://api.cloud.ca/v1/services/compute-qc/testing/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=attachToInstance"
+
+# Request should look like this
+```
+```json
+{
+   "instanceId": "c043e651-8b3f-4941-b47f-5ecb77f3423b"
+}
+```
+```go
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
+ccaResources := resources.(cloudca.Resources)
+err := ccaResources.Volumes.AttachToInstance(cloudca.Volume{
+        Id: "e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
+        InstanceId: "c043e651-8b3f-4941-b47f-5ecb77f3423b"
+    })
+```
+
+<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=attachToInstance</code>
+
+Attach an existing data volume to an instance.
+
+Required | &nbsp;
+---------- | -----
+instanceId<br/>*UUID* | The id of the instance to which the created volume should be attached
+
+
+<!-------------------- DETACH A VOLUME -------------------->
+
+
+#### Detach a volume from an instance
+
+```shell
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" "https://api.cloud.ca/v1/services/compute-qc/testing/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=detachFromInstance"
+```
+```go
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
+ccaResources := resources.(cloudca.Resources)
+err := ccaResources.Volumes.DetachFromInstance(cloudca.Volume{
+        Id: "e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
+    })
+```
+
+<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=detachFromInstance</code>
+
+Detach a data volume from an instance.

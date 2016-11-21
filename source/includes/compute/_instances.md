@@ -284,7 +284,7 @@ Optional | &nbsp;
 #### Destroy an instance
 
 ```shell
-curl -X DELETE -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
+curl -X DELETE -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca:443/v1/services/compute-east/prod/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" \
 
 # Request example:
