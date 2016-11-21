@@ -6,7 +6,7 @@ Network offerings determine which services are available to each provisioned tie
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/test_area/networkofferings"
+"https://api.cloud.ca/v1/services/compute-on/test_area/networkofferings"
 
 # The above command returns JSON structured like this:
 ```
@@ -14,33 +14,33 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 {
     "data": [
         {
-            "id": "9593f0df-573a-43c4-a107-a5c704a7cfee",
+            "id": "89724d35-b69c-418c-be81-7d83fcfc9da9",
             "name": "Load Balanced Tier",
             "services": [
                 "PortForwarding",
-                "Lb",
-                "NetworkACL",
-                "SourceNat",
-                "Dns",
-                "StaticNat",
                 "Vpn",
+                "SourceNat",
                 "Dhcp",
-                "UserData"
+                "NetworkACL",
+                "Dns",
+                "Lb",
+                "UserData",
+                "StaticNat"
             ],
             "state": "ENABLED"
         },
         {
-            "id": "c5d4ffcd-56e2-407a-8b4d-06082b7365c4",
+            "id": "087502ea-cb42-421b-9bd9-9cf9ae5d1b89",
             "name": "Standard Tier",
             "services": [
                 "PortForwarding",
-                "NetworkACL",
-                "SourceNat",
-                "Dns",
-                "StaticNat",
                 "Vpn",
+                "SourceNat",
                 "Dhcp",
-                "UserData"
+                "NetworkACL",
+                "Dns",
+                "UserData",
+                "StaticNat"
             ],
             "state": "ENABLED"
         }
@@ -51,7 +51,7 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "test_area")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 networkOfferings, _ := ccaResources.NetworkOfferings.List()
 ```
@@ -71,14 +71,14 @@ state<br/>*string* | The state of the offering
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/test_area/networkofferings/9593f0df-573a-43c4-a107-a5c704a7cfee"
+"https://api.cloud.ca/v1/services/compute-on/test_area/networkofferings/89724d35-b69c-418c-be81-7d83fcfc9da9"
 
 # The above command returns JSON structured like this:
 ```
 ```json
 {
     "data": {
-        "id": "9593f0df-573a-43c4-a107-a5c704a7cfee",
+        "id": "89724d35-b69c-418c-be81-7d83fcfc9da9",
         "name": "Load Balanced Tier",
         "services": [
             "PortForwarding",
@@ -96,9 +96,9 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "test_area")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
-networkOfferings, _ := ccaResources.NetworkOfferings.Get("9593f0df-573a-43c4-a107-a5c704a7cfee")
+networkOfferings, _ := ccaResources.NetworkOfferings.Get("89724d35-b69c-418c-be81-7d83fcfc9da9")
 ```
 
 <code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkofferings/:id</code>

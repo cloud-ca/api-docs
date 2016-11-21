@@ -6,7 +6,7 @@ VPC offerings determine which services are available to provisioned VPCs.
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/test_area/vpcofferings"
+"https://api.cloud.ca/v1/services/compute-on/test_area/vpcofferings"
 
 # The above command returns JSON structured like this:
 ```
@@ -14,18 +14,18 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 {
     "data": [
         {
-            "id": "21a40b85-5fa9-440f-ab77-5e560073b584",
+            "id": "41ac6ba0-6172-4bc4-bff6-b0831b91677c",
             "name": "Default VPC offering",
             "services": [
                 "PortForwarding",
-                "Lb",
-                "NetworkACL",
-                "SourceNat",
-                "Dns",
-                "StaticNat",
                 "Vpn",
+                "SourceNat",
                 "Dhcp",
-                "UserData"
+                "NetworkACL",
+                "Dns",
+                "Lb",
+                "UserData",
+                "StaticNat"
             ],
             "state": "Enabled"
         }
@@ -36,7 +36,7 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "test_area")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 vpcOfferings, _ := ccaResources.VpcOfferings.List()
 ```
@@ -56,14 +56,14 @@ state<br/>*string* | The state of the offering
 
 ```shell
 curl -X GET -H "MC-Api-Key: [your-api-key]"
-"https://api.cloud.ca/v1/services/compute-qc/test_area/vpcofferings/21a40b85-5fa9-440f-ab77-5e560073b584"
+"https://api.cloud.ca/v1/services/compute-on/test_area/vpcofferings/41ac6ba0-6172-4bc4-bff6-b0831b91677c"
 
 # The above command returns JSON structured like this:
 ```
 ```json
 {
     "data": {
-        "id": "21a40b85-5fa9-440f-ab77-5e560073b584",
+        "id": "41ac6ba0-6172-4bc4-bff6-b0831b91677c",
         "name": "Default VPC offering",
         "services": [
             "PortForwarding",
@@ -81,9 +81,9 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "test_area")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
-vpcOfferings, _ := ccaResources.VpcOfferings.Get("21a40b85-5fa9-440f-ab77-5e560073b584")
+vpcOfferings, _ := ccaResources.VpcOfferings.Get("41ac6ba0-6172-4bc4-bff6-b0831b91677c")
 ```
 
 <code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcofferings/:id</code>
