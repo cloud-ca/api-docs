@@ -40,16 +40,16 @@ Retrieve a list of all volumes in an environment.
 
 Attributes | &nbsp;
 ---------- | -----
-id<br/>*UUID* | The id of the volume
-name<br/>*string* | The name of the volume
-type<br/>*string* | The type of the volume. `os` if it is a root volume of an instance, `data` otherwise
-creationDate<br/>*string* | The creation date of the volume
-instanceId<br/>*UUID* | The id of the instance to which the volume is attached
-instanceName<br/>*string* | The name of the instance to which the volume is attached
-zoneId<br/>*UUID* | The id of the zone where the volume was created
-zoneName<br/>*string* | The name of the zone where the volume was created
-state<br/>*string* | The state of the volume
-sizeInGb<br/>*int* | The size in gigabytes of the volume
+`id`<br/>*UUID* | The id of the volume
+`name`<br/>*string* | The name of the volume
+`type`<br/>*string* | The type of the volume. `os` if it is a root volume of an instance, `data` otherwise
+`creationDate`<br/>*string* | The creation date of the volume
+`instanceId`<br/>*UUID* | The id of the instance to which the volume is attached
+`instanceName`<br/>*string* | The name of the instance to which the volume is attached
+`zoneId`<br/>*UUID* | The id of the zone where the volume was created
+`zoneName`<br/>*string* | The name of the zone where the volume was created
+`state`<br/>*string* | The state of the volume
+`sizeInGb`<br/>*int* | The size in gigabytes of the volume
 
 <!-- iops<br/>*int* | The number of IOPS of the volume -->
 
@@ -128,7 +128,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 resource "cloudca_volume" "data_volume" {
     service_code = "compute-qc"
     environment_name = "prod"
-    
+
     name = "my_volume"
     disk_offering = "50GB - 50 IOPS Min.",
     instance_id = "c043e651-8b3f-4941-b47f-5ecb77f3423b"

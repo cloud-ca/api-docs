@@ -37,13 +37,13 @@ Retrieve a list of all snapshots in an environment.
 
 Attributes | &nbsp;
 ---------- | -----
-id<br/>*UUID* | The id of the snapshot
-name<br/>*string* | The name of the snapshot
-state<br/>*string* | The state of the snapshot
-intervalType<br/>*string* | The interval type. `MANUAL` means that you created the snapshot manually (i.e. it's not a recurring snapshot)
-volumeId<br/>*UUID* | The id of the volume that was snapshotted
-volume<br/>*string* | The name of the volume that was snapshotted
-volumeType<br/>*string* | The type of the volume that was snapshotted
+`id`<br/>*UUID* | The id of the snapshot
+`name`<br/>*string* | The name of the snapshot
+`state`<br/>*string* | The state of the snapshot
+`intervalType`<br/>*string* | The interval type. `MANUAL` means that you created the snapshot manually (i.e. it's not a recurring snapshot)
+`volumeId`<br/>*UUID* | The id of the volume that was snapshotted
+`volume`<br/>*string* | The name of the volume that was snapshotted
+`volumeType`<br/>*string* | The type of the volume that was snapshotted
 
 <!-------------------- RETRIEVE A SNAPSHOT -------------------->
 
@@ -75,10 +75,10 @@ Retrieve information about a snapshot.
 
 Attributes | &nbsp;
 ---------- | -----
-id<br/>*UUID* | The id of the snapshot
-name<br/>*string* | The name of the snapshot
-state<br/>*string* | The state of the snapshot
-intervalType<br/>*string* | The interval type. `MANUAL` means that you created the snapshot manually (i.e. it's not a recurring snapshot)
-volumeId<br/>*UUID* | The id of the volume that was snapshotted
-volume<br/>*string* | The name of the volume that was snapshotted
-volumeType<br/>*string* | The type of the volume that was snapshotted
+`id`<br/>*UUID* | The id of the snapshot
+`name`<br/>*string* | The name of the snapshot
+`state`<br/>*string* | The state of the snapshot
+`intervalType`<br/>*string* | The interval type. `MANUAL` means that you created the snapshot manually (i.e. it's not a recurring snapshot)
+`volumeId`<br/>*UUID* | The id of the volume that was snapshotted
+`volume`<br/>*string* | The name of the volume that was snapshotted
+`volumeType`<br/>*string* | The type of the volume that was snapshotted

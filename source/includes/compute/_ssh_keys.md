@@ -29,8 +29,8 @@ Retrieve a list of all SSH keys in an environment.
 
 Attributes | &nbsp;
 ---------- | -----
-name<br/>*string* | The name of the SSH key
-fingerprint<br/>*string* | A short sequence of bytes used to identify the SSH key.
+`name`<br/>*string* | The name of the SSH key
+`fingerprint`<br/>*string* | A short sequence of bytes used to identify the SSH key.
 
 
 <!-------------------- RETRIEVE AN SSH KEY -------------------->
@@ -59,5 +59,5 @@ Retrieve information about an SSH key of an environment.
 
 Attributes | &nbsp;
 ---------- | -----
-name<br/>*string* | The name of the SSH key
-fingerprint<br/>*string* | A short sequence of bytes used to identify the SSH key.
+`name`<br/>*string* | The name of the SSH key
+`fingerprint`<br/>*string* | A short sequence of bytes used to identify the SSH key.

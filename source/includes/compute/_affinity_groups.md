@@ -34,10 +34,10 @@ Retrieve a list of all affinity groups in an environment.
 
 Attributes | &nbsp;
 ---------- | -----
-id<br/>*UUID* | The id of the affinity group
-name<br/>*string* | The name of the affinity group
-type<br/>*string* | The type of affinity group. We only support anti-affinity
-instanceIds<br/>*Array[UUID]* | The ids of the instances in the affinity group
+`id`<br/>*UUID* | The id of the affinity group
+`name`<br/>*string* | The name of the affinity group
+`type`<br/>*string* | The type of affinity group. We only support anti-affinity
+`instanceIds`<br/>*Array[UUID]* | The ids of the instances in the affinity group
 
 
 <!-------------------- RETRIEVE AN AFFINITY GROUP -------------------->
@@ -69,10 +69,10 @@ Retrieve information about an affinity group.
 
 Attributes | &nbsp;
 ---------- | -----
-id<br/>*UUID* | The id of the affinity group
-name<br/>*string* | The name of the affinity group
-type<br/>*string* | The type of affinity group. We only support anti-affinity
-instanceIds<br/>*Array[UUID]* | The ids of the instances in the affinity group
+`id`<br/>*UUID* | The id of the affinity group
+`name`<br/>*string* | The name of the affinity group
+`type`<br/>*string* | The type of affinity group. We only support anti-affinity
+`instanceIds`<br/>*Array[UUID]* | The ids of the instances in the affinity group
 
 
 
@@ -109,10 +109,10 @@ Create an affinity group and add instances to it.
 
 Required | &nbsp;
 ---------- | -----
-name<br/>*string* | The name of the new affinity group
-description<br/>*string* | A description of the affinity group
-type<br/>*string* | The type of new affinity group. We only support anti-affinity
-instanceIds<br/>*Array[UUID]* | The ids of the instances in the affinity group
+`name`<br/>*string* | The name of the new affinity group
+`description`<br/>*string* | A description of the affinity group
+`type`<br/>*string* | The type of new affinity group. We only support anti-affinity
+`instanceIds`<br/>*Array[UUID]* | The ids of the instances in the affinity group
 
 
 
@@ -144,7 +144,7 @@ Update the list of instances in the affinity group.
 
 Required | &nbsp;
 ---------- | -----
-name<br/>*string* | The name of the new affinity group
-description<br/>*string* | A description of the affinity group
-type<br/>*string* | The type of new affinity group. We only support anti-affinity
-instanceIds<br/>*Array[UUID]* | The ids of the instances in the affinity group
+`name`<br/>*string* | The name of the new affinity group
+`description`<br/>*string* | A description of the affinity group
+`type`<br/>*string* | The type of new affinity group. We only support anti-affinity
+`instanceIds`<br/>*Array[UUID]* | The ids of the instances in the affinity group
