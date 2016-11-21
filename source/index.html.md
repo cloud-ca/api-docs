@@ -32,7 +32,6 @@ subsections:
     - vpcs
     - tiers
     - network_acls
-    - network_acl_rules
     - public_ips
     - nics
     - secondary_ips
