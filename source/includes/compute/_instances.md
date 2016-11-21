@@ -223,14 +223,14 @@ resource "cloudca_instance" "my_instance" {
 Create an instance in an environment of the compute service. This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the instance instead of doing multiple API calls.
 
 Required | &nbsp;
------- | ---- | -----------
+------ | -----------
 `name`<br/>*string* | Name of the newly created instance
 `templateId`<br/>*UUID* | The [template](#templates) to use for this instance
 `computeOfferingId`<br/>*UUID* | The [compute offering](#compute-offerings) will determine the number of CPU and RAM of your instance
 `networkId`<br/>*UUID* | The [tier](#tiers) in which the instance will be created. If you don't have a tier, it can be created through the [create tier](#create-tier) api.
 
 Optional | &nbsp;
------- | ---- | -----------
+------ | -----------
 `diskOfferingId`<br/>*UUID* | The [disk offering](#disk-offerings) to be used for a new volume to attach to this instance
 `additionalDiskSizeInGb`<br/>*int* | The number of GB the additional disk should have. You must choose a disk offering with custom disk size enabled.
 `additionalDiskIops`<br/>*int* | The number of IOPS the additional disk should have. You must choose a disk offering with custom IOPS enabled.
@@ -274,7 +274,7 @@ Update the name and hostname of an existing instance.
 </aside>
 
 Optional | &nbsp;
------- | ---- | -----------
+------ | -----------
 `name`<br/>*string* | Updated name of instance
 `hostname`<br/>*string* | Updated hostname of instance.
 
@@ -313,7 +313,7 @@ Destroys an existing instance. The instance needs to be in *Running*, *Stopped* 
 
 
 Optional | &nbsp;
------- | ---- | -----------
+------ | -----------
 `purgeImmediately`<br/>*boolean* | Will destroy and purge the instance if true, puts the instance in destroyed state otherwise. An instance that wasn't purged can be recovered.
 `deleteSnapshots`<br/>*boolean* | Will delete all [snapshots](#snapshots) of volumes attached to this instance if true, will keep snapshots otherwise.
 `publicIpIdsToRelease`<br/>*Array[UUID]* | List of IDs of the [public IP addresses](#public-ips) to release with the instance. Can only release public IPs of the instance being destroyed and they must not be used by other instances.
@@ -430,7 +430,7 @@ resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Recover("[instance-id]")
 ```
- <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=purge</code>
+ <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=recover</code>
 
 Recover an existing instance that was previously destroyed. The instance must be in a *Destroyed* state.
 
@@ -516,5 +516,5 @@ success, err := ccaResources.Instances.AssociateSSHKey("5951c2b8-e901-4c01-8ae0-
 Associate a new [SSH key](#ssh-keys) to the default user of an existing instance. This will override any other SSH key associated to the instance for the default user. You can register a new SSH key with the [register SSH key](#register-an-ssh-key) endpoint.
 
 Required | &nbsp;
------- | ---- | -----------
+------ | -----------
 `sshKeyName`<br/>*string* | The name of the SSH key to associate to the instance

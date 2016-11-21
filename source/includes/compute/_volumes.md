@@ -33,6 +33,11 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
   }
 }
 ```
+```go
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
+ccaResources := resources.(cloudca.Resources)
+volumes, err := ccaResources.Volumes.List()
+```
 
 <code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code>
 
@@ -80,6 +85,11 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
     "sizeInGb": 40
   }
 }
+```
+```go
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
+ccaResources := resources.(cloudca.Resources)
+volumes, err := ccaResources.Volumes.Get("1bd672f4-b274-4371-a792-b0a6c6778cc7")
 ```
 
 <code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id</code>

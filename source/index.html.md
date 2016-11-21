@@ -24,7 +24,6 @@ subsections:
 
     - compute # Compute section
     - instances
-    - port_forwarding_rules
     - templates
     - ssh_keys
     - affinity_groups
@@ -33,6 +32,7 @@ subsections:
     - tiers
     - network_acls
     - public_ips
+    - port_forwarding_rules
     - nics
     - secondary_ips
     - remote_access_vpns

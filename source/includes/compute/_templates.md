@@ -41,7 +41,7 @@ Attributes | &nbsp;
 `size`<br/>*long* | The size of the template in bytes
 `isPublic`<br/>*boolean* | true if public to everyone. Your custom templates will always be private
 `isReady`<br/>*boolean* | true if the template is ready to be used for a new instance
-`isDynamicallyScalable`<br/>*boolean* | ...
+`isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an instance with this template
 `created`<br/>*string* | The creation date of the template
 `osType`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
 
@@ -82,6 +82,6 @@ Attributes | &nbsp;
 `size<`br/>*long* | The size of the template in bytes
 `isPublic`<br/>*boolean* | true if public to everyone. Your custom templates will always be private
 `isReady`<br/>*boolean* | true if the template is ready to be used for a new instance
-`isDynamicallyScalable`<br/>*boolean* | ...
+`isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an instance with this template
 `created`<br/>*string* | The creation date of the template
 `osType`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)

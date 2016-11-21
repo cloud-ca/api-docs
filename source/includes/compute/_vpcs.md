@@ -11,7 +11,7 @@ A Virtual Private Cloud (VPC) is a logically isolated section of cloud.ca, where
 curl -X GET -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca/v1/services/compute-qc/prod/vpcs"
 
-# Example:
+# Example response:
 ```
 ```json
 {
@@ -34,6 +34,11 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
   }
 }
 ```
+```go
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
+ccaResources := resources.(cloudca.Resources)
+vpcs, err := ccaResources.Vpcs.List()
+```
 
 <code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
 
@@ -45,8 +50,8 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the VPC
 `description`<br/>*string* | The description of the VPC
 `cidr`<br/>*string* | The CIDR of a VPC
-`zoneId`<br/>*string* | The id of the zone where the VPC was created
-`zoneName`<br/>*string* | The name of the zone where the VPC was created
+`zoneId`<br/>*string* | The id of the [zone](#zones) where the VPC was created
+`zoneName`<br/>*string* | The name of the [zone](#zones) where the VPC was created
 `state`<br/>*string* | The state of the VPC
 `networkDomain`<br/>*string* | A custom DNS suffix at the level of a network
 `requiresUpgrade`<br/>*string* | true if the VPC needs to be upgraded
@@ -63,7 +68,7 @@ Attributes | &nbsp;
 curl -X GET -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca/v1/services/compute-qc/prod/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 
-# Example:
+# Example response:
 ```
 ```json
 {
@@ -83,6 +88,11 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
   }
 }
 ```
+```go
+resources, _ := ccaClient.GetResources("compute-qc", "prod")
+ccaResources := resources.(cloudca.Resources)
+vpc, err := ccaResources.Vpcs.Get("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
+```
 
 <code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
 
@@ -94,8 +104,8 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the VPC
 `description`<br/>*string* | The description of the VPC
 `cidr`<br/>*string* | The CIDR of a VPC
-`zoneId`<br/>*string* | The id of the zone where the VPC was created
-`zoneName`<br/>*string* | The name of the zone where the VPC was created
+`zoneId`<br/>*string* | The id of the [zone](#zones) where the VPC was created
+`zoneName`<br/>*string* | The name of the [zone](#zones) where the VPC was created
 `state`<br/>*string* | The state of the VPC
 `networkDomain`<br/>*string* | A custom DNS suffix at the level of a network
 `requiresUpgrade`<br/>*string* | true if the VPC needs to be upgraded
@@ -133,7 +143,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 ```go
 resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
-createdVpc, err := ccaResources.Vpcs.Create(cloudca.Instance{
+createdVpc, err := ccaResources.Vpcs.Create(cloudca.Vpc{
         Name: "my_vpc",
         Description: "My prod VPC",
         VpcOfferingId: "21a40b85-5fa9-440f-ab77-5e560073b584",
@@ -155,13 +165,13 @@ resource "cloudca_vpc" "my_vpc" {
 Create a VPC in an environment.
 
 Required | &nbsp;
------- | ---- | -----------
+------ | -----------
 `name`<br/>*string* | The name of the new VPC
 `description`<br/>*string* | The description of the new VPC
 `vpcOfferingId`<br/>*UUID* | The id of the VPC offering to use for the new VPC
 
 Optional | &nbsp;
------- | ---- | -----------
+------ | -----------
 `networkDomain`<br/>*string* | A custom DNS suffix at the level of a network
 
 
@@ -198,7 +208,7 @@ updatedVpc, err := ccaResources.Vpcs.Update(cloudca.Vpc{
     })
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
+<code>PUT https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
 
 Create a VPC in your environment.
 
@@ -229,7 +239,7 @@ success, err := ccaResources.Vpcs.Destroy("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 
 <code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
 
-Destroy an existing VPC.
+Destroy an existing VPC. To delete a VPC, you must first delete all the [tiers](#tiers) in the VPC.
 
 <!-------------------- RESTART A VPC -------------------->
 
