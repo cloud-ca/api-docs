@@ -143,6 +143,7 @@ Creates a new organization as a sub-organization of the caller's organization, o
 # Create an organization
 curl -X POST "https://api.cloud.ca/v1/organizations" \
    -H "MC-Api-Key: [your-api-key]" \
+   -H "Content-Type: application/json" \
    -d "[request_body]"
 
 # Request body example
@@ -187,6 +188,7 @@ Update an organization. It's parent organization cannot be changed. It can be as
 # Update an organization
 curl -X PUT "https://api.cloud.ca/v1/organizations/[id]" \
    -H "MC-Api-Key: [your-api-key]" \
+   -H "Content-Type: application/json" \
    -d "[request_body]"
 
 # Request body example

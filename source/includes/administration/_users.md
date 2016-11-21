@@ -145,8 +145,10 @@ Attributes | &nbsp;
 ```shell
 # Create a user
 
-curl "https://api.cloud.ca/v1/users" \
-   -X POST -H "MC-Api-Key: [your-api-key]" -d "[request-body]"
+curl -X POST "https://api.cloud.ca/v1/users" \
+   -H "MC-Api-Key: [your-api-key]" \
+   -H "Content-Type: application/json" \
+   -d "[request-body]"
 
 # Request body example
 ```
@@ -196,8 +198,10 @@ The responses' `data` field contains the created [user](#users) with it's `id`.
 ```shell
 # Create a user
 
-curl "https://api.cloud.ca/v1/users/[user-id]" \
-   -X PUT -H "MC-Api-Key: [your-api-key]" -d "[request-body]"
+curl -X PUT "https://api.cloud.ca/v1/users/[user-id]" \
+   -H "MC-Api-Key: [your-api-key]" \
+   -H "Content-Type: application/json" \
+   -d "[request-body]"
 
 # Request body example
 ```

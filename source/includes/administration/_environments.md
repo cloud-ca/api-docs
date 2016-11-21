@@ -142,8 +142,10 @@ Attributes | &nbsp;
 ```shell
 # Create an environment
 
-curl "https://api.cloud.ca/v1/environments" \
-   -X POST -H "MC-Api-Key: [your-api-key]"
+curl -X POST "https://api.cloud.ca/v1/environments" \
+   -H "MC-Api-Key: [your-api-key]" \
+   -H "Content-Type: application/json" \
+   -d "[request_body]"
 
 # Request body example
 ```
@@ -225,9 +227,10 @@ The responses' `data` field contains the updated [environment](#environments).
 
 ```shell
 # Update an environment
-
-curl "https://api.cloud.ca/v1/environments/[environment-id]" \
-   -X PUT -H "MC-Api-Key: [your-api-key]" -d "[request-body]"
+curl -X POST "https://api.cloud.ca/v1/environments/[environment-id]" \
+   -H "MC-Api-Key: [your-api-key]" \
+   -H "Content-Type: application/json" \
+   -d "[request_body]"
 
 # Request body example
 ```
