@@ -41,7 +41,7 @@ ccaResources := resources.(cloudca.Resources)
 portForwardingRules, err := ccaResources.PortForwardingRules.List()
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules</code>
 
 Retrieve a list of all port forwarding rules of an environment.
 
@@ -99,7 +99,7 @@ ccaResources := resources.(cloudca.Resources)
 portForwardingRule, err := ccaResources.PortForwardingRule.Get("bf145d1e-7beb-42b8-bd2c-1a316aeb9aef")
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules/:id</code>
 
 Retrieve information about a port forwarding rule.
 
@@ -179,7 +179,7 @@ resource "cloudca_port_forwarding_rule" "web_pfr" {
 }
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules</code>
 
 Create a port forwarding rule for a [public IP](#public-ips).
 
@@ -217,6 +217,6 @@ ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.PortForwardingRules.Delete("7d22b390-cbb3-4df6-96c6-52901ccb63c0")
 ```
 
-<code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules/:id</code>
+<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/portforwardingrules/:id</code>
 
 Delete an existing port forwarding rule.

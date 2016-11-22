@@ -39,7 +39,7 @@ ccaResources := resources.(cloudca.Resources)
 diskOfferings, _ := ccaResources.DiskOfferings.List()
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/diskofferings</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/diskofferings</code>
 
 Retrieve a list of available disk offerings.
 
@@ -76,7 +76,7 @@ ccaResources := resources.(cloudca.Resources)
 diskOfferings, _ := ccaResources.DiskOfferings.Get("18bbab50-8d85-4b34-8361-0dc223ffd7e5")
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/diskofferings/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/diskofferings/:id</code>
 
 Retrieve a disk offering.
 

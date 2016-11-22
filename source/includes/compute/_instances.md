@@ -48,7 +48,7 @@ resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
 instances, err := ccaResources.Instances.List()
 ```
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
 
 Retrieve a list of all instances in a given environment.
 
@@ -133,7 +133,7 @@ resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
 instance, err := ccaResources.Instances.Get("9db8ff2f-b49b-466d-a2f3-c1e6def408f4")
 ```
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
 Retrieve information about a specific instance.
 
@@ -218,7 +218,7 @@ resource "cloudca_instance" "my_instance" {
     ssh_key_name = "my_ssh_key"
 }
 ```
- <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
+ <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
 
 Create an instance in an environment of the compute service. This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the instance instead of doing multiple API calls.
 
@@ -266,7 +266,7 @@ curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" 
 }
 ```
 
- <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
+ <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
 Update the name and hostname of an existing instance.
 <aside class="caution">
@@ -307,7 +307,7 @@ ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Destroy("5951c2b8-e901-4c01-8ae0-cb8d7c508d29", true) // purge flag
 ```
 
-<code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
+<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
 Destroys an existing instance. The instance needs to be in *Running*, *Stopped* or *Error* state for the operation to work. This endpoint allows you to do additional cleanup of resources attached to this instance such as public IP addresses, volumes and snapshots. If the purgeImmediately flag is not true, then it will not completely remove the instance from the environment (i.e. the instance could still be recovered).
 
@@ -339,7 +339,7 @@ ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Start("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
 
- <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=start</code>
+ <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=start</code>
 
 Start an existing instance. The instance must be in the *Stopped* state for this operation to work.
 
@@ -363,7 +363,7 @@ ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Stop("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
 
- <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=stop</code>
+ <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=stop</code>
 
  Stop an existing instance. The instance must be in the *Running* state for this operation to work.
 
@@ -386,7 +386,7 @@ ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Reboot("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
 
- <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=reboot</code>
+ <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=reboot</code>
 
 Reboot an existing instance. The instance must be in the *Running* or *Stopped* state for this operation to work.
 
@@ -408,7 +408,7 @@ resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Purge("[instance-id]")
 ```
- <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=purge</code>
+ <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=purge</code>
 
 Purges an existing instance (i.e. completely remove it from the environment). The instance must be in a *Destroyed* state.
 
@@ -430,7 +430,7 @@ resources, _ := ccaClient.GetResources("compute-qc", "prod")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Recover("[instance-id]")
 ```
- <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=recover</code>
+ <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=recover</code>
 
 Recover an existing instance that was previously destroyed. The instance must be in a *Destroyed* state.
 
@@ -453,7 +453,7 @@ ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.ChangeComputeOffering("[instance-id]", "[new-compute-offering-id]")
 ```
 
- <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeComputeOffering</code>
+ <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeComputeOffering</code>
 
 Change the compute offering of an existing instance.
 
@@ -480,7 +480,7 @@ ccaResources := resources.(cloudca.Resources)
 password, err := ccaResources.Instances.ResetPassword("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
 
- <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=resetPassword</code>
+ <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=resetPassword</code>
 
 Reset the password of the default user of an existing instance. The new password of the instance will be in the task result.
 
@@ -511,7 +511,7 @@ ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.AssociateSSHKey("5951c2b8-e901-4c01-8ae0-cb8d7c508d29", "my_ssh_key")
 ```
 
- <code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=associateSSHKey</code>
+ <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=associateSSHKey</code>
 
 Associate a new [SSH key](#ssh-keys) to the default user of an existing instance. This will override any other SSH key associated to the instance for the default user. You can register a new SSH key with the [register SSH key](#register-an-ssh-key) endpoint.
 

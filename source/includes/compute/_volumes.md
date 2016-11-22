@@ -39,7 +39,7 @@ ccaResources := resources.(cloudca.Resources)
 volumes, err := ccaResources.Volumes.List()
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code>
 
 Retrieve a list of all volumes in an environment.
 
@@ -92,7 +92,7 @@ ccaResources := resources.(cloudca.Resources)
 volumes, err := ccaResources.Volumes.Get("1bd672f4-b274-4371-a792-b0a6c6778cc7")
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id</code>
 
 Retrieve information about an volume.
 
@@ -155,7 +155,7 @@ resource "cloudca_volume" "data_volume" {
 }
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code>
 
 Create a volume in an environment. Also, by specifying an instance, it will attach the new volume to it.
 
@@ -188,7 +188,7 @@ ccaResources := resources.(cloudca.Resources)
 err := ccaResources.Volumes.Delete("e922e5fc-8fee-4688-ad93-c9ef5d7eb685")
 ```
 
-<code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
+<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
 
 Destroy an existing data volume. A volume can only be deleted if it's not attached to an instance.
 
@@ -219,7 +219,7 @@ err := ccaResources.Volumes.AttachToInstance(cloudca.Volume{
     })
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=attachToInstance</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=attachToInstance</code>
 
 Attach an existing data volume to an instance.
 
@@ -244,6 +244,6 @@ err := ccaResources.Volumes.DetachFromInstance(cloudca.Volume{
     })
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=detachFromInstance</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=detachFromInstance</code>
 
 Detach a data volume from an instance.

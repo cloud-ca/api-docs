@@ -29,7 +29,7 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/templates</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/templates</code>
 
 Retrieve a list of all templates of an environment. It will include all the public templates of the system.
 
@@ -70,7 +70,7 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/templates/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/templates/:id</code>
 
 Retrieve information about a public or private template of an environment.
 

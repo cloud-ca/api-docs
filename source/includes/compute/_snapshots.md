@@ -31,7 +31,7 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/snapshots</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/snapshots</code>
 
 Retrieve a list of all snapshots in an environment.
 
@@ -69,7 +69,7 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/snapshots/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/snapshots/:id</code>
 
 Retrieve information about a snapshot.
 

@@ -44,7 +44,7 @@ ccaResources := resources.(cloudca.Resources)
 tiers, err := ccaResources.Tiers.List()
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers</code>
 
 Retrieve a list of all tiers of an environment.
 
@@ -107,7 +107,7 @@ ccaResources := resources.(cloudca.Resources)
 tier, err := ccaResources.Tiers.Get("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/:id</code>
 
 Retrieve information about a tier.
 
@@ -183,7 +183,7 @@ resource "cloudca_tier" "my_tier" {
 }
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers</code>
 
 Create a tier in an environment.
 
@@ -228,7 +228,7 @@ updatedTier, err := ccaResources.Tiers.Update("9572d2ea-a60d-478a-a75e-8ed31f264
     })
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code>
 
 Update an existing tier in an environment.
 
@@ -256,7 +256,7 @@ ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Tiers.Delete("9572d2ea-a60d-478a-a75e-8ed31f2641f1")
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code>
 
 Delete an existing tier in an environment. To delete a tier, you must first delete all the [instances](#instances) in the tier.
 
@@ -289,7 +289,7 @@ ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Tiers.ChangeAcl("9572d2ea-a60d-478a-a75e-8ed31f2641f1", "9ba3863e-2e1d-11e4-8e05-42a29a39fc92")
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace</code>
 
 Replace the network ACL of an existing tier.
 

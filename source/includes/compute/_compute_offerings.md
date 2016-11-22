@@ -37,7 +37,7 @@ ccaResources := resources.(cloudca.Resources)
 computeOfferings, _ := ccaResources.ComputeOfferings.List()
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/computeofferings</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/computeofferings</code>
 
 Retrieve a list of available compute offerings.
 
@@ -72,7 +72,7 @@ ccaResources := resources.(cloudca.Resources)
 computeOfferings, _ := ccaResources.ComputeOfferings.Get("40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f")
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/computeofferings/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/computeofferings/:id</code>
 
 Retrieve a compute offering.
 

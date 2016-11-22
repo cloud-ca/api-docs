@@ -41,7 +41,7 @@ ccaResources := resources.(cloudca.Resources)
 vpcOfferings, _ := ccaResources.VpcOfferings.List()
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcofferings</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcofferings</code>
 
 Retrieve a list of available VPC offerings.
 
@@ -86,7 +86,7 @@ ccaResources := resources.(cloudca.Resources)
 vpcOfferings, _ := ccaResources.VpcOfferings.Get("41ac6ba0-6172-4bc4-bff6-b0831b91677c")
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcofferings/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcofferings/:id</code>
 
 Retrieve a VPC offering.
 

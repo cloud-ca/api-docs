@@ -56,7 +56,7 @@ ccaResources := resources.(cloudca.Resources)
 networkOfferings, _ := ccaResources.NetworkOfferings.List()
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkofferings</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkofferings</code>
 
 Retrieve a list of available network offerings.
 
@@ -101,7 +101,7 @@ ccaResources := resources.(cloudca.Resources)
 networkOfferings, _ := ccaResources.NetworkOfferings.Get("89724d35-b69c-418c-be81-7d83fcfc9da9")
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkofferings/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkofferings/:id</code>
 
 Retrieve a network offering.
 

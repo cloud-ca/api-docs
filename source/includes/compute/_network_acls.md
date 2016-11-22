@@ -40,7 +40,7 @@ resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 acls, err := ccaResources.NetworkAcls.ListByVpcId("eb763d03-9935-4cd4-8a42-99134e242ccb")
 ```
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls?vpc_id=:vpc_id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls?vpc_id=:vpc_id</code>
 
 Retrieve a list of network ACLs in a VPC.
 
@@ -72,7 +72,7 @@ resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 acl, err := ccaResources.NetworkAcls.Get("736d0c2e-d6b5-43fc-bcf0-732fce9a509e")
 ```
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls/:id</code>
 
 Retrieve a specific network ACL by its id.
 
@@ -110,7 +110,7 @@ resource "cloudca_network_acl" "my_acl" {
   vpc_id = "eb763d03-9935-4cd4-8a42-99134e242ccb"
 }
 ```
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls</code>
 
 Create a new network ACL associated to a VPC.
 
@@ -131,7 +131,7 @@ resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.NetworkAcls.Delete("736d0c2e-d6b5-43fc-bcf0-732fce9a509e")
 ```
-<code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls/:id</code>
+<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkacls/:id</code>
 
 Delete an ACL and all of its rules.
 
@@ -175,7 +175,7 @@ resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 rules, err := ccaResources.NetworkAclRules.ListByNetworkAclId("3246de94-e7e7-11e3-9187-06669c0000ad")
 ```
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules?network_acl_id=:network_acl_id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules?network_acl_id=:network_acl_id</code>
 
 List a network ACL's rules.
 
@@ -214,7 +214,7 @@ resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 rules, err := ccaResources.NetworkAclRules.Get("3247167a-e7e7-11e3-9187-06669c0000ad")
 ```
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules/:id</code>
 
 Attributes                 | &nbsp;
 ---------------------------|-------
@@ -263,7 +263,7 @@ resource "cloudca_network_acl_rule" "my_acl_rule" {
   protocol = "ALL"
 }
 ```
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules</code>
 
 Required                   | &nbsp;
 ---------------------------|-------
@@ -301,7 +301,7 @@ rule, err := ccaResources.NetworkAclRules.Update("3247167a-e7e7-11e3-9187-06669c
   Action: "Allow",
 })
 ```
-<code>PUT https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules/:id</code>
+<code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules/:id</code>
 
 Update a network ACL rule.
 
@@ -332,6 +332,6 @@ resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.NetworkAclRules.Delete("3247167a-e7e7-11e3-9187-06669c0000ad")
 ```
-<code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules/:id</code>
+<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networkaclrules/:id</code>
 
 Delete a specific rule of a network ACL.

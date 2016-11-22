@@ -40,7 +40,7 @@ ccaResources := resources.(cloudca.Resources)
 vpcs, err := ccaResources.Vpcs.List()
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
 
 Retrieve a list of all VPCs of an environment.
 
@@ -94,7 +94,7 @@ ccaResources := resources.(cloudca.Resources)
 vpc, err := ccaResources.Vpcs.Get("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
 
 Retrieve information about a VPC.
 
@@ -160,7 +160,7 @@ resource "cloudca_vpc" "my_vpc" {
 }
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
 
 Create a VPC in an environment.
 
@@ -208,7 +208,7 @@ updatedVpc, err := ccaResources.Vpcs.Update(cloudca.Vpc{
     })
 ```
 
-<code>PUT https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
+<code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
 
 Create a VPC in your environment.
 
@@ -237,7 +237,7 @@ ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Vpcs.Destroy("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
 ```
 
-<code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
+<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
 
 Destroy an existing VPC. To delete a VPC, you must first delete all the [tiers](#tiers) in the VPC.
 
@@ -260,6 +260,6 @@ ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Vpcs.RestartRouter("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id?operation=restart</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id?operation=restart</code>
 
 Restart the router of a VPC.

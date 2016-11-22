@@ -28,7 +28,7 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
 
 Retrieve a list of all affinity groups in an environment.
 
@@ -63,7 +63,7 @@ curl -X GET -H "MC-Api-Key: [your-api-key]"
 }
 ```
 
-<code>GET https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups/:id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups/:id</code>
 
 Retrieve information about an affinity group.
 
@@ -101,7 +101,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
 }
 ```
 
-<code>POST https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
+<code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
 
 Create an affinity group and add instances to it.
 
@@ -134,7 +134,7 @@ curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" 
 }
 ```
 
-<code>PUT https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups/:id</code>
+<code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups/:id</code>
 
 Update the list of instances in the affinity group.
 
@@ -155,6 +155,6 @@ curl -X DELETE -H "MC-Api-Key: [your-api-key]"
 "https://api.cloud.ca/v1/services/compute-qc/prod/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
 ```
 
-<code>DELETE https://api.cloud.ca/v1/services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups/:id</code>
+<code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups/:id</code>
 
 Delete an existing affinity group.
