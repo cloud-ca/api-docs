@@ -34,7 +34,6 @@ subsections:
     - public_ips
     - port_forwarding_rules
     - nics
-    - secondary_ips
     - remote_access_vpns
     - vpn_users
     - storage # Storage section
