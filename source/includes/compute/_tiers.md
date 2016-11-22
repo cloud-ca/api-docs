@@ -1,5 +1,6 @@
 ### Tiers
 
+A tier is an isolated network with its own VLANs and CIDR list, where you can place groups of resources, such as instances.
 
 <!-------------------- LIST TIER -------------------->
 
