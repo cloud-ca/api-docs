@@ -123,7 +123,9 @@ curl -X GET -H "MC-Api-Key: your_api_key"
       ]
     }],
     "nics": [{
-
+      "id": "f401d989-b149-4870-99f3-1991fec31454",
+      "isDefault": true,
+      "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f"
     }]
   }
 }
@@ -220,7 +222,7 @@ resource "cloudca_instance" "my_instance" {
 ```
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
 
-Create an instance in an environment of the compute service. This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the instance instead of doing multiple API calls.
+Create an instance in an environment. This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the new instance without doing additional API calls.
 
 Required | &nbsp;
 ------ | -----------
