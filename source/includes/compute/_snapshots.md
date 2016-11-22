@@ -7,8 +7,9 @@
 #### List snapshots
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/snapshots"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/snapshots"
 
 # Example:
 ```
@@ -50,8 +51,9 @@ Attributes | &nbsp;
 #### Retrieve a snapshot
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/demo-env/snapshots/1bd672f4-b274-4371-a792-b0a6c6778cc7"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/snapshots/1bd672f4-b274-4371-a792-b0a6c6778cc7"
 
 # Example:
 ```

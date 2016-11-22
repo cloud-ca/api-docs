@@ -7,8 +7,9 @@ A volume is a virtual disk that provide storage for your instances. An OS volume
 #### List volumes
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/volumes"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/volumes"
 
 # Example:
 ```
@@ -34,7 +35,7 @@ curl -X GET -H "MC-Api-Key: your_api_key"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 volumes, err := ccaResources.Volumes.List()
 ```
@@ -63,8 +64,9 @@ Attributes | &nbsp;
 #### Retrieve a volume
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/volumes/1bd672f4-b274-4371-a792-b0a6c6778cc7"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/volumes/1bd672f4-b274-4371-a792-b0a6c6778cc7"
 
 # Example:
 ```
@@ -87,7 +89,7 @@ curl -X GET -H "MC-Api-Key: your_api_key"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 volumes, err := ccaResources.Volumes.Get("1bd672f4-b274-4371-a792-b0a6c6778cc7")
 ```
@@ -117,12 +119,11 @@ sizeInGb<br/>*int* | The size in gigabytes of the volume
 #### Create a volume
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
-  \"name\": \"my_volume\",
-  \"diskOfferingId\": \"166f85eb-b4a2-4000-8e0c-24104d551f60\",
-  \"zoneId\": \"37c0d1f2-523a-4c43-a522-26932992b193\",
-  \"instanceId\": \"c043e651-8b3f-4941-b47f-5ecb77f3423b\"
-}" "https://api.cloud.ca/v1/services/compute-qc/testing/volumes"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://api.cloud.ca/v1/services/compute-on/testing/volumes"
 
 # Request should look like this
 ```
@@ -135,7 +136,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 createdVolume, err := ccaResources.Volumes.Create(cloudca.Volume{
         Name: "my_volume",
@@ -146,8 +147,8 @@ createdVolume, err := ccaResources.Volumes.Create(cloudca.Volume{
 ```
 ```dart
 resource "cloudca_volume" "data_volume" {
-    service_code = "compute-qc"
-    environment_name = "prod"
+    service_code = "compute-on"
+    environment_name = "test_area"
 
     name = "my_volume"
     disk_offering = "50GB - 50 IOPS Min.",
@@ -179,11 +180,12 @@ instanceId<br/>*UUID* | The id of the instance to which the created volume shoul
 
 # Example:
 
-curl -X DELETE -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 err := ccaResources.Volumes.Delete("e922e5fc-8fee-4688-ad93-c9ef5d7eb685")
 ```
@@ -199,9 +201,11 @@ Destroy an existing data volume. A volume can only be deleted if it's not attach
 #### Attach a volume to an instance
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
-  \"instanceId\": \"c043e651-8b3f-4941-b47f-5ecb77f3423b\"
-}" "https://api.cloud.ca/v1/services/compute-qc/testing/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=attachToInstance"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://api.cloud.ca/v1/services/compute-on/testing/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=attachToInstance"
 
 # Request should look like this
 ```
@@ -211,7 +215,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 err := ccaResources.Volumes.AttachToInstance(cloudca.Volume{
         Id: "e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
@@ -234,10 +238,14 @@ instanceId<br/>*UUID* | The id of the instance to which the created volume shoul
 #### Detach a volume from an instance
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" "https://api.cloud.ca/v1/services/compute-qc/testing/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=detachFromInstance"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://api.cloud.ca/v1/services/compute-on/testing/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=detachFromInstance"
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 err := ccaResources.Volumes.DetachFromInstance(cloudca.Volume{
         Id: "e922e5fc-8fee-4688-ad93-c9ef5d7eb685"

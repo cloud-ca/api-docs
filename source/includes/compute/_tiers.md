@@ -8,8 +8,9 @@ A tier is an isolated network with its own VLANs and CIDR list, where you can pl
 #### List tiers
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/tiers"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/tiers"
 
 # Example response:
 ```
@@ -39,7 +40,7 @@ curl -X GET -H "MC-Api-Key: your_api_key"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 tiers, err := ccaResources.Tiers.List()
 ```
@@ -74,8 +75,9 @@ Attributes | &nbsp;
 #### Retrieve a tier
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/tiers/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/tiers/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 
 # Example response:
 ```
@@ -102,7 +104,7 @@ curl -X GET -H "MC-Api-Key: your_api_key"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 tier, err := ccaResources.Tiers.Get("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
 ```
@@ -141,13 +143,11 @@ Attributes | &nbsp;
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
-  \"name\" : \"my_tier\",
-  \"description\" : \"My production tier\",
-  \"vpcId\": \"b1932c7c-0b85-450f-92b9-bfdeb3e80804\",
-  \"networkOfferingId\" : \"c5d4ffcd-56e2-407a-8b4d-06082b7365c4\",
-  \"networkAclId\" : \"9ba3ec65-2e1d-11e4-8e05-42a29a39fc92\"
-}" "https://api.cloud.ca/v1/services/compute-qc/prod/tiers"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/tiers"
 
 # Request example:
 ```
@@ -161,7 +161,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 createdTier, err := ccaResources.Tiers.Create(cloudca.Tier{
         Name: "my_tier",
@@ -173,8 +173,8 @@ createdTier, err := ccaResources.Tiers.Create(cloudca.Tier{
 ```
 ```dart
 resource "cloudca_tier" "my_tier" {
-    service_code = "compute-qc"
-    environment_name = "prod"
+    service_code = "compute-on"
+    environment_name = "test_area"
     name = "my_tier"
     description = "This is a prod tier"
     vpc_id = "8b46e2d1-bbc4-4fad-b3bd-1b25fcba4cec"
@@ -206,10 +206,11 @@ Required | &nbsp;
 
 # Example:
 
-curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
-  \"name\" : \"my_updated_tier\",
-  \"description\" : \"My updated production tier\"
-}" "https://api.cloud.ca/v1/services/compute-qc/prod/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1"
+curl -X PUT \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1"
 
 # Request example:
 ```
@@ -220,7 +221,7 @@ curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 updatedTier, err := ccaResources.Tiers.Update("9572d2ea-a60d-478a-a75e-8ed31f2641f1", cloudca.Tier{
         Name: "my_updated_tier",
@@ -248,10 +249,12 @@ Required | &nbsp;
 
 # Example:
 
-curl -X DELETE -H "MC-Api-Key: your_api_key" "https://api.cloud.ca/v1/services/compute-qc/prod/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1"
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1"
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Tiers.Delete("9572d2ea-a60d-478a-a75e-8ed31f2641f1")
 ```
@@ -271,9 +274,11 @@ Delete an existing tier in an environment. To delete a tier, you must first dele
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
-  \"networkAclId\" : \"9ba3863e-2e1d-11e4-8e05-42a29a39fc92\"
-}" "https://api.cloud.ca/v1/services/compute-qc/prod/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace"
 
 # Request example:
 ```
@@ -284,7 +289,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Tiers.ChangeAcl("9572d2ea-a60d-478a-a75e-8ed31f2641f1", "9ba3863e-2e1d-11e4-8e05-42a29a39fc92")
 ```

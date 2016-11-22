@@ -7,8 +7,9 @@ Port forwarding allows traffic from external hosts to services offered by applic
 #### List port forwarding rules
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/portforwardingrules"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/portforwardingrules"
 
 # Example response:
 ```
@@ -36,7 +37,7 @@ curl -X GET -H "MC-Api-Key: your_api_key"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 portForwardingRules, err := ccaResources.PortForwardingRules.List()
 ```
@@ -68,8 +69,9 @@ Attributes | &nbsp;
 #### Retrieve a port forwarding rule
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/portforwardingrules/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/portforwardingrules/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 
 # Example response:
 ```
@@ -94,7 +96,7 @@ curl -X GET -H "MC-Api-Key: your_api_key"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 portForwardingRule, err := ccaResources.PortForwardingRule.Get("bf145d1e-7beb-42b8-bd2c-1a316aeb9aef")
 ```
@@ -131,14 +133,11 @@ Attributes | &nbsp;
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
-  \"instanceId\" : \"0ec9ee23-f9dd-4830-acb6-7f8d4469673a\",
-  \"protocol\" : \"TCP\",
-  \"privatePortStart\": \"8080\",
-  \"privatePortEnd\" : \"8080\",
-  \"publicPortStart\": \"80\",
-  \"publicPortEnd\" : \"80\"
-}" "https://api.cloud.ca/v1/services/compute-qc/prod/portforwardingrules"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/portforwardingrules"
 
 # Request example:
 ```
@@ -154,7 +153,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 createdVpc, err := ccaResources.PortForwardingRules.Create(cloudca.PortForwardingRule{
         PublicIpId: "4daf6ce5-a8b1-47d2-96b3-8edda63d891c"
@@ -168,8 +167,8 @@ createdVpc, err := ccaResources.PortForwardingRules.Create(cloudca.PortForwardin
 ```
 ```dart
 resource "cloudca_port_forwarding_rule" "web_pfr" {
-    service_code = "compute-qc"
-    environment_name = "prod"
+    service_code = "compute-on"
+    environment_name = "test_area"
 
     public_ip_id = "4daf6ce5-a8b1-47d2-96b3-8edda63d891c"
     public_port_start = 80
@@ -208,11 +207,12 @@ Optional | &nbsp;
 
 # Example:
 
-curl -X DELETE -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/portforwardingrules/7d22b390-cbb3-4df6-96c6-52901ccb63c0"
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/portforwardingrules/7d22b390-cbb3-4df6-96c6-52901ccb63c0"
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.PortForwardingRules.Delete("7d22b390-cbb3-4df6-96c6-52901ccb63c0")
 ```

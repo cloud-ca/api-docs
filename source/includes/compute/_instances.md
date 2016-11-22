@@ -6,8 +6,9 @@ Deploy and manage your instances.
 #### List instances
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/instances"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/instances"
 
 # The above command returns JSON structured like this:
 ```
@@ -25,7 +26,7 @@ curl -X GET -H "MC-Api-Key: your_api_key"
       "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
       "computeOfferingName": "1vCPU.512MB",
       "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
-      "networkName": "Web-prod",
+      "networkName": "Web-test_area",
       "vpcId": "9eb1592c-f92f-4ddd-9799-b58caf896328",
       "vpcName": "prod-VPC",
       "ipAddress": "10.164.212.68",
@@ -44,7 +45,7 @@ curl -X GET -H "MC-Api-Key: your_api_key"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 instances, err := ccaResources.Instances.List()
 ```
@@ -81,8 +82,9 @@ Attributes | &nbsp;
 #### Retrieve an instance
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
 
 
 # The above command returns JSON structured like this:
@@ -100,7 +102,7 @@ curl -X GET -H "MC-Api-Key: your_api_key"
     "computeOfferingId": "3caab5ed-b5a2-4d8a-82e4-51c46168ee6c",
     "computeOfferingName": "1vCPU.512MB",
     "networkId": "d5a68379-a9ee-404f-9492-a1964b374d6f",
-    "networkName": "Web-prod",
+    "networkName": "Web-test_area",
     "vpcId": "9eb1592c-f92f-4ddd-9799-b58caf896328",
     "vpcName": "prod-VPC",
     "ipAddress": "10.164.212.68",
@@ -131,7 +133,7 @@ curl -X GET -H "MC-Api-Key: your_api_key"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 instance, err := ccaResources.Instances.Get("9db8ff2f-b49b-466d-a2f3-c1e6def408f4")
 ```
@@ -174,12 +176,11 @@ Attributes | &nbsp;
 
 # Here is the absolute minimum information required to create a new instance:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
-  \"name\" : \"ultron\",
-  \"templateId\" : \"15601ee5-3db8-4021-9872-e5248a7f885a\",
-  \"computeOfferingId\": \"e213fb17-ab2e-45ff-9679-e30f905f35a2\",
-  \"networkId\" : \"d5a68379-a9ee-404f-9492-a1964b374d6f\"
-}" "https://api.cloud.ca/v1/services/compute-qc/prod/instances"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/instances"
 
 # Request should look like this
 ```
@@ -200,7 +201,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 createdInstance, err := ccaResources.Instances.Create(cloudca.Instance{
         Name: "jarvis",
@@ -211,8 +212,8 @@ createdInstance, err := ccaResources.Instances.Create(cloudca.Instance{
 ```
 ```dart
 resource "cloudca_instance" "my_instance" {
-    service_code = "compute-qc"
-    environment_name = "prod"
+    service_code = "compute-on"
+    environment_name = "test_area"
     name = "jarvis"
     network_id = "55ccea7f-8286-479e-a648-dd4a45866daf"
     template = "CentOS 6.8 PV"
@@ -254,10 +255,11 @@ Optional | &nbsp;
 
 # Here is the absolute minimum information required to create a new instance:
 
-curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
-  \"name\" : \"e_c137\",
-  \"hostname\" : \"e_c137\",
-}" "https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
+curl -X PUT \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
 
 # Request example:
 ```
@@ -286,8 +288,9 @@ Optional | &nbsp;
 #### Destroy an instance
 
 ```shell
-curl -X DELETE -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca:443/v1/services/compute-east/prod/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" \
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca:443/v1/services/compute-on/test_area/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" \
 
 # Request example:
 ```
@@ -304,14 +307,14 @@ curl -X DELETE -H "MC-Api-Key: your_api_key"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Destroy("5951c2b8-e901-4c01-8ae0-cb8d7c508d29", true) // purge flag
 ```
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
-Destroys an existing instance. The instance needs to be in *Running*, *Stopped* or *Error* state for the operation to work. This endpoint allows you to do additional cleanup of resources attached to this instance such as public IP addresses, volumes and snapshots. If the purgeImmediately flag is not true, then it will not completely remove the instance from the environment (i.e. the instance could still be recovered).
+Destroys an existing instance. The instance needs to be in the *Running*, *Stopped* or *Error* state for the operation to work. This endpoint allows you to do additional cleanup of resources attached to this instance such as public IP addresses, volumes and snapshots. If the purgeImmediately flag is not true, then it will not completely remove the instance from the environment (i.e. the instance could still be recovered).
 
 
 Optional | &nbsp;
@@ -331,12 +334,14 @@ Optional | &nbsp;
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=start"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=start"
 
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Start("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
@@ -356,11 +361,13 @@ Start an existing instance. The instance must be in the *Stopped* state for this
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=stop"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=stop"
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Stop("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
@@ -379,11 +386,13 @@ success, err := ccaResources.Instances.Stop("5951c2b8-e901-4c01-8ae0-cb8d7c508d2
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=reboot"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=reboot"
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.Reboot("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
@@ -402,13 +411,15 @@ Reboot an existing instance. The instance must be in the *Running* or *Stopped* 
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=purge"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=purge"
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.Purge("[instance-id]")
+success, err := ccaResources.Instances.Purge("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
 ```
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=purge</code>
 
@@ -424,13 +435,15 @@ Purges an existing instance (i.e. completely remove it from the environment). Th
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=recover"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=recover"
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.Recover("[instance-id]")
+success, err := ccaResources.Instances.Recover("instance_id")
 ```
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=recover</code>
 
@@ -446,13 +459,15 @@ Recover an existing instance that was previously destroyed. The instance must be
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=changeComputeOffering"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=changeComputeOffering"
 ```
 ```go
-resources, _ := ccaClient.GetResources("[service-code]", "[environment-name]")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.ChangeComputeOffering("[instance-id]", "[new-compute-offering-id]")
+success, err := ccaResources.Instances.ChangeComputeOffering("instance_id", "new_compute_offering_id")
 ```
 
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeComputeOffering</code>
@@ -473,13 +488,15 @@ Change the compute offering of an existing instance.
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=resetPassword"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=resetPassword"
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
-password, err := ccaResources.Instances.ResetPassword("5951c2b8-e901-4c01-8ae0-cb8d7c508d29")
+password, err := ccaResources.Instances.ResetPassword("instance_id")
 ```
 
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=resetPassword</code>
@@ -497,8 +514,10 @@ Reset the password of the default user of an existing instance. The new password
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=associateSSHKey"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=associateSSHKey"
 
 # Request example:
 ```
@@ -508,7 +527,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Instances.AssociateSSHKey("5951c2b8-e901-4c01-8ae0-cb8d7c508d29", "my_ssh_key")
 ```

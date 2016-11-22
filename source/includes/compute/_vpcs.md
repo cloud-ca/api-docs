@@ -8,8 +8,9 @@ A Virtual Private Cloud (VPC) is a logically isolated section of cloud.ca, where
 #### List VPCs
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/vpcs"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/vpcs"
 
 # Example response:
 ```
@@ -35,7 +36,7 @@ curl -X GET -H "MC-Api-Key: your_api_key"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 vpcs, err := ccaResources.Vpcs.List()
 ```
@@ -65,8 +66,9 @@ Attributes | &nbsp;
 #### Retrieve a VPC
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 
 # Example response:
 ```
@@ -89,7 +91,7 @@ curl -X GET -H "MC-Api-Key: your_api_key"
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 vpc, err := ccaResources.Vpcs.Get("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
 ```
@@ -123,12 +125,11 @@ Attributes | &nbsp;
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
-  \"name\" : \"ultron\",
-  \"templateId\" : \"15601ee5-3db8-4021-9872-e5248a7f885a\",
-  \"computeOfferingId\": \"e213fb17-ab2e-45ff-9679-e30f905f35a2\",
-  \"networkId\" : \"d5a68379-a9ee-404f-9492-a1964b374d6f\"
-}" "https://api.cloud.ca/v1/services/compute-qc/prod/vpcs"
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/vpcs"
 
 # Request example:
 ```
@@ -141,7 +142,7 @@ curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 createdVpc, err := ccaResources.Vpcs.Create(cloudca.Vpc{
         Name: "my_vpc",
@@ -152,8 +153,8 @@ createdVpc, err := ccaResources.Vpcs.Create(cloudca.Vpc{
 ```
 ```dart
 resource "cloudca_vpc" "my_vpc" {
-    service_code = "compute-qc"
-    environment_name = "prod"
+    service_code = "compute-on"
+    environment_name = "test_area"
     name = "my_vpc"
     description = "This is a test vpc"
     vpc_offering = "Default VPC offering"
@@ -185,10 +186,11 @@ Optional | &nbsp;
 
 # Example:
 
-curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
-  \"name\": \"my_updated_vpc\",
-  \"description\": \"My prod VPC\"
-}" "https://api.cloud.ca/v1/services/compute-qc/prod/vpcs/d77e1ab1-0320-4504-83c5-e78b431c7577"
+curl -X PUT \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/vpcs/d77e1ab1-0320-4504-83c5-e78b431c7577"
 
 # Request example:
 ```
@@ -199,7 +201,7 @@ curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d
 }
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 updatedVpc, err := ccaResources.Vpcs.Update(cloudca.Vpc{
         Id: "d77e1ab1-0320-4504-83c5-e78b431c7577",
@@ -228,11 +230,12 @@ Optional | &nbsp;
 
 # Example:
 
-curl -X DELETE -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Vpcs.Destroy("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
 ```
@@ -251,11 +254,12 @@ Destroy an existing VPC. To delete a VPC, you must first delete all the [tiers](
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-qc/prod/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e?operation=restart"
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e?operation=restart"
 ```
 ```go
-resources, _ := ccaClient.GetResources("compute-qc", "prod")
+resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 success, err := ccaResources.Vpcs.RestartRouter("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e")
 ```
