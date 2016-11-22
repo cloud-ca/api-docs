@@ -145,7 +145,7 @@ Acquire a public IP address for a VPC.
 
 Required | &nbsp;
 ---------- | -----
-`vpcId`<br/>*string* | The VPC id
+`vpcId`<br/>*UUID* | The VPC id
 
 
 #### Release a public IP
@@ -158,7 +158,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/publicipaddresses/:id</code>
 
-Release a public IP. Upon acquiring a public IP, you are not guaranteed to receive the same public IP.
+Release a public IP. When acquiring a public IP, you are not guaranteed to receive a previously owned public IP, so be careful when releasing public IPs.
 
 #### Enable static NAT
 
