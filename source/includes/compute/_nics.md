@@ -8,7 +8,7 @@
 
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your_api_key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/nics"
 
 # Example response:
@@ -67,7 +67,7 @@ Attributes | &nbsp;
 
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your_api_key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/nics/fff1f45a-8350-4c87-be43-947b96d01ebd"
 
 # Example response:
@@ -126,7 +126,7 @@ Attributes | &nbsp;
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your_api_key]" -d "{
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"networkId\" : \"d67e986d-fe04-4827-836e-1697ede8ed30\",
   \"instanceId\" : \"96330eea-4424-46ca-825c-82fdd051d8c3\"
 }" "https://api.cloud.ca/v1/services/compute-qc/prod/nics"
@@ -180,7 +180,7 @@ Delete an existing NIC. The NIC you're trying to delete must not be the default 
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your_api_key]"
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/nics/63ef1efe-225f-4e05-bc79-b3e457a041e2?operation=setDefault"
 ```
 
@@ -196,7 +196,7 @@ Set an existing NIC as the default NIC of an instance.
 
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your_api_key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/nics"
 
 # Example response:
