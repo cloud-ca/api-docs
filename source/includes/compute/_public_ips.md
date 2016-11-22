@@ -3,50 +3,51 @@
 #### List public IPs
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-on/test_area/publicipaddresses"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/publicipaddresses"
 
 # Example:
 ```
 ```json
 {
-    "data": [
-         {
-            "id": "0ed72307-e33d-4d41-90b7-7d2b4f0d1ae0",
-            "instances": [
-                {
-                    "id": "986cfea3-4a94-407d-b915-eb2d49e4323f",
-                    "name": "i-pdube-F49"
-                }
-            ],
-            "ipAddress": "69.196.164.98",
-            "networkId": "def89cb6-f897-435a-ad7f-6b2d05ab11e6",
-            "networkName": "web",
-            "purposes": [
-                "PORT_FORWARDING"
-            ],
-            "state": "Allocated",
-            "vpcId": "0687f5ce-89f9-47c8-9f58-c522455d56eb",
-            "vpcName": "secondary",
-            "zoneId": "ea901007-056b-4c50-bb3a-2dd635fce2ab",
-            "zoneName": "ON-1"
-        },
-        {
-            "id": "10001e7d-b4ef-489b-836e-0619a383bc8d",
-            "ipAddress": "208.80.152.201",
-            "purposes": [
-                "SOURCE_NAT"
-            ],
-            "state": "Allocated",
-            "vpcId": "0687f5ce-89f9-47c8-9f58-c522455d56eb",
-            "vpcName": "primary",
-            "zoneId": "ea901007-056b-4c50-bb3a-2dd635fce2ab",
-            "zoneName": "ON-1"
-        }
-    ],
-    "metadata": {
-        "recordCount": 2
-    }
+   "data": [
+      {
+         "id": "0ed72307-e33d-4d41-90b7-7d2b4f0d1ae0",
+         "instances": [
+            {
+               "id": "986cfea3-4a94-407d-b915-eb2d49e4323f",
+               "name": "i-pdube-F49"
+            }
+         ],
+         "ipAddress": "69.196.164.98",
+         "networkId": "def89cb6-f897-435a-ad7f-6b2d05ab11e6",
+         "networkName": "web",
+         "purposes": [
+            "PORT_FORWARDING"
+         ],
+         "state": "Allocated",
+         "vpcId": "0687f5ce-89f9-47c8-9f58-c522455d56eb",
+         "vpcName": "secondary",
+         "zoneId": "ea901007-056b-4c50-bb3a-2dd635fce2ab",
+         "zoneName": "ON-1"
+      },
+      {
+         "id": "10001e7d-b4ef-489b-836e-0619a383bc8d",
+         "ipAddress": "208.80.152.201",
+         "purposes": [
+            "SOURCE_NAT"
+         ],
+         "state": "Allocated",
+         "vpcId": "0687f5ce-89f9-47c8-9f58-c522455d56eb",
+         "vpcName": "primary",
+         "zoneId": "ea901007-056b-4c50-bb3a-2dd635fce2ab",
+         "zoneName": "ON-1"
+      }
+   ],
+   "metadata": {
+      "recordCount": 2
+   }
 }
 ```
 ```go
@@ -83,19 +84,18 @@ curl -X GET -H "MC-Api-Key: your_api_key"
 ```
 ```json
 {
-    "data": {
-        "id": "10001e7d-b4ef-489b-836e-0619a383bc8d",
-        "ipAddress": "69.196.164.31",
-        "name": "69.196.164.31",
-        "purposes": [
-            "SOURCE_NAT"
-        ],
-        "state": "Allocated",
-        "vpcId": "0687f5ce-89f9-47c8-9f58-c522455d56eb",
-        "vpcName": "secondary",
-        "zoneId": "ea901007-056b-4c50-bb3a-2dd635fce2ab",
-        "zoneName": "ON-1"
-    }
+   "data": {
+      "id": "10001e7d-b4ef-489b-836e-0619a383bc8d",
+      "ipAddress": "208.80.152.201",
+      "purposes": [
+          "SOURCE_NAT"
+      ],
+      "state": "Allocated",
+      "vpcId": "0687f5ce-89f9-47c8-9f58-c522455d56eb",
+      "vpcName": "primary",
+      "zoneId": "ea901007-056b-4c50-bb3a-2dd635fce2ab",
+      "zoneName": "ON-1"
+   }
 }
 ```
 ```go
@@ -128,14 +128,14 @@ Attributes | &nbsp;
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]" \
+   -d "request_body" \
    "https://api.cloud.ca/v1/services/compute-on/test_area/publicipaddresses"
 
 # Request should look like this
 ```
 ```json
 {
-  "vpcId": "0687f5ce-89f9-47c8-9f58-c522455d56eb"
+   "vpcId": "0687f5ce-89f9-47c8-9f58-c522455d56eb"
 }
 ```
 
@@ -166,7 +166,7 @@ Release a public IP. When acquiring a public IP, you are not guaranteed to recei
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
-   -d "[request_body]" \
+   -d "request_body" \
    "https://api.cloud.ca/v1/services/compute-on/test_area/publicipaddresses/a723b2b1-e343-4ea1-afe0-bf345a99a92b?operation=enableStaticNat"
 
 # Request should look like this
