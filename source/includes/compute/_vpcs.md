@@ -8,7 +8,7 @@ A Virtual Private Cloud (VPC) is a logically isolated section of cloud.ca, where
 #### List VPCs
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/vpcs"
 
 # Example response:
@@ -65,7 +65,7 @@ Attributes | &nbsp;
 #### Retrieve a VPC
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 
 # Example response:
@@ -123,7 +123,7 @@ Attributes | &nbsp;
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"name\" : \"ultron\",
   \"templateId\" : \"15601ee5-3db8-4021-9872-e5248a7f885a\",
   \"computeOfferingId\": \"e213fb17-ab2e-45ff-9679-e30f905f35a2\",
@@ -185,7 +185,7 @@ Optional | &nbsp;
 
 # Example:
 
-curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"name\": \"my_updated_vpc\",
   \"description\": \"My prod VPC\"
 }" "https://api.cloud.ca/v1/services/compute-qc/prod/vpcs/d77e1ab1-0320-4504-83c5-e78b431c7577"
@@ -228,7 +228,7 @@ Optional | &nbsp;
 
 # Example:
 
-curl -X DELETE -H "MC-Api-Key: [your-api-key]"
+curl -X DELETE -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 ```
 ```go
@@ -251,7 +251,7 @@ Destroy an existing VPC. To delete a VPC, you must first delete all the [tiers](
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/vpcs/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e?operation=restart"
 ```
 ```go

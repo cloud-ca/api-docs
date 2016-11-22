@@ -11,14 +11,14 @@ Retrieves a list of organizations visible to the caller. In most cases, only the
 
 ```go
 // List organizations
-ccaClient := cca.NewCcaClient("[your-api-key]")
+ccaClient := cca.NewCcaClient("your_api_key")
 organizations, err := ccaClient.Organizations.List()
 ```
 
 ```shell
 # Retrieve visible organizations
 curl "https://api.cloud.ca/v1/organizations" \
-   -H "MC-Api-Key: [your-api-key]"
+   -H "MC-Api-Key: your_api_key"
 
 # Response body example
 ```
@@ -81,7 +81,7 @@ Retrieve an organization's details
 ```shell
 # Retrieve an organization
 curl "https://api.cloud.ca/v1/organizations/[id]" \
-   -H "MC-Api-Key: [your-api-key]"
+   -H "MC-Api-Key: your_api_key"
 
 # Response body example
 ```
@@ -142,7 +142,7 @@ Creates a new organization as a sub-organization of the caller's organization, o
 ```shell
 # Create an organization
 curl -X POST "https://api.cloud.ca/v1/organizations" \
-   -H "MC-Api-Key: [your-api-key]" \
+   -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
 
@@ -187,7 +187,7 @@ Update an organization. It's parent organization cannot be changed. It can be as
 ```shell
 # Update an organization
 curl -X PUT "https://api.cloud.ca/v1/organizations/[id]" \
-   -H "MC-Api-Key: [your-api-key]" \
+   -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
 
@@ -227,7 +227,7 @@ Delete an organization. The caller may not delete his own organization. Also, an
 ```shell
 # Delete an organization
 curl -X DELETE "https://api.cloud.ca/v1/organizations/[id]" \
-   -H "MC-Api-Key: [your-api-key]"
+   -H "MC-Api-Key: your_api_key"
 ```
 
 #### Returns

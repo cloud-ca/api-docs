@@ -7,7 +7,7 @@ Manage access control lists and their rules. To apply an ACL to a tier, [replace
 #### List network ACLs
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-on/test_area/networkacls?vpc_id=eb763d03-9935-4cd4-8a42-99134e242ccb"
 ```
 ```json
@@ -54,7 +54,7 @@ Attributes                 | &nbsp;
 #### Retrieve a network ACL
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-on/test_area/networkacls/:id"
 ```
 ```json
@@ -86,7 +86,7 @@ Attributes                 | &nbsp;
 #### Create network ACL
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"name\": \"network-ingress\",
   \"description\": \"Allows network ingress\",
   \"vpcId\": \"eb763d03-9935-4cd4-8a42-99134e242ccb\"
@@ -123,7 +123,7 @@ Required                   | &nbsp;
 #### Delete a network ACL
 
 ```shell
-curl -X DELETE -H "MC-Api-Key: [your-api-key]"
+curl -X DELETE -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-on/test_area/networkacls/736d0c2e-d6b5-43fc-bcf0-732fce9a509e"
 ```
 ```go
@@ -139,7 +139,7 @@ Delete an ACL and all of its rules.
 #### List a network ACL's rules
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]" "https://api.cloud.ca/v1/services/compute-on/test_area/networkaclrules?network_acl_id=3246de94-e7e7-11e3-9187-06669c0000ad"
+curl -X GET -H "MC-Api-Key: your_api_key" "https://api.cloud.ca/v1/services/compute-on/test_area/networkaclrules?network_acl_id=3246de94-e7e7-11e3-9187-06669c0000ad"
 ```
 ```json
 {
@@ -193,7 +193,7 @@ Attributes                 | &nbsp;
 #### Retrieve a network ACL rule
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]" "https://api.cloud.ca/v1/services/compute-on/test_area/networkaclrules/3247167a-e7e7-11e3-9187-06669c0000ad"
+curl -X GET -H "MC-Api-Key: your_api_key" "https://api.cloud.ca/v1/services/compute-on/test_area/networkaclrules/3247167a-e7e7-11e3-9187-06669c0000ad"
 ```
 ```json
 {
@@ -230,7 +230,7 @@ Attributes                 | &nbsp;
 #### Create a network ACL rule
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"networkAclId\": \"3247167a-e7e7-11e3-9187-06669c0000ad\",
   \"ruleNumber\": \"1\",
   \"cidr\": \"0.0.0.0/0\",
@@ -324,7 +324,7 @@ Optional                   | &nbsp;
 #### Delete a network ACL rule
 
 ```shell
-curl -X DELETE -H "MC-Api-Key: [your-api-key]"
+curl -X DELETE -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-on/test_area/networkaclrules/3247167a-e7e7-11e3-9187-06669c0000ad"
 ```
 ```go

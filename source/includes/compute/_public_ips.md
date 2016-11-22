@@ -3,7 +3,7 @@
 #### List public IPs
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-on/test_area/publicipaddresses"
 
 # Example:
@@ -76,7 +76,7 @@ Attributes | &nbsp;
 #### Retrieve a public IP
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-on/test_area/publicipaddresses/10001e7d-b4ef-489b-836e-0619a383bc8d"
 
 # Example:
@@ -126,7 +126,7 @@ Attributes | &nbsp;
 
 ```shell
 curl -X POST \
-   -H "MC-Api-Key: [your-api-key]" \
+   -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]" \
    "https://api.cloud.ca/v1/services/compute-on/test_area/publicipaddresses"
@@ -152,7 +152,7 @@ Required | &nbsp;
 
 ```shell
 curl -X DELETE \
-   -H "MC-Api-Key: [your-api-key]" \
+   -H "MC-Api-Key: your_api_key" \
    "https://api.cloud.ca/v1/services/compute-on/test_area/publicipaddresses/a723b2b1-e343-4ea1-afe0-bf345a99a92b"
 ```
 
@@ -164,7 +164,7 @@ Release a public IP. Upon acquiring a public IP, you are not guaranteed to recei
 
 ```shell
 curl -X POST \
-   -H "MC-Api-Key: [your-api-key]" \
+   -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]" \
    "https://api.cloud.ca/v1/services/compute-on/test_area/publicipaddresses/a723b2b1-e343-4ea1-afe0-bf345a99a92b?operation=enableStaticNat"

@@ -12,7 +12,7 @@ A user account allows users to authenticate to an [organization](#organizations)
 # Retrieve visible users
 
 curl "https://api.cloud.ca/v1/users" \
-   -H "MC-Api-Key: [your-api-key]"
+   -H "MC-Api-Key: your_api_key"
 
 # Response body example
 ```
@@ -47,7 +47,7 @@ curl "https://api.cloud.ca/v1/users" \
 }
 ```
 ```go
-ccaClient := cca.NewCcaClient("[your-api-key]")
+ccaClient := cca.NewCcaClient("your_api_key")
 users, err := ccaClient.Users.List()
 ```
 
@@ -76,7 +76,7 @@ Attributes | &nbsp;
 # Retrieve visible user
 
 curl "https://api.cloud.ca/v1/users/[user-id]" \
-   -H "MC-Api-Key: [your-api-key]"
+   -H "MC-Api-Key: your_api_key"
 
 # Response body example
 ```
@@ -115,7 +115,7 @@ curl "https://api.cloud.ca/v1/users/[user-id]" \
 }
 ```
 ```go
-ccaClient := cca.NewCcaClient("[your-api-key]")
+ccaClient := cca.NewCcaClient("your_api_key")
 user, err := ccaClient.Users.Get("[user-id]")
 ```
 
@@ -146,7 +146,7 @@ Attributes | &nbsp;
 # Create a user
 
 curl -X POST "https://api.cloud.ca/v1/users" \
-   -H "MC-Api-Key: [your-api-key]" \
+   -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request-body]"
 
@@ -199,7 +199,7 @@ The responses' `data` field contains the created [user](#users) with it's `id`.
 # Create a user
 
 curl -X PUT "https://api.cloud.ca/v1/users/[user-id]" \
-   -H "MC-Api-Key: [your-api-key]" \
+   -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request-body]"
 
@@ -245,7 +245,7 @@ The responses' `data` field contains the updated [user](#users).
 # Delete a user
 
 curl "https://api.cloud.ca/v1/users/[user-id]" \
-   -X DELETE -H "MC-Api-Key: [your-api-key]"
+   -X DELETE -H "MC-Api-Key: your_api_key"
 
 ```
 
@@ -264,7 +264,7 @@ Delete a specific user. You will need the `Delete an existing user` permission t
 # Unlock a user that was locked from the system
 
 curl "https://api.cloud.ca/v1/users/[user-id]/unlock" \
-   -X POST -H "MC-Api-Key: [your-api-key]"
+   -X POST -H "MC-Api-Key: your_api_key"
 
 ```
 

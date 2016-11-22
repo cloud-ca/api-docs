@@ -7,7 +7,7 @@ A volume is a virtual disk that provide storage for your instances. An OS volume
 #### List volumes
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/volumes"
 
 # Example:
@@ -63,7 +63,7 @@ Attributes | &nbsp;
 #### Retrieve a volume
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/volumes/1bd672f4-b274-4371-a792-b0a6c6778cc7"
 
 # Example:
@@ -117,7 +117,7 @@ sizeInGb<br/>*int* | The size in gigabytes of the volume
 #### Create a volume
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"name\": \"my_volume\",
   \"diskOfferingId\": \"166f85eb-b4a2-4000-8e0c-24104d551f60\",
   \"zoneId\": \"37c0d1f2-523a-4c43-a522-26932992b193\",
@@ -179,7 +179,7 @@ instanceId<br/>*UUID* | The id of the instance to which the created volume shoul
 
 # Example:
 
-curl -X DELETE -H "MC-Api-Key: [your-api-key]"
+curl -X DELETE -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
 ```
 ```go
@@ -199,7 +199,7 @@ Destroy an existing data volume. A volume can only be deleted if it's not attach
 #### Attach a volume to an instance
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"instanceId\": \"c043e651-8b3f-4941-b47f-5ecb77f3423b\"
 }" "https://api.cloud.ca/v1/services/compute-qc/testing/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=attachToInstance"
 
@@ -234,7 +234,7 @@ instanceId<br/>*UUID* | The id of the instance to which the created volume shoul
 #### Detach a volume from an instance
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" "https://api.cloud.ca/v1/services/compute-qc/testing/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=detachFromInstance"
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" "https://api.cloud.ca/v1/services/compute-qc/testing/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685?operation=detachFromInstance"
 ```
 ```go
 resources, _ := ccaClient.GetResources("compute-qc", "prod")

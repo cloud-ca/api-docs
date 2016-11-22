@@ -7,7 +7,7 @@ Affinity groups are a way of influencing on which host an instance will be deplo
 #### List affinity groups
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/affinitygroups"
 
 # Example:
@@ -45,7 +45,7 @@ Attributes | &nbsp;
 #### Retrieve an affinity group
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
 
 # Example:
@@ -81,7 +81,7 @@ Attributes | &nbsp;
 #### Create an affinity group
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"name\": \"gnr\",
   \"description\": \"My affinity group\",
   \"type\": \"host anti-affinity\",
@@ -119,7 +119,7 @@ Required | &nbsp;
 #### Update an affinity group
 
 ```shell
-curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"instanceIds\": [\"92b4df86-fee3-4610-8167-78332b86362f\", \"105f8b5e-5482-4bf5-88ca-7d7b7f431e3e\"]
 }" "https://api.cloud.ca/v1/services/compute-qc/prod/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
 
@@ -151,7 +151,7 @@ Required | &nbsp;
 #### Delete an affinity group
 
 ```shell
-curl -X DELETE -H "MC-Api-Key: [your-api-key]"
+curl -X DELETE -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/affinitygroups/d4fd794f-66e1-4906-a720-d0afb04bd517"
 ```
 

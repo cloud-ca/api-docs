@@ -5,7 +5,7 @@ Network offerings determine which services are available to each provisioned tie
 #### List network offerings
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-on/test_area/networkofferings"
 
 # The above command returns JSON structured like this:
@@ -70,7 +70,7 @@ state<br/>*string* | The state of the offering
 #### Retrieve a network offering
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-on/test_area/networkofferings/89724d35-b69c-418c-be81-7d83fcfc9da9"
 
 # The above command returns JSON structured like this:

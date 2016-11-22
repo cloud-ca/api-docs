@@ -5,7 +5,7 @@ VPC offerings determine which services are available to provisioned VPCs.
 #### List VPC offerings
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-on/test_area/vpcofferings"
 
 # The above command returns JSON structured like this:
@@ -55,7 +55,7 @@ state<br/>*string* | The state of the offering
 #### Retrieve a VPC offering
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-on/test_area/vpcofferings/41ac6ba0-6172-4bc4-bff6-b0831b91677c"
 
 # The above command returns JSON structured like this:

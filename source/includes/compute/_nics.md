@@ -8,7 +8,7 @@
 
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/nics"
 
 # Example response:
@@ -67,7 +67,7 @@ Attributes | &nbsp;
 
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/nics/fff1f45a-8350-4c87-be43-947b96d01ebd"
 
 # Example response:

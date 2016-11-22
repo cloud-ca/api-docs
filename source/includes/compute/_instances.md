@@ -6,7 +6,7 @@ Deploy and manage your instances.
 #### List instances
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/instances"
 
 # The above command returns JSON structured like this:
@@ -81,7 +81,7 @@ Attributes | &nbsp;
 #### Retrieve an instance
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
 
 
@@ -172,7 +172,7 @@ Attributes | &nbsp;
 
 # Here is the absolute minimum information required to create a new instance:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"name\" : \"ultron\",
   \"templateId\" : \"15601ee5-3db8-4021-9872-e5248a7f885a\",
   \"computeOfferingId\": \"e213fb17-ab2e-45ff-9679-e30f905f35a2\",
@@ -252,7 +252,7 @@ Optional | &nbsp;
 
 # Here is the absolute minimum information required to create a new instance:
 
-curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"name\" : \"e_c137\",
   \"hostname\" : \"e_c137\",
 }" "https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29"
@@ -284,7 +284,7 @@ Optional | &nbsp;
 #### Destroy an instance
 
 ```shell
-curl -X DELETE -H "MC-Api-Key: [your-api-key]"
+curl -X DELETE -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca:443/v1/services/compute-east/prod/instances/5bf7352c-eed2-43dc-83f1-89917fb893ca" \
 
 # Request example:
@@ -329,7 +329,7 @@ Optional | &nbsp;
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=start"
 
 ```
@@ -354,7 +354,7 @@ Start an existing instance. The instance must be in the *Stopped* state for this
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=stop"
 ```
 ```go
@@ -377,7 +377,7 @@ success, err := ccaResources.Instances.Stop("5951c2b8-e901-4c01-8ae0-cb8d7c508d2
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=reboot"
 ```
 ```go
@@ -400,7 +400,7 @@ Reboot an existing instance. The instance must be in the *Running* or *Stopped* 
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=purge"
 ```
 ```go
@@ -422,7 +422,7 @@ Purges an existing instance (i.e. completely remove it from the environment). Th
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=recover"
 ```
 ```go
@@ -444,7 +444,7 @@ Recover an existing instance that was previously destroyed. The instance must be
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=changeComputeOffering"
 ```
 ```go
@@ -471,7 +471,7 @@ Change the compute offering of an existing instance.
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=resetPassword"
 ```
 ```go
@@ -495,7 +495,7 @@ Reset the password of the default user of an existing instance. The new password
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]"
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=associateSSHKey"
 
 # Request example:

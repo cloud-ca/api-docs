@@ -7,7 +7,7 @@ Port forwarding allows traffic from external hosts to services offered by applic
 #### List port forwarding rules
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/portforwardingrules"
 
 # Example response:
@@ -68,7 +68,7 @@ Attributes | &nbsp;
 #### Retrieve a port forwarding rule
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/portforwardingrules/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 
 # Example response:
@@ -131,7 +131,7 @@ Attributes | &nbsp;
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"instanceId\" : \"0ec9ee23-f9dd-4830-acb6-7f8d4469673a\",
   \"protocol\" : \"TCP\",
   \"privatePortStart\": \"8080\",
@@ -208,7 +208,7 @@ Optional | &nbsp;
 
 # Example:
 
-curl -X DELETE -H "MC-Api-Key: [your-api-key]"
+curl -X DELETE -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/portforwardingrules/7d22b390-cbb3-4df6-96c6-52901ccb63c0"
 ```
 ```go

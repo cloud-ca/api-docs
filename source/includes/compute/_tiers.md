@@ -8,7 +8,7 @@ A tier is an isolated network with its own VLANs and CIDR list, where you can pl
 #### List tiers
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/tiers"
 
 # Example response:
@@ -74,7 +74,7 @@ Attributes | &nbsp;
 #### Retrieve a tier
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-qc/prod/tiers/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 
 # Example response:
@@ -141,7 +141,7 @@ Attributes | &nbsp;
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"name\" : \"my_tier\",
   \"description\" : \"My production tier\",
   \"vpcId\": \"b1932c7c-0b85-450f-92b9-bfdeb3e80804\",
@@ -206,7 +206,7 @@ Required | &nbsp;
 
 # Example:
 
-curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X PUT -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"name\" : \"my_updated_tier\",
   \"description\" : \"My updated production tier\"
 }" "https://api.cloud.ca/v1/services/compute-qc/prod/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1"
@@ -248,7 +248,7 @@ Required | &nbsp;
 
 # Example:
 
-curl -X DELETE -H "MC-Api-Key: [your-api-key]" "https://api.cloud.ca/v1/services/compute-qc/prod/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1"
+curl -X DELETE -H "MC-Api-Key: your_api_key" "https://api.cloud.ca/v1/services/compute-qc/prod/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1"
 ```
 ```go
 resources, _ := ccaClient.GetResources("compute-qc", "prod")
@@ -271,7 +271,7 @@ Delete an existing tier in an environment. To delete a tier, you must first dele
 
 # Example:
 
-curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: [your-api-key]" -d "{
+curl -X POST -H "Content-Type: application/json" -H "MC-Api-Key: your_api_key" -d "{
   \"networkAclId\" : \"9ba3863e-2e1d-11e4-8e05-42a29a39fc92\"
 }" "https://api.cloud.ca/v1/services/compute-qc/prod/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace"
 

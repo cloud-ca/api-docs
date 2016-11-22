@@ -12,7 +12,7 @@ Environments allow you to manage resources of a specific service and to manage y
 ```shell
 # Retrieve visible environments
 curl "https://api.cloud.ca/v1/environments" \
-   -H "MC-Api-Key: [your-api-key]"
+   -H "MC-Api-Key: your_api_key"
 
 # Response body example
 ```
@@ -46,7 +46,7 @@ curl "https://api.cloud.ca/v1/environments" \
 }
 ```
 ```go
-ccaClient := cca.NewCcaClient("[your-api-key]")
+ccaClient := cca.NewCcaClient("your_api_key")
 environments, err := ccaClient.Environments.List()
 ```
 
@@ -76,7 +76,7 @@ Attributes | &nbsp;
 # Retrieve visible environment
 
 curl "https://api.cloud.ca/v1/environment/[environment-id]" \
-   -H "MC-Api-Key: [your-api-key]"
+   -H "MC-Api-Key: your_api_key"
 
 # Response body example
 ```
@@ -114,7 +114,7 @@ curl "https://api.cloud.ca/v1/environment/[environment-id]" \
 }
 ```
 ```go
-ccaClient := cca.NewCcaClient("[your-api-key]")
+ccaClient := cca.NewCcaClient("your_api_key")
 environment, err := ccaClient.Environments.Get("[environment-id]")
 ```
 
@@ -143,7 +143,7 @@ Attributes | &nbsp;
 # Create an environment
 
 curl -X POST "https://api.cloud.ca/v1/environments" \
-   -H "MC-Api-Key: [your-api-key]" \
+   -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
 
@@ -170,7 +170,7 @@ curl -X POST "https://api.cloud.ca/v1/environments" \
 }
 ```
 ```go
-ccaClient := cca.NewCcaClient("[your-api-key]")
+ccaClient := cca.NewCcaClient("your_api_key")
 environment, err := ccaClient.Environments.Create(configuration.Environment{
   Name: "[environment-name]",
   Description: "[environment-description]",
@@ -228,7 +228,7 @@ The responses' `data` field contains the updated [environment](#environments).
 ```shell
 # Update an environment
 curl -X POST "https://api.cloud.ca/v1/environments/[environment-id]" \
-   -H "MC-Api-Key: [your-api-key]" \
+   -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
 
@@ -247,7 +247,7 @@ curl -X POST "https://api.cloud.ca/v1/environments/[environment-id]" \
 }
 ```
 ```go
-ccaClient := cca.NewCcaClient("[your-api-key]")
+ccaClient := cca.NewCcaClient("your_api_key")
 environment, err := ccaClient.Environments.Update(configuration.Environment{
   Name: "[environment-name]",
   Description: "[environment-description]",
@@ -282,11 +282,11 @@ You will need the `Environments update` permission to execute this operation.
 # Delete an environment
 
 curl "https://api.cloud.ca/v1/environments/[environment-id]" \
-   -X DELETE -H "MC-Api-Key: [your-api-key]"
+   -X DELETE -H "MC-Api-Key: your_api_key"
 
 ```
 ```go
-ccaClient := cca.NewCcaClient("[your-api-key]")
+ccaClient := cca.NewCcaClient("your_api_key")
 deleted, err := ccaClient.Environments.Delete("[environment-id]")
 ```
 

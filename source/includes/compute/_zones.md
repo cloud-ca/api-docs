@@ -5,7 +5,7 @@ Each zone consists of physically isolated hosts, storage, and networking infrast
 #### List zones
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-on/test_area/zones"
 
 # The above command returns JSON structured like this:
@@ -41,7 +41,7 @@ name<br/>*string* | ---
 #### Retrieve a zone
 
 ```shell
-curl -X GET -H "MC-Api-Key: [your-api-key]"
+curl -X GET -H "MC-Api-Key: your_api_key"
 "https://api.cloud.ca/v1/services/compute-on/test_area/zones/ea901007-056b-4c50-bb3a-2dd635fce2ab"
 
 # The above command returns JSON structured like this:
