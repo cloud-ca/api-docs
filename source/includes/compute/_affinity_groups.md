@@ -1,6 +1,6 @@
 ### Affinity groups
 
-Affinity groups are a way of influencing on which host an instance will be deployed. An anti-affinity group (the only type of affinity group we support) allows you to put instances on different hosts to increase fault-tolerance. In the unlikely event of a host failure, your services would still be up on another host (assuming you distribute your services on multiple instances).
+Affinity groups are a way of influencing on which host an [instance](#instances) will be deployed. An anti-affinity group (the only type of affinity group we support) allows you to put [instances](#instances) on different hosts to increase fault-tolerance. In the unlikely event of a host failure, your services would still be up on another host (assuming you distribute your services on multiple instances).
 
 <!-------------------- LIST AFFINITY GROUPS -------------------->
 
@@ -31,14 +31,14 @@ curl -X GET \
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
 
-Retrieve a list of all affinity groups in an environment.
+Retrieve a list of all affinity groups in an [environment](#environments)
 
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the affinity group
 `name`<br/>*string* | The name of the affinity group
 `type`<br/>*string* | The type of affinity group. We only support anti-affinity
-`instanceIds`<br/>*Array[UUID]* | The ids of the instances in the affinity group
+`instanceIds`<br/>*Array[UUID]* | The ids of the [instances](#instances) in the affinity group
 
 
 <!-------------------- RETRIEVE AN AFFINITY GROUP -------------------->
@@ -74,7 +74,7 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the affinity group
 `name`<br/>*string* | The name of the affinity group
 `type`<br/>*string* | The type of affinity group. We only support anti-affinity
-`instanceIds`<br/>*Array[UUID]* | The ids of the instances in the affinity group
+`instanceIds`<br/>*Array[UUID]* | The ids of the [instances](#instances) in the affinity group
 
 
 
@@ -104,14 +104,14 @@ curl -X POST \
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups</code>
 
-Create an affinity group and add instances to it.
+Create an affinity group and add [instances](#instances) to it.
 
 Required | &nbsp;
 ---------- | -----
 `name`<br/>*string* | The name of the new affinity group
 `description`<br/>*string* | A description of the affinity group
 `type`<br/>*string* | The type of new affinity group. We only support anti-affinity
-`instanceIds`<br/>*Array[UUID]* | The ids of the instances in the affinity group
+`instanceIds`<br/>*Array[UUID]* | The ids of the [instances](#instances) in the affinity group
 
 
 
@@ -139,14 +139,14 @@ curl -X PUT \
 
 <code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/affinitygroups/:id</code>
 
-Update the list of instances in the affinity group.
+Update the list of [instances](#instances) in the affinity group.
 
 Required | &nbsp;
 ---------- | -----
 `name`<br/>*string* | The name of the new affinity group
 `description`<br/>*string* | A description of the affinity group
 `type`<br/>*string* | The type of new affinity group. We only support anti-affinity
-`instanceIds`<br/>*Array[UUID]* | The ids of the instances in the affinity group
+`instanceIds`<br/>*Array[UUID]* | The ids of the [instances](#instances) in the affinity group
 
 
 <!-------------------- DELETE AN AFFINITY GROUP -------------------->

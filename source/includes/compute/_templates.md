@@ -1,5 +1,5 @@
 ### Templates
-A template is a virtual disk image that can be used on the creation of an instance. It contains the operating system which can contain some predefined configuration, files and software. Cloud.ca provides many default templates but you can also upload your own custom templates.
+A template is a virtual disk image that can be used on the creation of an [instance](#instances). It contains the operating system which can contain some predefined configuration, files and software. Cloud.ca provides many default templates but you can also upload your own custom templates.
 
 #### List templates
 
@@ -32,7 +32,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/templates</code>
 
-Retrieve a list of all templates of an environment. It will include all the public templates of the system.
+Retrieve a list of all templates of an [environment](#environments) It will include all the public templates of the system.
 
 Attributes | &nbsp;
 ---------- | -----
@@ -41,8 +41,8 @@ Attributes | &nbsp;
 `description`<br/>*string* | The description of the template
 `size`<br/>*long* | The size of the template in bytes
 `isPublic`<br/>*boolean* | true if public to everyone. Your custom templates will always be private
-`isReady`<br/>*boolean* | true if the template is ready to be used for a new instance
-`isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an instance with this template
+`isReady`<br/>*boolean* | true if the template is ready to be used for a new [instance](#instances)
+`isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#instances) with this template
 `created`<br/>*string* | The creation date of the template
 `osType`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
 
@@ -74,7 +74,7 @@ curl -X GET \
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/templates/:id</code>
 
-Retrieve information about a public or private template of an environment.
+Retrieve information about a public or private template of an [environment](#environments)
 
 Attributes | &nbsp;
 ---------- | -----
@@ -83,7 +83,7 @@ Attributes | &nbsp;
 `description`<br/>*string* | The description of the template
 `size<`br/>*long* | The size of the template in bytes
 `isPublic`<br/>*boolean* | true if public to everyone. Your custom templates will always be private
-`isReady`<br/>*boolean* | true if the template is ready to be used for a new instance
-`isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an instance with this template
+`isReady`<br/>*boolean* | true if the template is ready to be used for a new [instance](#instances)
+`isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#instances) with this template
 `created`<br/>*string* | The creation date of the template
 `osType`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)

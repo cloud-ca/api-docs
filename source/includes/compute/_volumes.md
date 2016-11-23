@@ -48,12 +48,12 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the volume
 `name`<br/>*string* | The name of the volume
-`type`<br/>*string* | The type of the volume. `os` if it is a root volume of an instance, `data` otherwise
+`type`<br/>*string* | The type of the volume. `os` if it is a root volume of an [instance](#instances), `data` otherwise
 `creationDate`<br/>*string* | The creation date of the volume
-`instanceId`<br/>*UUID* | The id of the instance to which the volume is attached
-`instanceName`<br/>*string* | The name of the instance to which the volume is attached
-`zoneId`<br/>*UUID* | The id of the zone where the volume was created
-`zoneName`<br/>*string* | The name of the zone where the volume was created
+`instanceId`<br/>*UUID* | The id of the [instance](#instances) to which the volume is attached
+`instanceName`<br/>*string* | The name of the [instance](#instances) to which the volume is attached
+`zoneId`<br/>*UUID* | The id of the [zone](#zones) where the volume was created
+`zoneName`<br/>*string* | The name of the [zone](#zones) where the volume was created
 `state`<br/>*string* | The state of the volume
 `sizeInGb`<br/>*int* | The size in gigabytes of the volume
 
@@ -61,8 +61,8 @@ Attributes | &nbsp;
 
 Query Parameters | &nbsp;
 ---------- | -----
-`type` | Filter the list to only retrieve the volumes of a specific type (`os` or `data`)
-`instance_id` | Filter the list to only retrieve the volumes of a specific [instance](#instances)
+`type`<br/>*string* | Filter the list to only retrieve the volumes of a specific type (`os` or `data`)
+`instance_id`<br/>*UUID* | Filter the list to only retrieve the volumes of a specific [instance](#instances)
 
 <!-------------------- RETRIEVE A VOLUME -------------------->
 
@@ -105,16 +105,16 @@ Retrieve information about an volume.
 
 Attributes | &nbsp;
 ---------- | -----
-id<br/>*UUID* | The id of the volume
-name<br/>*string* | The name of the volume
-type<br/>*string* | The type of the volume. `os` if it is a root volume of an instance, `data` otherwise
-creationDate<br/>*string* | The creation date of the volume
-instanceId<br/>*UUID* | The id of the instance to which the volume is attached
-instanceName<br/>*string* | The name of the instance to which the volume is attached
-zoneId<br/>*UUID* | The id of the zone where the volume was created
-zoneName<br/>*string* | The name of the zone where the volume was created
-state<br/>*string* | The state of the volume
-sizeInGb<br/>*int* | The size in gigabytes of the volume
+`id`<br/>*UUID* | The id of the volume
+`name`<br/>*string* | The name of the volume
+`type`<br/>*string* | The type of the volume. `os` if it is a root volume of an [instance](#instances), `data` otherwise
+`creationDate`<br/>*string* | The creation date of the volume
+`instanceId`<br/>*UUID* | The id of the [instance](#instances) to which the volume is attached
+`instanceName`<br/>*string* | The name of the [instance](#instances) to which the volume is attached
+`zoneId`<br/>*UUID* | The id of the [zone](#zones) where the volume was created
+`zoneName`<br/>*string* | The name of the [zone](#zones) where the volume was created
+`state`<br/>*string* | The state of the volume
+`sizeInGb`<br/>*int* | The size in gigabytes of the volume
 
 <!-- iops<br/>*int* | The number of IOPS of the volume -->
 
@@ -163,17 +163,17 @@ resource "cloudca_volume" "data_volume" {
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code>
 
-Create a volume in an environment. Also, by specifying an instance, it will attach the new volume to it.
+Create a volume in an environment. Also, by specifying an [instance](#instances), it will attach the new volume to it.
 
 Required | &nbsp;
 ---------- | -----
 name<br/>*string* | The name of the new volume
-diskOfferingId<br/>*UUID* | The disk offering to use for the volume
-zoneId<br/>*UUID* | The id of the zone where the volume will be created
+diskOfferingId<br/>*UUID* | The [disk offering](#disk-offerings) to use for the volume
+zoneId<br/>*UUID* | The id of the [zone](#zones) where the volume will be created
 
 Optional | &nbsp;
 ---------- | -----
-instanceId<br/>*UUID* | The id of the instance to which the created volume should be attached
+instanceId<br/>*UUID* | The id of the [instance](#instances) to which the created volume should be attached
 
 
 <!-------------------- DELETE A VOLUME -------------------->
@@ -197,7 +197,7 @@ err := ccaResources.Volumes.Delete("e922e5fc-8fee-4688-ad93-c9ef5d7eb685")
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
 
-Destroy an existing data volume. A volume can only be deleted if it's not attached to an instance.
+Destroy an existing data volume. A volume can only be deleted if it's not attached to an [instance](#instances).
 
 
 <!-------------------- ATTACH A VOLUME -------------------->
@@ -230,11 +230,11 @@ err := ccaResources.Volumes.AttachToInstance(cloudca.Volume{
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=attachToInstance</code>
 
-Attach an existing data volume to an instance.
+Attach an existing data volume to an [instance](#instances).
 
 Required | &nbsp;
 ---------- | -----
-instanceId<br/>*UUID* | The id of the instance to which the created volume should be attached
+instanceId<br/>*UUID* | The id of the [instance](#instances) to which the created volume should be attached
 
 
 <!-------------------- DETACH A VOLUME -------------------->
@@ -259,4 +259,4 @@ err := ccaResources.Volumes.DetachFromInstance(cloudca.Volume{
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes/:id?operation=detachFromInstance</code>
 
-Detach a data volume from an instance.
+Detach a data volume from an [instance](#instances).

@@ -60,12 +60,12 @@ Attributes | &nbsp;
 `instanceName`<br/>*string* | The name of the [instance](#instances) of the port forwarding rule
 `networkId`<br/>*UUID* | The id of the [tier](#tiers) of the port forwarding rule
 `vpcId`<br/>*UUID* | The id of the [VPC](#vpcs) of the port forwarding rule
-`privateIp`<br/>*string* | The private IP address of the instance where the traffic will be forwarded
-`privateIpId`<br/>*UUID* | The id of private IP address of the instance where traffic will be forwarded
+`privateIp`<br/>*string* | The private IP address of the [instance](#instances) where the traffic will be forwarded
+`privateIpId`<br/>*UUID* | The id of private IP address of the [instance](#instances) where traffic will be forwarded
 
 Query Parameters | &nbsp;
 ---------- | -----
-`instance_id` | Filter the list to only retrieve the port forwarding rules of an [instance](#instances)
+`instance_id`<br/>*UUID* | Filter the list to only retrieve the port forwarding rules of an [instance](#instances)
 
 <!-------------------- RETRIEVE A PORT FORWARDING RULE -------------------->
 
@@ -123,8 +123,8 @@ Attributes | &nbsp;
 `instanceName`<br/>*string* | The name of the [instance](#instances) of the port forwarding rule
 `networkId`<br/>*UUID* | The id of the [tier](#tiers) of the port forwarding rule
 `vpcId`<br/>*UUID* | The id of the [VPC](#vpcs) of the port forwarding rule
-`privateIp`<br/>*string* | The private IP address of the instance where requests will be forwarded
-`privateIpId`<br/>*UUID* | The id of private IP address of the instance where requests will be forwarded
+`privateIp`<br/>*string* | The private IP address of the [instance](#instances) where requests will be forwarded
+`privateIpId`<br/>*UUID* | The id of private IP address of the [instance](#instances) where requests will be forwarded
 
 
 <!-------------------- CREATE A PORT FORWARDING RULE -------------------->

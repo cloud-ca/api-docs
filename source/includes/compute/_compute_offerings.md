@@ -1,12 +1,13 @@
 ### Compute offerings
 
-Compute offerings determine the number of vCPUs and the size of the memory allocated to new instances.
+Compute offerings determine the number of vCPUs and the size of the memory allocated to new [instances](#instances).
 
 #### List compute offerings
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-on/test_area/computeofferings"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/computeofferings"
 
 # The above command returns JSON structured like this:
 ```
@@ -43,16 +44,17 @@ Retrieve a list of available compute offerings.
 
 Attributes | &nbsp;
 ---------- | -----
-id<br/>*UUID* | ---
-name<br/>*string* | ---
-memory<br/>*integer* | The amount of provisioned memory in MB
-cpuNumber<br/>*integer* | The number of vCPUs available to the created instance
+`id`<br/>*UUID* | The id of the compute offering
+`name`<br/>*string* | The name of the compute offering
+`memory`<br/>*integer* | The amount of provisioned memory in MB
+`cpuNumber`<br/>*integer* | The number of vCPUs available to the created [instance](#instances)
 
 #### Retrieve a compute offering
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-on/test_area/computeofferings/40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/computeofferings/40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f"
 
 # The above command returns JSON structured like this:
 ```
@@ -78,7 +80,7 @@ Retrieve a compute offering.
 
 Attributes | &nbsp;
 ---------- | -----
-id<br/>*UUID* | ---
-name<br/>*string* | ---
-memory<br/>*integer* | The amount of provisioned memory in MB
-cpuNumber<br/>*integer* | The number of vCPUs available to the created instance
+`id`<br/>*UUID* | The id of the compute offering
+`name`<br/>*string* | The name of the compute offering
+`memory`<br/>*integer* | The amount of provisioned memory in MB
+`cpuNumber`<br/>*integer* | The number of vCPUs available to the created [instance](#instances)

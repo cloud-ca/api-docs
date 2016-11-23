@@ -51,7 +51,7 @@ instances, err := ccaResources.Instances.List()
 ```
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
 
-Retrieve a list of all instances in a given environment.
+Retrieve a list of all instances in a given [environment](#environments)
 
 Attributes | &nbsp;
 ------- | -----------
@@ -64,8 +64,8 @@ Attributes | &nbsp;
 `computeOfferingName`<br/>*string* | The [compute offering](#compute-offerings) name of the instance
 `cpuCount`<br/>*integer* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
 `memoryInMB`<br/>*integer* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
-`networkId`<br/>*UUID* | The id of the [network](#tiers) where instance is deployed
-`networkName`<br/>*string* | Name of associated Network
+`networkId`<br/>*UUID* | The id of the [tier](#tiers) where instance is deployed
+`networkName`<br/>*string* The name of the [tier](#tiers) where instance is deployed
 `hostname`<br/>*string* | The host name of the instance
 `username`<br/>*string* | The username that can be used to connect to the instance
 `affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#affinity-groups) to which the instance is associated.
@@ -152,8 +152,8 @@ Attributes | &nbsp;
 `computeOfferingName`<br/>*string* | The [compute offering](#compute-offerings) name of the instance
 `cpuCount`<br/>*integer* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
 `memoryInMB`<br/>*integer* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
-`networkId`<br/>*UUID* | The id of the [network](#tiers) where instance is deployed
-`networkName`<br/>*string* | Name of associated Network
+`networkId`<br/>*UUID* | The id of the [tier](#tiers) where instance is deployed
+`networkName`<br/>*string* The name of the [tier](#tiers) where instance is deployed
 `hostname`<br/>*string* | The host name of the instance
 `username`<br/>*string* | The username that can be used to connect to the instance
 `affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#affinity-groups) to which the instance is associated.
@@ -223,7 +223,7 @@ resource "cloudca_instance" "my_instance" {
 ```
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances</code>
 
-Create an instance in an environment. This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the new instance without doing additional API calls.
+Create an instance in an [environment](#environments). This endpoint allows you to easily attach a new or existing data volume and add port forwarding rules to the new instance without doing additional API calls.
 
 Required | &nbsp;
 ------ | -----------
@@ -235,14 +235,14 @@ Required | &nbsp;
 Optional | &nbsp;
 ------ | -----------
 `diskOfferingId`<br/>*UUID* | The [disk offering](#disk-offerings) to be used for a new volume to attach to this instance
-`additionalDiskSizeInGb`<br/>*int* | The number of GB the additional disk should have. You must choose a disk offering with custom disk size enabled.
-`additionalDiskIops`<br/>*int* | The number of IOPS the additional disk should have. You must choose a disk offering with custom IOPS enabled.
+`additionalDiskSizeInGb`<br/>*int* | The number of GB the additional disk should have. You must choose a [disk offering](#disk-offerings) with custom disk size enabled.
+`additionalDiskIops`<br/>*int* | The number of IOPS the additional disk should have. You must choose a [disk offering](#disk-offerings) with custom IOPS enabled.
 `sshKeyName`<br/>*string* | The name of the [SSH key](#ssh-keys) to use for this instance. If you don't have an SSH key registered, you can do so through this [api](#create-ssh-key).
 `publicKey`<br/>*string* | The public key to use for this instance.
 `volumeIdToAttach`<br/>*UUID* | The [volume](#volumes) to attach to this instance.
 `affinityGroupId`<br/>*UUID* | The [affinity group](#affinity-groups) where to create the instance.
 `portsToForward`<br/>*array[string]* | The [ports](#port-forwarding-rules) you would like to open on the instance. It will try to use an existing [public IP address](#public-ips), if it can't find one it will [acquire a new public IP](#acquire-a-public-ip).
-`userData`<br/>*string* | User data is data that can be accessed and interpreted in the instance. You can read about common use cases [here](https://cloudops.cloud.ca/kb/en/compute-service#working-with-instances).
+`userData`<br/>*string* | User data is data that can be accessed and interpreted in the instance. You can read about common use cases [here](https://cloudops.cloud.ca/kb/en?id=9).
 
 
 <!-------------------- UPDATE AN INSTANCE -------------------->
@@ -314,7 +314,7 @@ success, err := ccaResources.Instances.Destroy("5951c2b8-e901-4c01-8ae0-cb8d7c50
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id</code>
 
-Destroys an existing instance. The instance needs to be in the *Running*, *Stopped* or *Error* state for the operation to work. This endpoint allows you to do additional cleanup of resources attached to this instance such as public IP addresses, volumes and snapshots. If the purgeImmediately flag is not true, then it will not completely remove the instance from the environment (i.e. the instance could still be recovered).
+Destroys an existing instance. The instance needs to be in the *Running*, *Stopped* or *Error* state for the operation to work. This endpoint allows you to do additional cleanup of resources attached to this instance such as [public IPs](#public-ips), [volumes](#volumes) and [snapshots](#snapshots). If the purgeImmediately flag is not true, then it will not completely remove the instance from the [environment](#environments). (i.e. the instance could still be recovered).
 
 
 Optional | &nbsp;
@@ -534,8 +534,8 @@ success, err := ccaResources.Instances.AssociateSSHKey("5951c2b8-e901-4c01-8ae0-
 
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=associateSSHKey</code>
 
-Associate a new [SSH key](#ssh-keys) to the default user of an existing instance. This will override any other SSH key associated to the instance for the default user. You can register a new SSH key with the [register SSH key](#register-an-ssh-key) endpoint.
+Associate a new [SSH key](#ssh-keys) to the default user of an existing instance. This will override any other [SSH key](#ssh-keys) associated to the instance for the default user. You can register a new SSH key with the [register SSH key](#register-an-ssh-key) endpoint.
 
 Required | &nbsp;
 ------ | -----------
-`sshKeyName`<br/>*string* | The name of the SSH key to associate to the instance
+`sshKeyName`<br/>*string* | The name of the [SSH key](#ssh-keys) to associate to the instance

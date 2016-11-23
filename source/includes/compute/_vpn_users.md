@@ -1,10 +1,11 @@
 ### VPN users
 
-VPN users are the accounts that are allowed to connect to remote access VPNs.
+VPN users are the accounts that are allowed to connect to [remote access VPNs](#remote-access-vpns).
 
 #### List VPN users
 ```shell
-curl -H "MC-Api-Key: your_api_key" \
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
    "https://api.cloud.ca/v1/services/compute-on/test_area/vpnusers"
 
 # Response example:
@@ -29,12 +30,13 @@ List VPN users.
 
 Attributes | &nbsp;
 ---------- | -----
-`id`<br/>*UUID* | The id of the remote access VPN
+`id`<br/>*UUID* | The id of the remote access VPN user
 `username`<br/>*string* | The VPN user's username
 
 #### Retrieve a VPN user
 ```shell
-curl -H "MC-Api-Key: your_api_key" \
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
    "https://api.cloud.ca/v1/services/compute-on/test_area/vpnusers/5de76bf5-9f61-487a-a989-042b52882da4"
 
 # Response example:
@@ -54,5 +56,5 @@ Retrieve a VPN user
 
 Attributes | &nbsp;
 ---------- | -----
-`id`<br/>*UUID* | The id of the remote access VPN
+`id`<br/>*UUID* | The id of the remote access VPN user
 `username`<br/>*string* | The VPN user's username

@@ -43,7 +43,7 @@ vpcs, err := ccaResources.Vpcs.List()
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
 
-Retrieve a list of all VPCs of an environment.
+Retrieve a list of all VPCs of an [environment](#environments)
 
 Attributes | &nbsp;
 ---------- | -----
@@ -163,13 +163,13 @@ resource "cloudca_vpc" "my_vpc" {
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
 
-Create a VPC in an environment.
+Create a VPC in an [environment](#environments)
 
 Required | &nbsp;
 ------ | -----------
 `name`<br/>*string* | The name of the new VPC
 `description`<br/>*string* | The description of the new VPC
-`vpcOfferingId`<br/>*UUID* | The id of the VPC offering to use for the new VPC
+`vpcOfferingId`<br/>*UUID* | The id of the [VPC offering](#vpc-offerings) to use for the new VPC
 
 Optional | &nbsp;
 ------ | -----------
@@ -212,7 +212,7 @@ updatedVpc, err := ccaResources.Vpcs.Update(cloudca.Vpc{
 
 <code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
 
-Update an existing VPC in your environment.
+Update an existing VPC in your [environment](#environments)
 
 Optional | &nbsp;
 ------ | ---- | -----------

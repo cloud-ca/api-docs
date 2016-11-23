@@ -63,21 +63,21 @@ List allocated public IP addresses.
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the public IP
-`instances`<br/>*Array[[Instance](#instances)]* | The associated instances <br/>*includes*:`id`,`name`
+`instances`<br/>*Array[[Instance](#instances)]* | The associated [instances](#instances) <br/>*includes*: `id`,`name`
 `ipAddress`<br/>*string* | The IP address (e.g. 208.80.154.224)
-`networkId`<br/>*UUID* | The network id
-`networkName`<br/>*string* | The associated network name
-`purposes`<br/>*Array[string]* | The list of purposes of the IP address. Possible values: STATIC_NAT, PORT_FORWARDING, LOAD_BALANCING, SOURCE_NAT or SOURCE_NAT and VPN
-`state`<br/>*string* | The state
-`vpcId`<br/>*UUID* | The VPC id
-`vpcName`<br/>*string* | The VPC name
-`zoneId`<br/>*UUID* | The zone id
-`zoneName`<br/>*string* | The zone name
+`networkId`<br/>*UUID* | The associated [tier](#networks) id
+`networkName`<br/>*string* | The associated [tier](#networks) name
+`purposes`<br/>*Array[string]* | The list of purposes of the IP address.</br>*Possible values:* `STATIC_NAT`, `PORT_FORWARDING`, `LOAD_BALANCING`, `SOURCE_NAT` or `SOURCE_NAT` and `VPN`
+`state`<br/>*string* | The state of the public IP
+`vpcId`<br/>*UUID* | The id of the [VPC](#vpcs)
+`vpcName`<br/>*string* | The name of the [VPC](#vpcs)
+`zoneId`<br/>*UUID* | The id of the [zone](#zones)
+`zoneName`<br/>*string* | The name of the [zone](#zones)
 
 Query Parameters | &nbsp;
 ---------- | -----
-`vpc_id` | Filter the list to only retrieve the public IPs in a specific [VPC](#vpcs)
-`instance_id` | Filter the list to only retrieve the public IPs associated to a specific [instance](#instances)
+`vpc_id`<br/>*UUID* | Filter the list to only retrieve the public IPs in a specific [VPC](#vpcs)
+`instance_id`<br/>*UUID* | Filter the list to only retrieve the public IPs associated to a specific [instance](#instances)
 
 #### Retrieve a public IP
 
@@ -116,16 +116,16 @@ Retrieve a public IP address.
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the public IP
-`instances`<br/>*Array[[Instance](#instances)]* | The associated instances <br/>*includes*:`id`,`name`
+`instances`<br/>*Array[[Instance](#instances)]* | The associated [instances](#instances) <br/>*includes*: `id`,`name`
 `ipAddress`<br/>*string* | The IP address (e.g. 208.80.154.224)
-`networkId`<br/>*UUID* | The network id
-`networkName`<br/>*string* | The associated network name
-`purposes`<br/>*Array[string]* | The list of purposes of the IP address. Possible values: STATIC_NAT, PORT_FORWARDING, LOAD_BALANCING, SOURCE_NAT or SOURCE_NAT and VPN
-`state`<br/>*string* | The state
-`vpcId`<br/>*UUID* | The VPC id
-`vpcName`<br/>*string* | The VPC name
-`zoneId`<br/>*UUID* | The zone id
-`zoneName`<br/>*string* | The zone name
+`networkId`<br/>*UUID* | The associated [tier](#networks) id
+`networkName`<br/>*string* | The associated [tier](#networks) name
+`purposes`<br/>*Array[string]* | The list of purposes of the IP address.</br>*Possible values:* `STATIC_NAT`, `PORT_FORWARDING`, `LOAD_BALANCING`, `SOURCE_NAT` or `SOURCE_NAT` and `VPN`
+`state`<br/>*string* | The state of the public IP
+`vpcId`<br/>*UUID* | The id of the [VPC](#vpcs)
+`vpcName`<br/>*string* | The name of the [VPC](#vpcs)
+`zoneId`<br/>*UUID* | The id of the [zone](#zones)
+`zoneName`<br/>*string* | The name of the [zone](#zones)
 
 #### Acquire a public IP
 
@@ -146,11 +146,11 @@ curl -X POST \
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/publicipaddresses</code>
 
-Acquire a public IP address for a VPC.
+Acquire a public IP address for a [VPC](#vpcs).
 
 Required | &nbsp;
 ---------- | -----
-`vpcId`<br/>*UUID* | The VPC id
+`vpcId`<br/>*UUID* | The id of the [VPC](#vpcs) where to acquire the public IP
 
 
 #### Release a public IP
@@ -188,7 +188,7 @@ Enable static NAT on a public IP address.
 
 Required | &nbsp;
 ---------- | -----
-`privateIpId`<br/>*string* | The private IP id of the instance which is to be available on that IP. It can also be done on a [secondary IP](#secondary-ip) id.
+`privateIpId`<br/>*string* | The private IP id of the [instance](#instances) which is to be available on that IP. It can also be done on a secondary IP id.
 
 #### Disable static NAT
 

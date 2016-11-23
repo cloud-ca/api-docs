@@ -1,12 +1,13 @@
 ### Network offerings
 
-Network offerings determine which services are available to each provisioned tier.
+Network offerings determine which services are available to each provisioned [tier](#tiers).
 
 #### List network offerings
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-on/test_area/networkofferings"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/networkofferings"
 
 # The above command returns JSON structured like this:
 ```
@@ -62,16 +63,17 @@ Retrieve a list of available network offerings.
 
 Attributes | &nbsp;
 ---------- | -----
-id<br/>*UUID* | ---
-name<br/>*string* | ---
-services<br/>*Array[string]* | The services provided by the offering
-state<br/>*string* | The state of the offering
+`id`<br/>*UUID* | The id of the network offering
+`name`<br/>*string* | The name of the network offering
+`services`<br/>*Array[string]* | The services provided by the offering
+`state`<br/>*string* | The state of the offering
 
 #### Retrieve a network offering
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-on/test_area/networkofferings/89724d35-b69c-418c-be81-7d83fcfc9da9"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/networkofferings/89724d35-b69c-418c-be81-7d83fcfc9da9"
 
 # The above command returns JSON structured like this:
 ```
@@ -107,7 +109,7 @@ Retrieve a network offering.
 
 Attributes | &nbsp;
 ---------- | -----
-id<br/>*UUID* | ---
-name<br/>*string* | ---
-services<br/>*Array[string]* | The services provided by the offering
-state<br/>*string* | The state of the offering
+`id`<br/>*UUID* | The id of the network offering
+`name`<br/>*string* | The name of the network offering
+`services`<br/>*Array[string]* | The services provided by the offering
+`state`<br/>*string* | The state of the offering

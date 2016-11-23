@@ -47,10 +47,15 @@ Retrieve a list of network ACLs in a VPC.
 
 Attributes                 | &nbsp;
 ---------------------------|-------
-`id`<br/>*UUID*            | -
-`name`<br/>*string*        | -
-`description`<br/>*string* | -
+`id`<br/>*UUID*            | The id of the network ACL
+`name`<br/>*string*        | The name of the network ACL
+`description`<br/>*string* | The description of the network ACL
 `vpcId`<br/>*UUID*         | The VPC where this rule is available. Not present on `default_allow` and `default_deny` ACLs
+
+
+Query Parameters | &nbsp;
+---------- | -----
+`vpc_id`<br/>*UUID*    | Filter the list to only retrieve the network ACLs of a specific [VPC](#vpcs)
 
 #### Retrieve a network ACL
 
@@ -80,9 +85,9 @@ Retrieve a specific network ACL by its id.
 
 Attributes                 | &nbsp;
 ---------------------------|-------
-`id`<br/>*UUID*            | -
-`name`<br/>*string*        | -
-`description`<br/>*string* | -
+`id`<br/>*UUID*            | The id of the network ACL
+`name`<br/>*string*        | The name of the network ACL
+`description`<br/>*string* | The description of the network ACL
 `vpcId`<br/>*UUID*         | The VPC where this rule is available. Not present on `default_allow` and `default_deny` ACLs
 
 #### Create network ACL
@@ -118,8 +123,8 @@ Create a new network ACL associated to a VPC.
 
 Required                   | &nbsp;
 ---------------------------|-------
-`name`<br/>*string*        | -
-`description`<br/>*string* | -
+`name`<br/>*string*        | The name of the network ACL
+`description`<br/>*string* | The description of the network ACL
 `vpcId`<br/>*UUID*         | Networks of this VPC will be able to use the new ACL
 
 #### Delete a network ACL
@@ -186,14 +191,18 @@ List a network ACL's rules.
 
 Attributes                 | &nbsp;
 ---------------------------|-------
-`id`<br/>*UUID*            | -
-`networkAclId`<br/>*UUID*  | The network ACL that this rule belongs to
+`id`<br/>*UUID*            | The id of the network ACL rule
+`networkAclId`<br/>*UUID*  | The id of the network ACL that this rule belongs to
 `ruleNumber`<br/>*integer* | The relative position of this rule in its ACL
 `cidr`<br/>*CIDR*          | The network addresses targeted by this rule
 `action`<br/>*string*      | What to do with traffic matched by this rule. Either Allow or Deny
 `protocol`<br/>*string*    | The protocols targeted by this rule. TCP, UDP, ICMP, or ALL
 `trafficType`<br/>*string* | The direction of traffic targeted by this rule. Either Ingress or Egress
 `state`<br/>*string*       | The state of this rule. Either Active or Inactive
+
+Query Parameters | &nbsp;
+---------- | -----
+`network_acl_id`<br/>*UUID* | Filter the list to only retrieve the rules of a specific [network ACL](#network-acls)
 
 #### Retrieve a network ACL rule
 
@@ -225,8 +234,8 @@ rules, err := ccaResources.NetworkAclRules.Get("3247167a-e7e7-11e3-9187-06669c00
 
 Attributes                 | &nbsp;
 ---------------------------|-------
-`id`<br/>*UUID*            | -
-`networkAclId`<br/>*UUID*  | The network ACL that this rule belongs to
+`id`<br/>*UUID*            | The id of the network ACL rule
+`networkAclId`<br/>*UUID*  | The id of the network ACL that this rule belongs to
 `ruleNumber`<br/>*integer* | The relative position of this rule in its ACL
 `cidr`<br/>*CIDR*          | The network addresses targeted by this rule
 `action`<br/>*string*      | What to do with traffic matched by this rule. Either Allow or Deny
@@ -271,7 +280,7 @@ resource "cloudca_network_acl_rule" "my_acl_rule" {
 
 Required                   | &nbsp;
 ---------------------------|-------
-`networkAclId`<br/>*UUID*  | The network ACL to add this rule to
+`networkAclId`<br/>*UUID*  | The id of the network ACL to add this rule to
 `ruleNumber`<br/>*integer* | The relative position of this rule in its ACL
 `cidr`<br/>*CIDR*          | The network addresses targeted by this rule
 `action`<br/>*string*      | What to do with traffic matched by this rule. Either Allow or Deny

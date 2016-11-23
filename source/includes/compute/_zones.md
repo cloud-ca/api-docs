@@ -5,8 +5,9 @@ Each zone consists of physically isolated hosts, storage, and networking infrast
 #### List zones
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-on/test_area/zones"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/zones"
 
 # The above command returns JSON structured like this:
 ```
@@ -35,14 +36,15 @@ Retrieve a list of available zones.
 
 Attributes | &nbsp;
 ---------- | -----
-id<br/>*UUID* | ---
-name<br/>*string* | ---
+`id`<br/>*UUID* | The id of the zone
+`name`<br/>*string* | The name of the zone
 
 #### Retrieve a zone
 
 ```shell
-curl -X GET -H "MC-Api-Key: your_api_key"
-"https://api.cloud.ca/v1/services/compute-on/test_area/zones/ea901007-056b-4c50-bb3a-2dd635fce2ab"
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://api.cloud.ca/v1/services/compute-on/test_area/zones/ea901007-056b-4c50-bb3a-2dd635fce2ab"
 
 # The above command returns JSON structured like this:
 ```
@@ -67,5 +69,5 @@ Retrieve a zone
 
 Attributes | &nbsp;
 ---------- | -----
-id<br/>*UUID* | ---
-name<br/>*string* | ---
+`id`<br/>*UUID* | The id of the zone
+`name`<br/>*string* | The name of the zone

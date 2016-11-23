@@ -1,6 +1,6 @@
 ### Tiers
 
-A tier is an isolated network with its own VLANs and CIDR list, where you can place groups of resources, such as instances.
+A tier is an isolated network with its own VLANs and CIDR list, where you can place groups of resources, such as [instances](#instances).
 
 <!-------------------- LIST TIER -------------------->
 
@@ -47,7 +47,7 @@ tiers, err := ccaResources.Tiers.List()
 
 <code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers</code>
 
-Retrieve a list of all tiers of an environment.
+Retrieve a list of all tiers of an [environment](#environments)
 
 Attributes | &nbsp;
 ---------- | -----
@@ -70,8 +70,8 @@ Attributes | &nbsp;
 
 Query Parameters | &nbsp;
 ---------- | -----
-`vpc_id` | Filter the list to only retrieve the tiers of a [VPC](#vpcs)
-`zone_id` | Filter the list to only retrieve the tiers in a specific [zone](#zones)
+`vpc_id`<br/>*UUID* | Filter the list to only retrieve the tiers of a [VPC](#vpcs)
+`zone_id`<br/>*UUID* | Filter the list to only retrieve the tiers in a specific [zone](#zones)
 
 
 <!-------------------- RETRIEVE A TIER -------------------->
@@ -190,7 +190,7 @@ resource "cloudca_tier" "my_tier" {
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers</code>
 
-Create a tier in an environment.
+Create a tier in an [environment](#environments)
 
 Required | &nbsp;
 ------ | -----------
@@ -236,7 +236,7 @@ updatedTier, err := ccaResources.Tiers.Update("9572d2ea-a60d-478a-a75e-8ed31f264
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code>
 
-Update an existing tier in an environment.
+Update an existing tier in an [environment](#environments)
 
 Required | &nbsp;
 ------ | -----------
@@ -266,7 +266,7 @@ success, err := ccaResources.Tiers.Delete("9572d2ea-a60d-478a-a75e-8ed31f2641f1"
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code>
 
-Delete an existing tier in an environment. To delete a tier, you must first delete all the [instances](#instances) in the tier.
+Delete an existing tier in an [environment](#environments) To delete a tier, you must first delete all the [instances](#instances) in the tier.
 
 
 <!-------------------- REPLACE THE NETWORK ACL OF A TIER -------------------->
@@ -301,8 +301,8 @@ success, err := ccaResources.Tiers.ChangeAcl("9572d2ea-a60d-478a-a75e-8ed31f2641
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace</code>
 
-Replace the network ACL of an existing tier.
+Replace the [network ACL](#network-acls) of an existing tier.
 
 Required | &nbsp;
 ------ | -----------
-`networkAclId`<br/>*string* | The id of the network ACL to use for the tier
+`networkAclId`<br/>*string* | The id of the [network ACL](#network-acls) to use for the tier

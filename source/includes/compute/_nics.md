@@ -47,7 +47,7 @@ Retrieve a list of all NICs.
 
 Attributes | &nbsp;
 ---------- | -----
-`id`<br/>*UUID* | The id of the port forwarding rule
+`id`<br/>*UUID* | The id of the NIC
 `name`<br/>*string* | The name of the NIC
 `ipAddress`<br/>*string* | The IP address of the NIC
 `isDefault`<br/>*string* | true if it's the default NIC of the [instance](#instances) (i.e. it will be the private IP on the instance)
@@ -56,14 +56,14 @@ Attributes | &nbsp;
 `gateway`<br/>*string* | The gateway of the [tier](#tiers) associated with the NIC
 `netmask`<br/>*string* | The netmask of the [tier](#tiers) associated with the NIC
 `instanceId`<br/>*string* | The id of the instance associated with the NIC
-`vpcId`<br/>*string* | The id of the VPC associated with the NIC
-`vpcName`<br/>*string* | The name of the VPC associated with the NIC
-`secondaryIps`<br/>*[SecondaryIP](#list-secondary-ips)* | The list of secondary IPs of the NIC<br/>*includes:* `id`, `ipAddress`
+`vpcId`<br/>*string* | The id of the [VPC](#vpcs) associated with the NIC
+`vpcName`<br/>*string* | The name of the [VPC](#vpcs) associated with the NIC
+`secondaryIps`<br/>*SecondaryIP* | The list of secondary IPs of the NIC<br/>*includes:* `id`, `ipAddress`
 
 Query Parameters | &nbsp;
 ---------- | -----
-`instance_id` | Filter the list to only retrieve the NICs of a specific [instance](#instances)
-`network_id` | Filter the list to only retrieve the NICs of a specific [tier](#tiers)
+`instance_id`<br/>*UUID* | Filter the list to only retrieve the NICs of a specific [instance](#instances)
+`network_id`<br/>*UUID* | Filter the list to only retrieve the NICs of a specific [tier](#tiers)
 
 
 <!-------------------- RETRIEVE A NIC -------------------->
@@ -109,7 +109,7 @@ Retrieve an existing NIC.
 
 Attributes | &nbsp;
 ---------- | -----
-`id`<br/>*UUID* | The id of the port forwarding rule
+`id`<br/>*UUID* | The id of the NIC
 `name`<br/>*string* | The name of the NIC
 `ipAddress`<br/>*string* | The IP address of the NIC
 `isDefault`<br/>*string* | true if it's the default NIC of the [instance](#instances) (i.e. it will be the private IP on the instance)
@@ -117,10 +117,10 @@ Attributes | &nbsp;
 `networkName`<br/>*string* | The name of the [tier](#tiers) of the NIC
 `gateway`<br/>*string* | The gateway of the [tier](#tiers) associated with the NIC
 `netmask`<br/>*string* | The netmask of the [tier](#tiers) associated with the NIC
-`instanceId`<br/>*string* | The id of the instance associated with the NIC
-`vpcId`<br/>*string* | The id of the VPC associated with the NIC
-`vpcName`<br/>*string* | The name of the VPC associated with the NIC
-`secondaryIps`<br/>*[SecondaryIP](#list-secondary-ips)* | The list of secondary IPs of the NIC<br/>*includes:* `id`, `ipAddress`
+`instanceId`<br/>*string* | The id of the [instance](#instances) associated with the NIC
+`vpcId`<br/>*string* | The id of the [VPC](#vpcs) associated with the NIC
+`vpcName`<br/>*string* | The name of the [VPC](#vpcs) associated with the NIC
+`secondaryIps`<br/>*SecondaryIP* | The list of secondary IPs of the NIC<br/>*includes:* `id`, `ipAddress`
 
 
 <!-------------------- CREATE A NIC -------------------->
@@ -151,12 +151,12 @@ curl -X POST \
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/nics</code>
 
-Create a NIC for an instance in a specific network. You can only have one NIC per network.
+Create a NIC for an [instance](#instances) in a specific network. You can only have one NIC per [tier](#tiers).
 
 Required | &nbsp;
 ------ | -----------
-`networkId`<br/>*string* | The id of the network where to create the NIC
-`instanceId`<br/>*string* | The id of the instance where to attach the NIC
+`networkId`<br/>*string* | The id of the [tier](#tiers) where to create the NIC
+`instanceId`<br/>*string* | The id of the [instance](#instances) where to attach the NIC
 
 
 <!-------------------- DELETE A NIC -------------------->
@@ -196,4 +196,4 @@ curl -X POST \
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/nics/:id?operation=setDefault</code>
 
-Set an existing NIC as the default NIC of an instance.
+Set an existing NIC as the default NIC of an [instance](#instances).

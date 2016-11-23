@@ -1,6 +1,6 @@
 ### Remote access VPNs
 
-Remote access VPNs allow users to connect to VPCs through secure connections.
+Remote access VPNs allow users to connect to [VPCs](#vpcs) through secure connections.
 
 #### List remote access VPNs
 ```shell
@@ -40,13 +40,13 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the remote access VPN
 `presharedKey`<br/>*string* | The VPN's preshared key
-`publicIpAddress`<br/>*string* | The public IP address (e.g. 208.80.154.224)
-`publicIpAddressId`<br/>*string* | The public IP address id
-`state`<br/>*string* | The state. Possible values: Enabled, Disabled.
+`publicIpAddress`<br/>*string* | The [public IP](#public-ips) (e.g. 208.80.154.224)
+`publicIpAddressId`<br/>*string* | The id of the [public IP](#public-ips)
+`state`<br/>*string* | The state.<br/>*Possible values:* `Enabled`, `Disabled.`
 
 Query Parameters | &nbsp;
 ---------- | -----
-`vpc_id` | Filter the list to only retrieve the VPN information of a specific [VPC](#vpcs)
+`vpc_id`<br/>*UUID* | Filter the list to only retrieve the VPN information of a specific [VPC](#vpcs)
 
 #### Retrieve a remote access VPN
 ```shell
@@ -74,6 +74,6 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the remote access VPN
 `presharedKey`<br/>*string* | The VPN's preshared key
-`publicIpAddress`<br/>*string* | The public IP address (e.g. 208.80.154.224)
-`publicIpAddressId`<br/>*string* | The public IP address id
-`state`<br/>*string* | The state. Possible values: Enabled, Disabled.
+`publicIpAddress`<br/>*string* | The [public IP](#public-ips) (e.g. 208.80.154.224)
+`publicIpAddressId`<br/>*string* | The id of the [public IP](#public-ips)
+`state`<br/>*string* | The state.<br/>*Possible values:* `Enabled`, `Disabled.`
