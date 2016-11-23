@@ -63,7 +63,7 @@ List allocated public IP addresses.
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the public IP
-`instances`<br/>*Array[[Instance](#instances)]]* | The associated instances <br/>*includes*:`id`,`name`
+`instances`<br/>*Array[[Instance](#instances)]* | The associated instances <br/>*includes*:`id`,`name`
 `ipAddress`<br/>*string* | The IP address (e.g. 208.80.154.224)
 `networkId`<br/>*UUID* | The network id
 `networkName`<br/>*string* | The associated network name
@@ -111,7 +111,7 @@ Retrieve a public IP address.
 Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the public IP
-`instances`<br/>*Array[[Instance](#instances)]]* | The associated instances <br/>*includes*:`id`,`name`
+`instances`<br/>*Array[[Instance](#instances)]* | The associated instances <br/>*includes*:`id`,`name`
 `ipAddress`<br/>*string* | The IP address (e.g. 208.80.154.224)
 `networkId`<br/>*UUID* | The network id
 `networkName`<br/>*string* | The associated network name
