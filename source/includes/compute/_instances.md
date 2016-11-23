@@ -166,7 +166,7 @@ Attributes | &nbsp;
 `macAddress`<br/>*string* | The instance's MAC address
 `userData`<br/>*string* | The user data of the instance
 `publicIps`<br/>*Array[[PublicIp](#public-ips)]* | The public IP addresses associated to the instance<br/>*includes:* `id`, `purposes`, `ipAddress`, `ports`
-`nics`<br/>*Array[[NIC](#nics)]* | The nics of the instance<br/>*includes:* `id`, `isDefault`, `networkId`
+`nics`<br/>*Array[[NIC](#nics)]* | The NICs of the instance<br/>*includes:* `id`, `isDefault`, `networkId`
 
 <!-------------------- CREATE AN INSTANCE -------------------->
 
