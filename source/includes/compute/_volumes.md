@@ -59,6 +59,11 @@ Attributes | &nbsp;
 
 <!-- iops<br/>*int* | The number of IOPS of the volume -->
 
+Query Parameters | &nbsp;
+---------- | -----
+`type` | Filter the list to only retrieve the volumes of a specific type (`os` or `data`)
+`instance_id` | Filter the list to only retrieve the volumes of a specific [instance](#instances)
+
 <!-------------------- RETRIEVE A VOLUME -------------------->
 
 #### Retrieve a volume

@@ -68,6 +68,11 @@ Attributes | &nbsp;
 `networkOfferingDescription`<br/>*string* | The description of the [network offering](#network-offerings) of the tier
 `state`<br/>*string* | The state of the tier. `Allocated` if no instances where created in the tier yet, `Implemented` otherwise.
 
+Query Parameters | &nbsp;
+---------- | -----
+`vpc_id` | Filter the list to only retrieve the tiers of a [VPC](#vpcs)
+`zone_id` | Filter the list to only retrieve the tiers in a specific [zone](#zones)
+
 
 <!-------------------- RETRIEVE A TIER -------------------->
 

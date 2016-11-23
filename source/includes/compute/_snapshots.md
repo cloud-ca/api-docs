@@ -46,6 +46,10 @@ Attributes | &nbsp;
 `volume`<br/>*string* | The name of the volume that was snapshotted
 `volumeType`<br/>*string* | The type of the volume that was snapshotted
 
+Query Parameters | &nbsp;
+---------- | -----
+`volume_id` | Filter the list to only retrieve the snapshots of a specific [volume](#volumes)
+
 <!-------------------- RETRIEVE A SNAPSHOT -------------------->
 
 #### Retrieve a snapshot

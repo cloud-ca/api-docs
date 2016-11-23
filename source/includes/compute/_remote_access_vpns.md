@@ -44,6 +44,10 @@ Attributes | &nbsp;
 `publicIpAddressId`<br/>*string* | The public IP address id
 `state`<br/>*string* | The state. Possible values: Enabled, Disabled.
 
+Query Parameters | &nbsp;
+---------- | -----
+`vpc_id` | Filter the list to only retrieve the VPN information of a specific [VPC](#vpcs)
+
 #### Retrieve a remote access VPN
 ```shell
 curl -H "MC-Api-Key: your_api_key" \

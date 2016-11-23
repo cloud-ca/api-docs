@@ -60,6 +60,11 @@ Attributes | &nbsp;
 `vpcName`<br/>*string* | The name of the VPC associated with the NIC
 `secondaryIps`<br/>*[SecondaryIP](#list-secondary-ips)* | The list of secondary IPs of the NIC<br/>*includes:* `id`, `ipAddress`
 
+Query Parameters | &nbsp;
+---------- | -----
+`instance_id` | Filter the list to only retrieve the NICs of a specific [instance](#instances)
+`network_id` | Filter the list to only retrieve the NICs of a specific [tier](#tiers)
+
 
 <!-------------------- RETRIEVE A NIC -------------------->
 

@@ -1,4 +1,4 @@
-### Public IP addresses
+### Public IPs
 
 #### List public IPs
 
@@ -73,6 +73,11 @@ Attributes | &nbsp;
 `vpcName`<br/>*string* | The VPC name
 `zoneId`<br/>*UUID* | The zone id
 `zoneName`<br/>*string* | The zone name
+
+Query Parameters | &nbsp;
+---------- | -----
+`vpc_id` | Filter the list to only retrieve the public IPs in a specific [VPC](#vpcs)
+`instance_id` | Filter the list to only retrieve the public IPs associated to a specific [instance](#instances)
 
 #### Retrieve a public IP
 

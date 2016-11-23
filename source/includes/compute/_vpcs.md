@@ -212,7 +212,7 @@ updatedVpc, err := ccaResources.Vpcs.Update(cloudca.Vpc{
 
 <code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs</code>
 
-Create a VPC in your environment.
+Update an existing VPC in your environment.
 
 Optional | &nbsp;
 ------ | ---- | -----------

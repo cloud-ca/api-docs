@@ -63,6 +63,10 @@ Attributes | &nbsp;
 `privateIp`<br/>*string* | The private IP address of the instance where the traffic will be forwarded
 `privateIpId`<br/>*UUID* | The id of private IP address of the instance where traffic will be forwarded
 
+Query Parameters | &nbsp;
+---------- | -----
+`instance_id` | Filter the list to only retrieve the port forwarding rules of an [instance](#instances)
+
 <!-------------------- RETRIEVE A PORT FORWARDING RULE -------------------->
 
 
@@ -91,7 +95,7 @@ curl -X GET \
     "networkId": "7388f551-4163-4467-b49b-58e9310d7207",
     "vpcId": "39907f0a-c253-42b8-b02d-337e00e9851e",
     "privateIp": "10.155.24.145",
-    "privateIpId": "10.155.24.145"
+    "privateIpId": "fc9d60a5-a8f8-4d01-a63f-f1731440063f"
   }
 }
 ```
