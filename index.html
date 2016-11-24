@@ -1702,19 +1702,51 @@ An easy way to remember the structure of API endpoints is that going from left t
 <td><code class="prettyprint">networkId</code><br/><em>UUID</em></td>
 <td>The id of the <a href="#tiers">tier</a> where instance is deployed</td>
 </tr>
+<tr>
+<td><code class="prettyprint">networkName</code><br/><em>string</em></td>
+<td>The name of the <a href="#tiers">tier</a> where instance is deployed</td>
+</tr>
+<tr>
+<td><code class="prettyprint">hostname</code><br/><em>string</em></td>
+<td>The host name of the instance</td>
+</tr>
+<tr>
+<td><code class="prettyprint">username</code><br/><em>string</em></td>
+<td>The username that can be used to connect to the instance</td>
+</tr>
+<tr>
+<td><code class="prettyprint">affinityGroupIds</code><br/><em>Array[UUID]</em></td>
+<td>The id(s) of the <a href="#affinity-groups">affinity groups</a> to which the instance is associated.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">zoneId</code><br/><em>UUID</em></td>
+<td>The id of the <a href="#zones">zone</a> where instance is deployed</td>
+</tr>
+<tr>
+<td><code class="prettyprint">zoneName</code><br/><em>string</em></td>
+<td>The name of associated <a href="#zones">zone</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">vpcId</code><br/><em>UUID</em></td>
+<td>The id of the associated <a href="#vpcs">VPC</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">vpcName</code><br/><em>string</em></td>
+<td>The name of associated <a href="#vpcs">VPC</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">ipAddress</code><br/><em>string</em></td>
+<td>The instance&rsquo;s private IPv4 address</td>
+</tr>
+<tr>
+<td><code class="prettyprint">isPasswordEnabled</code><br/><em>boolean</em></td>
+<td>Indicate whether a password can be used for remote connections</td>
+</tr>
+<tr>
+<td><code class="prettyprint">macAddress</code><br/><em>string</em></td>
+<td>The instance&rsquo;s MAC address</td>
+</tr>
 </tbody></table>
-
-<p><code class="prettyprint">networkName</code><br/><em>string</em> The name of the <a href="#tiers">tier</a> where instance is deployed
-<code class="prettyprint">hostname</code><br/><em>string</em> | The host name of the instance
-<code class="prettyprint">username</code><br/><em>string</em> | The username that can be used to connect to the instance
-<code class="prettyprint">affinityGroupIds</code><br/><em>Array[UUID]</em> | The id(s) of the <a href="#affinity-groups">affinity groups</a> to which the instance is associated.
-<code class="prettyprint">zoneId</code><br/><em>UUID</em> | The id of the <a href="#zones">zone</a> where instance is deployed
-<code class="prettyprint">zoneName</code><br/><em>string</em> | The name of associated <a href="#zones">zone</a>
-<code class="prettyprint">vpcId</code><br/><em>UUID</em> | The id of the associated <a href="#vpcs">VPC</a>
-<code class="prettyprint">vpcName</code><br/><em>string</em> | The name of associated <a href="#vpcs">VPC</a>
-<code class="prettyprint">ipAddress</code><br/><em>string</em> | The instance&rsquo;s private IPv4 address
-<code class="prettyprint">isPasswordEnabled</code><br/><em>boolean</em> | Indicate whether a password can be used for remote connections
-<code class="prettyprint">macAddress</code><br/><em>string</em> | The instance&rsquo;s MAC address</p>
 
 <!-------------------- RETRIEVE AN INSTANCE -------------------->
 
@@ -1823,22 +1855,63 @@ An easy way to remember the structure of API endpoints is that going from left t
 <td><code class="prettyprint">networkId</code><br/><em>UUID</em></td>
 <td>The id of the <a href="#tiers">tier</a> where instance is deployed</td>
 </tr>
+<tr>
+<td><code class="prettyprint">networkName</code><br/><em>string</em></td>
+<td>The name of the <a href="#tiers">tier</a> where instance is deployed</td>
+</tr>
+<tr>
+<td><code class="prettyprint">hostname</code><br/><em>string</em></td>
+<td>The host name of the instance</td>
+</tr>
+<tr>
+<td><code class="prettyprint">username</code><br/><em>string</em></td>
+<td>The username that can be used to connect to the instance</td>
+</tr>
+<tr>
+<td><code class="prettyprint">affinityGroupIds</code><br/><em>Array[UUID]</em></td>
+<td>The id(s) of the <a href="#affinity-groups">affinity groups</a> to which the instance is associated.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">zoneId</code><br/><em>UUID</em></td>
+<td>The id of the <a href="#zones">zone</a> where instance is deployed</td>
+</tr>
+<tr>
+<td><code class="prettyprint">zoneName</code><br/><em>string</em></td>
+<td>The name of associated <a href="#zones">zone</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">vpcId</code><br/><em>UUID</em></td>
+<td>The id of the associated <a href="#vpcs">VPC</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">vpcName</code><br/><em>string</em></td>
+<td>The name of associated <a href="#vpcs">VPC</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">ipAddress</code><br/><em>string</em></td>
+<td>The instance&rsquo;s private IPv4 address</td>
+</tr>
+<tr>
+<td><code class="prettyprint">isPasswordEnabled</code><br/><em>boolean</em></td>
+<td>Indicate whether a password can be used for remote connections</td>
+</tr>
+<tr>
+<td><code class="prettyprint">macAddress</code><br/><em>string</em></td>
+<td>The instance&rsquo;s MAC address</td>
+</tr>
+<tr>
+<td><code class="prettyprint">userData</code><br/><em>string</em></td>
+<td>The user data of the instance</td>
+</tr>
+<tr>
+<td><code class="prettyprint">publicIps</code><br/><em>Array[<a href="#public-ips">PublicIp</a>]</em></td>
+<td>The public IP addresses associated to the instance<br/><em>includes:</em> <code class="prettyprint">id</code>, <code class="prettyprint">purposes</code>, <code class="prettyprint">ipAddress</code>, <code class="prettyprint">ports</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">nics</code><br/><em>Array[<a href="#nics">NIC</a>]</em></td>
+<td>The NICs of the instance<br/><em>includes:</em> <code class="prettyprint">id</code>, <code class="prettyprint">isDefault</code>, <code class="prettyprint">networkId</code></td>
+</tr>
 </tbody></table>
-
-<p><code class="prettyprint">networkName</code><br/><em>string</em> The name of the <a href="#tiers">tier</a> where instance is deployed
-<code class="prettyprint">hostname</code><br/><em>string</em> | The host name of the instance
-<code class="prettyprint">username</code><br/><em>string</em> | The username that can be used to connect to the instance
-<code class="prettyprint">affinityGroupIds</code><br/><em>Array[UUID]</em> | The id(s) of the <a href="#affinity-groups">affinity groups</a> to which the instance is associated.
-<code class="prettyprint">zoneId</code><br/><em>UUID</em> | The id of the <a href="#zones">zone</a> where instance is deployed
-<code class="prettyprint">zoneName</code><br/><em>string</em> | The name of associated <a href="#zones">zone</a>
-<code class="prettyprint">vpcId</code><br/><em>UUID</em> | The id of the associated <a href="#vpcs">VPC</a>
-<code class="prettyprint">vpcName</code><br/><em>string</em> | The name of associated <a href="#vpcs">VPC</a>
-<code class="prettyprint">ipAddress</code><br/><em>string</em> | The instance&rsquo;s private IPv4 address
-<code class="prettyprint">isPasswordEnabled</code><br/><em>boolean</em> | Indicate whether a password can be used for remote connections
-<code class="prettyprint">macAddress</code><br/><em>string</em> | The instance&rsquo;s MAC address
-<code class="prettyprint">userData</code><br/><em>string</em> | The user data of the instance
-<code class="prettyprint">publicIps</code><br/><em>Array[<a href="#public-ips">PublicIp</a>]</em> | The public IP addresses associated to the instance<br/><em>includes:</em> <code class="prettyprint">id</code>, <code class="prettyprint">purposes</code>, <code class="prettyprint">ipAddress</code>, <code class="prettyprint">ports</code>
-<code class="prettyprint">nics</code><br/><em>Array[<a href="#nics">NIC</a>]</em> | The NICs of the instance<br/><em>includes:</em> <code class="prettyprint">id</code>, <code class="prettyprint">isDefault</code>, <code class="prettyprint">networkId</code></p>
 
 <!-------------------- CREATE AN INSTANCE -------------------->
 
