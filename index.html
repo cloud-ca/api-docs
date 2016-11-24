@@ -1597,7 +1597,7 @@ An easy way to remember the structure of API endpoints is that going from left t
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p><code class="prettyprint">GET https://api.cloud.ca/v1/services/tasks/:id</code></p>
+<p><code class="prettyprint">GET https://api.cloud.ca/v1/tasks/:id</code></p>
 
 <p>A task has three different status: <code class="prettyprint">PENDING</code>, <code class="prettyprint">FAILED</code> and <code class="prettyprint">SUCCESS</code>. On a successful completion of the task (i.e. it&rsquo;s in the <code class="prettyprint">SUCCESS</code> state), the response will contain a <code class="prettyprint">result</code> field which will contain the result of the operation. It is important to note that we don&rsquo;t persist our task, a task will only stay alive for 30 minutes (in general).</p>
 
