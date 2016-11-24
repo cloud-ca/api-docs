@@ -4,21 +4,21 @@ The cloud.ca API allows you to manage your environments and provision resources 
 
 The API is  [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer). Responses, successful or not, are returned in [JSON](http://www.json.org/). Request bodies must be [JSON](http://www.json.org/), and should be made over SSL.
 
-Current API version : `api.cloud.ca/v1`
+API endpoint : `https://api.cloud.ca/v1`
 
 We have also developed tools to help consume our APIs. If you use `go`, check out our [library](https://github.com/cloud-ca/go-cloudca). If you use Terraform, check out our [provider](https://github.com/cloud-ca/terraform-cloudca). NB: both are being actively developed, so there is still some functionality missing.
 
 ## Authentication
 ```go
 import "github.com/cloud-ca/go-cloudca"
-ccaClient := cca.NewCcaClient("[your-api-key]")
+ccaClient := cca.NewCcaClient("your_api_key")
 ```
 
 ```shell
 ## To authenticate, add a header
-## Make sure to replace `[your-api-key]` with your API key.
+## Make sure to replace `your_api_key` with your API key.
 curl "https://api.cloud.ca/v1/organizations" \
-   -H "MC-Api-Key: [your-api-key]"
+   -H "MC-Api-Key: your_api_key"
 ```
 
 ```dart
@@ -29,10 +29,10 @@ provider "cloudca" {
 
 API endpoints are secured by the same role-based access control (RBAC) as the cloud.ca portal. To identify who is making the requests, it is required to add a header to your HTTP requests:
 
-`MC-Api-Key: [your-api-key]`
+`MC-Api-Key: your_api_key`
 
 <aside class="notice">
-You must replace <code>[your-api-key]</code> with your personal API key.
+You must replace <code>your_api_key</code> with your personal API key.
 </aside>
 
 The API key is found from the API keys section under the user profile menu. If you don't see cloud.ca API keys section, contact your system administrator as you may not have the permission to see that section. **Your API key carries the same privileges as your cloud.ca account, so be sure to keep it secret**. If you think your API has been compromised, regenerate your API key from the API keys section.
@@ -45,7 +45,7 @@ Verbs | Purpose
 `GET` | Used to retrieve information about a resource.
 `POST` | Used to create (or provision) a new resource or perform an operation on it.
 `PUT` | Used to update a resource.
-`DELETE` | Used to remove/delete a resource.
+`DELETE` | Used to delete a resource.
 
 ## Responses
 ### Success response
@@ -66,6 +66,9 @@ Verbs | Purpose
 }
 ```
 -->
+```shell
+# Example without tasks
+```
 ```json
 {
   "data": [
@@ -74,18 +77,28 @@ Verbs | Purpose
   ]
 }
 ```
-
-When an API request is successful, the response body will contain the `data` field:
+```shell
+# Example of compute API call with task
+```
+```json
+{
+  "taskId": "c2c13744-8610-4012-800a-0907bea110a5",
+  "taskStatus": "PENDING"
+}
+```
+When an API request is successful, the response body will contain the `data` field with the result of the API call. If you're using the [compute API](#compute-api), the `data` field might be empty since most of the operations are asynchronous. The response will contain the `taskId` and `taskStatus` fields so that you can retrieve the result of the operation you executed through the [task API](#tasks)
 
 Attributes | &nbsp;
 --- | ---
 `data` | The data field contains the object requested by the API caller
+`taskId` | The [task id](#tasks) of an operation executed through the [compute API](#compute-api)
+`taskStatus` | The status of a [task](#tasks) of an operation executed through the [compute API](#compute-api)
 <!--
 `metadata` | The metadata is an optionally returned field containing paging and sorting information
 -->
 
 <aside class="notice">
-If the response does <strong>not</strong> contain the "data" field, the request was <strong>not</strong> successful
+If the response contains the "errors" field, the request was <strong>not</strong> successful
 </aside>
 
 ### Error response

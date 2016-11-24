@@ -12,6 +12,7 @@ toc_footers:
 includes:
   - getting_started
   - administration
+  - compute
 
 subsections:
   administration:
@@ -20,7 +21,29 @@ subsections:
     - users
     - environments
   compute:
-    - instances
 
+    - compute # Compute section
+    - instances
+    - templates
+    - ssh_keys
+    - affinity_groups
+    - networking # Networking section
+    - vpcs
+    - tiers
+    - network_acls
+    - public_ips
+    - port_forwarding_rules
+    - nics
+    - remote_access_vpns
+    - vpn_users
+    - storage # Storage section
+    - volumes
+    - snapshots
+    - offerings # Offerings section
+    - vpc_offerings
+    - network_offerings
+    - compute_offerings
+    - disk_offerings
+    - zones # Zones section
 search: true
 ---
