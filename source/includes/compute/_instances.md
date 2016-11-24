@@ -65,7 +65,7 @@ Attributes | &nbsp;
 `cpuCount`<br/>*integer* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
 `memoryInMB`<br/>*integer* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
 `networkId`<br/>*UUID* | The id of the [tier](#tiers) where instance is deployed
-`networkName`<br/>*string* The name of the [tier](#tiers) where instance is deployed
+`networkName`<br/>*string* | The name of the [tier](#tiers) where instance is deployed
 `hostname`<br/>*string* | The host name of the instance
 `username`<br/>*string* | The username that can be used to connect to the instance
 `affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#affinity-groups) to which the instance is associated.
@@ -153,7 +153,7 @@ Attributes | &nbsp;
 `cpuCount`<br/>*integer* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
 `memoryInMB`<br/>*integer* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
 `networkId`<br/>*UUID* | The id of the [tier](#tiers) where instance is deployed
-`networkName`<br/>*string* The name of the [tier](#tiers) where instance is deployed
+`networkName`<br/>*string* | The name of the [tier](#tiers) where instance is deployed
 `hostname`<br/>*string* | The host name of the instance
 `username`<br/>*string* | The username that can be used to connect to the instance
 `affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#affinity-groups) to which the instance is associated.
