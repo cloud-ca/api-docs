@@ -47,6 +47,6 @@ Some operations take longer to execute, and to avoid blocking on the response un
 }
 ```
 
-`GET https://api.cloud.ca/v1/services/tasks/:id`
+`GET https://api.cloud.ca/v1/tasks/:id`
 
 A task has three different status: `PENDING`, `FAILED` and `SUCCESS`. On a successful completion of the task (i.e. it's in the `SUCCESS` state), the response will contain a `result` field which will contain the result of the operation. It is important to note that we don't persist our task, a task will only stay alive for 30 minutes (in general).
