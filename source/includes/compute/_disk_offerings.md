@@ -48,7 +48,7 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the disk offering
 `name`<br/>*string* | The name of the disk offering
-`gbSize`<br/>*integer* | The size of the [data volume](#volumes) in GB
+`gbSize`<br/>*int* | The size of the [data volume](#volumes) in GB
 `customSize`<br/>*boolean* | If the offering supports custom size
 `customIops`<br/>*boolean* | If the offering supports custom IOPS
 
@@ -86,6 +86,6 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the disk offering
 `name`<br/>*string* | The name of the disk offering
-`gbSize`<br/>*integer* | The size of the [data volume](#volumes) in GB
+`gbSize`<br/>*int* | The size of the [data volume](#volumes) in GB
 `customSize`<br/>*boolean* | If the offering supports custom size
 `customIops`<br/>*boolean* | If the offering supports custom IOPS
