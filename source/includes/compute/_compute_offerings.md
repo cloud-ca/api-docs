@@ -51,6 +51,9 @@ Attributes | &nbsp;
 `memoryInMB`<br/>*int* | The amount of provisioned memory in MB
 `cpuCount`<br/>*int* | The number of vCPUs available to the created [instance](#instances)
 `custom`<br/>*boolean* | If true, the `cpuCount` and `memoryInMB` fields will be missing from the response and will be required on [instance create](#create-an-instance)
+`cpuCountValues`<br/>*Array[integer]* | The list of valid cpu counts when used in the [create instance operation](#create-an-instance). Only present for custom offerings
+`memoryInMBValues`<br/>*Array[integer]* | The list of valid amounts of memory (in MB) that can be used in the [create instance operation](#create-an-instance). Only present for custom offerings
+`memoryInMBToCpuRatio`<br/>*integer* | The maximum ratio of memory (in MB) to number of CPU of an [instance](#instance) created with this offering. Only present for custom offerings.
 
 #### Retrieve a compute offering
 
@@ -89,3 +92,6 @@ Attributes | &nbsp;
 `memoryInMB`<br/>*int* | The amount of provisioned memory in MB
 `cpuCount`<br/>*int* | The number of vCPUs available to the created [instance](#instances)
 `custom`<br/>*boolean* | If true, the `cpuCount` and `memoryInMB` fields will be missing from the response and will be required on [instance create](#create-an-instance)
+`cpuCountValues`<br/>*Array[integer]* | The list of valid cpu counts when used in the [create instance operation](#create-an-instance). Only present for custom offerings
+`memoryInMBValues`<br/>*Array[integer]* | The list of valid amounts of memory (in MB) that can be used in the [create instance operation](#create-an-instance). Only present for custom offerings
+`memoryInMBToCpuRatio`<br/>*integer* | The maximum ratio of memory (in MB) to number of CPU of an [instance](#instance) created with this offering. Only present for custom offerings.
