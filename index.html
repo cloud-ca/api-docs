@@ -1691,11 +1691,11 @@ An easy way to remember the structure of API endpoints is that going from left t
 <td>The <a href="#compute-offerings">compute offering</a> name of the instance</td>
 </tr>
 <tr>
-<td><code class="prettyprint">cpuCount</code><br/><em>integer</em></td>
+<td><code class="prettyprint">cpuCount</code><br/><em>int</em></td>
 <td>The number of vCPUs associated with the instance&rsquo;s <a href="#compute-offerings">compute offering</a></td>
 </tr>
 <tr>
-<td><code class="prettyprint">memoryInMB</code><br/><em>integer</em></td>
+<td><code class="prettyprint">memoryInMB</code><br/><em>int</em></td>
 <td>The number of megabytes associated with the instance&rsquo;s <a href="#compute-offerings">compute offering</a></td>
 </tr>
 <tr>
@@ -1844,11 +1844,11 @@ An easy way to remember the structure of API endpoints is that going from left t
 <td>The <a href="#compute-offerings">compute offering</a> name of the instance</td>
 </tr>
 <tr>
-<td><code class="prettyprint">cpuCount</code><br/><em>integer</em></td>
+<td><code class="prettyprint">cpuCount</code><br/><em>int</em></td>
 <td>The number of vCPUs associated with the instance&rsquo;s <a href="#compute-offerings">compute offering</a></td>
 </tr>
 <tr>
-<td><code class="prettyprint">memoryInMB</code><br/><em>integer</em></td>
+<td><code class="prettyprint">memoryInMB</code><br/><em>int</em></td>
 <td>The number of megabytes associated with the instance&rsquo;s <a href="#compute-offerings">compute offering</a></td>
 </tr>
 <tr>
@@ -2031,6 +2031,14 @@ curl -X POST <span class="se">\</span>
 <tr>
 <td><code class="prettyprint">userData</code><br/><em>string</em></td>
 <td>User data is data that can be accessed and interpreted in the instance. You can read about common use cases <a href="https://cloudops.cloud.ca/kb/en?id=9">here</a>.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">cpuCount</code><br/><em>int</em></td>
+<td>If the <a href="#compute-offerings">compute offering</a> requires custom values (i.e. <code class="prettyprint">&quot;custom&quot;: true</code>), this value must be provided.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">memoryInMB</code><br/><em>int</em></td>
+<td>If the <a href="#compute-offerings">compute offering</a> requires custom values (i.e. <code class="prettyprint">&quot;custom&quot;: true</code>), this value must be provided.</td>
 </tr>
 </tbody></table>
 
@@ -2437,7 +2445,7 @@ curl -X POST <span class="se">\</span>
 <td>The description of the template</td>
 </tr>
 <tr>
-<td><code class="prettyprint">size&lt;</code>br/&gt;<em>long</em></td>
+<td><code class="prettyprint">size</code><br/><em>long</em></td>
 <td>The size of the template in bytes</td>
 </tr>
 <tr>
@@ -3774,7 +3782,7 @@ curl -X POST <span class="se">\</span>
 <td>The id of the network ACL that this rule belongs to</td>
 </tr>
 <tr>
-<td><code class="prettyprint">ruleNumber</code><br/><em>integer</em></td>
+<td><code class="prettyprint">ruleNumber</code><br/><em>int</em></td>
 <td>The relative position of this rule in its ACL</td>
 </tr>
 <tr>
@@ -3851,7 +3859,7 @@ curl -X POST <span class="se">\</span>
 <td>The id of the network ACL that this rule belongs to</td>
 </tr>
 <tr>
-<td><code class="prettyprint">ruleNumber</code><br/><em>integer</em></td>
+<td><code class="prettyprint">ruleNumber</code><br/><em>int</em></td>
 <td>The relative position of this rule in its ACL</td>
 </tr>
 <tr>
@@ -3919,7 +3927,7 @@ curl -X POST <span class="se">\</span>
 <td>The id of the network ACL to add this rule to</td>
 </tr>
 <tr>
-<td><code class="prettyprint">ruleNumber</code><br/><em>integer</em></td>
+<td><code class="prettyprint">ruleNumber</code><br/><em>int</em></td>
 <td>The relative position of this rule in its ACL</td>
 </tr>
 <tr>
@@ -3951,19 +3959,19 @@ For rules with protocol <code>ALL</code>, no protocol-specific information is re
 </tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">startPort</code><br/><em>integer</em></td>
+<td><code class="prettyprint">startPort</code><br/><em>int</em></td>
 <td>The start of the port range targeted by this rule. Required if the protocol is TCP or UDP</td>
 </tr>
 <tr>
-<td><code class="prettyprint">endPort</code><br/><em>integer</em></td>
+<td><code class="prettyprint">endPort</code><br/><em>int</em></td>
 <td>The end of the port range targeted by this rule. Required if the protocol is TCP or UDP</td>
 </tr>
 <tr>
-<td><code class="prettyprint">icmpType</code><br/><em>integer</em></td>
+<td><code class="prettyprint">icmpType</code><br/><em>int</em></td>
 <td>ICMP message type. Required if the protocol is ICMP</td>
 </tr>
 <tr>
-<td><code class="prettyprint">icmpCode</code><br/><em>integer</em></td>
+<td><code class="prettyprint">icmpCode</code><br/><em>int</em></td>
 <td>ICMP message error code. Required if the protocol is ICMP</td>
 </tr>
 </tbody></table>
@@ -3998,7 +4006,7 @@ A rule&rsquo;s protocol can only be changed from TCP to UDP or vice versa.
 </tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">ruleNumber</code><br/><em>integer</em></td>
+<td><code class="prettyprint">ruleNumber</code><br/><em>int</em></td>
 <td>The relative position of this rule in its ACL</td>
 </tr>
 <tr>
@@ -4018,19 +4026,19 @@ A rule&rsquo;s protocol can only be changed from TCP to UDP or vice versa.
 <td>The direction of traffic targeted by this rule. Either Ingress or Egress</td>
 </tr>
 <tr>
-<td><code class="prettyprint">startPort</code><br/><em>integer</em></td>
+<td><code class="prettyprint">startPort</code><br/><em>int</em></td>
 <td>The start of the port range targeted by this rule</td>
 </tr>
 <tr>
-<td><code class="prettyprint">endPort</code><br/><em>integer</em></td>
+<td><code class="prettyprint">endPort</code><br/><em>int</em></td>
 <td>The end of the port range targeted by this rule</td>
 </tr>
 <tr>
-<td><code class="prettyprint">icmpType</code><br/><em>integer</em></td>
+<td><code class="prettyprint">icmpType</code><br/><em>int</em></td>
 <td>ICMP message type</td>
 </tr>
 <tr>
-<td><code class="prettyprint">icmpCode</code><br/><em>integer</em></td>
+<td><code class="prettyprint">icmpCode</code><br/><em>int</em></td>
 <td>ICMP message error code</td>
 </tr>
 </tbody></table>
@@ -5934,16 +5942,18 @@ curl -X DELETE <span class="se">\</span>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"cpuNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cpuCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"memory"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1vCPU.512MB"</span><span class="w">
+            </span><span class="nt">"memoryInMB"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1vCPU.512MB"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"cpuNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cpuCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1fb0caba-8ffb-4e77-8dcb-401170e15e0a"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"memory"</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1vCPU.1GB"</span><span class="w">
+            </span><span class="nt">"memoryInMB"</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1vCPU.1GB"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -5975,12 +5985,28 @@ curl -X DELETE <span class="se">\</span>
 <td>The name of the compute offering</td>
 </tr>
 <tr>
-<td><code class="prettyprint">memory</code><br/><em>integer</em></td>
+<td><code class="prettyprint">memoryInMB</code><br/><em>int</em></td>
 <td>The amount of provisioned memory in MB</td>
 </tr>
 <tr>
-<td><code class="prettyprint">cpuNumber</code><br/><em>integer</em></td>
+<td><code class="prettyprint">cpuCount</code><br/><em>int</em></td>
 <td>The number of vCPUs available to the created <a href="#instances">instance</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">custom</code><br/><em>boolean</em></td>
+<td>If true, the <code class="prettyprint">cpuCount</code> and <code class="prettyprint">memoryInMB</code> fields will be missing from the response and will be required on <a href="#create-an-instance">instance create</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">cpuCountValues</code><br/><em>Array[integer]</em></td>
+<td>The list of valid cpu counts when used in the <a href="#create-an-instance">create instance operation</a>. Only present for custom offerings</td>
+</tr>
+<tr>
+<td><code class="prettyprint">memoryInMBValues</code><br/><em>Array[integer]</em></td>
+<td>The list of valid amounts of memory (in MB) that can be used in the <a href="#create-an-instance">create instance operation</a>. Only present for custom offerings</td>
+</tr>
+<tr>
+<td><code class="prettyprint">memoryInMBToCpuRatio</code><br/><em>integer</em></td>
+<td>The maximum ratio of memory (in MB) to number of CPU of an <a href="#instance">instance</a> created with this offering. Only present for custom offerings.</td>
 </tr>
 </tbody></table>
 
@@ -5996,7 +6022,8 @@ curl -X DELETE <span class="se">\</span>
         </span><span class="nt">"cpuNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"memory"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1vCPU.512MB"</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1vCPU.512MB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -6024,12 +6051,28 @@ curl -X DELETE <span class="se">\</span>
 <td>The name of the compute offering</td>
 </tr>
 <tr>
-<td><code class="prettyprint">memory</code><br/><em>integer</em></td>
+<td><code class="prettyprint">memoryInMB</code><br/><em>int</em></td>
 <td>The amount of provisioned memory in MB</td>
 </tr>
 <tr>
-<td><code class="prettyprint">cpuNumber</code><br/><em>integer</em></td>
+<td><code class="prettyprint">cpuCount</code><br/><em>int</em></td>
 <td>The number of vCPUs available to the created <a href="#instances">instance</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">custom</code><br/><em>boolean</em></td>
+<td>If true, the <code class="prettyprint">cpuCount</code> and <code class="prettyprint">memoryInMB</code> fields will be missing from the response and will be required on <a href="#create-an-instance">instance create</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">cpuCountValues</code><br/><em>Array[integer]</em></td>
+<td>The list of valid cpu counts when used in the <a href="#create-an-instance">create instance operation</a>. Only present for custom offerings</td>
+</tr>
+<tr>
+<td><code class="prettyprint">memoryInMBValues</code><br/><em>Array[integer]</em></td>
+<td>The list of valid amounts of memory (in MB) that can be used in the <a href="#create-an-instance">create instance operation</a>. Only present for custom offerings</td>
+</tr>
+<tr>
+<td><code class="prettyprint">memoryInMBToCpuRatio</code><br/><em>integer</em></td>
+<td>The maximum ratio of memory (in MB) to number of CPU of an <a href="#instance">instance</a> created with this offering. Only present for custom offerings.</td>
 </tr>
 </tbody></table>
 
@@ -6090,7 +6133,7 @@ curl -X DELETE <span class="se">\</span>
 <td>The name of the disk offering</td>
 </tr>
 <tr>
-<td><code class="prettyprint">gbSize</code><br/><em>integer</em></td>
+<td><code class="prettyprint">gbSize</code><br/><em>int</em></td>
 <td>The size of the <a href="#volumes">data volume</a> in GB</td>
 </tr>
 <tr>
@@ -6144,7 +6187,7 @@ curl -X DELETE <span class="se">\</span>
 <td>The name of the disk offering</td>
 </tr>
 <tr>
-<td><code class="prettyprint">gbSize</code><br/><em>integer</em></td>
+<td><code class="prettyprint">gbSize</code><br/><em>int</em></td>
 <td>The size of the <a href="#volumes">data volume</a> in GB</td>
 </tr>
 <tr>
@@ -6159,7 +6202,7 @@ curl -X DELETE <span class="se">\</span>
 
               <h2 id="zones">Zones</h2>
 
-<p>Each zone consists of physically isolated hosts, storage, and networking infrastructure. Like deploying workloads across regions, deploying workloads over multiple zones can help ensure high availability of applications. NB: the ontario region (i.e. compute-on) has a single zone (ON-1), but the quebec region (i.e. compute-qc) has two (QC-1, QC-2).</p>
+<p>Each zone consists of physically isolated hosts, storage, and networking infrastructure. Like deploying workloads across regions, deploying workloads over multiple zones can help ensure high availability of applications.</p>
 
 <h4 id="list-zones">List zones</h4>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
