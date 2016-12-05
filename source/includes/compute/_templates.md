@@ -48,7 +48,7 @@ Attributes | &nbsp;
 `isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#instances) with this template
 `created`<br/>*string* | The creation date of the template
 `osType`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
-`availableInZones`<br/>*array[UUID]* | List of all zone ids that the template is available in
+`availableInZones`<br/>*array[UUID]* | List of all [zone ids](#zones) that the template is available in
 
 #### Retrieve a template
 
@@ -94,4 +94,4 @@ Attributes | &nbsp;
 `isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#instances) with this template
 `created`<br/>*string* | The creation date of the template
 `osType`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
-`availableInZones`<br/>*array[UUID]* | List of all zone ids that the template is available in 
+`availableInZones`<br/>*array[UUID]* | List of all [zone ids](#zones) that the template is available in
