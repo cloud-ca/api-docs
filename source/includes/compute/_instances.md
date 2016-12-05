@@ -62,8 +62,8 @@ Attributes | &nbsp;
 `templateName`<br/>*string* | The [template](#templates) name of the instance
 `computeOfferingId`<br/>*UUID* | The [compute offering](#compute-offerings) id of the instance
 `computeOfferingName`<br/>*string* | The [compute offering](#compute-offerings) name of the instance
-`cpuCount`<br/>*integer* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
-`memoryInMB`<br/>*integer* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
+`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
+`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
 `networkId`<br/>*UUID* | The id of the [tier](#tiers) where instance is deployed
 `networkName`<br/>*string* | The name of the [tier](#tiers) where instance is deployed
 `hostname`<br/>*string* | The host name of the instance
@@ -150,8 +150,8 @@ Attributes | &nbsp;
 `templateName`<br/>*string* | The [template](#templates) name of the instance
 `computeOfferingId`<br/>*UUID* | The [compute offering](#compute-offerings) id of the instance
 `computeOfferingName`<br/>*string* | The [compute offering](#compute-offerings) name of the instance
-`cpuCount`<br/>*integer* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
-`memoryInMB`<br/>*integer* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
+`cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
+`memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
 `networkId`<br/>*UUID* | The id of the [tier](#tiers) where instance is deployed
 `networkName`<br/>*string* | The name of the [tier](#tiers) where instance is deployed
 `hostname`<br/>*string* | The host name of the instance
@@ -243,6 +243,9 @@ Optional | &nbsp;
 `affinityGroupId`<br/>*UUID* | The [affinity group](#affinity-groups) where to create the instance.
 `portsToForward`<br/>*array[string]* | The [ports](#port-forwarding-rules) you would like to open on the instance. It will try to use an existing [public IP address](#public-ips), if it can't find one it will [acquire a new public IP](#acquire-a-public-ip).
 `userData`<br/>*string* | User data is data that can be accessed and interpreted in the instance. You can read about common use cases [here](https://cloudops.cloud.ca/kb/en?id=9).
+`cpuCount`<br/>*int* | If the [compute offering](#compute-offerings) requires custom values (i.e. `"custom": true`), this value must be provided.
+`memoryInMB`<br/>*int* | If the [compute offering](#compute-offerings) requires custom values (i.e. `"custom": true`), this value must be provided.
+
 
 
 <!-------------------- UPDATE AN INSTANCE -------------------->

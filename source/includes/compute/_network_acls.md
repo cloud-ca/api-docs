@@ -193,7 +193,7 @@ Attributes                 | &nbsp;
 ---------------------------|-------
 `id`<br/>*UUID*            | The id of the network ACL rule
 `networkAclId`<br/>*UUID*  | The id of the network ACL that this rule belongs to
-`ruleNumber`<br/>*integer* | The relative position of this rule in its ACL
+`ruleNumber`<br/>*int* | The relative position of this rule in its ACL
 `cidr`<br/>*CIDR*          | The network addresses targeted by this rule
 `action`<br/>*string*      | What to do with traffic matched by this rule. Either Allow or Deny
 `protocol`<br/>*string*    | The protocols targeted by this rule. TCP, UDP, ICMP, or ALL
@@ -236,7 +236,7 @@ Attributes                 | &nbsp;
 ---------------------------|-------
 `id`<br/>*UUID*            | The id of the network ACL rule
 `networkAclId`<br/>*UUID*  | The id of the network ACL that this rule belongs to
-`ruleNumber`<br/>*integer* | The relative position of this rule in its ACL
+`ruleNumber`<br/>*int* | The relative position of this rule in its ACL
 `cidr`<br/>*CIDR*          | The network addresses targeted by this rule
 `action`<br/>*string*      | What to do with traffic matched by this rule. Either Allow or Deny
 `protocol`<br/>*string*    | The protocols targeted by this rule. TCP, UDP, ICMP, or ALL
@@ -281,7 +281,7 @@ resource "cloudca_network_acl_rule" "my_acl_rule" {
 Required                   | &nbsp;
 ---------------------------|-------
 `networkAclId`<br/>*UUID*  | The id of the network ACL to add this rule to
-`ruleNumber`<br/>*integer* | The relative position of this rule in its ACL
+`ruleNumber`<br/>*int* | The relative position of this rule in its ACL
 `cidr`<br/>*CIDR*          | The network addresses targeted by this rule
 `action`<br/>*string*      | What to do with traffic matched by this rule. Either Allow or Deny
 `protocol`<br/>*string*    | The protocols targeted by this rule. TCP, UDP, ICMP, or ALL
@@ -293,10 +293,10 @@ For rules with protocol <code>ALL</code>, no protocol-specific information is re
 
 Protocol-specific       | &nbsp;
 ------------------------|-------
-`startPort`<br/>*integer* | The start of the port range targeted by this rule. Required if the protocol is TCP or UDP
-`endPort`<br/>*integer*   | The end of the port range targeted by this rule. Required if the protocol is TCP or UDP
-`icmpType`<br/>*integer*  | ICMP message type. Required if the protocol is ICMP
-`icmpCode`<br/>*integer*  | ICMP message error code. Required if the protocol is ICMP
+`startPort`<br/>*int* | The start of the port range targeted by this rule. Required if the protocol is TCP or UDP
+`endPort`<br/>*int*   | The end of the port range targeted by this rule. Required if the protocol is TCP or UDP
+`icmpType`<br/>*int*  | ICMP message type. Required if the protocol is ICMP
+`icmpCode`<br/>*int*  | ICMP message error code. Required if the protocol is ICMP
 
 #### Update a network ACL rule
 
@@ -325,15 +325,15 @@ A rule's protocol can only be changed from TCP to UDP or vice versa.
 
 Optional                   | &nbsp;
 ---------------------------|-------
-`ruleNumber`<br/>*integer* | The relative position of this rule in its ACL
+`ruleNumber`<br/>*int* | The relative position of this rule in its ACL
 `cidr`<br/>*CIDR*          | The network addresses targeted by this rule
 `action`<br/>*string*      | What to do with traffic matched by this rule. Either Allow or Deny
 `protocol`<br/>*string*    | The protocols targeted by this rule. TCP, UDP, ICMP, or ALL
 `trafficType`<br/>*string* | The direction of traffic targeted by this rule. Either Ingress or Egress
-`startPort`<br/>*integer*  | The start of the port range targeted by this rule
-`endPort`<br/>*integer*    | The end of the port range targeted by this rule
-`icmpType`<br/>*integer*   | ICMP message type
-`icmpCode`<br/>*integer*   | ICMP message error code
+`startPort`<br/>*int*  | The start of the port range targeted by this rule
+`endPort`<br/>*int*    | The end of the port range targeted by this rule
+`icmpType`<br/>*int*   | ICMP message type
+`icmpCode`<br/>*int*   | ICMP message error code
 
 #### Delete a network ACL rule
 
