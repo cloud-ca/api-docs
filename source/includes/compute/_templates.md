@@ -81,7 +81,7 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the template
 `name`<br/>*string* | The name of the template
 `description`<br/>*string* | The description of the template
-`size<`br/>*long* | The size of the template in bytes
+`size`<br/>*long* | The size of the template in bytes
 `isPublic`<br/>*boolean* | true if public to everyone. Your custom templates will always be private
 `isReady`<br/>*boolean* | true if the template is ready to be used for a new [instance](#instances)
 `isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#instances) with this template
