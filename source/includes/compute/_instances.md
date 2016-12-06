@@ -470,7 +470,9 @@ curl -X POST \
 ```go
 resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
-success, err := ccaResources.Instances.ChangeComputeOffering("instance_id", "new_compute_offering_id")
+success, err := ccaResources.Instances.ChangeComputeOffering(Instance {
+   Id: "instance_id",
+   ComputeOfferingId: "new_compute_offering_id"})
 ```
 
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeComputeOffering</code>
@@ -480,6 +482,15 @@ Change the compute offering of an existing instance.
 <aside class="caution">
   This will force a reboot of your instance.
 </aside>
+
+Required | &nbsp;
+------ | -----------
+`computeOfferingId`<br/>*UUID* | Id of the new compute offering for the instnace
+
+Required | (if custom compute offering)
+------ | -----------
+`cpuCount`<br/>*integer* | Number of CPUs for the instance
+`memoryInMB`<br/>*integer* | Amount of memory in MB for the instance
 
 <!-------------------- CHANGE COMPUTE OFFERING OF AN INSTANCE -------------------->
 
