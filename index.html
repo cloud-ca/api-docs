@@ -2252,7 +2252,9 @@ curl -X POST <span class="se">\</span>
 </code></pre>
 <pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
 </span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
-</span><span class="n">success</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Instances</span><span class="o">.</span><span class="n">ChangeComputeOffering</span><span class="p">(</span><span class="s">"instance_id"</span><span class="p">,</span><span class="x"> </span><span class="s">"new_compute_offering_id"</span><span class="p">)</span><span class="x">
+</span><span class="n">success</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Instances</span><span class="o">.</span><span class="n">ChangeComputeOffering</span><span class="p">(</span><span class="n">Instance</span><span class="x"> </span><span class="p">{</span><span class="x">
+   </span><span class="n">Id</span><span class="o">:</span><span class="x"> </span><span class="s">"instance_id"</span><span class="p">,</span><span class="x">
+   </span><span class="n">ComputeOfferingId</span><span class="o">:</span><span class="x"> </span><span class="s">"new_compute_offering_id"</span><span class="p">})</span><span class="x">
 </span></code></pre>
 
 <p><code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/instances/:id?operation=changeComputeOffering</code></p>
@@ -2262,6 +2264,34 @@ curl -X POST <span class="se">\</span>
 <aside class="caution">
   This will force a reboot of your instance.
 </aside>
+
+<table><thead>
+<tr>
+<th>Required</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">computeOfferingId</code><br/><em>UUID</em></td>
+<td>Id of the new compute offering for the instnace</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Required</th>
+<th>(if custom compute offering)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">cpuCount</code><br/><em>integer</em></td>
+<td>Number of CPUs for the instance</td>
+</tr>
+<tr>
+<td><code class="prettyprint">memoryInMB</code><br/><em>integer</em></td>
+<td>Amount of memory in MB for the instance</td>
+</tr>
+</tbody></table>
 
 <!-------------------- CHANGE COMPUTE OFFERING OF AN INSTANCE -------------------->
 
@@ -2343,7 +2373,10 @@ curl -X POST <span class="se">\</span>
     </span><span class="nt">"isDynamicallyScalable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"sshKeyEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created"</span><span class="p">:</span><span class="s2">"2016-10-24 2:40:29 PM EDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"osType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other (64-bit)"</span><span class="w">
+    </span><span class="nt">"osType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other (64-bit)"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"availableInZones"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="s2">"ea901007-056b-4c50-bb3a-2dd635fce2ab"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}],</span><span class="w">
   </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"recordCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
@@ -2397,6 +2430,10 @@ curl -X POST <span class="se">\</span>
 <td><code class="prettyprint">osType</code><br/><em>string</em></td>
 <td>The OS type of the template (e.g. Ubuntu, CentOS&hellip;)</td>
 </tr>
+<tr>
+<td><code class="prettyprint">availableInZones</code><br/><em>array[UUID]</em></td>
+<td>List of all <a href="#zones">zone ids</a> that the template is available in</td>
+</tr>
 </tbody></table>
 
 <h4 id="retrieve-a-template">Retrieve a template</h4>
@@ -2417,7 +2454,10 @@ curl -X POST <span class="se">\</span>
     </span><span class="nt">"isDynamicallyScalable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"sshKeyEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created"</span><span class="p">:</span><span class="s2">"2016-10-24 2:40:29 PM EDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"osType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other (64-bit)"</span><span class="w">
+    </span><span class="nt">"osType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other (64-bit)"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"availableInZones"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="s2">"ea901007-056b-4c50-bb3a-2dd635fce2ab"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2467,6 +2507,10 @@ curl -X POST <span class="se">\</span>
 <tr>
 <td><code class="prettyprint">osType</code><br/><em>string</em></td>
 <td>The OS type of the template (e.g. Ubuntu, CentOS&hellip;)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">availableInZones</code><br/><em>array[UUID]</em></td>
+<td>List of all <a href="#zones">zone ids</a> that the template is available in</td>
 </tr>
 </tbody></table>
 
@@ -5942,17 +5986,18 @@ curl -X DELETE <span class="se">\</span>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"cpuCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"memoryInMB"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1vCPU.512MB"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"custom"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom CPU and memory"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"custom"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"availableCpuCountValues"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">],</span><span class="w">
+            </span><span class="nt">"availableMemoryInMBValues"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">2048</span><span class="p">,</span><span class="w"> </span><span class="mi">4096</span><span class="p">,</span><span class="w"> </span><span class="mi">8192</span><span class="p">],</span><span class="w">
+            </span><span class="nt">"maxMemoryInMBToCpuRatio"</span><span class="p">:</span><span class="w"> </span><span class="mi">2048</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"cpuCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1fb0caba-8ffb-4e77-8dcb-401170e15e0a"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"memoryInMB"</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w">
             </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1vCPU.1GB"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cpuCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"memoryInMB"</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w">
             </span><span class="nt">"custom"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -5997,15 +6042,15 @@ curl -X DELETE <span class="se">\</span>
 <td>If true, the <code class="prettyprint">cpuCount</code> and <code class="prettyprint">memoryInMB</code> fields will be missing from the response and will be required on <a href="#create-an-instance">instance create</a></td>
 </tr>
 <tr>
-<td><code class="prettyprint">cpuCountValues</code><br/><em>Array[integer]</em></td>
+<td><code class="prettyprint">availableCpuCountValues</code><br/><em>Array[integer]</em></td>
 <td>The list of valid cpu counts when used in the <a href="#create-an-instance">create instance operation</a>. Only present for custom offerings</td>
 </tr>
 <tr>
-<td><code class="prettyprint">memoryInMBValues</code><br/><em>Array[integer]</em></td>
+<td><code class="prettyprint">availableMemoryInMBValues</code><br/><em>Array[integer]</em></td>
 <td>The list of valid amounts of memory (in MB) that can be used in the <a href="#create-an-instance">create instance operation</a>. Only present for custom offerings</td>
 </tr>
 <tr>
-<td><code class="prettyprint">memoryInMBToCpuRatio</code><br/><em>integer</em></td>
+<td><code class="prettyprint">maxMemoryInMBToCpuRatio</code><br/><em>integer</em></td>
 <td>The maximum ratio of memory (in MB) to number of CPU of an <a href="#instance">instance</a> created with this offering. Only present for custom offerings.</td>
 </tr>
 </tbody></table>
@@ -6019,10 +6064,10 @@ curl -X DELETE <span class="se">\</span>
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"cpuNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"memory"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w">
         </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1vCPU.512MB"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"cpuCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"memoryInMB"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w">
         </span><span class="nt">"custom"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6063,15 +6108,15 @@ curl -X DELETE <span class="se">\</span>
 <td>If true, the <code class="prettyprint">cpuCount</code> and <code class="prettyprint">memoryInMB</code> fields will be missing from the response and will be required on <a href="#create-an-instance">instance create</a></td>
 </tr>
 <tr>
-<td><code class="prettyprint">cpuCountValues</code><br/><em>Array[integer]</em></td>
+<td><code class="prettyprint">availableCpuCountValues</code><br/><em>Array[integer]</em></td>
 <td>The list of valid cpu counts when used in the <a href="#create-an-instance">create instance operation</a>. Only present for custom offerings</td>
 </tr>
 <tr>
-<td><code class="prettyprint">memoryInMBValues</code><br/><em>Array[integer]</em></td>
+<td><code class="prettyprint">availableMemoryInMBValues</code><br/><em>Array[integer]</em></td>
 <td>The list of valid amounts of memory (in MB) that can be used in the <a href="#create-an-instance">create instance operation</a>. Only present for custom offerings</td>
 </tr>
 <tr>
-<td><code class="prettyprint">memoryInMBToCpuRatio</code><br/><em>integer</em></td>
+<td><code class="prettyprint">maxMemoryInMBToCpuRatio</code><br/><em>integer</em></td>
 <td>The maximum ratio of memory (in MB) to number of CPU of an <a href="#instance">instance</a> created with this offering. Only present for custom offerings.</td>
 </tr>
 </tbody></table>
