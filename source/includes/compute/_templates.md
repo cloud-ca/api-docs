@@ -22,7 +22,10 @@ curl -X GET \
     "isDynamicallyScalable": true,
     "sshKeyEnabled": true,
     "created":"2016-10-24 2:40:29 PM EDT",
-    "osType": "Other (64-bit)"
+    "osType": "Other (64-bit)",
+    "availableInZones": [
+       "ea901007-056b-4c50-bb3a-2dd635fce2ab"
+    ]
   }],
   "metadata": {
     "recordCount": 1
@@ -45,6 +48,7 @@ Attributes | &nbsp;
 `isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#instances) with this template
 `created`<br/>*string* | The creation date of the template
 `osType`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
+`availableInZones`<br/>*array[UUID]* | List of all [zone ids](#zones) that the template is available in
 
 #### Retrieve a template
 
@@ -67,7 +71,10 @@ curl -X GET \
     "isDynamicallyScalable": true,
     "sshKeyEnabled": true,
     "created":"2016-10-24 2:40:29 PM EDT",
-    "osType": "Other (64-bit)"
+    "osType": "Other (64-bit)",
+    "availableInZones": [
+       "ea901007-056b-4c50-bb3a-2dd635fce2ab"
+    ]
   }
 }
 ```
@@ -81,9 +88,10 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the template
 `name`<br/>*string* | The name of the template
 `description`<br/>*string* | The description of the template
-`size<`br/>*long* | The size of the template in bytes
+`size`<br/>*long* | The size of the template in bytes
 `isPublic`<br/>*boolean* | true if public to everyone. Your custom templates will always be private
 `isReady`<br/>*boolean* | true if the template is ready to be used for a new [instance](#instances)
 `isDynamicallyScalable`<br/>*boolean* | true if you can dynamically scale an [instance](#instances) with this template
 `created`<br/>*string* | The creation date of the template
 `osType`<br/>*string* | The OS type of the template (e.g. Ubuntu, CentOS...)
+`availableInZones`<br/>*array[UUID]* | List of all [zone ids](#zones) that the template is available in

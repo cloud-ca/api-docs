@@ -1,6 +1,6 @@
 ## Zones
 
-Each zone consists of physically isolated hosts, storage, and networking infrastructure. Like deploying workloads across regions, deploying workloads over multiple zones can help ensure high availability of applications. NB: the ontario region (i.e. compute-on) has a single zone (ON-1), but the quebec region (i.e. compute-qc) has two (QC-1, QC-2).
+Each zone consists of physically isolated hosts, storage, and networking infrastructure. Like deploying workloads across regions, deploying workloads over multiple zones can help ensure high availability of applications.
 
 #### List zones
 

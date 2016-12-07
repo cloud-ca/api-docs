@@ -15,16 +15,19 @@ curl -X GET \
 {
     "data": [
         {
-            "cpuNumber": 1,
             "id": "40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f",
-            "memory": 512,
-            "name": "1vCPU.512MB"
+            "name": "Custom CPU and memory",
+            "custom" : true,
+            "availableCpuCountValues": [1, 2, 4, 8],
+            "availableMemoryInMBValues": [1024, 2048, 4096, 8192],
+            "maxMemoryInMBToCpuRatio": 2048
         },
         {
-            "cpuNumber": 1,
             "id": "1fb0caba-8ffb-4e77-8dcb-401170e15e0a",
-            "memory": 1024,
-            "name": "1vCPU.1GB"
+            "name": "1vCPU.1GB",
+            "cpuCount": 1,
+            "memoryInMB": 1024,
+            "custom" : false
         }
     ],
     "metadata": {
@@ -46,8 +49,12 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the compute offering
 `name`<br/>*string* | The name of the compute offering
-`memory`<br/>*integer* | The amount of provisioned memory in MB
-`cpuNumber`<br/>*integer* | The number of vCPUs available to the created [instance](#instances)
+`memoryInMB`<br/>*int* | The amount of provisioned memory in MB
+`cpuCount`<br/>*int* | The number of vCPUs available to the created [instance](#instances)
+`custom`<br/>*boolean* | If true, the `cpuCount` and `memoryInMB` fields will be missing from the response and will be required on [instance create](#create-an-instance)
+`availableCpuCountValues`<br/>*Array[integer]* | The list of valid cpu counts when used in the [create instance operation](#create-an-instance). Only present for custom offerings
+`availableMemoryInMBValues`<br/>*Array[integer]* | The list of valid amounts of memory (in MB) that can be used in the [create instance operation](#create-an-instance). Only present for custom offerings
+`maxMemoryInMBToCpuRatio`<br/>*integer* | The maximum ratio of memory (in MB) to number of CPU of an [instance](#instance) created with this offering. Only present for custom offerings.
 
 #### Retrieve a compute offering
 
@@ -61,10 +68,11 @@ curl -X GET \
 ```json
 {
     "data": {
-        "cpuNumber": 1,
         "id": "40a2e5f7-22e6-4d1e-b03b-4a4b7c9cbc6f",
-        "memory": 512,
-        "name": "1vCPU.512MB"
+        "name": "1vCPU.512MB",
+        "cpuCount": 1,
+        "memoryInMB": 512,
+        "custom": false
     }
 }
 ```
@@ -82,5 +90,9 @@ Attributes | &nbsp;
 ---------- | -----
 `id`<br/>*UUID* | The id of the compute offering
 `name`<br/>*string* | The name of the compute offering
-`memory`<br/>*integer* | The amount of provisioned memory in MB
-`cpuNumber`<br/>*integer* | The number of vCPUs available to the created [instance](#instances)
+`memoryInMB`<br/>*int* | The amount of provisioned memory in MB
+`cpuCount`<br/>*int* | The number of vCPUs available to the created [instance](#instances)
+`custom`<br/>*boolean* | If true, the `cpuCount` and `memoryInMB` fields will be missing from the response and will be required on [instance create](#create-an-instance)
+`availableCpuCountValues`<br/>*Array[integer]* | The list of valid cpu counts when used in the [create instance operation](#create-an-instance). Only present for custom offerings
+`availableMemoryInMBValues`<br/>*Array[integer]* | The list of valid amounts of memory (in MB) that can be used in the [create instance operation](#create-an-instance). Only present for custom offerings
+`maxMemoryInMBToCpuRatio`<br/>*integer* | The maximum ratio of memory (in MB) to number of CPU of an [instance](#instance) created with this offering. Only present for custom offerings.
