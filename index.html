@@ -1569,9 +1569,13 @@ An easy way to remember the structure of API endpoints is that going from left t
 
 <p><em>If you don&rsquo;t know what a sub-organization is, you can safely skip this section.</em></p>
 
-<p>When carrying out an operation in an organization other than your own, make sure to specify the <code class="prettyprint">org_id</code> query parameter in your request, like so</p>
+<p>When listing entities or carrying out an operation in an organization other than your own, make sure to specify the <code class="prettyprint">org_id</code> query parameter in your request. For operations, this looks like:</p>
 
-<p><code>https://api.cloud.ca/v1/services/:service_code/:environment_name/:entity_type/:operation?<strong>org_id=:org_id</strong></code></p>
+<p><code>https://api.cloud.ca/v1/services/:service_code/:environment_name/:entity_type/:entity_id?operation=:operation&amp;<strong>org_id=:org_id</strong></code></p>
+
+<p>and for listing entities, looks like:</p>
+
+<p><code>https://api.cloud.ca/v1/services/:service_code/:environment_name/:entity_type?<strong>org_id=:org_id</strong></code></p>
 
 <h2 id="tasks">Tasks</h2>
 <pre class="highlight shell"><code><span class="c"># The above command returns JSON structured like this:</span>
