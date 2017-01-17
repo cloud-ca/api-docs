@@ -4734,6 +4734,575 @@ curl -X DELETE <span class="se">\</span>
 
 <p>Delete an existing port forwarding rule.</p>
 
+              <!-- Load balancer rules -->
+
+<h3 id="load-balancer-rules">Load balancer rules</h3>
+
+<h4 id="list-load-balancer-rules">List load balancer rules</h4>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
+   -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/loadbalancerrules?public_ip_id=eb763d03-9935-4cd4-8a42-99134e242ccb"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32804ef2-dea6-4b07-b507-b3562bb9844a"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web_lbr"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"networkId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"394873ef-8655-49b6-8096-58b99c4e2347"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"publicIp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"172.31.3.202"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"publicIpId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44ebac5d-18cc-4eea-ab59-7a2af0691c88"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"publicPort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"privatePort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"algorithm"</span><span class="p">:</span><span class="w"> </span><span class="s2">"roundrobin"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ssl"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"stickinessMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppCookie"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"instanceIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+           </span><span class="s2">"d7048640-35d4-4a4f-8193-f4837da7e861"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"sslCertificateId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1bea50a-e5f0-4b1e-bc0d-1dde909ac49a"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"stickinessPolicyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"217c1140-4146-4af0-92e9-ad47d4ff5ba9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"stickinessPolicyParameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"indirect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some_domain"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"postonly"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"nocache"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"cookieName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"recordCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
+</span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
+</span><span class="n">lbrs</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">LoadBalancerRules</span><span class="o">.</span><span class="n">List</span><span class="p">()</span><span class="x">
+</span></code></pre>
+
+<p><code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules?vpc_id=:vpc_id</code></p>
+
+<p>Retrieve a list of load balancer rules.</p>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code><br/><em>UUID</em></td>
+<td>The id of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">name</code><br/><em>string</em></td>
+<td>The name of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">networkId</code><br/><em>string</em></td>
+<td>The <a href="#tiers">tier</a> id of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">publicIp</code><br/><em>UUID</em></td>
+<td>The <a href="#public-ips">public IP</a> of this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">publicIpId</code><br/><em>string</em></td>
+<td>The id of the <a href="#public-ips">public IP</a> of this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">publicPort</code><br/><em>int</em></td>
+<td>The public port of this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">privatePort</code><br/><em>int</em></td>
+<td>The private port of this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">algorithm</code><br/><em>string</em></td>
+<td>The algorithm to use for this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">protocol</code><br/><em>string</em></td>
+<td>The protocol to load balance</td>
+</tr>
+<tr>
+<td><code class="prettyprint">stickinessMethod</code><br/><em>string</em></td>
+<td>The stickiness policy of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">stickinessPolicyParameters</code><br/><em>Map[string,string]</em></td>
+<td>The stickiness policy parameters of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">instanceIds</code><br/><em>Array[string]</em></td>
+<td>The ids of the instances being load balanced</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Query Parameters</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">public_ip_id</code><br/><em>UUID</em></td>
+<td>Filter the list to only retrieve the load balancer rules of a <a href="#public-ips">public IP</a></td>
+</tr>
+</tbody></table>
+
+<h4 id="retrieve-a-load-balancer-rule">Retrieve a load balancer rule</h4>
+<pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
+   -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/loadbalancerrules/:id"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f8ed7f44-449c-4510-848c-dc18e6665db1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"web_lbr"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"networkId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"394873ef-8655-49b6-8096-58b99c4e2347"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"publicIp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"172.31.3.202"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"publicIpId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44ebac5d-18cc-4eea-ab59-7a2af0691c88"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"publicPort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"privatePort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"algorithm"</span><span class="p">:</span><span class="w"> </span><span class="s2">"roundrobin"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tcp"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"stickinessMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LbCookie"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"instanceIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="s2">"056cbb23-9021-4df7-b458-721ed9153ba9"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"stickinessPolicyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"29a1946c-5b59-4ab1-b9b8-5c73444b1c10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"stickinessPolicyParameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"indirect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some_domain"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"postonly"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"nocache"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"cookieName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
+</span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
+</span><span class="n">lbr</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">LoadBalancerRules</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="s">"736d0c2e-d6b5-43fc-bcf0-732fce9a509e"</span><span class="p">)</span><span class="x">
+</span></code></pre>
+
+<p><code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id</code></p>
+
+<p>Retrieve a specific load balancer rule by its id.</p>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code><br/><em>UUID</em></td>
+<td>The id of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">name</code><br/><em>string</em></td>
+<td>The name of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">networkId</code><br/><em>string</em></td>
+<td>The <a href="#tiers">tier</a> id of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">publicIp</code><br/><em>UUID</em></td>
+<td>The <a href="#public-ips">public IP</a> of this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">publicIpId</code><br/><em>string</em></td>
+<td>The id of the <a href="#public-ips">public IP</a> of this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">publicPort</code><br/><em>int</em></td>
+<td>The public port of this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">privatePort</code><br/><em>int</em></td>
+<td>The private port of this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">algorithm</code><br/><em>string</em></td>
+<td>The algorithm to use for this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">protocol</code><br/><em>string</em></td>
+<td>The protocol to load balance</td>
+</tr>
+<tr>
+<td><code class="prettyprint">stickinessMethod</code><br/><em>string</em></td>
+<td>The stickiness policy of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">stickinessPolicyParameters</code><br/><em>Map[string,string]</em></td>
+<td>The stickiness policy parameters of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">instanceIds</code><br/><em>Array[string]</em></td>
+<td>The ids of the instances being load balanced</td>
+</tr>
+</tbody></table>
+
+<h4 id="create-a-load-balancer-rule">Create a load balancer rule</h4>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+   -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
+   -d <span class="s2">"request_body"</span> <span class="se">\</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/loadbalancerrules"</span>
+<span class="c"># Request example:</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"publicIpId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44ebac5d-18cc-4eea-ab59-7a2af0691c88"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"networkId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"093f6208-8a56-4035-8e71-3e39029fc5aa"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"publicPort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"privatePort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"algorithm"</span><span class="p">:</span><span class="w"> </span><span class="s2">"roundrobin"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ssl"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"stickinessMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppCookie"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"instanceIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"d7048640-35d4-4a4f-8193-f4837da7e861"</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"sslCertificateId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1bea50a-e5f0-4b1e-bc0d-1dde909ac49a"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"stickinessPolicyParameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"holdtime"</span><span class="p">:</span><span class="w"> </span><span class="mi">3600000</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
+</span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
+</span><span class="n">lbr</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">LoadBalancerRules</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">LoadBalancerRule</span><span class="p">{</span><span class="x">
+   </span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"test"</span><span class="p">,</span><span class="x">
+   </span><span class="n">PublicIpId</span><span class="o">:</span><span class="x"> </span><span class="s">"44ebac5d-18cc-4eea-ab59-7a2af0691c88"</span><span class="p">,</span><span class="x">
+   </span><span class="n">NetworkId</span><span class="o">:</span><span class="x"> </span><span class="s">"093f6208-8a56-4035-8e71-3e39029fc5aa"</span><span class="p">,</span><span class="x">
+   </span><span class="n">PublicPort</span><span class="o">:</span><span class="x"> </span><span class="s">"80"</span><span class="p">,</span><span class="x">
+   </span><span class="n">PrivatePort</span><span class="o">:</span><span class="x"> </span><span class="s">"80"</span><span class="p">,</span><span class="x">
+   </span><span class="n">Algorithm</span><span class="o">:</span><span class="x"> </span><span class="s">"roundrobin"</span><span class="p">,</span><span class="x">
+   </span><span class="n">Protocol</span><span class="o">:</span><span class="x"> </span><span class="s">"tcp"</span><span class="p">,</span><span class="x">
+   </span><span class="n">StickinessMethod</span><span class="o">:</span><span class="x"> </span><span class="s">"AppCookie"</span><span class="p">,</span><span class="x">
+   </span><span class="n">StickinesPolicyParameters</span><span class="o">:</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{,</span><span class="x">
+      </span><span class="s">"holdtime"</span><span class="o">:</span><span class="x"> </span><span class="s">"3600000"</span><span class="p">,</span><span class="x">
+   </span><span class="p">},</span><span class="x">
+   </span><span class="n">InstanceIds</span><span class="o">:</span><span class="x"> </span><span class="p">[</span><span class="s">"d7048640-35d4-4a4f-8193-f4837da7e861"</span><span class="p">]</span><span class="x">
+</span><span class="p">})</span><span class="x">
+</span></code></pre>
+<pre class="highlight dart"><code><span class="n">resource</span> <span class="s">"cloudca_load_balancer_rule"</span> <span class="s">"lbr"</span> <span class="o">{</span>
+    <span class="n">service_code</span> <span class="o">=</span> <span class="s">"compute-qc"</span>
+    <span class="n">environment_name</span> <span class="o">=</span> <span class="s">"dev"</span>
+    <span class="n">name</span><span class="o">=</span><span class="s">"web_lb"</span>
+    <span class="n">public_ip_id</span><span class="o">=</span><span class="s">"5cd3a059-f15b-49f7-b7e1-254fef15968d"</span>
+    <span class="n">protocol</span><span class="o">=</span><span class="s">"tcp"</span>
+    <span class="n">algorithm</span> <span class="o">=</span> <span class="s">"leastconn"</span>
+    <span class="n">public_port</span> <span class="o">=</span> <span class="mi">80</span>
+    <span class="n">private_port</span> <span class="o">=</span> <span class="mi">80</span>
+    <span class="n">instance_ids</span> <span class="o">=</span> <span class="o">[</span><span class="s">"071e2929-672e-45bc-a5b6-703d17c08367"</span><span class="o">]</span>
+    <span class="n">stickiness_method</span> <span class="o">=</span> <span class="s">"AppCookie"</span>
+    <span class="n">stickiness_params</span> <span class="o">{</span>
+       <span class="n">cookieName</span> <span class="o">=</span> <span class="s">"allo"</span>
+    <span class="o">}</span>
+ <span class="o">}</span>
+</code></pre>
+
+<p><code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules</code></p>
+
+<p>Create a new load balancer rule associated to a public IP.</p>
+
+<table><thead>
+<tr>
+<th>Required</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">name</code><br/><em>string</em></td>
+<td>The name of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">publicIpId</code><br/><em>string</em></td>
+<td>The id of the <a href="#public-ips">public IP</a> of this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">publicPort</code><br/><em>int</em></td>
+<td>The public port of this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">privatePort</code><br/><em>int</em></td>
+<td>The private port of this load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">algorithm</code><br/><em>string</em></td>
+<td>The algorithm to use for this load balancer rule (roundrobin, leastconn or source)</td>
+</tr>
+<tr>
+<td><code class="prettyprint">protocol</code><br/><em>string</em></td>
+<td>The protocol to load balance (TCP, UDP or TCP-PROXY)</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Optional (required if <a href="#public-ips">public IP</a> already assigned a <a href="#tiers">tier</a>)</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">networkId</code><br/><em>string</em></td>
+<td>The <a href="#tiers">tier</a> id of the load balancer rule</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Optional</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">stickinessMethod</code><br/><em>string</em></td>
+<td>The stickiness policy of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">stickinessPolicyParameters</code><br/><em>Map[string, object]</em></td>
+<td>The stickiness policy parameters of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">instanceIds</code><br/><em>Array[string]</em></td>
+<td>The ids of the instances being load balanced</td>
+</tr>
+<tr>
+<td><code class="prettyprint">sslCertificateId</code><br/><em>UUID</em></td>
+<td>The id of the SSL certificate for the load balancer rule. Can only be used with SSL protocol.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>LbCookie parameters</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">cookieName</code><br/><em>string</em></td>
+<td>Name of the cookie to be inserted by the load balancer for load balancing</td>
+</tr>
+<tr>
+<td><code class="prettyprint">mode</code><br/><em>string</em></td>
+<td>rewrite, insert or prefix. rewrite: This keyword indicates that the cookie will be provided by the server and that the load balancer will have to modify its value to set the server&rsquo;s identifier in it. insert: This keyword indicates that the persistence cookie will have to be inserted by the load balancer in server responses if the client did not already have a cookie that would have permitted it to access this server. prefix: This keyword indicates that instead of relying on a dedicated cookie for the persistence, an existing one will be completed.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">nocache</code><br/><em>boolean</em></td>
+<td>This option is recommended in conjunction with the insert mode when there is a cache between the client and the load balancer, as it ensures that a cacheable response will be tagged non-cacheable if a cookie needs to be inserted.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">indirect</code><br/><em>boolean</em></td>
+<td>When this option is specified, no cookie will be emitted to a client which already has a valid one for the server which has processed the request.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">postonly</code><br/><em>boolean</em></td>
+<td>This option ensures that cookie insertion will only be performed on responses to POST requests.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">domain</code><br/><em>string</em></td>
+<td>This option allows to specify the domain at which a cookie is inserted.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>AppCookie parameters</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">cookieName</code><br/><em>string</em></td>
+<td>Name of the cookie to be inserted by the application for load balancing.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">mode</code><br/><em>string</em></td>
+<td>This option allows to change the URL parser mode. <code class="prettyprint">path-parameters</code>(default) will look for the appsession cookie in the path parameters. <code class="prettyprint">query-parameters</code> will look for the appsession cookie in the query parameters.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">length</code><br/><em>string</em></td>
+<td>The maximum number of characters to check in the cookie value.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">holdtime</code><br/><em>boolean</em></td>
+<td>Time in milliseconds that the cookie should be saved.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">requestLearn</code><br/><em>boolean</em></td>
+<td>If true, then it will be able to learn the cookie found in the request in case the server does not specify any in response.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">prefix</code><br/><em>string</em></td>
+<td>If true, then it will match on the cookie prefix (or URL parameter prefix). The appsession value is the data following this prefix.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>SourceBased parameters</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">tableSize</code><br/><em>string</em></td>
+<td>The maximum number of entries that can be stored in the table.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">expires</code><br/><em>string</em></td>
+<td>Defines the maximum duration of an entry in the table since it was last created, refreshed or matched. The expiration delay is defined using the standard time format, similarly as the various timeouts.</td>
+</tr>
+</tbody></table>
+
+<p>For more information, please consult section 4.2 of the HAProxy <a href="https://cbonte.github.io/haproxy-dconv/1.5/configuration.html">configuration manual</a>. (<a href="https://cbonte.github.io/haproxy-dconv/1.5/configuration.html#4.2-appsession">AppCookie</a>, <a href="https://cbonte.github.io/haproxy-dconv/1.5/configuration.html#4.2-cookie">LbCookie</a>, <a href="https://cbonte.github.io/haproxy-dconv/1.5/configuration.html#4.2-stick-table">SourceBased</a>)</p>
+
+<h4 id="update-a-load-balancer-rule">Update a load balancer rule</h4>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+   -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
+   -d <span class="s2">"request_body"</span> <span class="se">\</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/loadbalancerrules/3247167a-e7e7-11e3-9187-06669c0000ad"</span>
+   <span class="c"># Request example:</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"algorithm"</span><span class="p">:</span><span class="w"> </span><span class="s2">"roundrobin"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
+</span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
+</span><span class="n">lbr</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">LoadBalancerRules</span><span class="o">.</span><span class="n">Update</span><span class="p">(</span><span class="s">"3247167a-e7e7-11e3-9187-06669c0000ad"</span><span class="p">,</span><span class="x"> </span><span class="n">cloudca</span><span class="o">.</span><span class="n">LoadBalancerRule</span><span class="p">{</span><span class="x">
+   </span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"newtest"</span><span class="p">,</span><span class="x">
+   </span><span class="n">Algorithm</span><span class="o">:</span><span class="x"> </span><span class="s">"leastconn"</span><span class="p">,</span><span class="x">
+</span><span class="p">})</span><span class="x">
+</span></code></pre>
+
+<p><code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id</code></p>
+
+<p>Update a load balancer rule.</p>
+
+<table><thead>
+<tr>
+<th>Optional</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">name</code><br/><em>string</em></td>
+<td>The name of the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">algorithm</code><br/><em>string</em></td>
+<td>The algorithm of the load balancer rule (roundrobin, leastconn or source)</td>
+</tr>
+</tbody></table>
+
+<h4 id="update-instances-of-a-load-balancer-rule">Update instances of a load balancer rule</h4>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+   -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
+   -d <span class="s2">"request_body"</span> <span class="se">\</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/loadbalancerrules/3247167a-e7e7-11e3-9187-06669c0000ad"</span>
+   <span class="c"># Request example:</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"instanceIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"95d034b5-b902-440c-b430-120efaed9caf"</span><span class="p">,</span><span class="w"> </span><span class="s2">"60df0bc2-f59b-4608-8147-1b8ac4a39add"</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
+</span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
+</span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">LoadBalancerRules</span><span class="o">.</span><span class="n">SetLoadBalancerRuleInstances</span><span class="p">(</span><span class="s">"3247167a-e7e7-11e3-9187-06669c0000ad"</span><span class="p">,</span><span class="x"> </span><span class="p">[]</span><span class="kt">string</span><span class="x"> </span><span class="p">{</span><span class="s">"95d034b5-b902-440c-b430-120efaed9caf"</span><span class="p">})</span><span class="x">
+</span></code></pre>
+
+<p><code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id?operation=updateInstances</code></p>
+
+<p>Update instances of a load balancer rule.</p>
+
+<table><thead>
+<tr>
+<th>Required</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">instanceIds</code><br/><em>Array[String]</em></td>
+<td>The instances of the load balancer rule</td>
+</tr>
+</tbody></table>
+
+<h4 id="update-stickiness-policy-of-a-load-balancer-rule">Update stickiness policy of a load balancer rule</h4>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+   -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
+   -d <span class="s2">"request_body"</span> <span class="se">\</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/loadbalancerrules/3247167a-e7e7-11e3-9187-06669c0000ad"</span>
+   <span class="c"># Request example:</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"stickinessMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LbCookie"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"stickinessPolicyParameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"indirect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some_domain"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"postonly"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"nocache"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"cookieName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
+</span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
+</span><span class="n">lbr</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">LoadBalancerRules</span><span class="o">.</span><span class="n">SetLoadBalancerRuleStickinessPolicy</span><span class="p">(</span><span class="s">"3247167a-e7e7-11e3-9187-06669c0000ad"</span><span class="p">,</span><span class="x"> </span><span class="s">"LbCookie"</span><span class="p">,</span><span class="x"> </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{,</span><span class="x">
+   </span><span class="s">"holdtime"</span><span class="o">:</span><span class="x"> </span><span class="s">"3600000"</span><span class="p">,</span><span class="x">
+</span><span class="p">})</span><span class="x">
+</span></code></pre>
+
+<p><code>PUT /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id?operation=updateStickiness</code></p>
+
+<p>Update instances of a load balancer rule.</p>
+
+<table><thead>
+<tr>
+<th>Required</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">stickinessMethod</code><br/><em>string</em></td>
+<td>The stickiness policy for the load balancer rule</td>
+</tr>
+<tr>
+<td><code class="prettyprint">stickinessPolicyParameters</code><br/><em>Map[String, String]</em></td>
+<td>The parameters for the stickiness policy of the load balancer rule</td>
+</tr>
+</tbody></table>
+
+<p>See <a href="#create-a-load-balancer-rule">Create a load balance rule</a> for stickiness policy parameters documentation.</p>
+
+<h4 id="delete-a-load-balancer-rule">Delete a load balancer rule</h4>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+   -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/loadbalancerrules/736d0c2e-d6b5-43fc-bcf0-732fce9a509e"</span>
+</code></pre>
+<pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
+</span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
+</span><span class="n">success</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">LoadBalancerRules</span><span class="o">.</span><span class="n">Delete</span><span class="p">(</span><span class="s">"736d0c2e-d6b5-43fc-bcf0-732fce9a509e"</span><span class="p">)</span><span class="x">
+</span></code></pre>
+
+<p><code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules/:id</code></p>
+
+<p>Delete a load balancer rule.</p>
+
               <h3 id="nics">NICs</h3>
 
 <!-------------------- LIST NICS -------------------->
