@@ -48,7 +48,7 @@ resources, _ := ccaClient.GetResources("compute-on", "test_area")
 ccaResources := resources.(cloudca.Resources)
 lbrs, err := ccaResources.LoadBalancerRules.List()
 ```
-<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules?vpc_id=:vpc_id</code>
+<code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/loadbalancerrules?public_ip_id=:public_ip_id</code>
 
 Retrieve a list of load balancer rules.
 
