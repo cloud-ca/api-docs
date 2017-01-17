@@ -33,6 +33,7 @@ subsections:
     - network_acls
     - public_ips
     - port_forwarding_rules
+    - load_balancer_rules
     - nics
     - remote_access_vpns
     - vpn_users
