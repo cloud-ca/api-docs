@@ -5990,7 +5990,6 @@ curl -X POST <span class="se">\</span>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_volume"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"diskOfferingId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"166f85eb-b4a2-4000-8e0c-24104d551f60"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37c0d1f2-523a-4c43-a522-26932992b193"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"instanceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c043e651-8b3f-4941-b47f-5ecb77f3423b"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -5999,7 +5998,6 @@ curl -X POST <span class="se">\</span>
 </span><span class="n">createdVolume</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Volumes</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Volume</span><span class="p">{</span><span class="x">
         </span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"my_volume"</span><span class="p">,</span><span class="x">
         </span><span class="n">DiskOfferingId</span><span class="o">:</span><span class="x"> </span><span class="s">"166f85eb-b4a2-4000-8e0c-24104d551f60"</span><span class="p">,</span><span class="x">
-        </span><span class="n">ZoneId</span><span class="o">:</span><span class="x"> </span><span class="s">"37c0d1f2-523a-4c43-a522-26932992b193"</span><span class="p">,</span><span class="x">
         </span><span class="n">InstanceId</span><span class="o">:</span><span class="x"> </span><span class="s">"c043e651-8b3f-4941-b47f-5ecb77f3423b"</span><span class="x">
     </span><span class="p">})</span><span class="x">
 </span></code></pre>
@@ -6015,7 +6013,7 @@ curl -X POST <span class="se">\</span>
 
 <p><code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code></p>
 
-<p>Create a volume in an environment. Also, by specifying an <a href="#instances">instance</a>, it will attach the new volume to it.</p>
+<p>Create a volume in an environment. It will attached to the specified <a href="#instances">instance</a>.</p>
 
 <table><thead>
 <tr>
@@ -6032,20 +6030,8 @@ curl -X POST <span class="se">\</span>
 <td>The <a href="#disk-offerings">disk offering</a> to use for the volume</td>
 </tr>
 <tr>
-<td>zoneId<br/><em>UUID</em></td>
-<td>The id of the <a href="#zones">zone</a> where the volume will be created</td>
-</tr>
-</tbody></table>
-
-<table><thead>
-<tr>
-<th>Optional</th>
-<th>&nbsp;</th>
-</tr>
-</thead><tbody>
-<tr>
 <td>instanceId<br/><em>UUID</em></td>
-<td>The id of the <a href="#instances">instance</a> to which the created volume should be attached</td>
+<td>The id of the <a href="#instances">instance</a> to which the created volume will be attached</td>
 </tr>
 </tbody></table>
 
