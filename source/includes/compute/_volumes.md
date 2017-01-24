@@ -136,7 +136,6 @@ curl -X POST \
 {
    "name": "my_volume",
    "diskOfferingId": "166f85eb-b4a2-4000-8e0c-24104d551f60",
-   "zoneId": "37c0d1f2-523a-4c43-a522-26932992b193",
    "instanceId": "c043e651-8b3f-4941-b47f-5ecb77f3423b"
 }
 ```
@@ -146,7 +145,6 @@ ccaResources := resources.(cloudca.Resources)
 createdVolume, err := ccaResources.Volumes.Create(cloudca.Volume{
         Name: "my_volume",
         DiskOfferingId: "166f85eb-b4a2-4000-8e0c-24104d551f60",
-        ZoneId: "37c0d1f2-523a-4c43-a522-26932992b193",
         InstanceId: "c043e651-8b3f-4941-b47f-5ecb77f3423b"
     })
 ```
@@ -163,17 +161,13 @@ resource "cloudca_volume" "data_volume" {
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/volumes</code>
 
-Create a volume in an environment. Also, by specifying an [instance](#instances), it will attach the new volume to it.
+Create a volume in an environment. It will attached to the specified [instance](#instances).
 
 Required | &nbsp;
 ---------- | -----
 name<br/>*string* | The name of the new volume
 diskOfferingId<br/>*UUID* | The [disk offering](#disk-offerings) to use for the volume
-zoneId<br/>*UUID* | The id of the [zone](#zones) where the volume will be created
-
-Optional | &nbsp;
----------- | -----
-instanceId<br/>*UUID* | The id of the [instance](#instances) to which the created volume should be attached
+instanceId<br/>*UUID* | The id of the [instance](#instances) to which the created volume will be attached
 
 
 <!-------------------- DELETE A VOLUME -------------------->
