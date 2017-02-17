@@ -29,7 +29,7 @@ subsections:
     - affinity_groups
     - networking # Networking section
     - vpcs
-    - tiers
+    - networks
     - network_acls
     - public_ips
     - port_forwarding_rules

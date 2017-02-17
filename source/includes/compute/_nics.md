@@ -51,10 +51,10 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the NIC
 `ipAddress`<br/>*string* | The IP address of the NIC
 `isDefault`<br/>*string* | true if it's the default NIC of the [instance](#instances) (i.e. it will be the private IP on the instance)
-`networkId`<br/>*UUID* | The id of the [tier](#tiers) of the NIC
-`networkName`<br/>*string* | The name of the [tier](#tiers) of the NIC
-`gateway`<br/>*string* | The gateway of the [tier](#tiers) associated with the NIC
-`netmask`<br/>*string* | The netmask of the [tier](#tiers) associated with the NIC
+`networkId`<br/>*UUID* | The id of the [network](#networks) of the NIC
+`networkName`<br/>*string* | The name of the [network](#networks) of the NIC
+`gateway`<br/>*string* | The gateway of the [network](#networks) associated with the NIC
+`netmask`<br/>*string* | The netmask of the [network](#networks) associated with the NIC
 `instanceId`<br/>*string* | The id of the instance associated with the NIC
 `vpcId`<br/>*string* | The id of the [VPC](#vpcs) associated with the NIC
 `vpcName`<br/>*string* | The name of the [VPC](#vpcs) associated with the NIC
@@ -63,7 +63,7 @@ Attributes | &nbsp;
 Query Parameters | &nbsp;
 ---------- | -----
 `instance_id`<br/>*UUID* | Filter the list to only retrieve the NICs of a specific [instance](#instances)
-`network_id`<br/>*UUID* | Filter the list to only retrieve the NICs of a specific [tier](#tiers)
+`network_id`<br/>*UUID* | Filter the list to only retrieve the NICs of a specific [network](#networks)
 
 
 <!-------------------- RETRIEVE A NIC -------------------->
@@ -113,10 +113,10 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the NIC
 `ipAddress`<br/>*string* | The IP address of the NIC
 `isDefault`<br/>*string* | true if it's the default NIC of the [instance](#instances) (i.e. it will be the private IP on the instance)
-`networkId`<br/>*UUID* | The id of the [tier](#tiers) of the NIC
-`networkName`<br/>*string* | The name of the [tier](#tiers) of the NIC
-`gateway`<br/>*string* | The gateway of the [tier](#tiers) associated with the NIC
-`netmask`<br/>*string* | The netmask of the [tier](#tiers) associated with the NIC
+`networkId`<br/>*UUID* | The id of the [network](#networks) of the NIC
+`networkName`<br/>*string* | The name of the [network](#networks) of the NIC
+`gateway`<br/>*string* | The gateway of the [network](#networks) associated with the NIC
+`netmask`<br/>*string* | The netmask of the [network](#networks) associated with the NIC
 `instanceId`<br/>*string* | The id of the [instance](#instances) associated with the NIC
 `vpcId`<br/>*string* | The id of the [VPC](#vpcs) associated with the NIC
 `vpcName`<br/>*string* | The name of the [VPC](#vpcs) associated with the NIC
@@ -151,11 +151,11 @@ curl -X POST \
 
 <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/nics</code>
 
-Create a NIC for an [instance](#instances) in a specific network. You can only have one NIC per [tier](#tiers).
+Create a NIC for an [instance](#instances) in a specific network. You can only have one NIC per [network](#networks).
 
 Required | &nbsp;
 ------ | -----------
-`networkId`<br/>*string* | The id of the [tier](#tiers) where to create the NIC
+`networkId`<br/>*string* | The id of the [network](#networks) where to create the NIC
 `instanceId`<br/>*string* | The id of the [instance](#instances) where to attach the NIC
 
 

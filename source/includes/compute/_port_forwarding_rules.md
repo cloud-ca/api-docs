@@ -58,7 +58,7 @@ Attributes | &nbsp;
 `protocol`<br/>*string* | The protocol of the port forwarding rule (e.g. TCP, UDP)
 `instanceId`<br/>*UUID* | The id of the [instance](#instances) of the port forwarding rule
 `instanceName`<br/>*string* | The name of the [instance](#instances) of the port forwarding rule
-`networkId`<br/>*UUID* | The id of the [tier](#tiers) of the port forwarding rule
+`networkId`<br/>*UUID* | The id of the [network](#networks) of the port forwarding rule
 `vpcId`<br/>*UUID* | The id of the [VPC](#vpcs) of the port forwarding rule
 `privateIp`<br/>*string* | The private IP address of the [instance](#instances) where the traffic will be forwarded
 `privateIpId`<br/>*UUID* | The id of private IP address of the [instance](#instances) where traffic will be forwarded
@@ -121,7 +121,7 @@ Attributes | &nbsp;
 `protocol`<br/>*string* | The protocol of the port forwarding rule (e.g. TCP, UDP)
 `instanceId`<br/>*UUID* | The id of the [instance](#instances) of the port forwarding rule
 `instanceName`<br/>*string* | The name of the [instance](#instances) of the port forwarding rule
-`networkId`<br/>*UUID* | The id of the [tier](#tiers) of the port forwarding rule
+`networkId`<br/>*UUID* | The id of the [network](#networks) of the port forwarding rule
 `vpcId`<br/>*UUID* | The id of the [VPC](#vpcs) of the port forwarding rule
 `privateIp`<br/>*string* | The private IP address of the [instance](#instances) where requests will be forwarded
 `privateIpId`<br/>*UUID* | The id of private IP address of the [instance](#instances) where requests will be forwarded
