@@ -2,7 +2,7 @@
 
 ### Network ACLs
 
-Manage access control lists and their rules. To apply an ACL to a tier, [replace the ACL of a tier](#replace-the-network-acl-of-a-tier).
+Manage access control lists and their rules. To apply an ACL to a network, [replace the ACL of a network](#replace-the-network-acl-of-a-network).
 
 #### List network ACLs
 

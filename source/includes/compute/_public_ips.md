@@ -65,8 +65,8 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the public IP
 `instances`<br/>*Array[[Instance](#instances)]* | The associated [instances](#instances) <br/>*includes*: `id`,`name`
 `ipAddress`<br/>*string* | The IP address (e.g. 208.80.154.224)
-`networkId`<br/>*UUID* | The associated [tier](#networks) id
-`networkName`<br/>*string* | The associated [tier](#networks) name
+`networkId`<br/>*UUID* | The associated [network](#networks) id
+`networkName`<br/>*string* | The associated [network](#networks) name
 `purposes`<br/>*Array[string]* | The list of purposes of the IP address.</br>*Possible values:* `STATIC_NAT`, `PORT_FORWARDING`, `LOAD_BALANCING`, `SOURCE_NAT` or `SOURCE_NAT` and `VPN`
 `state`<br/>*string* | The state of the public IP
 `vpcId`<br/>*UUID* | The id of the [VPC](#vpcs)
@@ -118,8 +118,8 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The id of the public IP
 `instances`<br/>*Array[[Instance](#instances)]* | The associated [instances](#instances) <br/>*includes*: `id`,`name`
 `ipAddress`<br/>*string* | The IP address (e.g. 208.80.154.224)
-`networkId`<br/>*UUID* | The associated [tier](#networks) id
-`networkName`<br/>*string* | The associated [tier](#networks) name
+`networkId`<br/>*UUID* | The associated [network](#networks) id
+`networkName`<br/>*string* | The associated [network](#networks) name
 `purposes`<br/>*Array[string]* | The list of purposes of the IP address.</br>*Possible values:* `STATIC_NAT`, `PORT_FORWARDING`, `LOAD_BALANCING`, `SOURCE_NAT` or `SOURCE_NAT` and `VPN`
 `state`<br/>*string* | The state of the public IP
 `vpcId`<br/>*UUID* | The id of the [VPC](#vpcs)
