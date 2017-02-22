@@ -110,7 +110,7 @@ html, body {
     }
   }
 
-  img+.tocify {
+  img+.tocify, .lang-selector+.tocify {
     margin-top: $logo-margin;
   }
 
@@ -505,8 +505,8 @@ html, body {
     }
 
     &.caution {
-      background-color: $aside-caution-bg;
-      text-shadow: 0 1px 0 lighten($aside-caution-bg, 15%);
+      background-color: $aside-warning-bg;
+      text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
     }
 
     &.success {
