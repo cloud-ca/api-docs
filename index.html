@@ -1704,11 +1704,11 @@ An easy way to remember the structure of API endpoints is that going from left t
 </tr>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#tiers">tier</a> where instance is deployed</td>
+<td>The id of the <a href="#networks">network</a> where instance is deployed</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkName</code><br/><em>string</em></td>
-<td>The name of the <a href="#tiers">tier</a> where instance is deployed</td>
+<td>The name of the <a href="#networks">network</a> where instance is deployed</td>
 </tr>
 <tr>
 <td><code class="prettyprint">hostname</code><br/><em>string</em></td>
@@ -1857,11 +1857,11 @@ An easy way to remember the structure of API endpoints is that going from left t
 </tr>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#tiers">tier</a> where instance is deployed</td>
+<td>The id of the <a href="#networks">network</a> where instance is deployed</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkName</code><br/><em>string</em></td>
-<td>The name of the <a href="#tiers">tier</a> where instance is deployed</td>
+<td>The name of the <a href="#networks">network</a> where instance is deployed</td>
 </tr>
 <tr>
 <td><code class="prettyprint">hostname</code><br/><em>string</em></td>
@@ -1990,7 +1990,7 @@ curl -X POST <span class="se">\</span>
 </tr>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>UUID</em></td>
-<td>The <a href="#tiers">tier</a> in which the instance will be created. If you don&rsquo;t have a tier, it can be created through the <a href="#create-tier">create tier</a> api.</td>
+<td>The <a href="#networks">network</a> in which the instance will be created. If you don&rsquo;t have a network, it can be created through the <a href="#create-network">create network</a> api.</td>
 </tr>
 </tbody></table>
 
@@ -2816,7 +2816,7 @@ curl -X POST <span class="se">\</span>
 
               <h3 id="vpcs">VPCs</h3>
 
-<p>A Virtual Private Cloud (VPC) is a logically isolated section of cloud.ca, where you can build a multi-tier application architecture.</p>
+<p>A Virtual Private Cloud (VPC) is a logically isolated section of cloud.ca, where you can build a multi-network application architecture.</p>
 
 <!-------------------- LIST VPCS -------------------->
 
@@ -3135,7 +3135,7 @@ curl -X DELETE <span class="se">\</span>
 
 <p><code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code></p>
 
-<p>Destroy an existing VPC. To delete a VPC, you must first delete all the <a href="#tiers">tiers</a> in the VPC.</p>
+<p>Destroy an existing VPC. To delete a VPC, you must first delete all the <a href="#networks">networks</a> in the VPC.</p>
 
 <!-------------------- RESTART A VPC -------------------->
 
@@ -3156,16 +3156,16 @@ curl -X POST <span class="se">\</span>
 
 <p>Restart the router of a VPC.</p>
 
-              <h3 id="tiers">Tiers</h3>
+              <h3 id="networks">Networks</h3>
 
-<p>A tier is an isolated network with its own VLANs and CIDR list, where you can place groups of resources, such as <a href="#instances">instances</a>.</p>
+<p>A network is an isolated network with its own VLANs and CIDR list, where you can place groups of resources, such as <a href="#instances">instances</a>.</p>
 
-<!-------------------- LIST TIER -------------------->
+<!-------------------- LIST NETWORK -------------------->
 
-<h4 id="list-tiers">List tiers</h4>
+<h4 id="list-networks">List networks</h4>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
    -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
-   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/tiers"</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/networks"</span>
 
 <span class="c"># Example response:</span>
 </code></pre>
@@ -3173,7 +3173,7 @@ curl -X POST <span class="se">\</span>
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8ef7539c-c9ba-49f3-a484-a08f4ffb2234"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Frontend"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default tier"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default network"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"vpcId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12b8c150-b444-482a-8411-c08eaccb0a3b"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"vpcName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SomeVPC"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04afdbd1-e32d-4999-86d0-96703736dded"</span><span class="p">,</span><span class="w">
@@ -3184,7 +3184,7 @@ curl -X POST <span class="se">\</span>
     </span><span class="nt">"networkAclId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ba3ec65-2e1d-11e4-8e05-42a29a39fc92"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"networkAclName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default_allow"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"networkOfferingId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9593f0df-573a-43c4-a107-a5c704a7cfee"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"networkOfferingName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Load Balanced Tier"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"networkOfferingName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Load Balanced Network"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"networkOfferingDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Offering for Isolated Vpc networks with Source Nat service enabled"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Implemented"</span><span class="w">
   </span><span class="p">}],</span><span class="w">
@@ -3195,12 +3195,12 @@ curl -X POST <span class="se">\</span>
 </span></code></pre>
 <pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
 </span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
-</span><span class="n">tiers</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Tiers</span><span class="o">.</span><span class="n">List</span><span class="p">()</span><span class="x">
+</span><span class="n">networks</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Networks</span><span class="o">.</span><span class="n">List</span><span class="p">()</span><span class="x">
 </span></code></pre>
 
-<p><code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers</code></p>
+<p><code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks</code></p>
 
-<p>Retrieve a list of all tiers of an <a href="#environments">environment</a></p>
+<p>Retrieve a list of all networks of an <a href="#environments">environment</a></p>
 
 <table><thead>
 <tr>
@@ -3210,67 +3210,67 @@ curl -X POST <span class="se">\</span>
 </thead><tbody>
 <tr>
 <td><code class="prettyprint">id</code><br/><em>UUID</em></td>
-<td>The id of the tier</td>
+<td>The id of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">name</code><br/><em>string</em></td>
-<td>The name of the tier</td>
+<td>The name of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">description</code><br/><em>string</em></td>
-<td>The description of the tier</td>
+<td>The description of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">vpcId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#vpcs">VPC</a> where the tier was created</td>
+<td>The id of the <a href="#vpcs">VPC</a> where the network was created</td>
 </tr>
 <tr>
 <td><code class="prettyprint">vpcName</code><br/><em>string</em></td>
-<td>The name of the <a href="#vpcs">VPC</a> where the tier was created</td>
+<td>The name of the <a href="#vpcs">VPC</a> where the network was created</td>
 </tr>
 <tr>
 <td><code class="prettyprint">zoneId</code><br/><em>string</em></td>
-<td>The id of the <a href="#zones">zone</a> where the tier was created</td>
+<td>The id of the <a href="#zones">zone</a> where the network was created</td>
 </tr>
 <tr>
 <td><code class="prettyprint">zoneName</code><br/><em>string</em></td>
-<td>The name of the <a href="#zones">zone</a> where the tier was created</td>
+<td>The name of the <a href="#zones">zone</a> where the network was created</td>
 </tr>
 <tr>
 <td><code class="prettyprint">cidr</code><br/><em>string</em></td>
-<td>The cidr of the tier</td>
+<td>The cidr of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">gateway</code><br/><em>string</em></td>
-<td>The gateway of the tier</td>
+<td>The gateway of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">netmask</code><br/><em>string</em></td>
-<td>The netmask of the tier</td>
+<td>The netmask of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkAclId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#network-acls">network ACL</a> of the the tier</td>
+<td>The id of the <a href="#network-acls">network ACL</a> of the the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkAclName</code><br/><em>string</em></td>
-<td>The name of the <a href="#network-acls">network ACL</a> of the the tier</td>
+<td>The name of the <a href="#network-acls">network ACL</a> of the the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkOfferingId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#network-offerings">network offering</a> of the tier</td>
+<td>The id of the <a href="#network-offerings">network offering</a> of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkOfferingName</code><br/><em>string</em></td>
-<td>The name of the <a href="#network-offerings">network offering</a> of the tier</td>
+<td>The name of the <a href="#network-offerings">network offering</a> of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkOfferingDescription</code><br/><em>string</em></td>
-<td>The description of the <a href="#network-offerings">network offering</a> of the tier</td>
+<td>The description of the <a href="#network-offerings">network offering</a> of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">state</code><br/><em>string</em></td>
-<td>The state of the tier. <code class="prettyprint">Allocated</code> if no instances where created in the tier yet, <code class="prettyprint">Implemented</code> otherwise.</td>
+<td>The state of the network. <code class="prettyprint">Allocated</code> if no instances where created in the network yet, <code class="prettyprint">Implemented</code> otherwise.</td>
 </tr>
 </tbody></table>
 
@@ -3282,20 +3282,20 @@ curl -X POST <span class="se">\</span>
 </thead><tbody>
 <tr>
 <td><code class="prettyprint">vpc_id</code><br/><em>UUID</em></td>
-<td>Filter the list to only retrieve the tiers of a <a href="#vpcs">VPC</a></td>
+<td>Filter the list to only retrieve the networks of a <a href="#vpcs">VPC</a></td>
 </tr>
 <tr>
 <td><code class="prettyprint">zone_id</code><br/><em>UUID</em></td>
-<td>Filter the list to only retrieve the tiers in a specific <a href="#zones">zone</a></td>
+<td>Filter the list to only retrieve the networks in a specific <a href="#zones">zone</a></td>
 </tr>
 </tbody></table>
 
-<!-------------------- RETRIEVE A TIER -------------------->
+<!-------------------- RETRIEVE A NETWORK -------------------->
 
-<h4 id="retrieve-a-tier">Retrieve a tier</h4>
+<h4 id="retrieve-a-network">Retrieve a network</h4>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
    -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
-   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/tiers/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/networks/ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"</span>
 
 <span class="c"># Example response:</span>
 </code></pre>
@@ -3303,7 +3303,7 @@ curl -X POST <span class="se">\</span>
   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8ef7539c-c9ba-49f3-a484-a08f4ffb2234"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Frontend"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default tier"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default network"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"vpcId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12b8c150-b444-482a-8411-c08eaccb0a3b"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"vpcName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SomeVPC"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04afdbd1-e32d-4999-86d0-96703736dded"</span><span class="p">,</span><span class="w">
@@ -3314,7 +3314,7 @@ curl -X POST <span class="se">\</span>
     </span><span class="nt">"networkAclId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ba3ec65-2e1d-11e4-8e05-42a29a39fc92"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"networkAclName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default_allow"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"networkOfferingId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9593f0df-573a-43c4-a107-a5c704a7cfee"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"networkOfferingName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Load Balanced Tier"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"networkOfferingName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Load Balanced Network"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"networkOfferingDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Offering for Isolated Vpc networks with Source Nat service enabled"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Implemented"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -3322,12 +3322,12 @@ curl -X POST <span class="se">\</span>
 </span></code></pre>
 <pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
 </span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
-</span><span class="n">tier</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Tiers</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="s">"ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"</span><span class="p">)</span><span class="x">
+</span><span class="n">network</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Networks</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="s">"ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"</span><span class="p">)</span><span class="x">
 </span></code></pre>
 
-<p><code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/:id</code></p>
+<p><code>GET /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks/:id</code></p>
 
-<p>Retrieve information about a tier.</p>
+<p>Retrieve information about a network.</p>
 
 <table><thead>
 <tr>
@@ -3337,73 +3337,73 @@ curl -X POST <span class="se">\</span>
 </thead><tbody>
 <tr>
 <td><code class="prettyprint">id</code><br/><em>UUID</em></td>
-<td>The id of the tier</td>
+<td>The id of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">name</code><br/><em>string</em></td>
-<td>The name of the tier</td>
+<td>The name of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">description</code><br/><em>string</em></td>
-<td>The description of the tier</td>
+<td>The description of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">vpcId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#vpcs">VPC</a> where the tier was created</td>
+<td>The id of the <a href="#vpcs">VPC</a> where the network was created</td>
 </tr>
 <tr>
 <td><code class="prettyprint">vpcName</code><br/><em>string</em></td>
-<td>The name of the <a href="#vpcs">VPC</a> where the tier was created</td>
+<td>The name of the <a href="#vpcs">VPC</a> where the network was created</td>
 </tr>
 <tr>
 <td><code class="prettyprint">zoneId</code><br/><em>string</em></td>
-<td>The id of the <a href="#zones">zone</a> where the tier was created</td>
+<td>The id of the <a href="#zones">zone</a> where the network was created</td>
 </tr>
 <tr>
 <td><code class="prettyprint">zoneName</code><br/><em>string</em></td>
-<td>The name of the <a href="#zones">zone</a> where the tier was created</td>
+<td>The name of the <a href="#zones">zone</a> where the network was created</td>
 </tr>
 <tr>
 <td><code class="prettyprint">cidr</code><br/><em>string</em></td>
-<td>The cidr of the tier</td>
+<td>The cidr of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">gateway</code><br/><em>string</em></td>
-<td>The gateway of the tier</td>
+<td>The gateway of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">netmask</code><br/><em>string</em></td>
-<td>The netmask of the tier</td>
+<td>The netmask of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkAclId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#network-acls">network ACL</a> of the the tier</td>
+<td>The id of the <a href="#network-acls">network ACL</a> of the the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkAclName</code><br/><em>string</em></td>
-<td>The name of the <a href="#network-acls">network ACL</a> of the the tier</td>
+<td>The name of the <a href="#network-acls">network ACL</a> of the the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkOfferingId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#network-offerings">network offering</a> of the tier</td>
+<td>The id of the <a href="#network-offerings">network offering</a> of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkOfferingName</code><br/><em>string</em></td>
-<td>The name of the <a href="#network-offerings">network offering</a> of the tier</td>
+<td>The name of the <a href="#network-offerings">network offering</a> of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkOfferingDescription</code><br/><em>string</em></td>
-<td>The description of the <a href="#network-offerings">network offering</a> of the tier</td>
+<td>The description of the <a href="#network-offerings">network offering</a> of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">state</code><br/><em>string</em></td>
-<td>The state of the tier. <code class="prettyprint">Allocated</code> if no instances where created in the tier yet, <code class="prettyprint">Implemented</code> otherwise.</td>
+<td>The state of the network. <code class="prettyprint">Allocated</code> if no instances where created in the network yet, <code class="prettyprint">Implemented</code> otherwise.</td>
 </tr>
 </tbody></table>
 
-<!-------------------- CREATE A TIER -------------------->
+<!-------------------- CREATE A NETWORK -------------------->
 
-<h4 id="create-a-tier">Create a tier</h4>
+<h4 id="create-a-network">Create a network</h4>
 <pre class="highlight shell"><code>
 <span class="c"># Example:</span>
 
@@ -3411,13 +3411,13 @@ curl -X POST <span class="se">\</span>
    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
    -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
    -d <span class="s2">"request_body"</span> <span class="se">\</span>
-   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/tiers"</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/networks"</span>
 
 <span class="c"># Request example:</span>
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_tier"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My production tier"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_network"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My production network"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"vpcId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b1932c7c-0b85-450f-92b9-bfdeb3e80804"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"networkOfferingId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c5d4ffcd-56e2-407a-8b4d-06082b7365c4"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"networkAclId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9ba3ec65-2e1d-11e4-8e05-42a29a39fc92"</span><span class="w">
@@ -3425,28 +3425,28 @@ curl -X POST <span class="se">\</span>
 </span></code></pre>
 <pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
 </span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
-</span><span class="n">createdTier</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Tiers</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Tier</span><span class="p">{</span><span class="x">
-        </span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"my_tier"</span><span class="p">,</span><span class="x">
-        </span><span class="n">Description</span><span class="o">:</span><span class="x"> </span><span class="s">"My production tier"</span><span class="p">,</span><span class="x">
+</span><span class="n">createdNetwork</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Networks</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Network</span><span class="p">{</span><span class="x">
+        </span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"my_network"</span><span class="p">,</span><span class="x">
+        </span><span class="n">Description</span><span class="o">:</span><span class="x"> </span><span class="s">"My production network"</span><span class="p">,</span><span class="x">
         </span><span class="n">VpcId</span><span class="o">:</span><span class="x"> </span><span class="s">"b1932c7c-0b85-450f-92b9-bfdeb3e80804"</span><span class="p">,</span><span class="x">
         </span><span class="n">NetworkOfferingId</span><span class="o">:</span><span class="x"> </span><span class="s">"c5d4ffcd-56e2-407a-8b4d-06082b7365c4"</span><span class="p">,</span><span class="x">
         </span><span class="n">NetworkAclId</span><span class="o">:</span><span class="x"> </span><span class="s">"9ba3ec65-2e1d-11e4-8e05-42a29a39fc92"</span><span class="x">
     </span><span class="p">},</span><span class="x">  </span><span class="k">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{})</span><span class="x">
 </span></code></pre>
-<pre class="highlight dart"><code><span class="n">resource</span> <span class="s">"cloudca_tier"</span> <span class="s">"my_tier"</span> <span class="o">{</span>
+<pre class="highlight dart"><code><span class="n">resource</span> <span class="s">"cloudca_network"</span> <span class="s">"my_network"</span> <span class="o">{</span>
     <span class="n">service_code</span> <span class="o">=</span> <span class="s">"compute-on"</span>
     <span class="n">environment_name</span> <span class="o">=</span> <span class="s">"test_area"</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s">"my_tier"</span>
-    <span class="n">description</span> <span class="o">=</span> <span class="s">"This is a prod tier"</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">"my_network"</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s">"This is a prod network"</span>
     <span class="n">vpc_id</span> <span class="o">=</span> <span class="s">"8b46e2d1-bbc4-4fad-b3bd-1b25fcba4cec"</span>
-    <span class="n">network_offering</span> <span class="o">=</span> <span class="s">"Standard Tier"</span>
+    <span class="n">network_offering</span> <span class="o">=</span> <span class="s">"Standard Network"</span>
     <span class="n">network_acl_id</span> <span class="o">=</span> <span class="s">"7d428416-263d-47cd-9270-2cdbdf222f57"</span>
 <span class="o">}</span>
 </code></pre>
 
-<p><code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers</code></p>
+<p><code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks</code></p>
 
-<p>Create a tier in an <a href="#environments">environment</a></p>
+<p>Create a network in an <a href="#environments">environment</a></p>
 
 <table><thead>
 <tr>
@@ -3456,29 +3456,29 @@ curl -X POST <span class="se">\</span>
 </thead><tbody>
 <tr>
 <td><code class="prettyprint">name</code><br/><em>string</em></td>
-<td>The name of the new tier</td>
+<td>The name of the new network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">description</code><br/><em>string</em></td>
-<td>The description of the new tier</td>
+<td>The description of the new network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">vpcId</code><br/><em>UUID</em></td>
-<td>The id of the VPC where to create the tier</td>
+<td>The id of the VPC where to create the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkOfferingId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#network-offerings">network offering</a> to use for the tier</td>
+<td>The id of the <a href="#network-offerings">network offering</a> to use for the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkAclId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#network-acls">network ACL</a> to use for the tier</td>
+<td>The id of the <a href="#network-acls">network ACL</a> to use for the network</td>
 </tr>
 </tbody></table>
 
-<!-------------------- UPDATE A TIER -------------------->
+<!-------------------- UPDATE A NETWORK -------------------->
 
-<h4 id="update-a-tier">Update a tier</h4>
+<h4 id="update-a-network">Update a network</h4>
 <pre class="highlight shell"><code>
 <span class="c"># Example:</span>
 
@@ -3486,26 +3486,26 @@ curl -X PUT <span class="se">\</span>
    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
    -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
    -d <span class="s2">"request_body"</span> <span class="se">\</span>
-   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1"</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1"</span>
 
 <span class="c"># Request example:</span>
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_updated_tier"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My updated production tier"</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_updated_network"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My updated production network"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
 </span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
-</span><span class="n">updatedTier</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Tiers</span><span class="o">.</span><span class="n">Update</span><span class="p">(</span><span class="s">"9572d2ea-a60d-478a-a75e-8ed31f2641f1"</span><span class="p">,</span><span class="x"> </span><span class="n">cloudca</span><span class="o">.</span><span class="n">Tier</span><span class="p">{</span><span class="x">
-        </span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"my_updated_tier"</span><span class="p">,</span><span class="x">
-        </span><span class="n">Description</span><span class="o">:</span><span class="x"> </span><span class="s">"My updated production tier"</span><span class="x">
+</span><span class="n">updatedNetwork</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Networks</span><span class="o">.</span><span class="n">Update</span><span class="p">(</span><span class="s">"9572d2ea-a60d-478a-a75e-8ed31f2641f1"</span><span class="p">,</span><span class="x"> </span><span class="n">cloudca</span><span class="o">.</span><span class="n">Network</span><span class="p">{</span><span class="x">
+        </span><span class="n">Name</span><span class="o">:</span><span class="x"> </span><span class="s">"my_updated_network"</span><span class="p">,</span><span class="x">
+        </span><span class="n">Description</span><span class="o">:</span><span class="x"> </span><span class="s">"My updated production network"</span><span class="x">
     </span><span class="p">})</span><span class="x">
 </span></code></pre>
 
-<p><code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code></p>
+<p><code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code></p>
 
-<p>Update an existing tier in an <a href="#environments">environment</a></p>
+<p>Update an existing network in an <a href="#environments">environment</a></p>
 
 <table><thead>
 <tr>
@@ -3515,36 +3515,36 @@ curl -X PUT <span class="se">\</span>
 </thead><tbody>
 <tr>
 <td><code class="prettyprint">name</code><br/><em>string</em></td>
-<td>The updated name of the tier</td>
+<td>The updated name of the network</td>
 </tr>
 <tr>
 <td><code class="prettyprint">description</code><br/><em>string</em></td>
-<td>The updated description of the tier</td>
+<td>The updated description of the network</td>
 </tr>
 </tbody></table>
 
-<!-------------------- DELETE A TIER -------------------->
+<!-------------------- DELETE A NETWORK -------------------->
 
-<h4 id="delete-a-tier">Delete a tier</h4>
+<h4 id="delete-a-network">Delete a network</h4>
 <pre class="highlight shell"><code>
 <span class="c"># Example:</span>
 
 curl -X DELETE <span class="se">\</span>
    -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
-   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1"</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1"</span>
 </code></pre>
 <pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
 </span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
-</span><span class="n">success</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Tiers</span><span class="o">.</span><span class="n">Delete</span><span class="p">(</span><span class="s">"9572d2ea-a60d-478a-a75e-8ed31f2641f1"</span><span class="p">)</span><span class="x">
+</span><span class="n">success</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Networks</span><span class="o">.</span><span class="n">Delete</span><span class="p">(</span><span class="s">"9572d2ea-a60d-478a-a75e-8ed31f2641f1"</span><span class="p">)</span><span class="x">
 </span></code></pre>
 
-<p><code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code></p>
+<p><code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code></p>
 
-<p>Delete an existing tier in an <a href="#environments">environment</a> To delete a tier, you must first delete all the <a href="#instances">instances</a> in the tier.</p>
+<p>Delete an existing network in an <a href="#environments">environment</a> To delete a network, you must first delete all the <a href="#instances">instances</a> in the network.</p>
 
-<!-------------------- REPLACE THE NETWORK ACL OF A TIER -------------------->
+<!-------------------- REPLACE THE NETWORK ACL OF A NETWORK -------------------->
 
-<h4 id="replace-the-network-acl-of-a-tier">Replace the network ACL of a tier</h4>
+<h4 id="replace-the-network-acl">Replace the network ACL</h4>
 <pre class="highlight shell"><code>
 <span class="c"># Example:</span>
 
@@ -3552,23 +3552,23 @@ curl -X POST <span class="se">\</span>
    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
    -H <span class="s2">"MC-Api-Key: your_api_key"</span> <span class="se">\</span>
    -d <span class="s2">"request_body"</span> <span class="se">\</span>
-   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace"</span>
+   <span class="s2">"https://api.cloud.ca/v1/services/compute-on/test_area/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace"</span>
 
 <span class="c"># Request example:</span>
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_updated_tier"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My updated production tier"</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_updated_network"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My updated production network"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <pre class="highlight go"><code><span class="n">resources</span><span class="p">,</span><span class="x"> </span><span class="n">_</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaClient</span><span class="o">.</span><span class="n">GetResources</span><span class="p">(</span><span class="s">"compute-on"</span><span class="p">,</span><span class="x"> </span><span class="s">"test_area"</span><span class="p">)</span><span class="x">
 </span><span class="n">ccaResources</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">resources</span><span class="o">.</span><span class="p">(</span><span class="n">cloudca</span><span class="o">.</span><span class="n">Resources</span><span class="p">)</span><span class="x">
-</span><span class="n">success</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Tiers</span><span class="o">.</span><span class="n">ChangeAcl</span><span class="p">(</span><span class="s">"9572d2ea-a60d-478a-a75e-8ed31f2641f1"</span><span class="p">,</span><span class="x"> </span><span class="s">"9ba3863e-2e1d-11e4-8e05-42a29a39fc92"</span><span class="p">)</span><span class="x">
+</span><span class="n">success</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">ccaResources</span><span class="o">.</span><span class="n">Networks</span><span class="o">.</span><span class="n">ChangeAcl</span><span class="p">(</span><span class="s">"9572d2ea-a60d-478a-a75e-8ed31f2641f1"</span><span class="p">,</span><span class="x"> </span><span class="s">"9ba3863e-2e1d-11e4-8e05-42a29a39fc92"</span><span class="p">)</span><span class="x">
 </span></code></pre>
 
-<p><code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/tiers/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace</code></p>
+<p><code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace</code></p>
 
-<p>Replace the <a href="#network-acls">network ACL</a> of an existing tier.</p>
+<p>Replace the <a href="#network-acls">network ACL</a>.</p>
 
 <table><thead>
 <tr>
@@ -3578,7 +3578,7 @@ curl -X POST <span class="se">\</span>
 </thead><tbody>
 <tr>
 <td><code class="prettyprint">networkAclId</code><br/><em>string</em></td>
-<td>The id of the <a href="#network-acls">network ACL</a> to use for the tier</td>
+<td>The id of the <a href="#network-acls">network ACL</a> to use for the network</td>
 </tr>
 </tbody></table>
 
@@ -3586,7 +3586,7 @@ curl -X POST <span class="se">\</span>
 
 <h3 id="network-acls">Network ACLs</h3>
 
-<p>Manage access control lists and their rules. To apply an ACL to a tier, <a href="#replace-the-network-acl-of-a-tier">replace the ACL of a tier</a>.</p>
+<p>Manage access control lists and their rules. To apply an ACL to a network, <a href="#replace-the-network-acl-of-a-network">replace the ACL of a network</a>.</p>
 
 <h4 id="list-network-acls">List network ACLs</h4>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
@@ -4183,11 +4183,11 @@ A rule&rsquo;s protocol can only be changed from TCP to UDP or vice versa.
 </tr>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>UUID</em></td>
-<td>The associated <a href="#networks">tier</a> id</td>
+<td>The associated <a href="#networks">network</a> id</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkName</code><br/><em>string</em></td>
-<td>The associated <a href="#networks">tier</a> name</td>
+<td>The associated <a href="#networks">network</a> name</td>
 </tr>
 <tr>
 <td><code class="prettyprint">purposes</code><br/><em>Array[string]</em></td>
@@ -4281,11 +4281,11 @@ A rule&rsquo;s protocol can only be changed from TCP to UDP or vice versa.
 </tr>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>UUID</em></td>
-<td>The associated <a href="#networks">tier</a> id</td>
+<td>The associated <a href="#networks">network</a> id</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkName</code><br/><em>string</em></td>
-<td>The associated <a href="#networks">tier</a> name</td>
+<td>The associated <a href="#networks">network</a> name</td>
 </tr>
 <tr>
 <td><code class="prettyprint">purposes</code><br/><em>Array[string]</em></td>
@@ -4486,7 +4486,7 @@ A rule&rsquo;s protocol can only be changed from TCP to UDP or vice versa.
 </tr>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#tiers">tier</a> of the port forwarding rule</td>
+<td>The id of the <a href="#networks">network</a> of the port forwarding rule</td>
 </tr>
 <tr>
 <td><code class="prettyprint">vpcId</code><br/><em>UUID</em></td>
@@ -4599,7 +4599,7 @@ A rule&rsquo;s protocol can only be changed from TCP to UDP or vice versa.
 </tr>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#tiers">tier</a> of the port forwarding rule</td>
+<td>The id of the <a href="#networks">network</a> of the port forwarding rule</td>
 </tr>
 <tr>
 <td><code class="prettyprint">vpcId</code><br/><em>UUID</em></td>
@@ -4801,7 +4801,7 @@ curl -X DELETE <span class="se">\</span>
 </tr>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>string</em></td>
-<td>The <a href="#tiers">tier</a> id of the load balancer rule</td>
+<td>The <a href="#networks">network</a> id of the load balancer rule</td>
 </tr>
 <tr>
 <td><code class="prettyprint">publicIp</code><br/><em>UUID</em></td>
@@ -4910,7 +4910,7 @@ curl -X DELETE <span class="se">\</span>
 </tr>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>string</em></td>
-<td>The <a href="#tiers">tier</a> id of the load balancer rule</td>
+<td>The <a href="#networks">network</a> id of the load balancer rule</td>
 </tr>
 <tr>
 <td><code class="prettyprint">publicIp</code><br/><em>UUID</em></td>
@@ -5048,13 +5048,13 @@ curl -X DELETE <span class="se">\</span>
 
 <table><thead>
 <tr>
-<th>Optional (required if <a href="#public-ips">public IP</a> already assigned a <a href="#tiers">tier</a>)</th>
+<th>Optional (required if <a href="#public-ips">public IP</a> already assigned a <a href="#networks">network</a>)</th>
 <th>&nbsp;</th>
 </tr>
 </thead><tbody>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>string</em></td>
-<td>The <a href="#tiers">tier</a> id of the load balancer rule</td>
+<td>The <a href="#networks">network</a> id of the load balancer rule</td>
 </tr>
 </tbody></table>
 
@@ -5368,19 +5368,19 @@ curl -X DELETE <span class="se">\</span>
 </tr>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#tiers">tier</a> of the NIC</td>
+<td>The id of the <a href="#networks">network</a> of the NIC</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkName</code><br/><em>string</em></td>
-<td>The name of the <a href="#tiers">tier</a> of the NIC</td>
+<td>The name of the <a href="#networks">network</a> of the NIC</td>
 </tr>
 <tr>
 <td><code class="prettyprint">gateway</code><br/><em>string</em></td>
-<td>The gateway of the <a href="#tiers">tier</a> associated with the NIC</td>
+<td>The gateway of the <a href="#networks">network</a> associated with the NIC</td>
 </tr>
 <tr>
 <td><code class="prettyprint">netmask</code><br/><em>string</em></td>
-<td>The netmask of the <a href="#tiers">tier</a> associated with the NIC</td>
+<td>The netmask of the <a href="#networks">network</a> associated with the NIC</td>
 </tr>
 <tr>
 <td><code class="prettyprint">instanceId</code><br/><em>string</em></td>
@@ -5412,7 +5412,7 @@ curl -X DELETE <span class="se">\</span>
 </tr>
 <tr>
 <td><code class="prettyprint">network_id</code><br/><em>UUID</em></td>
-<td>Filter the list to only retrieve the NICs of a specific <a href="#tiers">tier</a></td>
+<td>Filter the list to only retrieve the NICs of a specific <a href="#networks">network</a></td>
 </tr>
 </tbody></table>
 
@@ -5476,19 +5476,19 @@ curl -X DELETE <span class="se">\</span>
 </tr>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>UUID</em></td>
-<td>The id of the <a href="#tiers">tier</a> of the NIC</td>
+<td>The id of the <a href="#networks">network</a> of the NIC</td>
 </tr>
 <tr>
 <td><code class="prettyprint">networkName</code><br/><em>string</em></td>
-<td>The name of the <a href="#tiers">tier</a> of the NIC</td>
+<td>The name of the <a href="#networks">network</a> of the NIC</td>
 </tr>
 <tr>
 <td><code class="prettyprint">gateway</code><br/><em>string</em></td>
-<td>The gateway of the <a href="#tiers">tier</a> associated with the NIC</td>
+<td>The gateway of the <a href="#networks">network</a> associated with the NIC</td>
 </tr>
 <tr>
 <td><code class="prettyprint">netmask</code><br/><em>string</em></td>
-<td>The netmask of the <a href="#tiers">tier</a> associated with the NIC</td>
+<td>The netmask of the <a href="#networks">network</a> associated with the NIC</td>
 </tr>
 <tr>
 <td><code class="prettyprint">instanceId</code><br/><em>string</em></td>
@@ -5530,7 +5530,7 @@ curl -X POST <span class="se">\</span>
 
 <p><code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/nics</code></p>
 
-<p>Create a NIC for an <a href="#instances">instance</a> in a specific network. You can only have one NIC per <a href="#tiers">tier</a>.</p>
+<p>Create a NIC for an <a href="#instances">instance</a> in a specific network. You can only have one NIC per <a href="#networks">network</a>.</p>
 
 <table><thead>
 <tr>
@@ -5540,7 +5540,7 @@ curl -X POST <span class="se">\</span>
 </thead><tbody>
 <tr>
 <td><code class="prettyprint">networkId</code><br/><em>string</em></td>
-<td>The id of the <a href="#tiers">tier</a> where to create the NIC</td>
+<td>The id of the <a href="#networks">network</a> where to create the NIC</td>
 </tr>
 <tr>
 <td><code class="prettyprint">instanceId</code><br/><em>string</em></td>
@@ -6260,7 +6260,7 @@ curl -X DELETE <span class="se">\</span>
 
               <h2 id="offerings">Offerings</h2>
 
-<p>Offerings are what determine the characteristics of provisioned resources. There are 4 types of offerings : <a href="#compute-offerings">compute</a>, <a href="#disk-offerings">disk</a>, <a href="#vpc-offerings">VPC</a> and <a href="#network-offerings">tier</a> offerings.</p>
+<p>Offerings are what determine the characteristics of provisioned resources. There are 4 types of offerings : <a href="#compute-offerings">compute</a>, <a href="#disk-offerings">disk</a>, <a href="#vpc-offerings">VPC</a> and <a href="#network-offerings">network</a> offerings.</p>
 
               <h3 id="vpc-offerings">VPC offerings</h3>
 
@@ -6391,7 +6391,7 @@ curl -X DELETE <span class="se">\</span>
 
               <h3 id="network-offerings">Network offerings</h3>
 
-<p>Network offerings determine which services are available to each provisioned <a href="#tiers">tier</a>.</p>
+<p>Network offerings determine which services are available to each provisioned <a href="#networks">network</a>.</p>
 
 <h4 id="list-network-offerings">List network offerings</h4>
 <pre class="highlight shell"><code>curl -X GET <span class="se">\</span>
