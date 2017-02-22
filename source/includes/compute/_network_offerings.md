@@ -1,6 +1,6 @@
 ### Network offerings
 
-Network offerings determine which services are available to each provisioned [tier](#tiers).
+Network offerings determine which services are available to each provisioned [network](#networks).
 
 #### List network offerings
 

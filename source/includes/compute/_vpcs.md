@@ -1,6 +1,6 @@
 ### VPCs
 
-A Virtual Private Cloud (VPC) is a logically isolated section of cloud.ca, where you can build a multi-tier application architecture.
+A Virtual Private Cloud (VPC) is a logically isolated section of cloud.ca, where you can build a multi-network application architecture.
 
 <!-------------------- LIST VPCS -------------------->
 
@@ -242,7 +242,7 @@ success, err := ccaResources.Vpcs.Destroy("ad5bcae8-ee8b-4ee8-a7a4-381c25444b8e"
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/vpcs/:id</code>
 
-Destroy an existing VPC. To delete a VPC, you must first delete all the [tiers](#tiers) in the VPC.
+Destroy an existing VPC. To delete a VPC, you must first delete all the [networks](#networks) in the VPC.
 
 <!-------------------- RESTART A VPC -------------------->
 

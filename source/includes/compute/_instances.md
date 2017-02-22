@@ -64,8 +64,8 @@ Attributes | &nbsp;
 `computeOfferingName`<br/>*string* | The [compute offering](#compute-offerings) name of the instance
 `cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
 `memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
-`networkId`<br/>*UUID* | The id of the [tier](#tiers) where instance is deployed
-`networkName`<br/>*string* | The name of the [tier](#tiers) where instance is deployed
+`networkId`<br/>*UUID* | The id of the [network](#networks) where instance is deployed
+`networkName`<br/>*string* | The name of the [network](#networks) where instance is deployed
 `hostname`<br/>*string* | The host name of the instance
 `username`<br/>*string* | The username that can be used to connect to the instance
 `affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#affinity-groups) to which the instance is associated.
@@ -152,8 +152,8 @@ Attributes | &nbsp;
 `computeOfferingName`<br/>*string* | The [compute offering](#compute-offerings) name of the instance
 `cpuCount`<br/>*int* | The number of vCPUs associated with the instance's [compute offering](#compute-offerings)
 `memoryInMB`<br/>*int* | The number of megabytes associated with the instance's [compute offering](#compute-offerings)
-`networkId`<br/>*UUID* | The id of the [tier](#tiers) where instance is deployed
-`networkName`<br/>*string* | The name of the [tier](#tiers) where instance is deployed
+`networkId`<br/>*UUID* | The id of the [network](#networks) where instance is deployed
+`networkName`<br/>*string* | The name of the [network](#networks) where instance is deployed
 `hostname`<br/>*string* | The host name of the instance
 `username`<br/>*string* | The username that can be used to connect to the instance
 `affinityGroupIds`<br/>*Array[UUID]* | The id(s) of the [affinity groups](#affinity-groups) to which the instance is associated.
@@ -230,7 +230,7 @@ Required | &nbsp;
 `name`<br/>*string* | Name of the newly created instance
 `templateId`<br/>*UUID* | The [template](#templates) to use for this instance
 `computeOfferingId`<br/>*UUID* | The [compute offering](#compute-offerings) will determine the number of CPU and RAM of your instance
-`networkId`<br/>*UUID* | The [tier](#tiers) in which the instance will be created. If you don't have a tier, it can be created through the [create tier](#create-tier) api.
+`networkId`<br/>*UUID* | The [network](#networks) in which the instance will be created. If you don't have a network, it can be created through the [create network](#create-network) api.
 
 Optional | &nbsp;
 ------ | -----------

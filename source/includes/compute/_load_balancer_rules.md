@@ -56,7 +56,7 @@ Attributes                 | &nbsp;
 ---------------------------|-------
 `id`<br/>*UUID*            | The id of the load balancer rule
 `name`<br/>*string*        | The name of the load balancer rule
-`networkId`<br/>*string*   | The [tier](#tiers) id of the load balancer rule
+`networkId`<br/>*string*   | The [network](#networks) id of the load balancer rule
 `publicIp`<br/>*UUID*      | The [public IP](#public-ips) of this load balancer rule
 `publicIpId`<br/>*string*  | The id of the [public IP](#public-ips) of this load balancer rule
 `publicPort`<br/>*int*     | The public port of this load balancer rule
@@ -120,7 +120,7 @@ Attributes                 | &nbsp;
 ---------------------------|-------
 `id`<br/>*UUID*            | The id of the load balancer rule
 `name`<br/>*string*        | The name of the load balancer rule
-`networkId`<br/>*string*   | The [tier](#tiers) id of the load balancer rule
+`networkId`<br/>*string*   | The [network](#networks) id of the load balancer rule
 `publicIp`<br/>*UUID*      | The [public IP](#public-ips) of this load balancer rule
 `publicIpId`<br/>*string*  | The id of the [public IP](#public-ips) of this load balancer rule
 `publicPort`<br/>*int*     | The public port of this load balancer rule
@@ -208,9 +208,9 @@ Required                   | &nbsp;
 `algorithm`<br/>*string*   | The algorithm to use for this load balancer rule (roundrobin, leastconn or source)
 `protocol`<br/>*string*    | The protocol to load balance (TCP, UDP or TCP-PROXY)
 
-Optional (required if [public IP](#public-ips) already assigned a [tier](#tiers)) | &nbsp;
+Optional (required if [public IP](#public-ips) already assigned a [network](#networks)) | &nbsp;
 ---------------------------|-------
-`networkId`<br/>*string*   | The [tier](#tiers) id of the load balancer rule
+`networkId`<br/>*string*   | The [network](#networks) id of the load balancer rule
 
 Optional                 | &nbsp;
 ---------------------------|-------
