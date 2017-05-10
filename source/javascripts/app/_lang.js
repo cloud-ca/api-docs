@@ -41,10 +41,10 @@ under the License.
     $(".highlight.json").hide();
     $(".lang-specific.json").hide();
     for (var i=0; i < languages.length; i++) {
-      $(".highlight." + languages[i]).hide();
+      $(".highlight.tab-" + languages[i]).hide();
       $(".lang-specific." + languages[i]).hide();
     }
-    $(".highlight." + language).show();
+    $(".highlight.tab-" + language).show();
     $(".lang-specific." + language).show();
 
     if(language === "shell"){
