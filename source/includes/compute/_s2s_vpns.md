@@ -9,7 +9,7 @@ A site-to-site VPN allows multiple sites to establish a secure connection over t
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns"
+   "https://api.cloud.ca/v1/services/compute-on/test_area/sitetositevpns"
 
 # Example:
 ```
@@ -77,7 +77,7 @@ Query Parameters | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
+   "https://api.cloud.ca/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
 
 # Example:
 ```
@@ -141,7 +141,7 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "request_body" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns"
+   "https://api.cloud.ca/v1/services/compute-on/test_area/sitetositevpns"
 
 # Request should look like this
 ```
@@ -201,7 +201,7 @@ Optional | &nbsp;
 
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
+   "https://api.cloud.ca/v1/services/compute-on/test_area/sitetositevpns/d49b2922-0581-4587-94df-6fe719327d0f"
 ```
 
 <code>DELETE /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/sitetositevpns/:id</code>
@@ -218,7 +218,7 @@ Delete an existing site-to-site VPN.
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/sitetositevpns/ca86b14f-20db-463d-b58a-9d3fa5959af2?operation=reset"
+   "https://api.cloud.ca/v1/services/compute-on/test_area/sitetositevpns/ca86b14f-20db-463d-b58a-9d3fa5959af2?operation=reset"
 
 ```
  <code>POST /services/<a href="#service-connections">:service_code</a>/<a href="#environments">:environment_name</a>/sitetositevpns/:id?operation=reset</code>
