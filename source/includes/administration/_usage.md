@@ -2,7 +2,7 @@
 
 <!-------------------- LIST USAGE SUMMARY -------------------->
 
-### List usage summary
+### List usage summary (NOT RELEASED YET)
 
 `GET /usage_summary/organizations/:id`
 
@@ -37,6 +37,8 @@ curl "https://api.cloud.ca/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988
 organizationId,serviceConnectionId,startDate,endDate,usageType,secondaryType,serviceConnectionPricingId,utilityCost,utilityUsage
 52fd201e-aa82-4a27-86b3-ea9650a7fb1e,beeba736-0451-49b0-8020-8b93ed5abb35,2017-05-01T00:00:00.000Z,2017-05-01T01:00:00.000Z,1,RAM,e37cc44a-47b6-4a26-81f5-1dbf85433e36,0.660000,5.49999878
 ```
+
+*This endpoint is not in production yet*
 
 Retrieve the usage summary records for an organization and all of its sub-organizations for a specific period. The response can be in JSON (default) or CSV format. Additionally, you can aggregate these records using the different query parameters available.
 
