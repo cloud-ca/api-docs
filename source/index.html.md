@@ -20,6 +20,7 @@ subsections:
     - organizations
     - users
     - environments
+    - usage
   compute:
 
     - compute # Compute section
