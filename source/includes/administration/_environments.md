@@ -23,7 +23,7 @@ curl "https://api.cloud.ca/v1/environments" \
     "name": "cheyenne_mountain",
     "description": "Environment for base at Cheyenne Mountain",
     "membership": "MANY_USERS",
-    "creationDate": 1474986518000,
+    "creationDate": "2017-08-15T12:00:00.000Z",
     "organization": {
       "id": "a9f93785-0545-4876-8241-3b19b9a86721",
       "name": "sg1",
@@ -59,7 +59,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the environment
 `description`<br/>*string* | The description of the environment
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
-`creationDate`<br/>*long* | The date in [unix time](https://en.wikipedia.org/wiki/Unix_time) that the environment was created
+`creationDate`<br/>*string* | The date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
 `organization`<br/>*[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `serviceConnection`<br/>*[ServiceConnection](#service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
 `roles`<br/>*Array[[Role](#roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
@@ -87,7 +87,7 @@ curl "https://api.cloud.ca/v1/environment/[environment-id]" \
     "name": "galactica",
     "description": "Environment for the Galactica",
     "membership": "MANY_USERS",
-    "creationDate": 1474986518000,
+    "creationDate": "2017-08-15T12:00:00.000Z",
     "organization": {
       "id": "a3340a89-8f60-407d-8a49-f5cfe81eef8f",
       "name": "kobol",
@@ -126,7 +126,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | The name of the environment
 `description`<br/>*string* | The description of the environment
 `membership`<br/>*string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
-`creationDate`<br/>*long* | The date in [unix time](https://en.wikipedia.org/wiki/Unix_time) that the environment was created
+`creationDate`<br/>*string* | The date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
 `organization`<br/>*[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
 `serviceConnection`<br/>*[ServiceConnection](#service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
 `users`<br/>*Array[[User](#users)]* | The users that are members of the environment<br/>*includes*: `id`, `username`

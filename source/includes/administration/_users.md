@@ -24,7 +24,7 @@ curl "https://api.cloud.ca/v1/users" \
     "firstName": "Carey",
     "lastName": "Price",
     "email": "gohabsgo@cloud.ca",
-    "creationDate": 1476796926000,
+    "creationDate": "2017-08-15T12:00:00.000Z",
     "status": "ACTIVE",
     "organization": {
       "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
@@ -60,7 +60,7 @@ Attributes | &nbsp;
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
 `email`<br/>*string* | The email of the user
-`creationDate`<br/>*long* | The date in [unix time](https://en.wikipedia.org/wiki/Unix_time) that the user was created
+`creationDate`<br/>*string* | The date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) that the user was created
 `status`<br/>*string* | The current status of the user.
 `organization`<br/>*[Organization](#organization)* | The organization to which the user belongs
 `roles`<br/>*Array[[Role](#roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
@@ -88,7 +88,7 @@ curl "https://api.cloud.ca/v1/users/[user-id]" \
     "firstName": "Frodo",
     "lastName": "Baggins",
     "email": "frodo@cloud.ca",
-    "creationDate": 1476796926000,
+    "creationDate": "2017-08-15T12:00:00.000Z",
     "status": "ACTIVE",
     "organization": {
       "id": "c64dcd1d-9123-45e5-ad00-5d635c49176b",
@@ -128,7 +128,7 @@ Attributes | &nbsp;
 `firstName`<br/>*string* | The first name of the user
 `lastName`<br/>*string* | The last name of the user
 `email`<br/>*string* | The email of the user
-`creationDate`<br/>*long* | The date in [unix time](https://en.wikipedia.org/wiki/Unix_time) that the user was created
+`creationDate`<br/>*string* | The date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) that the user was created
 `status`<br/>*string* | The current status of the user.
 `organization`<br/>*[Organization](#organization)* | The organization to which the user belongs
 `environments`<br/>*Array[[Environment](#environments)]* | The environments the user is member of<br/>*includes*: `id`, `name`
