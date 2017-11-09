@@ -24,7 +24,8 @@ curl "https://api.cloud.ca/v1/usage_summary/organizations/03bc22bd-adc4-46b8-988
     "startDate": "2017-05-01T00:00:00.000Z",
     "endDate": "2017-05-01T01:00:00.000Z",
     "usageType": "1",
-    "secondaryType": "RAM"
+    "secondaryType": "RAM",
+    "description": "1vCPU.512MB"
   }]
 }
 ```
@@ -53,6 +54,7 @@ Attributes | &nbsp;
 `endDate`<br/>*string* | End date of the record in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
 `usageType`<br/>*string* | Usage type of the record.
 `secondaryType`<br/>*string* | Secondary type of the record.
+`description`<br/>*string* | Description of the pricing detail associated to this record.
 
 Query Parameters (*required*) | &nbsp;
 ---------- | -----
