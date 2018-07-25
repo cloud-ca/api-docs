@@ -68,7 +68,7 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | ---
 `name`<br/>*string* | ---
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the cloud.ca URL : `[entryPoint].cloud.ca`
-`billableStartDate`<br/>*string* | The billable start date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) of the organization
+`billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise
 `tags`<br/>*Array[string]* | Tags associated to the organization
 `parent`<br/>*[Organization](#organizations)* | If the organization is a sub-organization, it will have it's `parent` organization. *includes*:`id`,`name`
@@ -135,7 +135,7 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | ---
 `name`<br/>*string* | ---
 `entryPoint`<br/>*string* | The entry point of the organization is the subdomain of the organization in the cloud.ca URL :<br/>`[entryPoint].cloud.ca`
-`billableStartDate`<br/>*string* | The billable start date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) of the organization
+`billableStartDate`<br/>*string* | The billable start date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) of the organization
 `isBillable`<br/>*boolean* | If the organization is billable this values is true, false otherwise
 `tags`<br/>*Array[string]* | Tags associated to the organization
 `parent`<br/>*[Organization](#organizations)* | If the organization is a sub-organization, it will have it's `parent` organization. *includes*:`id`,`name`
