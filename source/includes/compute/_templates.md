@@ -31,11 +31,8 @@ curl -X GET \
     "availableInZones": [
        "ea901007-056b-4c50-bb3a-2dd635fce2ab"
     ],
-    "hypervisor": "VMware",
-    "format": "OVA",
-    "nicAdapter": "e1000",
-    "rootDiskController": "scsi",
-    "keyboard": "uk"
+    "hypervisor": "XenServer",
+    "format": "VHD"
   }],
   "metadata": {
     "recordCount": 1
@@ -66,9 +63,6 @@ Attributes | &nbsp;
 `availableInZones`<br/>*array[UUID]* | List of all [zone ids](#cloudstack-zones) that the template is available in
 `hypervisor`<br>*string* | The name of the hypervisor
 `format`<br>*string* | The template format for the chosen hypervisor
-`nicAdapter`<br>*string* | `VMWare only` The network interface controller name. Empty if not selected.<br>*Values*: e1000, pcnet32, vmxnet2 or vmxnet3.
-`rootDiskController`<br>*string* | `VMWare only` The root disk controller name. Empty if not selected.<br>*Values*: ide, scsi for CloudStack version up to 4.4.<br>*Values*: ide, scsi, osdefault, pvscsi, lsilogic, lsisas1068, buslogic for CloudStack version 4.5 and up.
-`keyboard`<br>*string* | `VMWare only` The keyboard type name. Empty if not selected.<br>*Values*: us, uk, jp, sc.
 
 #### Retrieve a template
 
@@ -100,11 +94,8 @@ curl -X GET \
     "availableInZones": [
        "ea901007-056b-4c50-bb3a-2dd635fce2ab"
     ],
-    "hypervisor": "VMware",
-    "format": "OVA",
-    "nicAdapter": "e1000",
-    "rootDiskController": "scsi",
-    "keyboard": "uk"
+    "hypervisor": "XenServer",
+    "format": "VHD"
   }
 }
 ```
@@ -132,9 +123,6 @@ Attributes | &nbsp;
 `availableInZones`<br/>*array[UUID]* | List of all [zone ids](#cloudstack-zones) that the template is available in
 `hypervisor`<br>*string* | The name of the hypervisor
 `format`<br>*string* | The template format for the chosen hypervisor
-`nicAdapter`<br>*string* | `VMWare only` The network interface controller name. Empty if not selected.<br>*Values*: e1000, pcnet32, vmxnet2 or vmxnet3
-`rootDiskController`<br>*string* | `VMWare only` The root disk controller name. Empty if not selected.<br>*Values*: ide, scsi for CloudStack version up to 4.4.<br>*Values*: ide, scsi, osdefault, pvscsi, lsilogic, lsisas1068 or buslogic for CloudStack version 4.5 and up
-`keyboard`<br>*string* | `VMWare only` The keyboard type name. Empty if not selected.<br>*Values*: us, uk, jp or sc
 
 #### Import a template
 
@@ -152,10 +140,8 @@ curl -X POST \
   "name": "debian",
   "description":"This is my template",
   "url":"http://somewhere.com/template-vmware.ova",
-  "hypervisor":"VMWare",
-  "format":"OVA",
-  "keyboard":"us",
-  "nicAdapter":"vmxnet3",
+  "hypervisor":"XenServer",
+  "format":"VHD",
   "osTypeId": "53161a9c-6019-11e7-914a-0200246f00c5",
   "zoneId":"e2cf7fa0-c3c2-4a39-9f8d-ee01ac3546cd"
 }
@@ -182,9 +168,6 @@ Optional | &nbsp;
 `availablePublicly`<br/>*boolean* | **true** if public to everyone. Your custom templates will always be private
 `dynamicallyScalable`<br/>*boolean* | **true** if you can dynamically scale an [instance](#cloudstack-instances) with this template
 `extractable`<br/>*boolean* | **true** if you want the template to be downloadable from a generated URL
-`nicAdapter`<br>*string* | `VMWare only` The network interface controller name. Empty if not selected.<br>*Values*: e1000, pcnet32, vmxnet2 or vmxnet3
-`rootDiskController`<br>*string* | `VMWare only` The root disk controller name. Empty if not selected.<br>*Values*: ide, scsi for CloudStack version up to 4.4.<br>*Values*: ide, scsi, osdefault, pvscsi, lsilogic, lsisas1068, buslogic for CloudStack version 4.5 and up
-`keyboard`<br>*string* | `VMWare only` The keyboard type name. Empty if not selected.<br>*Values*: us, uk, jp, sc
 
 #### Update a template
 
@@ -202,10 +185,8 @@ curl -X POST \
   "name": "debian",
   "description":"This is my template",
   "url":"http://somewhere.com/template-vmware.ova",
-  "hypervisor":"VMWare",
-  "format":"OVA",
-  "keyboard":"us",
-  "nicAdapter":"vmxnet3",
+  "hypervisor":"XenServer",
+  "format":"VHD",
   "osTypeId": "53161a9c-6019-11e7-914a-0200246f00c5",
   "zoneId":"e2cf7fa0-c3c2-4a39-9f8d-ee01ac3546cd",
   "availablePublicly":"true"
@@ -230,9 +211,6 @@ Optional | &nbsp;
 `availablePublicly`<br/>*boolean* | **true** if public to everyone. Your custom templates will always be private
 `dynamicallyScalable`<br/>*boolean* | **true** if you can dynamically scale an [instance](#cloudstack-instances) with this template
 `extractable`<br/>*boolean* | **true** if you want the template to be downloadable from a generated URL
-`nicAdapter`<br>*string* | `VMWare only` The network interface controller name. Empty if not selected.<br>*Values*: e1000, pcnet32, vmxnet2 or vmxnet3
-`rootDiskController`<br>*string* | `VMWare only` The root disk controller name. Empty if not selected.<br>*Values*: ide, scsi for CloudStack version up to 4.4.<br>*Values*: ide, scsi, osdefault, pvscsi, lsilogic, lsisas1068, buslogic for CloudStack version 4.5 and up
-`keyboard`<br>*string* | `VMWare only` The keyboard type name. Empty if not selected.<br>*Values*: us, uk, jp, sc
 
 #### Delete a template
 
