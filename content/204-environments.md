@@ -1,0 +1,291 @@
+---
+weight: 204
+title: Environments
+---
+
+## Environments
+
+Environments allow you to manage resources of a specific service and to manage your [users'](#users) access to them. With [environment roles](#roles), you have tight control of what a user is allowed to do in your environment. A general use case of environments is to split your resources into different [deployment environments](https://en.wikipedia.org/wiki/Deployment_environment) (e.g. dev, staging and production). The advantage is that resources of different deployments are isolated from each other and you can restrict user access to your most critical resources.
+
+### List environments
+
+<span class="method">GET</span> `/environments`
+
+```shell
+# Retrieve visible environments
+curl "https://api.cloud.ca/v1/environments" \
+   -H "MC-Api-Key: your_api_key"
+
+# Response body example
+```
+
+```json
+{
+  "data": [{
+    "id": "1ee5cd43-8395-4cd5-a20f-0f1e83b7f8bd",
+    "name": "cheyenne_mountain",
+    "description": "Environment for base at Cheyenne Mountain",
+    "membership": "MANY_USERS",
+    "creationDate": "2017-08-15T12:00:00.000Z",
+    "organization": {
+      "id": "a9f93785-0545-4876-8241-3b19b9a86721",
+      "name": "sg1",
+      "entryPoint": "sg1"
+    },
+    "serviceConnection": {
+      "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
+      "name": "Compute - Québec"
+    },
+    "roles": [{
+      "id": "951b768b-e91c-4d20-8b52-d4a2ab5a538a",
+      "name": "Environment Admin",
+      "isDefault": true,
+      "users": [{
+        "id": "9f84a6ce-7be1-4a08-a25b-edc6e57fb7e3",
+        "name": "jack_oneill"
+      }]
+    }]
+  }]
+}
+```
+
+```go
+ccaClient := cca.NewCcaClient("your_api_key")
+environments, err := ccaClient.Environments.List()
+```
+
+List environments that you have access to. It will only return environments that you're member of if you're not assigned the `Environments read` permission.
+
+Attributes | Type | Description
+---------- | ---- | -----------
+`id` | *UUID* | The id of the environment
+`name` | *string* | The name of the environment
+`description` | *string* | The description of the environment
+`membership` | *string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
+`creationDate` | *string* | The date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
+`organization` | *[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
+`serviceConnection` | *[ServiceConnection](#service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
+`roles` | *Array[[Role](#roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
+
+### Retrieve an environment
+
+<span class="method">GET</span> `/environments/:id`
+
+```shell
+# Retrieve visible environment
+
+curl "https://api.cloud.ca/v1/environment/[environment-id]" \
+   -H "MC-Api-Key: your_api_key"
+
+# Response body example
+```
+
+```json
+{
+  "data": {
+    "id": "487a2745-bb8a-44bc-adb1-e3b048f6def2",
+    "name": "galactica",
+    "description": "Environment for the Galactica",
+    "membership": "MANY_USERS",
+    "creationDate": "2017-08-15T12:00:00.000Z",
+    "organization": {
+      "id": "a3340a89-8f60-407d-8a49-f5cfe81eef8f",
+      "name": "kobol",
+      "entryPoint": "kobol"
+    },
+    "serviceConnection": {
+      "id": "adfbdb51-493b-45b1-8802-3f6327afb9e6",
+      "name": "Compute - Québec"
+    },
+    "users": [{
+      "id": "6e84ab70-4c62-4db1-bbd8-343636a34647",
+      "userName": "starbuck"
+    }],
+    "roles": [{
+      "id": "b04b8a7c-6e89-4dba-9734-74d9f1b7be04",
+      "name": "Environment Admin",
+      "isDefault": true,
+      "users": [{
+        "id": "6e84ab70-4c62-4db1-bbd8-343636a34647",
+        "name": "starbuck"
+      }]
+    }]
+  }
+}
+```
+
+```go
+ccaClient := cca.NewCcaClient("your_api_key")
+environment, err := ccaClient.Environments.Get("[environment-id]")
+```
+
+Retrieve an environment you have access to. You can always retrieve environments that you're member of but to access other environments you will need the `Environments read` permission.
+
+Attributes | Type | Description
+---------- | ---- | -----------
+`id` | *UUID* | The id of the environment
+`name` | *string* | The name of the environment
+`description` | *string* | The description of the environment
+`membership` | *string* | Type of membership of the environment. (e.g. ALL_ORG_USERS, MANY_USERS)
+`creationDate` | *string* | The date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) that the environment was created
+`organization` | *[Organization](#organizations)* | The organization of the environment<br/>*includes*: `id`, `name`, `entryPoint`
+`serviceConnection` | *[ServiceConnection](#service-connections)* | The service connection of the environment<br/>*includes*: `id`, `name`
+`users` | *Array[[User](#users)]* | The users that are members of the environment<br/>*includes*: `id`, `username`
+`roles` | *Array[[Role](#roles)]* | The roles of the environment with all the users assigned to them.<br/>*includes*: `id`, `name`, `isDefault`, `users.id`, `users.name`
+
+### Create environment
+
+<span class="method">POST</span> `/environments`
+
+```shell
+# Create an environment
+
+curl -X POST "https://api.cloud.ca/v1/environments" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "[request_body]"
+
+# Request body example
+```
+
+```json
+{
+  "name": "glados",
+  "description": "Environment property of Aperture Science",
+  "membership": "MANY_USERS",
+  "organization": {
+    "id": "2fd60d6f-1fee-4fe5-8ec6-46d8776acc6f"
+  },
+  "serviceConnection": {
+    "id": "7f0fa906-490a-467b-bc44-e2382d43015e"
+  },
+  "roles": [{
+    "name": "Environment Admin",
+    "isDefault": true,
+    "users": [{
+      "id": "73b17dab-1705-45f1-84e2-997e2af5641b"
+    }]
+  }]
+}
+```
+
+```go
+ccaClient := cca.NewCcaClient("your_api_key")
+environment, err := ccaClient.Environments.Create(configuration.Environment{
+  Name: "[environment-name]",
+  Description: "[environment-description]",
+  ServiceConnection: configuration.ServiceConnection {
+    Id: "[service-connection-id]",
+  },
+  Organization: configuration.Organization {
+    Id: "[organization-id]",
+  },
+  Roles: [configuration.Role{
+    Id: "[role-id]",
+    Users: [configuration.User{
+      Id: "[user-id]",
+    }],
+  }],
+})
+```
+
+```dart
+resource "cloudca_environment" "my_environment" {
+    service_code = "compute-qc"
+    organization_code = "kamar-taj"
+    name = "production"
+    description = "Environment for production workloads"
+    admin_role = ["pat"]
+    read_only_role = ["dr_strange","ancient_one"]
+}
+```
+
+Create a new environment in a specific service and organization. You will need the `Environments create` permission to execute this operation.
+
+Required | Type | Description
+-------- | ---- | -----------
+`name` | *string* | The name of the new environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
+`description` | *string* | The description of the new environment.
+`serviceConnection` | *[ServiceConnection](#service-connections)* | The service connection that the environment should be created in<br/>*required*: `id`
+
+Optional | Type | Description
+-------- | ---- | -----------
+`organization` | *[Organization](#organizations)* | The organization that the environment should be created in. *Defaults to your organization*<br/>*required*: `id`
+`membership` | *string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
+`roles` | *Array[[Role](#roles)]* | The roles of the environment and the users assigned to them. Also, defines the default role of the environment.<br/>*required*: `name`, `users.id` | *optional*: `isDefault`
+
+**Returns**
+
+The responses' `data` field contains the updated [environment](#environments).
+
+### Update environment
+
+<span class="method">PUT</span> `/environments/:id`
+
+```shell
+# Update an environment
+curl -X POST "https://api.cloud.ca/v1/environments/[environment-id]" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "[request_body]"
+
+# Request body example
+```
+
+```json
+{
+  "name": "skynet-beta",
+  "description": "Environment for the Skynet project",
+  "roles": [{
+    "id": "f9dea588-d7ab-4f42-b6e6-4b85f273f3db",
+    "users": [{
+      "id": "07e02355-d05b-47cf-860d-f69cf0432276"
+    }]
+  }]
+}
+```
+
+```go
+ccaClient := cca.NewCcaClient("your_api_key")
+environment, err := ccaClient.Environments.Update(configuration.Environment{
+  Name: "[environment-name]",
+  Description: "[environment-description]",
+  Roles: [configuration.Role{
+    Id: "[role-id]",
+    Users: [configuration.User{
+      Id: "[user-id]",
+    }],
+  }],
+})
+```
+
+Optional | Type | Description
+-------- | ---- | -----------
+`name` | *string* | The updated name of the environment. Should be unique in the environment and only contain lower case characters, numbers, dashes and underscores.
+`description` | *string* | The updated description of the environment
+`membership` | *string* | Type of membership of the environment. ALL_ORG_USERS will add every user in the organization to this environment with the default role. MANY_USERS will allow you to  choose the users you want in the environment and assigned them specific roles. *Defaults to MANY_USERS*
+`roles` | *Array[[Role](#roles)]* | Update the users roles in the environment. Also, can also update the default role.<br/>*required*: `name`, `users.id` | *optional*: `isDefault`
+
+You will need the `Environments update` permission to execute this operation.
+
+### Delete environment
+
+```shell
+# Delete an environment
+
+curl "https://api.cloud.ca/v1/environments/[environment-id]" \
+   -X DELETE -H "MC-Api-Key: your_api_key"
+```
+
+```go
+ccaClient := cca.NewCcaClient("your_api_key")
+deleted, err := ccaClient.Environments.Delete("[environment-id]")
+```
+
+<span class="method">DELETE</span> `/environments/:id`
+
+Delete a specific environment. You will need a [role](#roles) with the `Delete an existing environment` permission to execute this operation.
+
+<aside class="warning">
+  <strong>Be careful:</strong> This will destroy all the resources in your environment.
+</aside>

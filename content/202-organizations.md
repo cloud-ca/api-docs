@@ -1,0 +1,252 @@
+---
+weight: 202
+title: Organizations
+---
+
+## Organizations
+
+Organizations are the largest logical grouping of users, environments and resources available in cloud.ca. Each organization is isolated from other organizations. It has its own subdomain (`[entryPoint].cloud.ca`) and is protected by its own customizable system [roles](#roles). An administrator that must manage it's sub-organizations environments or provisioned resources can do so by having the `Access other levels` permission. Additionally, provisioned resource usage is metered at the organization level facilitating cost tracking.
+
+### List organizations
+
+<span class="method">GET</span> `/organizations`
+
+Retrieves a list of organizations visible to the caller. In most cases, only the caller's organization will be returned. However if the caller's organization has sub-organizations, and the caller has the `Access other levels` permission, the sub-organizations will be returned as well.
+
+```go
+// List organizations
+ccaClient := cca.NewCcaClient("your_api_key")
+organizations, err := ccaClient.Organizations.List()
+```
+
+```shell
+# Retrieve visible organizations
+curl "https://api.cloud.ca/v1/organizations" \
+   -H "MC-Api-Key: your_api_key"
+
+# Response body example
+```
+
+```json
+{
+   "data": [
+      {
+         "id": "03bc22bd-adc4-46b8-988d-afddc24c0cb5",
+         "name": "Umbrella Corporation",
+         "entryPoint": "umbrella",
+         "billableStartDate": "2017-08-15T12:00:00.000Z",
+         "isBillable": true,
+         "tags": ["a-tag"],
+         "parent": {
+            "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
+            "name": "Capcom"
+         },
+         "environments": [
+            {
+               "id": "9df14056-51e2-4000-ab14-beeaa488500d"
+            }
+         ],
+         "roles": [
+            {
+               "id": "cdaaa9d0-304e-4063-b1ab-de31905bdab8"
+            }
+         ],
+         "serviceConnections":[
+            {
+               "id":"11607a49-9691-40fe-8022-2e148bc0d720",
+               "serviceCode":"compute-qc"
+            }
+         ],
+         "users": [
+            {
+               "id":"0c3ffcce-a98d-4159-b6fc-04edd34e89b7",
+               "userName":"wbirkin"
+            }
+         ]
+      }
+   ]
+}
+```
+
+Attributes | Type | Description
+---------- | ---- | -----------
+`id` | *UUID* | ---
+`name` | *string* | ---
+`entryPoint` | *string* | The entry point of the organization is the subdomain of the organization in the cloud.ca URL : `[entryPoint].cloud.ca`
+`billableStartDate` | *string* | The billable start date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) of the organization
+`isBillable` | *boolean* | If the organization is billable this values is true, false otherwise
+`tags` | *Array[string]* | Tags associated to the organization
+`parent` | *[Organization](#organizations)* | If the organization is a sub-organization, it will have it's `parent` organization. *includes*:`id`,`name`
+`environments` | *Array[[Environment](#environments)]* | The environments belonging to the organization<br/>*includes*: `id`
+`roles` | *Array[[Role](#roles)]* | The system and environments roles belonging to the organization<br/>*includes*: `id`
+`serviceConnections` | *Array[[ServiceConnection](#service-connections)]* | The services for which the organization is allowed to provision resources<br/>*includes*: `id`,`serviceCode`
+`users` | *Array[[User](#users)]* | The users of the organization<br/>*includes*: `id`
+
+### Retrieve an organization
+
+<span class="method">GET</span> `/organizations/:id`
+
+Retrieve an organization's details
+
+```shell
+# Retrieve an organization
+curl "https://api.cloud.ca/v1/organizations/[id]" \
+   -H "MC-Api-Key: your_api_key"
+
+# Response body example
+```
+
+```json
+{
+   "data": {
+      "id": "03bc22bd-adc4-46b8-988d-afddc24c0cb5",
+      "name": "Nintendo US",
+      "entryPoint": "nintendo-us",
+      "billableStartDate": "2017-08-15T12:00:00.000Z",
+      "isBillable": true,
+      "tags": ["a-tag"],
+      "parent": {
+         "id": "8e3393ce-ee63-4f32-9e0f-7b0200fa655a",
+         "name": "Nintendo"
+      },
+      "environments": [
+         {
+           "id": "9df14056-51e2-4000-ab14-beeaa488500d"
+         }
+      ],
+      "roles": [
+         {
+           "id": "cdaaa9d0-304e-4063-b1ab-de31905bdab8"
+         }
+      ],
+      "serviceConnections": [
+         {
+            "id":"11607a49-9691-40fe-8022-2e148bc0d720",
+            "serviceCode":"compute-qc"
+         }
+      ],
+      "users": [
+         {
+            "id":"0c3ffcce-a98d-4159-b6fc-04edd34e89b7",
+            "userName":"reggie"
+         }
+      ]
+  }
+}
+```
+
+Attributes | Type | Description
+---------- | ---- | -----------
+`id` | *UUID* | ---
+`name` | *string* | ---
+`entryPoint` | *string* | The entry point of the organization is the subdomain of the organization in the cloud.ca URL :<br/>`[entryPoint].cloud.ca`
+`billableStartDate` | *string* | The billable start date in [ISO 8601](#https://en.wikipedia.org/wiki/ISO_8601) of the organization
+`isBillable` | *boolean* | If the organization is billable this values is true, false otherwise
+`tags` | *Array[string]* | Tags associated to the organization
+`parent` | *[Organization](#organizations)* | If the organization is a sub-organization, it will have it's `parent` organization. *includes*:`id`,`name`
+`environments` | *Array[[Environment](#environments)]* | The environments belonging to the organization<br/>*includes*: `id`
+`roles` | *Array[[Role](#roles)]* | The system and environments roles belonging to the organization<br/>*includes*: `id`
+`serviceConnections` | *Array[[ServiceConnection](#service-connections)]* | The services for which the organization is allowed to provision resources<br/>*includes*: `id`,`serviceCode`
+`users` | *Array[[User](#users)]* | The users of the organization<br/>*includes*: `id`
+
+### Create organization
+
+<span class="method">POST</span> `/organizations`
+
+Creates a new organization as a sub-organization of the caller's organization, or a sub-organization of the specified `parent`. The caller requires the `Organizations create` permission.
+
+```shell
+# Create an organization
+curl -X POST "https://api.cloud.ca/v1/organizations" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "[request_body]"
+
+# Request body example
+```
+
+```json
+{
+   "entryPoint":"umbrella",
+   "name":"Umbrella Corp",
+   "serviceConnections":[
+      {
+         "id":"9acb3b76-d5d0-420c-b075-ef320b7e5a3e"
+      }
+   ],
+   "parent" : {
+      "id":"bc0ceecf-feb5-412c-ab6e-a8df8eb7fbbd"
+   }
+}
+```
+
+Required | Type | Description
+-------- | ---- | -----------
+`name` | *string*  | The name of the organization. (Add info about restrictions)
+`entryPoint` | *string* | The entry point of the organization is the subdomain of the organization in the cloud.ca URL : `[entryPoint].cloud.ca`
+
+Optional | Type | Description
+-------- | ---- | -----------
+`serviceConnections`<br/>Array[[ServiceConnection](#service-connections)] | A list of service connections for which the organization may provision resources.<br/>*required :*`id`
+`parent`<br/>[Organization](#organization) | The organization that will be the parent of the new organization. By default, it will default to the caller's organization.<br/>*required :*`id`
+
+**Returns**
+
+The responses' `data` field contains the created [organization](#organizations) with it's `id`.
+
+### Update organization
+
+<span class="method">PUT</span> `/organizations/:id`
+
+Update an organization. It's parent organization cannot be changed. It can be assigned service connections
+
+```shell
+# Update an organization
+curl -X PUT "https://api.cloud.ca/v1/organizations/[id]" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "[request_body]"
+
+# Request body example
+```
+
+```json
+{
+   "entryPoint":"umbrella",
+   "name":"Umbrella Corp",
+   "serviceConnections":[
+      {
+         "id":"9acb3b76-d5d0-420c-b075-ef320b7e5a3e"
+      }
+   ]
+}
+```
+
+Required | Type | Description
+-------- | ---- | -----------
+`name` | *string*  | The name of the organization. (Add info about restrictions)
+`entryPoint` | *string* | The entry point of the organization is the subdomain of the organization in the cloud.ca URL : `[entryPoint].cloud.ca`
+
+Optional | Type | Description
+-------- | ---- | -----------
+`serviceConnections`<br/>Array[[ServiceConnection](#service-connections)] | A list of service connections for which the organization may provision resources. The caller must have access to all connections that are provided. **NB :** Service connection access may be added but not revoked at this time.<br/>*required :* `id`
+
+**Returns**
+
+The responses' `data` field contains the updated [organization](#organizations).
+
+### Delete organization
+
+<span class="method">DELETE</span> `/organizations/:id`
+
+Delete an organization. The caller may not delete his own organization. Also, an organization may not be deleted if it has sub-organizations.
+
+```shell
+# Delete an organization
+curl -X DELETE "https://api.cloud.ca/v1/organizations/[id]" \
+   -H "MC-Api-Key: your_api_key"
+```
+
+**Returns**
+
+Returns an HTTP status code 204, with an empty response body.
