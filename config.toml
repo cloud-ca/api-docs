@@ -1,0 +1,56 @@
+theme        = "docuapi"
+languageCode = "en-us"
+baseurl      = "https://developers.cloud.ca/"
+title        = "cloud.ca API Documentation"
+
+disableKinds = ["taxonomyTerm"]
+
+# Code higlighting settings
+pygmentsCodefences            = true
+pygmentsCodeFencesGuesSsyntax = false
+pygmentsOptions               = ""
+pygmentsStyle                 = "monokai"
+pygmentsUseClasses            = false
+
+defaultContentLanguage        = "en"
+
+[module]
+  [module.hugoVersion]
+    [[module.imports]]
+      path = "github.com/bep/empty-hugo-module"
+
+[params]
+  search = true
+
+  # Configure the language example tabs.
+  [[params.language_tabs]]
+    key = "go"
+    name = "Go"
+  [[params.language_tabs]]
+    key = "terraform"
+    name = "Terraform"
+  [[params.language_tabs]]
+    key = "cli"
+    name = "CLI"
+  [[params.language_tabs]]
+    key = "shell"
+    name = "curl"
+  [[params.language_tabs]]
+    key = "output"
+    name = "Output"
+
+# Languages
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight       = 2
+    title        = "cloud.ca API Documentation"
+
+    # Left sidebar footer items. Use HTMl or Markdown.
+    toc_footers = [
+      "Documentation Powered by [DocuAPI](https://github.com/bep/docuapi)"
+    ]
+
+    [languages.en.blackfriday]
+      angledQuotes = false
+      hrefTargetBlank = true
