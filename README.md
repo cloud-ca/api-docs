@@ -8,8 +8,8 @@ The docs themselves are available at https://cloud-ca.github.io/api-docs
 
 You're going to need:
 
- - **Linux or OS X** — Windows may work, but is unsupported.
- - **Ruby, version 2.2.5 or newer**
+ - **Linux or macOS** — Windows may work, but is unsupported.
+ - **Ruby, version 2.3.1 or newer**
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
 
 ### Getting Set Up
